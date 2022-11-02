@@ -1,0 +1,1 @@
+ansible-playbook -i pve.home.star4.io, create_template.yml --extra-vars "ansible_user=root"

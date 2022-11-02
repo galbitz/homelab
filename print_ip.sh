@@ -1,0 +1,1 @@
+op run --env-file="./.env" -- terraform output -raw ip

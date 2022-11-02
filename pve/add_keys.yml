@@ -1,0 +1,10 @@
+---
+- name: Add public keys
+  hosts: all
+  tasks:
+  - name: Add authorized keys from github
+    authorized_key:
+      user: 'root'
+      state: present
+      key: 'https://github.com/galbitz.keys'
+    become: true

@@ -1,0 +1,1 @@
+op run --env-file="./.env" -- ansible-playbook -i pve.home.star4.io, add_keys.yml --extra-vars "ansible_user=root ansible_password=${PASS}"
