@@ -8,11 +8,11 @@ wget https://cloud-images.ubuntu.com/focal/current/focal-server-cloudimg-amd64.i
 virt-customize -a focal-server-cloudimg-amd64.img --update
 virt-customize -a focal-server-cloudimg-amd64.img --install qemu-guest-agent
 
-# add user
-virt-customize -a focal-server-cloudimg-amd64.img --run-command 'useradd gabor'
-virt-customize -a focal-server-cloudimg-amd64.img --run-command 'mkdir -p /home/gabor/.ssh'
-virt-customize -a focal-server-cloudimg-amd64.img --ssh-inject gabor:file:key.pub
-virt-customize -a focal-server-cloudimg-amd64.img --run-command 'chown -R gabor:gabor /home/gabor'
+# add user - will be done by playbook
+# virt-customize -a focal-server-cloudimg-amd64.img --run-command 'useradd gabor'
+# virt-customize -a focal-server-cloudimg-amd64.img --run-command 'mkdir -p /home/gabor/.ssh'
+# virt-customize -a focal-server-cloudimg-amd64.img --ssh-inject gabor:file:key.pub
+# virt-customize -a focal-server-cloudimg-amd64.img --run-command 'chown -R gabor:gabor /home/gabor'
 virt-customize -a focal-server-cloudimg-amd64.img --root-password password:P@ssword
 #virt-sysprep -a focal-server-cloudimg-amd64.img
 qm destroy 9000
