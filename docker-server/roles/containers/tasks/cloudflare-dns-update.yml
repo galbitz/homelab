@@ -20,5 +20,5 @@
     restart_policy: always
     command: "crond -f -d 8"
     volumes:
-      "{{ docker_dir }}/cloudflare-dns-update.sh:/etc/periodic/15min/cloudflare-dns-update.sh"
+      "{{ docker_dir }}/cloudflare-dns-update.sh:/etc/periodic/daily/cloudflare-dns-update.sh"
 
