@@ -13,7 +13,8 @@ virt-customize -a focal-server-cloudimg-amd64.img --install qemu-guest-agent
 # virt-customize -a focal-server-cloudimg-amd64.img --run-command 'mkdir -p /home/gabor/.ssh'
 # virt-customize -a focal-server-cloudimg-amd64.img --ssh-inject gabor:file:key.pub
 # virt-customize -a focal-server-cloudimg-amd64.img --run-command 'chown -R gabor:gabor /home/gabor'
-virt-customize -a focal-server-cloudimg-amd64.img --root-password password:P@ssword
+virt-customize -a focal-server-cloudimg-amd64.img --ssh-inject root:file:key.pub
+# virt-customize -a focal-server-cloudimg-amd64.img --root-password password:P@ssword
 #virt-sysprep -a focal-server-cloudimg-amd64.img
 qm destroy 9000
 qm create 9000 --name "ubuntu-2004-cloudinit-template" --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0

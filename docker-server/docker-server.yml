@@ -1,0 +1,17 @@
+---
+- name: Configure docker-server
+  hosts: dockerserver
+  tasks:
+    - name: Update apt repos
+      apt: 
+        update_cache: yes
+        upgrade: 'yes'
+      changed_when: False
+      become: true
+  roles:
+    - essentials
+    - my-user
+    - geerlingguy.docker
+    - containers
+  
+  

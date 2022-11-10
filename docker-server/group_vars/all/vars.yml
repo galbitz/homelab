@@ -1,0 +1,9 @@
+ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+ansible_user: root
+
+docker_users:
+  - gabor
+
+docker_dir: /opt/docker/data
+
+CloudflareApiToken: "{{lookup('env', 'cloudflaretoken')}}"
