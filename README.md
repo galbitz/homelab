@@ -9,10 +9,9 @@ sudo apt install python3-pip
 echo 'PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
 source ~/.bashrc
 python3 -m pip install --user -U ansible ansible-lint yamllint
-
 ```
 ### Install terraform
-Do it
+https://developer.hashicorp.com/terraform/cli/install/apt#repository-configuration
 ### Other requirements
 * default vault name: infra
 * pve vault item: proxmox-login
