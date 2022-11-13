@@ -1,3 +1,3 @@
 #!/bin/sh
 apk --no-cache add curl
-curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/873e32bcbbb7ae294a37ea7668adaa12/dns_records/d6dfbd715edc541444e120fbf909485c" -H "X-Auth-Email:galbitz@gmail.com" -H "Authorization: Bearer {{CloudflareApiToken}}" -H "Content-Type: application/json" --data "{\"id\":\"d6dfbd715edc541444e120fbf909485c\",\"type\":\"A\",\"name\":\"diskstation.star4.dev\",\"content\":\"`curl https://ifconfig.co`\"}"
+curl -s -X PUT "https://api.cloudflare.com/client/v4/zones/873e32bcbbb7ae294a37ea7668adaa12/dns_records/d6dfbd715edc541444e120fbf909485c" -H "X-Auth-Email:galbitz@gmail.com" -H "Authorization: Bearer {{cloudflare_api_token}}" -H "Content-Type: application/json" --data "{\"id\":\"d6dfbd715edc541444e120fbf909485c\",\"type\":\"A\",\"name\":\"diskstation.star4.dev\",\"content\":\"`curl https://ifconfig.co`\"}"

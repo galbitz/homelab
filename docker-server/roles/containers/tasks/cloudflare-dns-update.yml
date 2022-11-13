@@ -5,15 +5,16 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     state: directory
+    mode: 0755
   loop:
     - "{{ docker_dir }}"
 - name: Copy dns update script
-  template:
+  ansible.builtin.template:
     src: cloudflare-dns-update.j2
     dest: "{{ docker_dir }}/cloudflare-dns-update.sh"
     mode: a+x
 - name: Set up container to run cron
-  docker_container:
+  community.docker.docker_container:
     name: cloudflare-dns
     image: alpine
     state: started
@@ -21,4 +22,3 @@
     command: "crond -f -d 8"
     volumes:
       "{{ docker_dir }}/cloudflare-dns-update.sh:/etc/periodic/daily/cloudflare-dns-update.sh"
-

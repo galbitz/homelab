@@ -1,3 +1,5 @@
 ---
-- include: docker-dependencies.yml
-- include: cloudflare-dns-update.yml
+- name: Dependencies
+  ansible.builtin.include_tasks: docker-dependencies.yml
+- name: Cloudflare
+  ansible.builtin.include_tasks: cloudflare-dns-update.yml

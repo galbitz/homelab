@@ -1,3 +1,5 @@
 ---
-- include: set-timezone.yml
-- include: autoupdate.yml
+- name: Timezone
+  ansible.builtin.include_tasks: set-timezone.yml
+- name: Autoupdate
+  ansible.builtin.include_tasks: autoupdate.yml

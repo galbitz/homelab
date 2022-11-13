@@ -1,10 +1,14 @@
 ---
 - name: Restart ssh
-  service: name=ssh state=restarted
+  ansible.builtin.service:
+    name: ssh
+    state: restarted
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   become: true
 
 - name: Restart ssh (Redhat)
-  systemd: name=sshd state=restarted
+  ansible.builtin.systemd:
+    name: sshd
+    state: restarted
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
   become: true

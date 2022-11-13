@@ -1,10 +1,23 @@
-## Prerequisites
-* install terraform, ansible, 1pwd cli, sshpass
+## Local requirements
+
+### Install 1password cli
+https://developer.1password.com/docs/cli/sign-in-manually
+
+### Install Ansible
+```bash
+sudo apt install python3-pip
+echo 'PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
+source ~/.bashrc
+python3 -m pip install --user -U ansible ansible-lint yamllint
+
+```
+### Install terraform
+Do it
+### Other requirements
 * default vault name: infra
 * pve vault item: proxmox-login
 * proxmox version 7.2-3
 * use wsl
-` eval $(op signin)`
 
 ## Configure PVE server
 ```
@@ -13,7 +26,7 @@
  ./createtemplate.sh
  ```
 
-## Create docker server
+## Create servers on PVE
 ```
 ./tfrun.sh init
 ./tfrun.sh apply

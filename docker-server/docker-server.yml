@@ -3,15 +3,13 @@
   hosts: dockerserver
   tasks:
     - name: Update apt repos
-      apt: 
-        update_cache: yes
+      apt:
+        update_cache: true
         upgrade: 'yes'
-      changed_when: False
+      changed_when: false
       become: true
   roles:
     - essentials
-    - my-user
+    - my_user
     - geerlingguy.docker
     - containers
-  
-  
