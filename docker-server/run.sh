@@ -7,5 +7,5 @@ fi
 export cloudflaretoken=$(op read "op://infra/cloudflare-dns-api-token/password")
 export ANSIBLE_CONFIG=ansible.cfg
 
-ansible-galaxy install geerlingguy.docker
+ansible-galaxy install -r requirements.yml
 ansible-playbook docker-server.yml
