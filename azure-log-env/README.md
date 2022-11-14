@@ -32,7 +32,7 @@ az ad sp create-for-rbac --name sp-log-manager --role Contributor --scopes /subs
 ### Onboard Azure Arc client
 Generate script using portal or
 ```bash
-# Download the installation package.
+# Download the installation package. Or use portal generated script (easier)
 wget https://aka.ms/azcmagent -O ~/Install_linux_azcmagent.sh
 
 # Install the Azure Connected Machine agent.

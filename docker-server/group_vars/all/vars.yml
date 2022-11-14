@@ -7,4 +7,9 @@ docker_users:
 
 docker_dir: /opt/docker/data
 
+docker_daemon_options:
+  log-driver: "syslog"
+  log-opts:
+    syslog-address: "udp://192.168.1.203:514"
+
 cloudflare_api_token: "{{ lookup('env', 'cloudflaretoken') }}"
