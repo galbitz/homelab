@@ -5,6 +5,7 @@ if [ $? -ne 0 ]; then
     exit
 fi
 export cloudflaretoken=$(op read "op://infra/cloudflare-dns-api-token/password")
+export cloudflaretunneltoken=$(op read "op://infra/cloudflare-tunnel-token/password")
 export ANSIBLE_CONFIG=ansible.cfg
 
 ansible-galaxy install -r requirements.yml

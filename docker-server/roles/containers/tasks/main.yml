@@ -3,3 +3,5 @@
   ansible.builtin.include_tasks: docker-dependencies.yml
 - name: Cloudflare
   ansible.builtin.include_tasks: cloudflare-dns-update.yml
+- name: Cloudflare tunnel
+  ansible.builtin.include_tasks: cloudflare-tunnel.yml

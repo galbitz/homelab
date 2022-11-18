@@ -13,3 +13,4 @@ docker_daemon_options:
     syslog-address: "udp://192.168.1.203:514"
 
 cloudflare_api_token: "{{ lookup('env', 'cloudflaretoken') }}"
+cloudlflare_tunnel_token: "{{ lookup('env', 'cloudflaretunneltoken') }}"
