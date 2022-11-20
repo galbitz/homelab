@@ -1,0 +1,3 @@
+---
+ntfy_etc_dir: "{{ docker_dir }}/ntfy/etc"
+ntfy_data_dir: "{{ docker_dir }}/ntfy/data"

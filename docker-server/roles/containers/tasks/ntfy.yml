@@ -1,0 +1,41 @@
+---
+- name: Make sure that the docker folder exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+    mode: 0755
+  loop:
+    - "{{ docker_dir }}"
+    - "{{ ntfy_etc_dir }}"
+    - "{{ ntfy_data_dir }}"
+
+- name: 'Copy ntfy server config'
+  ansible.builtin.copy:
+    dest: "{{ ntfy_etc_dir }}"
+    src: "server.yml"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+
+- name: 'Copy ntfy auth'
+  ansible.builtin.copy:
+    dest: "{{ ntfy_data_dir }}"
+    src: "user.db"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+- name: Set up container to ntfy
+  community.docker.docker_container:
+    name: ntfy
+    image: binwiederhier/ntfy
+    pull: true
+    state: started
+    restart_policy: always
+    command: "serve"
+    volumes:
+      - "{{ ntfy_etc_dir }}/server.yml:/etc/ntfy/server.yml"
+      - "{{ ntfy_data_dir }}/user.db:/var/lib/ntfy/user.db"
+    ports:
+      "8085:80"

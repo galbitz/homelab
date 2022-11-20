@@ -5,3 +5,5 @@
   ansible.builtin.include_tasks: cloudflare-dns-update.yml
 - name: Cloudflare tunnel
   ansible.builtin.include_tasks: cloudflare-tunnel.yml
+- name: Ntfy
+  ansible.builtin.include_tasks: ntfy.yml
