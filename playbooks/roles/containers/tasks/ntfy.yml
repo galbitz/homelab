@@ -11,21 +11,20 @@
     - "{{ ntfy_etc_dir }}"
     - "{{ ntfy_data_dir }}"
 
-- name: 'Copy ntfy server config'
-  ansible.builtin.copy:
-    dest: "{{ ntfy_etc_dir }}"
-    src: "server.yml"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0755
+- name: Copy ntfy server config
+  ansible.builtin.template:
+    src: server.j2
+    dest: "{{ ntfy_etc_dir }}/server.yml"
+    mode: a+x
 
-- name: 'Copy ntfy auth'
+- name: Copy ntfy auth
   ansible.builtin.copy:
     dest: "{{ ntfy_data_dir }}"
     src: "user.db"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0755
+
 - name: Set up container to ntfy
   community.docker.docker_container:
     name: ntfy

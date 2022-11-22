@@ -1,9 +1,9 @@
 ---
 - name: Configure docker-server
-  hosts: dockerserver
+  hosts: docker-server
   tasks:
     - name: Update apt repos
-      apt:
+      ansible.builtin.apt:
         update_cache: true
         upgrade: 'yes'
       changed_when: false

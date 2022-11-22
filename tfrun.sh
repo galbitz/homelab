@@ -5,7 +5,7 @@ if [ $? -ne 0 ]; then
     exit
 fi
 
-export TF_VAR_PM_USER=$(op read "op://infra/proxmox-login/username")
-export TF_VAR_PM_PASS=$(op read "op://infra/proxmox-login/password")
+export TF_VAR_HOME_IP=`curl -sS https://ifconfig.co`
 
-terraform $*
+op run --env-file="./.env" -- terraform $*
+

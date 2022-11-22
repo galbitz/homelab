@@ -33,3 +33,7 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Generated files
+playbooks/hosts
+playbooks/group_vars/all/tf_ansible_vars_file.yml
