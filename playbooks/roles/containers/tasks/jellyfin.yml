@@ -1,0 +1,35 @@
+---
+- name: Make sure that Jellyfin mounting folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+    mode: 0755
+  loop:
+    - "{{ jellyfin_config_dir }}"
+    - "{{ jellyfin_cache_dir }}"
+    - "{{ jellyfin_mountpoint }}/music"
+- name: Required packages
+  ansible.builtin.package:
+    name: cifs-utils
+    state: present
+- name: Mount network share
+  ansible.posix.mount:
+    src: "//{{ diskstation_jellyfin_ip }}/music"
+    path: "{{ jellyfin_mountpoint }}/music"
+    fstype: cifs
+    opts: 'username={{ diskstation_jellyfin_username }},password={{ diskstation_jellyfin_password }}'
+    state: mounted
+- name: Jellyfin container
+  community.docker.docker_container:
+    name: jellyfin
+    image: jellyfin/jellyfin:latest
+    pull: true
+    state: started
+    restart_policy: always
+    network_mode: host
+    volumes:
+      - "{{ jellyfin_config_dir }}:/config"
+      - "{{ jellyfin_cache_dir }}:/cache"
+      - "{{ jellyfin_mountpoint }}:/media"

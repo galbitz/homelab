@@ -10,6 +10,9 @@ variable "CLOUDFLARE_ACCOUNT_EMAIL" {}
 variable "HOME_IP" {}
 variable "HOME_ZONE" {}
 
+variable "DISKSTATION_JELLYFIN_USERNAME" {}
+variable "DISKSTATION_JELLYFIN_PASSWORD" {}
+
 variable "template_name" {
   default = "ubuntu-2004-cloudinit-template"
 }

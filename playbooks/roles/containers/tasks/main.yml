@@ -19,3 +19,5 @@
   ansible.builtin.include_tasks: cloudflare-tunnel.yml
 - name: Ntfy
   ansible.builtin.include_tasks: ntfy.yml
+- name: Jellyfin
+  ansible.builtin.include_tasks: jellyfin.yml

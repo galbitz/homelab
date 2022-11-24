@@ -14,6 +14,10 @@ resource "local_file" "tf_ansible_vars_file_new" {
     cloudflare_home_record_content: "${cloudflare_record.home_dnsrecord.name}.${cloudflare_zone.home_zone.zone}"
     cloudflare_ntfy_base_url: "https://ntfy.${cloudflare_zone.home_zone.zone}"
 
+    diskstation_jellyfin_username: "${var.DISKSTATION_JELLYFIN_USERNAME}"
+    diskstation_jellyfin_password: "${var.DISKSTATION_JELLYFIN_PASSWORD}"
+    diskstation_jellyfin_ip: "${var.hosts["diskstation"].ip}"
+
     syslog_endpoint: "udp://${var.hosts["log-server"].ip}:514"
     DOC
   filename = "playbooks/group_vars/all/tf_ansible_vars_file.yml"

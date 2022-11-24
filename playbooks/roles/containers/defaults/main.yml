@@ -1,3 +1,7 @@
 ---
 ntfy_etc_dir: "{{ docker_dir }}/ntfy/etc"
 ntfy_data_dir: "{{ docker_dir }}/ntfy/data"
+
+jellyfin_mountpoint: "/media/jellyfin"
+jellyfin_config_dir: "/opt/docker/data/jellyfin/config"
+jellyfin_cache_dir: "/opt/docker/data/jellyfin/cache"
