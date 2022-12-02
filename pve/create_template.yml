@@ -2,10 +2,6 @@
 - name: Create ubuntu 20.04 server template
   hosts: all
   tasks:
-  - name: Copy key
-    copy:
-      src: ./key.pub
-      dest: key.pub
   - name: Creating template
     script: ./createtemplate_remote.sh
     register: results

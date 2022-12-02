@@ -49,3 +49,7 @@ variable "hosts" {
 variable "default_gateway" {
   default = "192.168.1.1"
 }
+
+data "http" "public_keys" {
+  url = "https://github.com/galbitz.keys"
+}

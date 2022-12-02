@@ -23,6 +23,11 @@ resource "proxmox_vm_qemu" "docker_server" {
   scsihw   = "virtio-scsi-pci"
   bootdisk = "scsi0"
 
+  ciuser  = "root"
+  sshkeys = <<EOF
+    ${data.http.public_keys.response_body}
+  EOF
+
   disk {
     slot     = 0
     size     = "10G"
@@ -76,6 +81,11 @@ resource "proxmox_vm_qemu" "kasm_server" {
   scsihw   = "virtio-scsi-pci"
   bootdisk = "scsi0"
 
+  ciuser  = "root"
+  sshkeys = <<EOF
+    ${data.http.public_keys.response_body}
+  EOF
+
   disk {
     slot     = 0
     size     = "75G"
@@ -105,6 +115,11 @@ resource "proxmox_vm_qemu" "log_server" {
   memory   = 8192
   scsihw   = "virtio-scsi-pci"
   bootdisk = "scsi0"
+
+  ciuser  = "root"
+  sshkeys = <<EOF
+    ${data.http.public_keys.response_body}
+  EOF
 
   disk {
     slot     = 0
