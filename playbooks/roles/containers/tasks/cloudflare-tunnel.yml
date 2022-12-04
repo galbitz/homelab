@@ -6,4 +6,4 @@
     pull: true
     state: started
     restart_policy: always
-    command: "tunnel --no-autoupdate run --loglevel error --token {{ cloudflare_tunnel_token }}"
+    command: "tunnel --no-autoupdate --loglevel error run --token {{ cloudflare_tunnel_token }}"
