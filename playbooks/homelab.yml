@@ -1,0 +1,42 @@
+---
+- name: Configure docker-server
+  hosts: docker-server
+  tasks:
+    - name: Update apt repos
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: 'yes'
+      changed_when: false
+      become: true
+  roles:
+    - essentials
+    - my_user
+    - geerlingguy.docker
+    - containers
+
+- name: Configure log-server
+  hosts: log-server
+  tasks:
+    - name: Update apt repos
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: 'yes'
+      changed_when: false
+      become: true
+  roles:
+    - essentials
+    - my_user
+    - log_collector
+
+- name: Configure kasm-server
+  hosts: kasm-server
+  tasks:
+    - name: Update apt repos
+      ansible.builtin.apt:
+        update_cache: true
+        upgrade: 'yes'
+      changed_when: false
+      become: true
+  roles:
+    - essentials
+    - my_user

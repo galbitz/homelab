@@ -1,0 +1,5 @@
+---
+- name: Enable receiving logs
+  ansible.builtin.include_tasks: rsyslog_endpoint.yml
+- name: Add severity to syslog template
+  ansible.builtin.include_tasks: rsyslog_template.yml

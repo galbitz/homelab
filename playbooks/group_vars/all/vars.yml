@@ -11,3 +11,4 @@ docker_daemon_options:
   log-driver: "syslog"
   log-opts:
     syslog-address: "{{ syslog_endpoint }}"
+    tag: "ContainerName={{ '{{' }}.Name{{ '}}' }}"

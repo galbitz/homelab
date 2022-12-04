@@ -1,0 +1,8 @@
+---
+- name: Change template
+  ansible.builtin.replace:
+    path: /etc/rsyslog.conf
+    regexp: "^\\$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat"
+    replace: "#$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat\ntemplate (name=\"sample_template\" type=\"string\" string=\"%timegenerated% %HOSTNAME% %syslogfacility-text%.%syslogseverity-text% %syslogtag% %msg%\\\\n\")\n$ActionFileDefaultTemplate sample_template"
+  become: true
+  notify: Restart rsyslog

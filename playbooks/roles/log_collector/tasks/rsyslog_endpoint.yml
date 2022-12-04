@@ -1,0 +1,15 @@
+---
+- name: Enable rsyslog endpoint tcp
+  ansible.builtin.replace:
+    path: /etc/rsyslog.conf
+    regexp: "^#input\\(type=\"imtcp\" port=\"514\"\\)"
+    replace: "input(type=\"imtcp\" port=\"514\")"
+  become: true
+  notify: Restart rsyslog
+- name: Enable rsyslog endpoint udp
+  ansible.builtin.replace:
+    path: /etc/rsyslog.conf
+    regexp: "^#input\\(type=\"imudp\" port=\"514\"\\)"
+    replace: "input(type=\"imudp\" port=\"514\")"
+  become: true
+  notify: Restart rsyslog
