@@ -1,0 +1,41 @@
+---
+- name: Install dependencies
+  become: true
+  ansible.builtin.package:
+    name:
+      - snap
+    state: present
+
+- name: Install starship
+  community.general.snap:
+    name:
+      - starship
+
+- name: Make sure that the config dir exists
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.file:
+    path: "~{{ username }}/.config"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+    mode: 0755
+
+- name: Copy default configuration
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.copy:
+    dest: "~{{ username }}/.config/starship.toml"
+    src: "starship.toml"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+
+- name: Add autoload for starship to bashrc
+  become: true
+  become_user: "{{ username }}"
+  ansible.builtin.blockinfile:
+    path: "~{{ username }}/.bashrc"
+    block: |
+      eval "$(starship init bash)"
+    create: yes
