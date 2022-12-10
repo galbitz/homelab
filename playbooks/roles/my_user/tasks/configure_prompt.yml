@@ -38,4 +38,7 @@
     path: "~{{ username }}/.bashrc"
     block: |
       eval "$(starship init bash)"
-    create: yes
+    create: true
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
