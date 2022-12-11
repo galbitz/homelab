@@ -23,7 +23,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install ansible dependencies
-        run: ansible-galaxy install -r roles/requirements.yml --force
+        run: ansible-galaxy install -r playbooks/roles/requirements.yml --force
 
       - name: Lint code
         run: |
