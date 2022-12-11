@@ -23,8 +23,8 @@ jobs:
         run: pip3 install yamllint ansible ansible-lint
 
       - name: Install ansible dependencies
-        run: ansible-galaxy install -r roles/requirements.yml --force
+        run: ansible-galaxy install -r ./roles/requirements.yml --force
 
-      - name: Lint code.
+      - name: Lint code
         run: |
           ansible-lint
