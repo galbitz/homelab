@@ -1,7 +1,7 @@
 ---
 - name: Add public keys
   hosts: all
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: Add authorized keys from github
       authorized_key:
