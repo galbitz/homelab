@@ -1,5 +1,5 @@
 ---
-- name: Create ubuntu 20.04 server template
+- name: Create ubuntu 22.04 server template
   hosts: all
   tasks:
     - name: Creating template

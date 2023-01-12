@@ -33,11 +33,11 @@ variable "hosts" {
     },
     "docker-server" = {
       name = "docker-server"
-      ip   = "192.168.1.201"
+      ip   = "192.168.1.17"
     },
     "log-server" = {
       name = "log-server"
-      ip   = "192.168.1.203"
+      ip   = "192.168.1.18"
     }
   }
 }

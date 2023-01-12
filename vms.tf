@@ -1,5 +1,5 @@
 provider "proxmox" {
-  pm_api_url  = "https://${var.hosts["pve2"].name}.home.${var.HOME_ZONE}:8006/api2/json"
+  pm_api_url  = "https://${var.hosts["pve2"].ip}:8006/api2/json"
   pm_user     = var.PM_USER
   pm_password = var.PM_PASS
   pm_debug    = true
