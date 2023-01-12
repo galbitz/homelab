@@ -27,17 +27,13 @@ variable "hosts" {
       name = "diskstation"
       ip   = "192.168.1.15"
     },
-    "pve" = {
-      name = "pve"
-      ip   = "192.168.1.200"
+    "pve2" = {
+      name = "pve2"
+      ip   = "192.168.1.16"
     },
     "docker-server" = {
       name = "docker-server"
       ip   = "192.168.1.201"
-    },
-    "kasm-server" = {
-      name = "kasm-server"
-      ip   = "192.168.1.202"
     },
     "log-server" = {
       name = "log-server"
