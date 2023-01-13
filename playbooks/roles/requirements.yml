@@ -7,3 +7,6 @@ collections:
   - source: https://github.com/galbitz/star4-essentials
     type: git
     version: main
+# collections:
+#   - source: /mnt/c/code/star4-essentials
+#     type: dir
