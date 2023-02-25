@@ -1,0 +1,33 @@
+---
+- name: Disable DNS listener
+  ansible.builtin.lineinfile:
+    dest: /etc/systemd/resolved.conf
+    regexp: "^#DNSStubListener=yes"
+    line: "DNSStubListener=no"
+    state: present
+  become: true
+
+- name: Link resolve.conf
+  ansible.builtin.file:
+    dest: /etc/resolv.conf
+    src: /run/systemd/resolve/resolv.conf
+    state: link
+  notify: Restart resolved
+  become: true
+
+- name: Create pi-hole container
+  community.docker.docker_container:
+    name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - 53:53/tcp
+      - 53:53/udp
+      - 8080:80/tcp
+    env:
+      TZ: "America/Toronto"
+      WEBPASSWORD: ""
+      FTLCONF_BLOCK_ICLOUD_PR: "false"
+      PIHOLE_DNS_: "1.1.1.1;8.8.8.8"
+      DNSMASQ_LISTENING: "all"
+    state: started
+    restart_policy: unless-stopped
