@@ -23,3 +23,5 @@
   ansible.builtin.include_tasks: jellyfin.yml
 - name: Pi-hole
   ansible.builtin.include_tasks: pi-hole.yml
+- name: Uptime-kuma
+  ansible.builtin.include_tasks: uptime-kuma.yml

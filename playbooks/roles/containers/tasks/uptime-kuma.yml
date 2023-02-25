@@ -1,0 +1,22 @@
+---
+- name: Make sure that the docker folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+    mode: 0755
+  loop:
+    - "{{ docker_dir }}"
+    - "{{ uptime_kuma_dir }}"
+
+- name: Create uptime-kuma container
+  community.docker.docker_container:
+    name: uptime-kuma
+    image: louislam/uptime-kuma:latest
+    volumes:
+      - "{{ uptime_kuma_dir }}:/app/data"
+    ports:
+      - 3001:3001
+    state: started
+    restart_policy: always
