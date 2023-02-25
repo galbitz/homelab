@@ -3,7 +3,8 @@
   hosts: all
   tasks:
     - name: Creating template
-      script: ./createtemplate_remote.sh
+      ansible.builtin.script: ./createtemplate_remote.sh
       register: results
-    - debug:
+    - name: Debug value
+      ansible.builtin.debug:
         var: results.stdout

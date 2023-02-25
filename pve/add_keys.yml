@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: Add authorized keys from github
-      authorized_key:
+      ansible.posix.authorized_key:
         user: "root"
         state: present
         key: "https://github.com/galbitz.keys"
