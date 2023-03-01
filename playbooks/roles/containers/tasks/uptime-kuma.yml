@@ -16,6 +16,7 @@
     image: louislam/uptime-kuma:latest
     volumes:
       - "{{ uptime_kuma_dir }}:/app/data"
+      - "/var/run/docker.sock:/var/run/docker.sock"
     ports:
       - 3001:3001
     state: started
