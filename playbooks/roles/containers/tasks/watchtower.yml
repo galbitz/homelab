@@ -2,7 +2,7 @@
 - name: Create watchtower container
   community.docker.docker_container:
     name: watchtower
-    image: containrrr/watchtower 
+    image: containrrr/watchtower
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
     state: started

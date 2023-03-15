@@ -29,4 +29,3 @@
   ansible.builtin.include_tasks: homer.yml
 - name: Watchtower
   ansible.builtin.include_tasks: watchtower.yml
-  
