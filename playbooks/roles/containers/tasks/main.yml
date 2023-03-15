@@ -27,3 +27,6 @@
   ansible.builtin.include_tasks: uptime-kuma.yml
 - name: Homer
   ansible.builtin.include_tasks: homer.yml
+- name: Watchtower
+  ansible.builtin.include_tasks: watchtower.yml
+  
