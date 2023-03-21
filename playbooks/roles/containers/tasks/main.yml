@@ -25,7 +25,9 @@
   ansible.builtin.include_tasks: pi-hole.yml
 - name: Uptime-kuma
   ansible.builtin.include_tasks: uptime-kuma.yml
-- name: Homer
-  ansible.builtin.include_tasks: homer.yml
+# - name: Homer
+#   ansible.builtin.include_tasks: homer.yml
 - name: Watchtower
   ansible.builtin.include_tasks: watchtower.yml
+- name: Dashy
+  ansible.builtin.include_tasks: dashy.yml

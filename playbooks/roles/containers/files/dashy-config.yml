@@ -1,0 +1,63 @@
+appConfig:
+  theme: dracula
+  layout: auto
+  iconSize: large
+  language: en
+  defaultOpeningMethod: sametab
+pageInfo:
+  title: Dashboard
+  footerText: ""
+sections: # An array of sections
+  - name: Servers
+    icon: far fa-rocket
+    items:
+      - title: Home Assistant
+        description: Home Assistant
+        icon: "icons/dashboard-icons/png/home-assistant.png"
+        url: "http://192.168.1.40:8123"
+      - title: "Proxmox"
+        url: "https://pve2.home.star4.dev:8006"
+        icon: "icons/dashboard-icons/png/proxmox.png"
+      - title: "Diskstation"
+        url: "https://diskstation.home.star4.dev:5001"
+        icon: "icons/dashboard-icons/png/synology.png"
+      - title: "Unifi"
+        url: "https://unifi.ui.com/dashboard"
+        icon: "icons/dashboard-icons/png/unifi.png"
+      - title: "Uptime Kuma"
+        url: "http://192.168.1.17:3001/dashboard"
+        icon: "icons/dashboard-icons/png/uptime-kuma.png"
+      - title: "Pi-Hole"
+        url: "http://192.168.1.17:8080/admin"
+        icon: "icons/dashboard-icons/png/raspberrypi.png"
+  - name: Open
+    icon: "fas fa-external-link-alt"
+    items:
+      - title: "Ntfy"
+        url: "https://ntfy.star4.dev/"
+        icon: "icons/dashboard-icons/png/ntfy.png"
+      - title: "Jellyfin"
+        url: "https://media.star4.dev/"
+        icon: "icons/dashboard-icons/png/jellyfin.png"
+    widgets:
+      - type: clock
+        options:
+          timeZone: America/Toronto
+          format: en-GB
+          hideDate: false
+      - type: weather
+        options:
+          apiKey: 0452d9cc8fa34013e6fe29de50978035
+          city: Toronto
+          hideDetails: false
+    # - type: pi-hole-stats
+    #   options:
+    #     hostname: http://192.168.1.17:8080
+    #     hideStatus: false
+    #     hideChart: true
+    #     hideInfo: true
+  - name: Other
+    icon: "fas fa-link"
+    items:
+      - title: "Musicle"
+        url: "https://musicle.app/metalhead"
