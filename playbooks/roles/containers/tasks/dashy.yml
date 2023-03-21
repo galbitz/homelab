@@ -25,6 +25,7 @@
   ansible.builtin.git:
     repo: "https://github.com/walkxcode/dashboard-icons.git"
     dest: "{{ dashy_dir }}/icons/dashboard-icons"
+    update: false
 
 - name: Set up dashy container
   community.docker.docker_container:

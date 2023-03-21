@@ -1,3 +1,4 @@
+---
 appConfig:
   theme: dracula
   layout: auto
@@ -50,12 +51,6 @@ sections: # An array of sections
           apiKey: 0452d9cc8fa34013e6fe29de50978035
           city: Toronto
           hideDetails: false
-    # - type: pi-hole-stats
-    #   options:
-    #     hostname: http://192.168.1.17:8080
-    #     hideStatus: false
-    #     hideChart: true
-    #     hideInfo: true
   - name: Other
     icon: "fas fa-link"
     items:
