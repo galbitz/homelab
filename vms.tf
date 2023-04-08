@@ -63,8 +63,8 @@ resource "null_resource" "run-ansible-docker-server" {
   depends_on = [proxmox_vm_qemu.docker_server]
 }
 
-resource "proxmox_vm_qemu" "log_server" {
-  name        = "log-server"
+resource "proxmox_vm_qemu" "develop_server" {
+  name        = "develop-server"
   target_node = var.hosts["pve2"].name
   clone       = var.template_name
 
@@ -85,7 +85,7 @@ resource "proxmox_vm_qemu" "log_server" {
 
   disk {
     slot     = 0
-    size     = "40G"
+    size     = "30G"
     type     = "scsi"
     storage  = "local-lvm"
     iothread = 1
@@ -96,19 +96,19 @@ resource "proxmox_vm_qemu" "log_server" {
     ]
   }
 
-  ipconfig0 = "ip=${var.hosts["log-server"].ip}/24,gw=${var.default_gateway}"
+  ipconfig0 = "ip=${var.hosts["develop-server"].ip}/24,gw=${var.default_gateway}"
 }
 
-resource "null_resource" "run-ansible-log-server" {
+resource "null_resource" "run-ansible-develop-server" {
   triggers = {
     always_run = "${timestamp()}"
   }
 
   provisioner "local-exec" {
-    command = "cd playbooks && ./run.sh log-server.yml"
+    command = "cd playbooks && ./run.sh develop-server.yml"
   }
 
-  depends_on = [proxmox_vm_qemu.log_server]
+  depends_on = [proxmox_vm_qemu.develop_server]
 }
 
 

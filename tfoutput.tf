@@ -18,7 +18,6 @@ resource "local_file" "tf_ansible_vars_file_new" {
     diskstation_jellyfin_password: "${var.DISKSTATION_JELLYFIN_PASSWORD}"
     diskstation_jellyfin_ip: "${var.hosts["diskstation"].ip}"
 
-    syslog_endpoint: "udp://${var.hosts["log-server"].ip}:514"
     DOC
   filename = "playbooks/group_vars/all/tf_ansible_vars_file.yml"
 }

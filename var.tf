@@ -35,8 +35,8 @@ variable "hosts" {
       name = "docker-server"
       ip   = "192.168.1.17"
     },
-    "log-server" = {
-      name = "log-server"
+    "develop-server" = {
+      name = "develop-server"
       ip   = "192.168.1.18"
     }
   }

@@ -6,9 +6,3 @@ docker_users:
   - gabor
 
 docker_dir: /opt/docker/data
-
-docker_daemon_options:
-  log-driver: "syslog"
-  log-opts:
-    syslog-address: "{{ syslog_endpoint }}"
-    tag: "ContainerName={{ '{{' }}.Name{{ '}}' }}"
