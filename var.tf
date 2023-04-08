@@ -4,8 +4,8 @@ variable "PM_PASS" {}
 
 variable "CLOUDFLARE_API_TOKEN" {}
 variable "CLOUDFLARE_ACCOUNT_ID" {}
-variable "CLOUDFLARE_TUNNEL_TOKEN" {}
 variable "CLOUDFLARE_ACCOUNT_EMAIL" {}
+variable "CLOUDFLARE_HOME_TUNNEL_SECRET" {}
 
 variable "HOME_IP" {}
 variable "HOME_ZONE" {}

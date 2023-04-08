@@ -30,5 +30,12 @@ resource "cloudflare_record" "host_records" {
   proxied = false
 }
 
+resource "cloudflare_tunnel" "home-tunnel" {
+  account_id = var.CLOUDFLARE_ACCOUNT_ID
+  name       = "home-tunnel"
+  secret     = var.CLOUDFLARE_HOME_TUNNEL_SECRET
+}
+
 # Tunnel... once properly supported
 # https://github.com/cloudflare/terraform-provider-cloudflare/issues/1756
+# Public hostnames are still unsupported as of provider version 4.3.0
