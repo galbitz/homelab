@@ -13,6 +13,7 @@ resource "proxmox_vm_qemu" "docker_server" {
   # basic VM settings here. agent refers to guest agent
   agent    = 1
   os_type  = "cloud-init"
+  qemu_os  = "l26"
   cores    = 4
   sockets  = 1
   cpu      = "host"
@@ -69,6 +70,7 @@ resource "proxmox_vm_qemu" "log_server" {
 
   agent    = 1
   os_type  = "cloud-init"
+  qemu_os  = "l26"
   cores    = 2
   sockets  = 1
   cpu      = "host"
