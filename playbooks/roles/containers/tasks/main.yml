@@ -13,8 +13,8 @@
     fail_msg: "tf_* variable usually defined in 'group_vars/tf_ansible_vars_file.yml' is missing"
 - name: Dependencies
   ansible.builtin.include_tasks: docker-dependencies.yml
-- name: Cloudflare
-  ansible.builtin.include_tasks: cloudflare-dns-update.yml
+#- name: Cloudflare
+#  ansible.builtin.include_tasks: cloudflare-dns-update.yml
 - name: Cloudflare tunnel
   ansible.builtin.include_tasks: cloudflare-tunnel.yml
 - name: Ntfy
