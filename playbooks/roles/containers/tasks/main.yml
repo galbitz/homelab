@@ -1,5 +1,5 @@
 ---
-- name: Check prereq
+- name: Check pre req
   ansible.builtin.assert:
     that:
       - cloudflare_api_token is defined
@@ -17,8 +17,8 @@
 #   ansible.builtin.include_tasks: cloudflare-dns-update.yml
 - name: Cloudflare tunnel
   ansible.builtin.include_tasks: cloudflare-tunnel.yml
-- name: Ntfy
-  ansible.builtin.include_tasks: ntfy.yml
+# - name: Ntfy
+#   ansible.builtin.include_tasks: ntfy.yml
 - name: Jellyfin
   ansible.builtin.include_tasks: jellyfin.yml
 - name: Pi-hole
@@ -31,3 +31,5 @@
   ansible.builtin.include_tasks: watchtower.yml
 - name: Dashy
   ansible.builtin.include_tasks: dashy.yml
+- name: Insight Composer stack
+  ansible.builtin.include_tasks: insight.yml

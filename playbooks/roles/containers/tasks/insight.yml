@@ -1,0 +1,34 @@
+---
+# Idea from: https://docs.technotim.live/posts/grafana-loki/
+# Docker parser: https://ruanbekker.medium.com/logging-with-docker-promtail-and-grafana-loki-d920fd790ca8
+
+- name: Make sure that insight folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+    mode: 0755
+  loop:
+    - "{{ insight_dir }}"
+
+- name: Copy docker compose for insight
+  ansible.builtin.template:
+    src: insight-compose.j2
+    dest: "{{ insight_dir }}/docker-compose.yml"
+
+- name: Copy configs
+  ansible.builtin.copy:
+    dest: "{{ item.dest }}"
+    src: "{{ item.src }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+    force: true
+  loop:
+    - src: "insight/"
+      dest: "{{ insight_dir }}"
+
+- name: Deploy Docker Compose stack
+  community.docker.docker_compose:
+    project_src: "{{ insight_dir }}"
