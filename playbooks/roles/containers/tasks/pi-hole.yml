@@ -30,4 +30,4 @@
       PIHOLE_DNS_: "1.1.1.1;8.8.8.8"
       DNSMASQ_LISTENING: "all"
     state: started
-    restart_policy: unless-stopped
+    restart_policy: always
