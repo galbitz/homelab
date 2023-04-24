@@ -3,6 +3,7 @@ networks:
   loki:
 volumes:
   influxdb-data:
+  prometheus-data:
 services:
   loki:
     container_name: loki
@@ -82,3 +83,35 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=home-bucket
       - DOCKER_INFLUXDB_INIT_RETENTION=14d
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=influxdbadmintoken
+  cadvisor:
+    container_name: cadvisor
+    image: gcr.io/cadvisor/cadvisor:latest
+    networks:
+      - loki
+    ports:
+      - "8081:8080"
+    restart: always
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+    devices:
+      - /dev/kmsg
+  prometheus:
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --web.enable-admin-api
+      - --web.enable-lifecycle
+    container_name: prometheus
+    image: prom/prometheus:latest
+    networks:
+      - loki
+    ports:
+      - published: 9090
+        target: 9090
+    restart: always
+    volumes:
+      - "{{ insight_dir }}/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
+      - prometheus-data:/prometheus
