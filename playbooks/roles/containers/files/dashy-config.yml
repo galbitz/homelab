@@ -37,9 +37,6 @@ sections: # An array of sections
   - name: Open
     icon: "fas fa-external-link-alt"
     items:
-      - title: "Ntfy"
-        url: "https://ntfy.star4.dev/"
-        icon: "icons/dashboard-icons/png/ntfy.png"
       - title: "Jellyfin"
         url: "https://media.star4.dev/"
         icon: "icons/dashboard-icons/png/jellyfin.png"
@@ -54,6 +51,12 @@ sections: # An array of sections
           apiKey: 0452d9cc8fa34013e6fe29de50978035
           city: Toronto
           hideDetails: false
+  - name: Insight
+    icon: "fas fa-glasses-round"
+    items:
+      - title: "Grafana - Insight"
+        url: "http://192.168.1.17:3000"
+        icon: "icons/dashboard-icons/png/grafana.png"
   - name: Other
     icon: "fas fa-link"
     items:
