@@ -57,6 +57,8 @@ sections: # An array of sections
       - title: "Grafana - Insight"
         url: "http://192.168.1.17:3000"
         icon: "icons/dashboard-icons/png/grafana.png"
+      - title: "NUT"
+        url: "http://192.168.1.17:8082/cgi-bin/nut/upsstats.cgi"
   - name: Other
     icon: "fas fa-link"
     items:
