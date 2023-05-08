@@ -1,4 +1,6 @@
 ---
+# https://docs.technotim.live/posts/NUT-server-guide/
+
 - name: Run NUT container
   community.docker.docker_container:
     name: nut
