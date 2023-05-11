@@ -43,6 +43,10 @@ variable "hosts" {
       name = "develop-server"
       ip   = "192.168.1.18"
     }
+    "pikvm" = {
+      name = "pikvm"
+      ip   = "192.168.1.19"
+    }
   }
 }
 
