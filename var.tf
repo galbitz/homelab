@@ -23,6 +23,10 @@ variable "hosts" {
     ip   = string
   }))
   default = {
+    "shadow" = {
+      name = "shadow"
+      ip   = "192.168.1.14"
+    }
     "diskstation" = {
       name = "diskstation"
       ip   = "192.168.1.15"
