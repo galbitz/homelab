@@ -1,0 +1,10 @@
+---
+- name: Add public keys
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Add authorized keys from github
+      ansible.posix.authorized_key:
+        user: "root"
+        state: present
+        key: "https://github.com/galbitz.keys"

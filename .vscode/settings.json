@@ -9,6 +9,7 @@
     "kuma",
     "mountpoint",
     "ntfy",
+    "posix",
     "promtail",
     "rgba",
     "syslogs",

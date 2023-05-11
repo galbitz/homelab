@@ -1,0 +1,10 @@
+---
+- name: Create ubuntu 22.04 server template
+  hosts: shadow
+  tasks:
+    - name: Creating template
+      ansible.builtin.script: ./files/createtemplate_remote.sh
+      register: results
+    - name: Debug value
+      ansible.builtin.debug:
+        var: results.stdout
