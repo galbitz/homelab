@@ -12,7 +12,7 @@
     - "{{ dashy_dir }}/public"
     - "{{ dashy_dir }}/icons"
 
-- name: "Copy dashy config"
+- name: Copy dashy config
   ansible.builtin.copy:
     dest: "{{ dashy_dir }}/public/conf.yml"
     src: "dashy-config.yml"
@@ -20,7 +20,7 @@
     group: "{{ username }}"
     mode: 0755
     force: true
-  register: dashy_config_copy
+  register: containers_dashy_config_copy
 
 - name: Clone icons
   ansible.builtin.git:
@@ -39,4 +39,4 @@
       - "{{ dashy_dir }}/public/conf.yml:/app/public/conf.yml"
       - "{{ dashy_dir }}/icons:/app/public/item-icons/icons"
     ports: "8295:80"
-    recreate: "{{ dashy_config_copy.changed }}"
+    recreate: "{{ containers_dashy_config_copy.changed }}"
