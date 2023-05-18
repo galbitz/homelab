@@ -12,7 +12,7 @@
     - "{{ dashy_dir }}/public"
     - "{{ dashy_dir }}/icons"
 
-- name: Copy dashy config
+- name: "Copy dashy config"
   ansible.builtin.copy:
     dest: "{{ dashy_dir }}/public/conf.yml"
     src: "dashy-config.yml"
