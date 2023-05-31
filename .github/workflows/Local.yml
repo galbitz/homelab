@@ -7,4 +7,5 @@ jobs:
   test:
     runs-on: self-hosted
     steps:
-      - run: ssh -t gabor@docker-server 'hostnamectl'
+      - run: ./decrypt.sh
+      - run: cat unencrypted_secrets.sh | grep TF_VAR_HOME_ZONE
