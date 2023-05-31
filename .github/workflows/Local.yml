@@ -7,5 +7,7 @@ jobs:
   test:
     runs-on: self-hosted
     steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
       - run: ./decrypt.sh
       - run: cat unencrypted_secrets.sh | grep TF_VAR_HOME_ZONE
