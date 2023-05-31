@@ -37,3 +37,4 @@ terraform.rc
 # Generated files
 playbooks/hosts
 playbooks/group_vars/all/tf_ansible_vars_file.yml
+unencrypted_secrets.sh
