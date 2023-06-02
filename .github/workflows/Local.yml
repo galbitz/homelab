@@ -12,4 +12,4 @@ jobs:
       - run: ./decrypt.sh
         env:
           SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
-      - run: cat unencrypted_secrets.sh | grep TF_VAR_HOME_ZONE
+      - run: ./tfrun-in-docker.sh state list
