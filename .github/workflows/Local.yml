@@ -1,5 +1,5 @@
 ---
-name: Test workflow
+name: Local full deployment
 on:
   workflow_dispatch:
 
@@ -12,4 +12,5 @@ jobs:
       - run: ./decrypt.sh
         env:
           SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
-      - run: ./tfrun-in-docker.sh init
+      - run: ./tfrun-in-docker.sh init -input=false
+      - run: ./tfrun-in-docker.sh plan -input=false -compact-warnings
