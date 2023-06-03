@@ -9,7 +9,7 @@
     state: started
     restart_policy: always
     devices:
-      - /dev/bus/usb/002/002
+      - /dev/bus/usb/002/003
     ports:
       - 8082:80
       - 3493:3493

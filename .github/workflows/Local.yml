@@ -13,4 +13,5 @@ jobs:
         env:
           SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
       - run: ./tfrun-in-docker.sh init -input=false
-      - run: ./tfrun-in-docker.sh plan -input=false -compact-warnings
+      # - run: ./tfrun-in-docker.sh plan -input=false -compact-warnings
+      - run: ./tfrun-in-docker.sh apply -input=false -compact-warnings -auto-approve
