@@ -2,6 +2,7 @@
 
 eval $(ssh-agent)
 ssh-add
+printenv
 
 docker run --rm \
     -v $(pwd):/ansible \
@@ -9,4 +10,4 @@ docker run --rm \
     -w /ansible/playbooks \
     -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK \
     --env-file unencrypted_secrets.sh \
-    galbitz/ansible:latest bash -c "ssh-import-id-gh galbitz && ./run.sh $*"
+    galbitz/ansible:latest bash -c "printenv && ./run.sh $*"
