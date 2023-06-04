@@ -1,11 +1,7 @@
-#!/bin/sh
-op user list
-if [ $? -ne 0 ]; then
-    echo 'must sign in first with eval $(op signin)'
-    exit
-fi
+#!/bin/bash
 
 export TF_VAR_HOME_IP=`curl -sS https://ifconfig.co`
 
-op run --env-file="./.env" -- terraform $*
-
+set -a
+source unencrypted_secrets.sh
+terraform $*

@@ -1,10 +1,17 @@
 ---
-name: Test workflow
-on:
+name: Local full deployment
+"on":
   workflow_dispatch:
 
 jobs:
   test:
     runs-on: self-hosted
     steps:
-      - run: whoami
+      - name: Check out the codebase.
+        uses: actions/checkout@v3
+      - run: ./decrypt.sh
+        env:
+          SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
+      - run: ./tfrun-in-docker.sh init -input=false
+      - run: ./tfrun-in-docker.sh apply -input=false -compact-warnings -auto-approve
+      - run: ./run-in-docker.sh pi.yml
