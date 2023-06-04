@@ -1,16 +1,12 @@
 ## Local requirements
 
-### Install 1password cli
-
-https://developer.1password.com/docs/cli/sign-in-manually
-
 ### Install Ansible
 
 ```bash
 sudo apt install python3-pip
 echo 'PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
 source ~/.bashrc
-python3 -m pip install --user -U ansible ansible-lint yamllint
+python3 -m pip install ansible ansible-lint yamllint
 ```
 
 ### Install terraform
