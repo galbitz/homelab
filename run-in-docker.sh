@@ -9,7 +9,4 @@ docker run --rm \
     -w /ansible/playbooks \
     -e SSH_AUTH_SOCK=$SSH_AUTH_SOCK \
     --env-file unencrypted_secrets.sh \
-    galbitz/ansible:latest bash -c "ssh -T -v -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@192.168.1.19"
-
-
-# "./run.sh $*"
+    galbitz/ansible:latest bash -c "./run.sh $*"
