@@ -52,18 +52,6 @@ resource "proxmox_vm_qemu" "docker_server" {
   ipconfig0 = "ip=${var.hosts["docker-server"].ip}/24,gw=${var.default_gateway}"
 }
 
-resource "null_resource" "run-ansible-docker-server" {
-  triggers = {
-    always_run = "${timestamp()}"
-  }
-
-  provisioner "local-exec" {
-    command = "cd playbooks && ./run.sh docker-server.yml"
-  }
-
-  depends_on = [proxmox_vm_qemu.docker_server]
-}
-
 # resource "proxmox_vm_qemu" "develop_server" {
 #   name        = "develop-server"
 #   target_node = var.hosts["pve2"].name
