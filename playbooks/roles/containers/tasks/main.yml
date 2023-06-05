@@ -11,24 +11,12 @@
       - cloudflare_account_id is defined
       - cloudflare_ntfy_base_url is defined
     fail_msg: "tf_* variable usually defined in 'group_vars/tf_ansible_vars_file.yml' is missing"
-- name: Dependencies
-  ansible.builtin.include_tasks: docker-dependencies.yml
-# - name: Cloudflare
-#   ansible.builtin.include_tasks: cloudflare-dns-update.yml
 - name: Cloudflare tunnel
   ansible.builtin.include_tasks: cloudflare-tunnel.yml
-# - name: Ntfy
-#   ansible.builtin.include_tasks: ntfy.yml
 - name: Jellyfin
   ansible.builtin.include_tasks: jellyfin.yml
 - name: Pi-hole
   ansible.builtin.include_tasks: pi-hole.yml
-- name: Uptime-kuma
-  ansible.builtin.include_tasks: uptime-kuma.yml
-# - name: Homer
-#   ansible.builtin.include_tasks: homer.yml
-- name: Watchtower
-  ansible.builtin.include_tasks: watchtower.yml
 - name: Dashy
   ansible.builtin.include_tasks: dashy.yml
 - name: Insight Composer stack

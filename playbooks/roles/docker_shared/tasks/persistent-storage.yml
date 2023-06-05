@@ -1,0 +1,10 @@
+---
+- name: Make sure that the docker folder exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    state: directory
+    mode: 0777
+  loop:
+    - "{{ docker_dir }}"

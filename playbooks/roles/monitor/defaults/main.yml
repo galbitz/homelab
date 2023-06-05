@@ -1,0 +1,2 @@
+---
+uptime_kuma_dir: "{{ docker_dir }}/uptime-kuma"

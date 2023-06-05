@@ -1,0 +1,12 @@
+---
+- name: Check pre req
+  ansible.builtin.assert:
+    that:
+      - docker_dir is defined
+    fail_msg: "variable is missing. Define it in global vars"
+
+- name: Dependencies
+  ansible.builtin.include_tasks: docker-dependencies.yml
+
+- name: Persistent storage
+  ansible.builtin.include_tasks: persistent-storage.yml

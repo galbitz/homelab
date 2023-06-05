@@ -2,12 +2,11 @@
 - name: Make sure that the docker folders exist
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: "{{ username }}"
-    group: "{{ username }}"
+    owner: root
+    group: root
     state: directory
-    mode: 0755
+    mode: 0777
   loop:
-    - "{{ docker_dir }}"
     - "{{ uptime_kuma_dir }}"
 
 - name: Create uptime-kuma container
@@ -16,7 +15,6 @@
     image: louislam/uptime-kuma:latest
     volumes:
       - "{{ uptime_kuma_dir }}:/app/data"
-      - "/var/run/docker.sock:/var/run/docker.sock"
     ports:
       - 3001:3001
     state: started

@@ -1,13 +1,4 @@
 ---
-- name: Make sure that the docker folder exists
-  ansible.builtin.file:
-    path: "{{ item }}"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    state: directory
-    mode: 0755
-  loop:
-    - "{{ docker_dir }}"
 - name: Copy dns update script
   ansible.builtin.template:
     src: cloudflare-dns-update.j2
@@ -21,5 +12,4 @@
     state: started
     restart_policy: always
     command: "crond -f -l 8"
-    volumes:
-      "{{ docker_dir }}/cloudflare-dns-update.sh:/etc/periodic/daily/cloudflare-dns-update.sh"
+    volumes: "{{ docker_dir }}/cloudflare-dns-update.sh:/etc/periodic/daily/cloudflare-dns-update.sh"
