@@ -14,3 +14,6 @@
     - star4.essentials.myuser
     - star4.essentials.hardening
     - geerlingguy.docker
+    - docker_shared
+    - watchtower
+    - monitor
