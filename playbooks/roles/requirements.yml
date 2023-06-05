@@ -4,6 +4,9 @@ roles:
   - name: geerlingguy.dotfiles
 
 collections:
+  - name: community.docker
+  - name: community.general
+  - name: ansible.posix
   - source: https://github.com/galbitz/star4-essentials
     type: git
     version: main
