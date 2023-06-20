@@ -1,15 +1,25 @@
 ---
 # https://docs.technotim.live/posts/NUT-server-guide/
 
-- name: Run NUT container
-  community.docker.docker_container:
-    name: nut
-    image: galbitz/nut:latest
-    pull: true
-    state: started
-    restart_policy: always
-    devices:
-      - /dev/bus/usb/002/002
-    ports:
-      - 8082:80
-      - 3493:3493
+- name: Make sure that nut folders exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+    mode: 0755
+  loop:
+    - "{{ nut_dir }}"
+
+- name: Copy docker compose for nut
+  ansible.builtin.template:
+    src: nut-compose.j2
+    dest: "{{ nut_dir }}/docker-compose.yml"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755
+    force: true
+
+- name: Deploy Docker Compose stack
+  community.docker.docker_compose:
+    project_src: "{{ nut_dir }}"
