@@ -23,3 +23,5 @@
   ansible.builtin.include_tasks: insight.yml
 - name: Nut
   ansible.builtin.include_tasks: nut.yml
+- name: Portainer
+  ansible.builtin.include_tasks: portainer.yml

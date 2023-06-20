@@ -13,3 +13,5 @@ dashy_dir: "{{ docker_dir }}/dashy"
 insight_dir: "{{ docker_dir }}/insight"
 
 nut_dir: "{{ docker_dir }}/nut"
+
+portainer_dir: "{{ docker_dir }}/portainer"

@@ -1,7 +1,5 @@
 ---
-# https://docs.technotim.live/posts/NUT-server-guide/
-
-- name: Make sure that nut folder exists
+- name: Make sure that portainer folder exists
   ansible.builtin.file:
     path: "{{ item }}"
     owner: "{{ username }}"
@@ -9,12 +7,12 @@
     state: directory
     mode: 0755
   loop:
-    - "{{ nut_dir }}"
+    - "{{ portainer_dir }}"
 
-- name: Copy docker compose for nut
+- name: Copy docker compose for portainer
   ansible.builtin.template:
-    src: nut-compose.j2
-    dest: "{{ nut_dir }}/docker-compose.yml"
+    src: portainer-compose.j2
+    dest: "{{ portainer_dir }}/portainer-compose.yml"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0755
@@ -22,4 +20,4 @@
 
 - name: Deploy Docker Compose stack
   community.docker.docker_compose:
-    project_src: "{{ nut_dir }}"
+    project_src: "{{ portainer_dir }}"
