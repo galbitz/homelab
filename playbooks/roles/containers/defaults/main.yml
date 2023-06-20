@@ -11,3 +11,5 @@ homer_dir: "{{ docker_dir }}/homer"
 dashy_dir: "{{ docker_dir }}/dashy"
 
 insight_dir: "{{ docker_dir }}/insight"
+
+nut_dir: "{{ docker_dir }}/nut"

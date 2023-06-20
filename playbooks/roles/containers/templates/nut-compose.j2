@@ -1,0 +1,34 @@
+---
+version: "3"
+networks:
+  nut:
+services:
+  nut-server:
+    container_name: nut-server
+    image: instantlinux/nut-upsd:latest
+    ports:
+      - "3493:3493"
+    restart: always
+    environment:
+      - NAME=CP
+      - VENDORID=0764
+      - SERIAL=CXXMU2001429
+      - API_USER=admin
+      - API_PASSWORD=secret
+      - POLLINTERVAL=15
+    devices:
+      - "/dev/bus/usb/002/002:/dev/bus/usb/002/002"
+    networks:
+      - nut
+  nut-cgi:
+    container_name: nut-cgi
+    image: galbitz/nut:latest
+    ports:
+      - "8082:80"
+    restart: always
+    environment:
+      - NAME=CP
+      - HOST=192.168.1.17
+    networks:
+      - nut
+ 
