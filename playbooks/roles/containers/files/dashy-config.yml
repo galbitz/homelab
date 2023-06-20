@@ -39,6 +39,9 @@ sections: # An array of sections
       - title: "Pi-Hole"
         url: "http://192.168.1.17:8080/admin"
         icon: "icons/dashboard-icons/png/raspberrypi.png"
+      - title: "Portainer"
+        url: "http://192.168.1.17:9000"
+        icon: "icons/dashboard-icons/png/portainer.png"
   - name: Open
     icon: "fas fa-external-link-alt"
     items:
