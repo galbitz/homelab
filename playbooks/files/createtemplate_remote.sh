@@ -17,7 +17,7 @@ virt-customize -a jammy-server-cloudimg-amd64.img --install qemu-guest-agent
 # virt-customize -a focal-server-cloudimg-amd64.img --root-password password:P@ssword
 #virt-sysprep -a focal-server-cloudimg-amd64.img
 qm destroy 9000
-qm create 9000 --name "ubuntu-2004-cloudinit-template" --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
+qm create 9000 --name "ubuntu-2204-cloudinit-template" --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
 qm importdisk 9000 jammy-server-cloudimg-amd64.img local-lvm
 qm set 9000 --scsihw virtio-scsi-pci --scsi0 local-lvm:vm-9000-disk-0
 qm set 9000 --boot c --bootdisk scsi0

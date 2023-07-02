@@ -14,40 +14,7 @@ variable "DISKSTATION_JELLYFIN_USERNAME" {}
 variable "DISKSTATION_JELLYFIN_PASSWORD" {}
 
 variable "template_name" {
-  default = "ubuntu-2004-cloudinit-template"
-}
-
-variable "hosts" {
-  type = map(object({
-    name = string
-    ip   = string
-  }))
-  default = {
-    "shadow" = {
-      name = "shadow"
-      ip   = "192.168.1.14"
-    }
-    "diskstation" = {
-      name = "diskstation"
-      ip   = "192.168.1.15"
-    },
-    "pve2" = {
-      name = "pve2"
-      ip   = "192.168.1.16"
-    },
-    "docker-server" = {
-      name = "docker-server"
-      ip   = "192.168.1.17"
-    },
-    "develop-server" = {
-      name = "develop-server"
-      ip   = "192.168.1.18"
-    }
-    "pikvm" = {
-      name = "pikvm"
-      ip   = "192.168.1.19"
-    }
-  }
+  default = "ubuntu-2204-cloudinit-template"
 }
 
 variable "default_gateway" {
