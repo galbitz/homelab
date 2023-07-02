@@ -31,7 +31,7 @@ resource "proxmox_vm_qemu" "docker_server" {
     slot     = 0
     size     = "30G"
     type     = "scsi"
-    storage  = "vmsdisk"
+    storage  = "local-big"
     iothread = 1
   }
 
