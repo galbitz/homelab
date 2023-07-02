@@ -14,5 +14,5 @@ jobs:
           SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
       - run: ./tfrun-in-docker.sh init -input=false
       - run: ./tfrun-in-docker.sh apply -input=false -compact-warnings -auto-approve
-      - run: ./run-in-docker.sh pi.yml
-      - run: ./run-in-docker.sh docker-server.yml
+      - run: ./ansible-in-docker.sh pi.yml
+      - run: ./ansible-in-docker.sh docker-server.yml
