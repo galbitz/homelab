@@ -10,4 +10,4 @@
   #     ansible.builtin.debug:
   #       var: results.stdout
   roles:
-    - pve-default-config
+    - pve_default_config
