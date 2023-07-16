@@ -1,0 +1,11 @@
+---
+- name: Create ubuntu 22.04 server template
+  hosts: bee
+  gather_facts: false
+  tasks:
+    - name: Creating template
+      ansible.builtin.script: ./files/createtemplate_remote.sh
+      register: results
+    - name: Debug value
+      ansible.builtin.debug:
+        var: results.stdout

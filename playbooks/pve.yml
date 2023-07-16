@@ -1,13 +1,6 @@
 ---
-- name: Create ubuntu 22.04 server template
-  hosts: shadow2
+- name: Configure PVE node
+  hosts: bee
   gather_facts: false
-  # tasks:
-  #   - name: Creating template
-  #     ansible.builtin.script: ./files/createtemplate_remote.sh
-  #     register: results
-  #   - name: Debug value
-  #     ansible.builtin.debug:
-  #       var: results.stdout
   roles:
     - pve_default_config

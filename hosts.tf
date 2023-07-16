@@ -36,5 +36,9 @@ variable "hosts" {
       name = "pikvm"
       ip   = "192.168.1.19"
     }
+    "bee" = {
+      name = "bee"
+      ip   = "192.168.1.22"
+    }
   }
 }
