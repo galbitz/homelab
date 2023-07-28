@@ -40,5 +40,10 @@ variable "hosts" {
       name = "bee"
       ip   = "192.168.1.22"
     }
+
+    "thin" = {
+      name = "thin"
+      ip   = "192.168.1.23"
+    }
   }
 }
