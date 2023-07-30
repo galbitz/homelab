@@ -34,7 +34,7 @@ sections: # An array of sections
         url: "https://gw.star4.dev"
         icon: "icons/dashboard-icons/png/pfsense.png"
       - title: "Uptime Kuma"
-        url: "http://192.168.1.19:3001/dashboard"
+        url: "http://192.168.1.24:3001/dashboard"
         icon: "icons/dashboard-icons/png/uptime-kuma.png"
       - title: "Pi-Hole"
         url: "http://192.168.1.17:8080/admin"
