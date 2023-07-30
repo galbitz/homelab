@@ -17,6 +17,10 @@ variable "template_name" {
   default = "ubuntu-2204-cloudinit-template"
 }
 
+variable "alpine_template_name" {
+  default = "alpine-3.18.2-template"
+}
+
 variable "default_gateway" {
   default = "192.168.1.1"
 }

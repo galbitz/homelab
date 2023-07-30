@@ -45,5 +45,20 @@ variable "hosts" {
       name = "thin"
       ip   = "192.168.1.23"
     }
+
+    "docker-server2" = {
+      name = "docker-server2"
+      ip   = "192.168.1.24"
+    }
   }
+}
+
+# generate inventory file for Ansible
+resource "local_file" "hosts" {
+  content = templatefile("templates/ansible_inventory.tpl",
+    {
+      hosts = var.hosts
+    }
+  )
+  filename = "playbooks/hosts"
 }

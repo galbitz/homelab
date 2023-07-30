@@ -1,0 +1,23 @@
+---
+- name: Configure thin
+  hosts: thin
+  tasks:
+    - name: Update packages
+      community.general.apk:
+        upgrade: true
+        update_cache: true
+  #   - name: Update apt repos
+  #     ansible.builtin.apt:
+  #       update_cache: true
+  #       upgrade: true
+  #     changed_when: false
+  #     become: true
+  # # roles:
+  #   - star4.essentials.timezone
+  #   - star4.essentials.autoupdate
+  #   - star4.essentials.myuser
+  #   - star4.essentials.hardening
+  #   - geerlingguy.docker
+  #   - docker_shared
+  #   - watchtower
+  #   - monitor

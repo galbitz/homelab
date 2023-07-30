@@ -99,14 +99,3 @@ resource "proxmox_vm_qemu" "docker_server" {
 
 #   depends_on = [proxmox_vm_qemu.develop_server]
 # }
-
-
-# generate inventory file for Ansible
-resource "local_file" "hosts" {
-  content = templatefile("templates/ansible_inventory.tpl",
-    {
-      hosts = var.hosts
-    }
-  )
-  filename = "playbooks/hosts"
-}
