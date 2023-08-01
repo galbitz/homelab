@@ -1,0 +1,24 @@
+---
+- name: Make sure that the docker folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    state: directory
+    mode: 0777
+  loop:
+    - "{{ guacamole_dir }}"
+
+- name: Create guacamole container
+  community.docker.docker_container:
+    name: guacamole
+    image: flcontainers/guacamole:latest
+    volumes:
+      - "{{ guacamole_dir }}:/config"
+      - "/etc/localtime:/etc/localtime:ro"
+    ports:
+      - 8080:8080
+    env:
+      TZ: "America/Toronto"
+    state: started
+    restart_policy: always
