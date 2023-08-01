@@ -16,6 +16,10 @@ sections: # An array of sections
         description: Home Assistant
         icon: "icons/dashboard-icons/png/home-assistant.png"
         url: "http://192.168.1.40:8123"
+      - title: Remote connect
+        description: Guacamole
+        icon: "icons/dashboard-icons/png/guacamole.png"
+        url: "http://192.168.1.24:8080"
       - title: "Shadow"
         description: "Proxmox VE"
         url: "https://shadow.home.star4.dev:8006"
