@@ -1,6 +1,6 @@
 ---
 - name: Configure PVE node
-  hosts: bee
-  gather_facts: false
+  hosts: bee, shadow
   roles:
     - pve_default_config
+    - prometheus.prometheus.node_exporter
