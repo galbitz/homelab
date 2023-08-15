@@ -50,6 +50,11 @@ variable "hosts" {
       name = "docker-server2"
       ip   = "192.168.1.24"
     }
+
+    "aio" = {
+      name = "aio"
+      ip   = "192.168.1.25"
+    }
   }
 }
 
