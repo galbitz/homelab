@@ -7,4 +7,5 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-ansible-playbook -u root bootstrap.yml --ask-pass -i "$1,"
+echo On debian use --become-method su 
+ansible-playbook bootstrap.yml --ask-pass -i "$1," -u gabor -K --become-method su 

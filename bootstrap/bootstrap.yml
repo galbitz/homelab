@@ -8,3 +8,4 @@
         user: "root"
         state: present
         key: "https://github.com/galbitz.keys"
+      become: true
