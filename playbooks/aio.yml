@@ -1,0 +1,10 @@
+---
+# aio - all-in-one dashboard
+- name: Configure aio
+  hosts: aio
+  roles:
+    - star4.essentials.timezone
+    - star4.essentials.autoupdate
+    - star4.essentials.myuser
+    - star4.essentials.hardening
+    - star4.essentials.forwardmta
