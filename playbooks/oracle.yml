@@ -1,0 +1,30 @@
+---
+# oracle - wormhole
+- name: Configure wormhole
+  hosts: wormhole
+  vars:
+    ansible_user: ubuntu
+  tasks:
+    - name: Ensure cron dir for cloudflare exists
+      ansible.builtin.file:
+        path: "/opt/cron/cloudflare"
+        owner: root
+        group: root
+        state: directory
+        mode: u+rw-x,g+r-wx-x,o-rwx
+      become: true
+    - name: Copy dns update script
+      ansible.builtin.template:
+        src: update_cloudflare_zone.j2
+        dest: /opt/cron/cloudflare/update_cloudflare_zone.sh
+        mode: u+x
+      become: true
+    - name: Create cron for Cloudflare dns update
+      ansible.builtin.cron:
+        name: "update cloudflare dns record"
+        special_time: daily
+        job: /opt/cron/cloudflare/update_cloudflare_zone.sh
+        user: root
+      become: true
+  roles:
+    - star4.essentials.timezone
