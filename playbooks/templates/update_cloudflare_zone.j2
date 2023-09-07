@@ -1,0 +1,6 @@
+#!/bin/bash
+export MYIP=`curl -sS https://ifconfig.co`
+curl -X PUT "https://api.cloudflare.com/client/v4/zones/{{ cloudflare_zone_id }}/dns_records/{{ cloudflare_wormhole_record_id }}" \
+     -H "Authorization: Bearer {{cloudflare_wormhole_api_token}}" \
+     -H "Content-Type:application/json" \
+     --data '{ "name" : "{{ cloudflare_wormhole_hostname }}", "content": "'"$MYIP"'", "type": "A" }'
