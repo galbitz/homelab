@@ -21,6 +21,11 @@ variable "alpine_template_name" {
   default = "alpine-3.18.2-template"
 }
 
+variable "debian_template_name" {
+  type    = string
+  default = "debian-12-cloudinit-template"
+}
+
 variable "default_gateway" {
   default = "192.168.1.1"
 }

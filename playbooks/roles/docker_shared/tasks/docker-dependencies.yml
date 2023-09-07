@@ -12,4 +12,11 @@
     name:
       - docker
       - docker-compose
-  when: ansible_distribution != 'Alpine'
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Install python packages on Debian
+  ansible.builtin.package:
+    name:
+      - python3-docker
+    state: present
+  when: ansible_distribution == 'Debian'

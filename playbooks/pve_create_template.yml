@@ -1,11 +1,18 @@
 ---
-- name: Create ubuntu 22.04 server template
+- name: Create OS cloudinit templates template
   hosts: bee
   gather_facts: false
   tasks:
-    - name: Creating template
-      ansible.builtin.script: ./files/createtemplate_remote.sh
-      register: results
+    - name: Create Ubuntu template
+      ansible.builtin.script: ./files/create_ubuntu_template.sh
+      register: results_ubuntu
     - name: Debug value
       ansible.builtin.debug:
-        var: results.stdout
+        var: results_ubuntu.stdout
+
+    - name: Create Debian template
+      ansible.builtin.script: ./files/create_debian_template.sh
+      register: results_debian
+    - name: Debug value
+      ansible.builtin.debug:
+        var: results_debian.stdout
