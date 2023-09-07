@@ -11,7 +11,7 @@ resource "proxmox_vm_qemu" "docker_server2" {
   vmid        = 100
   name        = var.hosts["docker-server2"].name
   target_node = var.hosts["bee"].name
-  clone       = var.alpine_template_name
+  clone       = var.debian_template_name
 
   # basic VM settings here. agent refers to guest agent
   agent    = 1
@@ -31,7 +31,7 @@ resource "proxmox_vm_qemu" "docker_server2" {
   EOF
 
   disk {
-    slot     = 3 #keep changing it, bug in provider
+    slot     = 0
     size     = "20G"
     type     = "scsi"
     storage  = "local-lvm"
