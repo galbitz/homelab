@@ -70,6 +70,8 @@ services:
     command: --reporting-disabled
     container_name: influxdb
     image: influxdb:2.7.0
+    networks:
+      - loki
     ports:
       - "8086:8086"
     volumes:
