@@ -2,10 +2,10 @@
 - name: Make sure that Jellyfin mounting folders exist
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: "{{ username }}"
-    group: "{{ username }}"
+    owner: root
+    group: root
     state: directory
-    mode: 0755
+    mode: u+rwx,g+rwx,o+rxw
   loop:
     - "{{ jellyfin_config_dir }}"
     - "{{ jellyfin_cache_dir }}"
@@ -15,7 +15,7 @@
     owner: "root"
     group: "root"
     state: directory
-    mode: 0755
+    mode: u+rwx,g+rwx,o+rxw
   loop:
     - "{{ jellyfin_mountpoint }}/music"
 - name: Required packages

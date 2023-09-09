@@ -2,12 +2,11 @@
 - name: Make sure that the docker folders exist
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: "{{ username }}"
-    group: "{{ username }}"
+    owner: root
+    group: root
     state: directory
-    mode: 0755
+    mode: u+rwx,g+rwx,o+rxw
   loop:
-    - "{{ docker_dir }}"
     - "{{ dashy_dir }}"
     - "{{ dashy_dir }}/public"
     - "{{ dashy_dir }}/icons"
@@ -16,9 +15,9 @@
   ansible.builtin.copy:
     dest: "{{ dashy_dir }}/public/conf.yml"
     src: "dashy-config.yml"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0755
+    owner: root
+    group: root
+    mode: u+rwx,g+rwx,o+rxw
     force: true
   register: containers_dashy_config_copy
 

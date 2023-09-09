@@ -5,10 +5,10 @@
 - name: Make sure that insight folders exist
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: "{{ username }}"
-    group: "{{ username }}"
+    owner: root
+    group: root
     state: directory
-    mode: 0755
+    mode: u+rwx,g+rwx,o+rxw
   loop:
     - "{{ insight_dir }}"
 
@@ -16,18 +16,18 @@
   ansible.builtin.template:
     src: insight-compose.j2
     dest: "{{ insight_dir }}/docker-compose.yml"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0755
+    owner: root
+    group: root
+    mode: u+rwx,g+rwx,o+rxw
     force: true
 
 - name: Copy configs
   ansible.builtin.copy:
     dest: "{{ item.dest }}"
     src: "{{ item.src }}"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0755
+    owner: root
+    group: root
+    mode: u+rwx,g+rwx,o+rxw
     force: true
   loop:
     - src: "insight/"

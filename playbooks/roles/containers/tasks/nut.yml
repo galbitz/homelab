@@ -4,10 +4,10 @@
 - name: Make sure that nut folder exists
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: "{{ username }}"
-    group: "{{ username }}"
+    owner: root
+    group: root
     state: directory
-    mode: 0755
+    mode: u+rwx,g+rwx,o+rxw
   loop:
     - "{{ nut_dir }}"
 
@@ -15,9 +15,9 @@
   ansible.builtin.template:
     src: nut-compose.j2
     dest: "{{ nut_dir }}/docker-compose.yml"
-    owner: "{{ username }}"
-    group: "{{ username }}"
-    mode: 0755
+    owner: root
+    group: root
+    mode: u+rwx,g+rwx,o+rxw
     force: true
 
 - name: Deploy Docker Compose stack
