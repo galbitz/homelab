@@ -27,7 +27,7 @@
     src: "//{{ diskstation_jellyfin_ip }}/music"
     path: "{{ jellyfin_mountpoint }}/music"
     fstype: cifs
-    opts: 'username={{ diskstation_jellyfin_username }},password={{ diskstation_jellyfin_password }}'
+    opts: "username={{ diskstation_jellyfin_username }},password={{ diskstation_jellyfin_password }}"
     state: mounted
 - name: Jellyfin container
   community.docker.docker_container:
@@ -36,7 +36,7 @@
     pull: true
     state: started
     restart_policy: always
-    network_mode: host
+    ports: 8096:8096
     volumes:
       - "{{ jellyfin_config_dir }}:/config"
       - "{{ jellyfin_cache_dir }}:/cache"
