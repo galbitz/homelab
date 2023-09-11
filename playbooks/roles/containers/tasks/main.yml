@@ -25,3 +25,5 @@
   ansible.builtin.include_tasks: nut.yml
 - name: Portainer
   ansible.builtin.include_tasks: portainer.yml
+- name: Traefik
+  ansible.builtin.include_tasks: traefik.yml

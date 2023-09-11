@@ -1,6 +1,8 @@
 version: "3"
 networks:
-  loki:
+  shared:
+    external: true
+  private:
 volumes:
   influxdb-data:
   influxdb-config:
@@ -11,12 +13,13 @@ services:
     image: grafana/loki:2.8.0
     volumes:
       - "{{ insight_dir }}/loki:/etc/loki"
-    ports:
-      - "3100:3100"
+    # only containers connect to this (grafana, promtail)
+    # ports:
+    #  - "3100:3100"
     restart: always
     command: -config.file=/etc/loki/loki-config.yml
     networks:
-      - loki
+      - shared
   promtail:
     container_name: promtail
     image: grafana/promtail:2.8.0
@@ -30,7 +33,7 @@ services:
     restart: always
     command: -config.file=/etc/promtail/promtail-config.yml
     networks:
-      - loki
+      - shared
   grafana:
     container_name: grafana
     image: grafana/grafana:latest
@@ -42,13 +45,25 @@ services:
       - "3000:3000"
     restart: always
     networks:
-      - loki
+      - shared
     environment:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_NAME=Main Org.
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_USERS_ALLOW_SIGN_UP=false
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=shared"
+      - "traefik.http.services.grafana.loadbalancer.server.port=3000"
+      - "traefik.http.services.grafana.loadbalancer.server.scheme=http"
+      - "traefik.http.routers.grafana-http.entrypoints=web"
+      - "traefik.http.routers.grafana-http.rule=HostRegexp(`{host:grafana\\..+}`)"
+      - "traefik.http.routers.grafana-https.entrypoints=websecure"
+      - "traefik.http.routers.grafana-https.rule=HostRegexp(`{host:grafana\\..+}`)"
+      - "traefik.http.routers.grafana-https.tls=true"
+      - "traefik.http.routers.grafana-https.tls.certresolver=production"
+      - "traefik.http.routers.grafana-https.tls.domains[0].main=*.home.04a.ca"      
   syslog-ng:
     command: -edv
     container_name: syslog-ng
@@ -56,7 +71,7 @@ services:
       - promtail
     image: balabit/syslog-ng:latest
     networks:
-      - loki
+      - shared
     ports:
       - protocol: udp
         published: 9514
@@ -72,7 +87,7 @@ services:
     container_name: influxdb
     image: influxdb:2.7.0
     networks:
-      - loki
+      - shared
     ports:
       - "8086:8086"
     volumes:
@@ -91,9 +106,9 @@ services:
     container_name: cadvisor
     image: gcr.io/cadvisor/cadvisor:latest
     networks:
-      - loki
-    ports:
-      - "8081:8080"
+      - shared
+    # ports:
+    #   - "8081:8080"
     restart: always
     volumes:
       - /:/rootfs:ro
@@ -111,7 +126,7 @@ services:
     container_name: prometheus
     image: prom/prometheus:latest
     networks:
-      - loki
+      - shared
     ports:
       - published: 9090
         target: 9090

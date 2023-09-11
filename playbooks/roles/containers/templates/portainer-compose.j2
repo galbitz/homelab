@@ -1,5 +1,8 @@
 ---
 version: "3"
+networks:
+  shared:
+    external: true
 volumes:
   portainer-data:
     driver: local
@@ -7,11 +10,21 @@ services:
   app:
     container_name: portainer
     image: portainer/portainer-ce:latest
-    ports:
-      - 9000:9000
-      - 9443:9443
-      - 8000:8000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer-data:/data
     restart: always
+    networks:
+      - shared
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=shared"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+      - "traefik.http.services.portainer.loadbalancer.server.scheme=http"
+      - "traefik.http.routers.portainer-http.entrypoints=web"
+      - "traefik.http.routers.portainer-http.rule=HostRegexp(`{host:portainer\\..+}`)"
+      - "traefik.http.routers.portainer-https.entrypoints=websecure"
+      - "traefik.http.routers.portainer-https.rule=HostRegexp(`{host:portainer\\..+}`)"
+      - "traefik.http.routers.portainer-https.tls=true"
+      - "traefik.http.routers.portainer-https.tls.certresolver=production"
+      - "traefik.http.routers.portainer-https.tls.domains[0].main=*.home.04a.ca"

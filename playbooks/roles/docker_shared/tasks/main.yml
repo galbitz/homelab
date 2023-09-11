@@ -10,3 +10,7 @@
 
 - name: Persistent storage
   ansible.builtin.include_tasks: persistent-storage.yml
+
+- name: Create shared network [shared]
+  community.docker.docker_network:
+    name: shared

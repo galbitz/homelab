@@ -15,11 +15,11 @@ sections: # An array of sections
       - title: Home Assistant
         description: Home Assistant
         icon: "icons/dashboard-icons/png/home-assistant.png"
-        url: "http://192.168.1.40:8123"
+        url: "https://ha.home.04a.ca"
       - title: Remote connect
         description: Guacamole
         icon: "icons/dashboard-icons/png/guacamole.png"
-        url: "http://192.168.1.24:8080"
+        url: "https://guacamole.home.04a.ca"
       - title: "Shadow"
         description: "Proxmox VE"
         url: "https://shadow.home.star4.dev:8006"
@@ -38,13 +38,13 @@ sections: # An array of sections
         url: "https://gw.star4.dev"
         icon: "icons/dashboard-icons/png/pfsense.png"
       - title: "Uptime Kuma"
-        url: "http://192.168.1.24:3001/dashboard"
+        url: "https://uptime.home.04a.ca/dashboard"
         icon: "icons/dashboard-icons/png/uptime-kuma.png"
       - title: "Pi-Hole"
-        url: "http://192.168.1.17:8080/admin"
+        url: "https://pihole.home.04a.ca/admin"
         icon: "icons/dashboard-icons/png/raspberrypi.png"
       - title: "Portainer"
-        url: "http://192.168.1.17:9000"
+        url: "https://portainer.home.04a.ca"
         icon: "icons/dashboard-icons/png/portainer.png"
   - name: Open
     icon: "fas fa-external-link-alt"
@@ -67,12 +67,42 @@ sections: # An array of sections
     icon: "fas fa-glasses-round"
     items:
       - title: "Grafana - Insight"
-        url: "http://192.168.1.17:3000"
+        url: "https://grafana.home.04a.ca"
         icon: "icons/dashboard-icons/png/grafana.png"
       - title: "NUT"
-        url: "http://192.168.1.17:8082/cgi-bin/nut/upsstats.cgi"
+        url: "https://nut.home.04a.ca/cgi-bin/nut/upsstats.cgi"
+      - title: "Traefik dashboard"
+        url: "https://traefik.home.04a.ca/"
+        icon: "icons/dashboard-icons/png/traefik.png"
   - name: Other
     icon: "fas fa-link"
     items:
       - title: "Musicle"
         url: "https://musicle.app/metalhead"
+  - name: Archive
+    icon: "fas fa-link"
+    displayData:
+      collapsed: true
+    items:
+      - title: Home Assistant
+        description: Home Assistant
+        icon: "icons/dashboard-icons/png/home-assistant.png"
+        url: "http://192.168.1.40:8123"
+      - title: Remote connect
+        description: Guacamole
+        icon: "icons/dashboard-icons/png/guacamole.png"
+        url: "http://192.168.1.24:8080"
+      - title: "Uptime Kuma"
+        url: "http://192.168.1.24:3001/dashboard"
+        icon: "icons/dashboard-icons/png/uptime-kuma.png"
+      - title: "Pi-Hole"
+        url: "http://192.168.1.17:8080/admin"
+        icon: "icons/dashboard-icons/png/raspberrypi.png"
+      - title: "Portainer"
+        url: "http://192.168.1.17:9000"
+        icon: "icons/dashboard-icons/png/portainer.png"
+      - title: "Grafana - Insight"
+        url: "http://192.168.1.17:3000"
+        icon: "icons/dashboard-icons/png/grafana.png"
+      - title: "NUT"
+        url: "http://192.168.1.17:8082/cgi-bin/nut/upsstats.cgi"

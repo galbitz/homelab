@@ -1,0 +1,127 @@
+---
+global:
+  checkNewVersion: false
+  sendAnonymousUsage: false
+
+log:
+  level: INFO
+#  format: common
+#  filePath: /var/log/traefik/traefik.log
+
+# accesslog:
+#   format: common
+#   filePath: /var/log/traefik/access.log
+
+api:
+  dashboard: true
+  insecure: true
+
+entryPoints:
+  web:
+    address: :80
+    # -- (Optional) Redirect all HTTP to HTTPS
+    # http:
+    #   redirections:
+    #     entryPoint:
+    #       to: websecure
+    #       scheme: https
+  websecure:
+    address: :443
+
+certificatesResolvers:
+  staging:
+    acme:
+      email: gabor@gabor.one
+      storage: /etc/traefik/acme.json
+      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+      dnsChallenge:
+        provider: cloudflare
+        resolvers:
+          - "1.1.1.1:53"
+          - "8.8.8.8:53"
+  production:
+    acme:
+      email: gabor@gabor.one
+      storage: /etc/traefik/acme.json
+      caServer: "https://acme-v02.api.letsencrypt.org/directory"
+      dnsChallenge:
+        provider: cloudflare
+        resolvers:
+          - "1.1.1.1:53"
+          - "8.8.8.8:53"
+
+# -- (Optional) Disable TLS Cert verification check
+# serversTransport:
+#   insecureSkipVerify: true
+
+# -- (Optional) Overwrite Default Certificates
+# tls:
+#   stores:
+#     default:
+#       defaultCertificate:
+#         certFile: /etc/traefik/certs/cert.pem
+#         keyFile: /etc/traefik/certs/cert-key.pem
+# -- (Optional) Disable TLS version 1.0 and 1.1
+#   options:
+#     default:
+#       minVersion: VersionTLS12
+
+providers:
+  docker:
+    # -- (Optional) Enable this, if you want to expose all containers automatically
+    exposedByDefault: false
+  file:
+    directory: /etc/traefik
+    watch: true
+
+http:
+  services:
+    ha:
+      loadbalancer:
+        servers:
+          - url: http://192.168.1.40:8123/
+    guac:
+      loadbalancer:
+        servers:
+          - url: http://192.168.1.24:8080/
+    uptime:
+      loadbalancer:
+        servers:
+          - url: http://192.168.1.24:3001/
+  routers:
+    ha:
+      rule: HostRegexp(`{host:ha\..+}`)
+      service: ha
+      entrypoints: web
+    ha-ssl:
+      rule: HostRegexp(`{host:ha\..+}`)
+      service: ha
+      entrypoints: websecure
+      tls:
+        certresolver: production
+        domains:
+          - main: "*.home.04a.ca"
+    uptime:
+      rule: HostRegexp(`{host:uptime\..+}`)
+      service: uptime
+      entrypoints: web
+    uptime-ssl:
+      rule: HostRegexp(`{host:uptime\..+}`)
+      service: uptime
+      entrypoints: websecure
+      tls:
+        certresolver: production
+        domains:
+          - main: "*.home.04a.ca"
+    guac:
+      rule: HostRegexp(`{host:guac.+}`)
+      service: guac
+      entrypoints: web
+    guac-ssl:
+      rule: HostRegexp(`{host:guac.+}`)
+      service: guac
+      entrypoints: websecure
+      tls:
+        certresolver: production
+        domains:
+          - main: "*.home.04a.ca"

@@ -15,3 +15,5 @@ insight_dir: "{{ docker_dir }}/insight"
 nut_dir: "{{ docker_dir }}/nut"
 
 portainer_dir: "{{ docker_dir }}/portainer"
+
+traefik_dir: "{{ docker_dir }}/traefik"

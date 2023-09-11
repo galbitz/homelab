@@ -1,7 +1,8 @@
 ---
 version: "3"
 networks:
-  nut:
+  shared:
+    external: true
 services:
   nut-server:
     container_name: nut-server
@@ -19,20 +20,28 @@ services:
     devices:
       - "/dev/bus/usb/002/002:/dev/bus/usb/002/002"
     networks:
-      - nut
+      - shared
   nut-cgi:
     container_name: nut-cgi
     image: galbitz/nut:latest
-    ports:
-      - "8082:80"
     restart: always
     environment:
       - NAME=CP
       - HOST=192.168.1.17
     networks:
-      - nut
+      - shared
     healthcheck:
           test: ["CMD", "curl", "-f", "http://localhost/cgi-bin/nut/upsstats.cgi"]
           interval: 200s
           timeout: 200s
           retries: 5
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=shared"
+      - "traefik.http.routers.nut-http.entrypoints=web"
+      - "traefik.http.routers.nut-http.rule=HostRegexp(`{host:nut\\..+}`)"
+      - "traefik.http.routers.nut-https.entrypoints=websecure"
+      - "traefik.http.routers.nut-https.rule=HostRegexp(`{host:nut\\..+}`)"
+      - "traefik.http.routers.nut-https.tls=true"
+      - "traefik.http.routers.nut-https.tls.certresolver=production"
+      - "traefik.http.routers.nut-https.tls.domains[0].main=*.home.04a.ca"
