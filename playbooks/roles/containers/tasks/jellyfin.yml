@@ -36,8 +36,23 @@
     pull: true
     state: started
     restart_policy: always
-    ports: 8096:8096
     volumes:
       - "{{ jellyfin_config_dir }}:/config"
       - "{{ jellyfin_cache_dir }}:/cache"
       - "{{ jellyfin_mountpoint }}:/media"
+    networks:
+      - name: shared
+    comparisons:
+      networks: strict
+    labels:
+      "traefik.enable": "true"
+      "traefik.docker.network": "shared"
+      "traefik.http.services.jellyfin.loadbalancer.server.port": "8096"
+      "traefik.http.services.jellyfin.loadbalancer.server.scheme": "http"
+      "traefik.http.routers.jellyfin-http.entrypoints": "web"
+      "traefik.http.routers.jellyfin-http.rule": "HostRegexp(`{host:jellyfin\\..+}`,`{host:media\\..+}`)"
+      "traefik.http.routers.jellyfin-https.entrypoints": "websecure"
+      "traefik.http.routers.jellyfin-https.rule": "HostRegexp(`{host:jellyfin\\..+}`,`{host:media\\..+}`)"
+      "traefik.http.routers.jellyfin-https.tls": "true"
+      "traefik.http.routers.jellyfin-https.tls.certresolver": "production"
+      "traefik.http.routers.jellyfin-https.tls.domains[0].main": "*.home.04a.ca"

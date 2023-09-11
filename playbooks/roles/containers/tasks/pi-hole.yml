@@ -22,7 +22,7 @@
     ports:
       - 53:53/tcp
       - 53:53/udp
-      - 8080:80/tcp
+    # - 8080:80/tcp
     env:
       TZ: "America/Toronto"
       WEBPASSWORD: ""
@@ -31,3 +31,18 @@
       DNSMASQ_LISTENING: "all"
     state: started
     restart_policy: always
+    networks:
+      - name: shared
+    comparisons:
+      networks: strict
+    labels:
+      "traefik.enable": "true"
+      "traefik.docker.network": "shared"
+      "traefik.http.services.pihole.loadbalancer.server.port": "80"
+      "traefik.http.routers.pihole-http.entrypoints": "web"
+      "traefik.http.routers.pihole-http.rule": "HostRegexp(`{host:pihole\\..+}`)"
+      "traefik.http.routers.pihole-https.entrypoints": "websecure"
+      "traefik.http.routers.pihole-https.rule": "HostRegexp(`{host:pihole\\..+}`)"
+      "traefik.http.routers.pihole-https.tls": "true"
+      "traefik.http.routers.pihole-https.tls.certresolver": "production"
+      "traefik.http.routers.pihole-https.tls.domains[0].main": "*.home.04a.ca"

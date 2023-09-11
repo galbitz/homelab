@@ -37,5 +37,18 @@
     volumes:
       - "{{ dashy_dir }}/public/conf.yml:/app/public/conf.yml"
       - "{{ dashy_dir }}/icons:/app/public/item-icons/icons"
-    ports: "8295:80"
+    networks:
+      - name: shared
+    comparisons:
+      networks: strict
     recreate: "{{ containers_dashy_config_copy.changed }}"
+    labels:
+      "traefik.enable": "true"
+      "traefik.docker.network": "shared"
+      "traefik.http.routers.dashy-http.entrypoints": "web"
+      "traefik.http.routers.dashy-http.rule": "HostRegexp(`{host:dashboard\\..+}`)"
+      "traefik.http.routers.dashy-https.entrypoints": "websecure"
+      "traefik.http.routers.dashy-https.rule": "HostRegexp(`{host:dashboard\\..+}`)"
+      "traefik.http.routers.dashy-https.tls": "true"
+      "traefik.http.routers.dashy-https.tls.certresolver": "production"
+      "traefik.http.routers.dashy-https.tls.domains[0].main": "*.home.04a.ca"
