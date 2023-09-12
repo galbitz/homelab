@@ -22,7 +22,7 @@ services:
     networks:
       - shared
   nut-cgi:
-    container_name: nut-cgi
+    container_name: nut
     image: galbitz/nut:latest
     restart: always
     environment:
@@ -39,9 +39,5 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=shared"
       - "traefik.http.routers.nut-http.entrypoints=web"
-      - "traefik.http.routers.nut-http.rule=HostRegexp(`{host:nut\\..+}`)"
       - "traefik.http.routers.nut-https.entrypoints=websecure"
-      - "traefik.http.routers.nut-https.rule=HostRegexp(`{host:nut\\..+}`)"
       - "traefik.http.routers.nut-https.tls=true"
-      - "traefik.http.routers.nut-https.tls.certresolver=production"
-      - "traefik.http.routers.nut-https.tls.domains[0].main=*.home.04a.ca"

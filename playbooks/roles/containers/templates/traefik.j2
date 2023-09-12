@@ -25,17 +25,16 @@ services:
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
       - "traefik.http.services.traefik.loadbalancer.server.scheme=http"
       - "traefik.http.routers.traefik-http.entrypoints=web"
-      - "traefik.http.routers.traefik-http.rule=HostRegexp(`{host:traefik\\..+}`)"
       - "traefik.http.routers.traefik-https.entrypoints=websecure"
-      - "traefik.http.routers.traefik-https.rule=HostRegexp(`{host:traefik\\..+}`)"
       - "traefik.http.routers.traefik-https.tls=true"
-      - "traefik.http.routers.traefik-https.tls.certresolver=production"
-      - "traefik.http.routers.traefik-https.tls.domains[0].main=*.home.04a.ca"
   whoami:
     image: traefik/whoami
+    container_name: whoami
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.home.04a.ca`)"
-      - "traefik.http.routers.whoami.entrypoints=web"
+      - "traefik.docker.network=shared"
+      - "traefik.http.routers.whoami-http.entrypoints=web"
+      - "traefik.http.routers.whoami-https.tls=true"
+      - "traefik.http.routers.whoami-https.entrypoints=websecure"
     networks:
       - shared

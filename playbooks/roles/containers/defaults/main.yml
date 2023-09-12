@@ -17,3 +17,4 @@ nut_dir: "{{ docker_dir }}/nut"
 portainer_dir: "{{ docker_dir }}/portainer"
 
 traefik_dir: "{{ docker_dir }}/traefik"
+traefik_main_domain: "home.04a.ca"

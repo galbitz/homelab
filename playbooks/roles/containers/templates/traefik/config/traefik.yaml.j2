@@ -55,12 +55,16 @@ certificatesResolvers:
 #   insecureSkipVerify: true
 
 # -- (Optional) Overwrite Default Certificates
-# tls:
-#   stores:
-#     default:
-#       defaultCertificate:
-#         certFile: /etc/traefik/certs/cert.pem
-#         keyFile: /etc/traefik/certs/cert-key.pem
+tls:
+  stores:
+    default:
+      defaultGeneratedCert:
+        resolver: production
+        domain:
+          main: "*.{{ traefik_main_domain }}"
+          # sans:
+          #   - foo.example.org
+          #   - bar.example.org
 # -- (Optional) Disable TLS version 1.0 and 1.1
 #   options:
 #     default:
@@ -70,58 +74,7 @@ providers:
   docker:
     # -- (Optional) Enable this, if you want to expose all containers automatically
     exposedByDefault: false
+    defaultRule: 'Host(`{{ "{{" }} .ContainerName {{ "}}" }}.{{ traefik_main_domain }}`)'
   file:
-    directory: /etc/traefik
+    filename: /etc/traefik/dynamic_conf.yaml
     watch: true
-
-http:
-  services:
-    ha:
-      loadbalancer:
-        servers:
-          - url: http://192.168.1.40:8123/
-    guac:
-      loadbalancer:
-        servers:
-          - url: http://192.168.1.24:8080/
-    uptime:
-      loadbalancer:
-        servers:
-          - url: http://192.168.1.24:3001/
-  routers:
-    ha:
-      rule: HostRegexp(`{host:ha\..+}`)
-      service: ha
-      entrypoints: web
-    ha-ssl:
-      rule: HostRegexp(`{host:ha\..+}`)
-      service: ha
-      entrypoints: websecure
-      tls:
-        certresolver: production
-        domains:
-          - main: "*.home.04a.ca"
-    uptime:
-      rule: HostRegexp(`{host:uptime\..+}`)
-      service: uptime
-      entrypoints: web
-    uptime-ssl:
-      rule: HostRegexp(`{host:uptime\..+}`)
-      service: uptime
-      entrypoints: websecure
-      tls:
-        certresolver: production
-        domains:
-          - main: "*.home.04a.ca"
-    guac:
-      rule: HostRegexp(`{host:guac.+}`)
-      service: guac
-      entrypoints: web
-    guac-ssl:
-      rule: HostRegexp(`{host:guac.+}`)
-      service: guac
-      entrypoints: websecure
-      tls:
-        certresolver: production
-        domains:
-          - main: "*.home.04a.ca"

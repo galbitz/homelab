@@ -58,12 +58,8 @@ services:
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"
       - "traefik.http.services.grafana.loadbalancer.server.scheme=http"
       - "traefik.http.routers.grafana-http.entrypoints=web"
-      - "traefik.http.routers.grafana-http.rule=HostRegexp(`{host:grafana\\..+}`)"
       - "traefik.http.routers.grafana-https.entrypoints=websecure"
-      - "traefik.http.routers.grafana-https.rule=HostRegexp(`{host:grafana\\..+}`)"
-      - "traefik.http.routers.grafana-https.tls=true"
-      - "traefik.http.routers.grafana-https.tls.certresolver=production"
-      - "traefik.http.routers.grafana-https.tls.domains[0].main=*.home.04a.ca"      
+      - "traefik.http.routers.grafana-https.tls=true"  
   syslog-ng:
     command: -edv
     container_name: syslog-ng
