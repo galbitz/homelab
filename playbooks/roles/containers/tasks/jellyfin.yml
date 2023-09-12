@@ -54,5 +54,3 @@
       "traefik.http.routers.jellyfin-https.entrypoints": "websecure"
       "traefik.http.routers.jellyfin-https.rule": "HostRegexp(`{host:jellyfin\\..+}`,`{host:media\\..+}`)"
       "traefik.http.routers.jellyfin-https.tls": "true"
-      "traefik.http.routers.jellyfin-https.tls.certresolver": "production"
-      "traefik.http.routers.jellyfin-https.tls.domains[0].main": "*.home.04a.ca"

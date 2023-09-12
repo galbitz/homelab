@@ -50,5 +50,3 @@
       "traefik.http.routers.dashy-https.entrypoints": "websecure"
       "traefik.http.routers.dashy-https.rule": "HostRegexp(`{host:dashboard\\..+}`)"
       "traefik.http.routers.dashy-https.tls": "true"
-      "traefik.http.routers.dashy-https.tls.certresolver": "production"
-      "traefik.http.routers.dashy-https.tls.domains[0].main": "*.home.04a.ca"

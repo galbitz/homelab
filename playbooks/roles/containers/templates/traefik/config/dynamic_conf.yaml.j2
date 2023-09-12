@@ -1,0 +1,43 @@
+---
+http:
+  services:
+    ha:
+      loadbalancer:
+        servers:
+          - url: http://192.168.1.40:8123/
+    guac:
+      loadbalancer:
+        servers:
+          - url: http://192.168.1.24:8080/
+    uptime:
+      loadbalancer:
+        servers:
+          - url: http://192.168.1.24:3001/
+  routers:
+    ha:
+      rule: Host(`ha.{{ traefik_main_domain}}`)
+      service: ha
+      entrypoints: web
+    ha-ssl:
+      rule: Host(`ha.{{ traefik_main_domain}}`)
+      service: ha
+      entrypoints: websecure
+      tls: {}
+    uptime:
+      rule: Host(`uptime.{{ traefik_main_domain}}`)
+      service: uptime
+      entrypoints: web
+    uptime-ssl:
+      rule: Host(`uptime.{{ traefik_main_domain}}`)
+      service: uptime
+      entrypoints: websecure
+      tls: {}
+    guac:
+      rule: Host(`guacamole.{{ traefik_main_domain}}`)
+      service: guac
+      entrypoints: web
+    guac-ssl:
+      rule: Host(`guacamole.{{ traefik_main_domain}}`)
+      service: guac
+      entrypoints: websecure
+      tls: {}
