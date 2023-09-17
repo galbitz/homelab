@@ -15,11 +15,11 @@ http:
           - url: http://192.168.1.24:3001/
   routers:
     ha:
-      rule: Host(`ha.{{ traefik_main_domain}}`)
+      rule: HostRegexp(`ha.{{ traefik_main_domain}}`)
       service: ha
       entrypoints: web
     ha-ssl:
-      rule: Host(`ha.{{ traefik_main_domain}}`)
+      rule: HostRegexp(`ha.{{ traefik_main_domain}}`)
       service: ha
       entrypoints: websecure
       tls: {}
