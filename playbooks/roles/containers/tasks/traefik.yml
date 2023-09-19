@@ -1,5 +1,5 @@
 ---
-- name: Make sure that traefik compose folders exists
+- name: Traefik - Make sure that folders exist
   ansible.builtin.file:
     path: "{{ item }}"
     owner: root
@@ -10,7 +10,7 @@
     - "{{ traefik_dir }}"
     - "{{ traefik_dir }}/config"
 
-- name: Copy docker compose for insight
+- name: Traefik - Copy docker compose file
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -26,6 +26,6 @@
     - src: traefik/config/dynamic_conf.yaml.j2
       dest: "{{ traefik_dir }}/config/dynamic_conf.yaml"
 
-- name: Deploy Docker Compose stack
+- name: Traefik - deploy docker compose stack
   community.docker.docker_compose:
     project_src: "{{ traefik_dir }}"
