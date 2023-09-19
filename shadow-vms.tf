@@ -99,3 +99,46 @@ resource "proxmox_vm_qemu" "docker_server" {
 
 #   depends_on = [proxmox_vm_qemu.develop_server]
 # }
+
+
+resource "proxmox_vm_qemu" "valheim-server" {
+  name        = var.hosts["valheim-server"].name
+  target_node = var.hosts["shadow"].name
+  clone       = var.debian_template_name
+  vmid        = 400
+
+  # basic VM settings here. agent refers to guest agent
+  agent    = 1
+  os_type  = "cloud-init"
+  qemu_os  = "l26"
+  cores    = 4
+  sockets  = 1
+  cpu      = "host"
+  memory   = 10240
+  scsihw   = "virtio-scsi-single"
+  bootdisk = "scsi0"
+  onboot   = true
+
+  ciuser  = "root"
+  sshkeys = <<EOF
+    ${data.http.public_keys.response_body}
+  EOF
+
+  disk {
+    slot     = 0
+    size     = "20G"
+    type     = "scsi"
+    storage  = "local-big"
+    iothread = 1
+  }
+
+  # not sure exactly what this is for. presumably something about MAC addresses and ignore network changes during the life of the VM
+  lifecycle {
+    ignore_changes = [
+      network,
+    ]
+  }
+
+  #ipconfig0 = "ip=dhcp"
+  ipconfig0 = "ip=${var.hosts["valheim-server"].ip}/24,gw=${var.default_gateway}"
+}

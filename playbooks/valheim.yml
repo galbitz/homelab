@@ -1,0 +1,18 @@
+---
+- name: Configure valheim
+  hosts: valheim
+  vars:
+    security_autoupdate_reboot_time: "10:00"
+  tasks:
+    - name: Required packages for smb mount
+      ansible.builtin.package:
+        name: cifs-utils
+        state: present
+  roles:
+    - star4.essentials.timezone
+    - star4.essentials.autoupdate
+    - star4.essentials.myuser
+    - star4.essentials.hardening
+    - star4.essentials.forwardmta
+    - geerlingguy.docker
+    - docker_shared
