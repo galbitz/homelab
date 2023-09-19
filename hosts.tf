@@ -55,6 +55,11 @@ variable "hosts" {
       name = "aio"
       ip   = "192.168.1.25"
     }
+
+    "valheim-server" = {
+      name = "valheim"
+      ip   = "192.168.1.50"
+    }
   }
 }
 
