@@ -16,3 +16,5 @@
     - star4.essentials.forwardmta
     - geerlingguy.docker
     - docker_shared
+    - valheim
+    - watchtower
