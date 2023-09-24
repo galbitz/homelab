@@ -1,0 +1,4 @@
+# This file contains ignores rule violations for ansible-lint
+playbooks/roles/containers/defaults/main.yml var-naming[no-role-prefix]
+playbooks/roles/monitor/defaults/main.yml var-naming[no-role-prefix]
+playbooks/roles/remote/defaults/main.yml var-naming[no-role-prefix]
