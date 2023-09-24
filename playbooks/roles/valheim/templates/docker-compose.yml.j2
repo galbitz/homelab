@@ -1,0 +1,21 @@
+---
+version: "3"
+services:
+  valheim-server:
+    container_name: valheim
+    image: ghcr.io/lloesche/valheim-server
+    stop_grace_period: 2m
+    cap_add:
+      - CAP_SYS_NICE
+    ports:
+      - 2456-2457:2456-2457/udp
+    volumes:
+      - ./valheim-server/config:/config
+      - ./valheim-server/data:/opt/valheim
+    environment:
+      - SERVER_NAME=Gabro
+      - WORLD_NAME=world
+      - SERVER_PASS={{ valheim_password }}
+      - SERVER_PUBLIC=false
+      - BACKUPS_MAX_COUNT=4
+    restart: always

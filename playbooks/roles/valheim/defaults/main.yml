@@ -1,0 +1,3 @@
+---
+valheim_dir: "{{ docker_dir }}/valheim"
+valheim_password: "{{ lookup('ansible.builtin.env', 'VALHEIM_PASSWORD') }}"
