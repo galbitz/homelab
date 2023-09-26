@@ -3,10 +3,6 @@ networks:
   shared:
     external: true
   private:
-volumes:
-  influxdb-data:
-  influxdb-config:
-  prometheus-data:
 services:
   loki:
     container_name: loki
@@ -87,8 +83,8 @@ services:
     ports:
       - "8086:8086"
     volumes:
-      - influxdb-data:/var/lib/influxdb2
-      - influxdb-config:/etc/influxdb2 
+      - "{{ insight_dir }}/influx/data:/var/lib/influxdb2"
+      - "{{ insight_dir }}/influx/config:/etc/influxdb2"
     restart: always
     environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
@@ -129,4 +125,4 @@ services:
     restart: always
     volumes:
       - "{{ insight_dir }}/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
-      - prometheus-data:/prometheus
+      - "{{ insight_dir }}/prometheus-data:/prometheus"

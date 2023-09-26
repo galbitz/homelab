@@ -11,6 +11,10 @@
     mode: u+rwx,g+rwx,o+rxw
   loop:
     - "{{ insight_dir }}"
+    - "{{ insight_dir }}/prometheus-data"
+    - "{{ insight_dir }}/influx"
+    - "{{ insight_dir }}/influx/data"
+    - "{{ insight_dir }}/influx/config"
 
 - name: Copy docker compose for insight
   ansible.builtin.template:

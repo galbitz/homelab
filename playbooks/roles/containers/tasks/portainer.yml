@@ -8,6 +8,7 @@
     mode: u+rwx,g+rwx,o+rxw
   loop:
     - "{{ portainer_dir }}"
+    - "{{ portainer_dir }}/data"
 
 - name: Copy docker compose for portainer
   ansible.builtin.template:
