@@ -27,18 +27,19 @@ services:
       - "traefik.http.routers.traefik-http.entrypoints=web"
       - "traefik.http.routers.traefik-https.entrypoints=websecure"
       - "traefik.http.routers.traefik-https.tls=true"
-  whoami:
-    image: traefik/whoami
-    container_name: whoami
-    labels:
-      - "traefik.enable=true"
-      - "traefik.docker.network=shared"
-      - "traefik.http.routers.whoami-http.entrypoints=web"
-      - "traefik.http.routers.whoami-http.priority=1"
-      - "traefik.http.routers.whoami-http.rule=HostRegexp(`{host:.+}`)"
-      - "traefik.http.routers.whoami-https.tls=true"
-      - "traefik.http.routers.whoami-https.entrypoints=websecure"
-      - "traefik.http.routers.whoami-https.priority=1"
-      - "traefik.http.routers.whoami-https.rule=HostRegexp(`{host:.+}`)"
-    networks:
-      - shared
+#  whoami:
+#    image: traefik/whoami
+#    container_name: whoami
+#    restart: always
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.docker.network=shared"
+#      - "traefik.http.routers.whoami-http.entrypoints=web"
+#      - "traefik.http.routers.whoami-http.priority=1"
+#      - "traefik.http.routers.whoami-http.rule=HostRegexp(`{host:.+}`)"
+#      - "traefik.http.routers.whoami-https.tls=true"
+#      - "traefik.http.routers.whoami-https.entrypoints=websecure"
+#      - "traefik.http.routers.whoami-https.priority=1"
+#      - "traefik.http.routers.whoami-https.rule=HostRegexp(`{host:.+}`)"
+#    networks:
+#      - shared
