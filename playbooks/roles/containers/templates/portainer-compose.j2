@@ -3,16 +3,13 @@ version: "3"
 networks:
   shared:
     external: true
-volumes:
-  portainer-data:
-    driver: local
 services:
   app:
     container_name: portainer
     image: portainer/portainer-ce:latest
     volumes:
+      - "{{ portainer_dir }}/data:/data"
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer-data:/data
     restart: always
     networks:
       - shared
