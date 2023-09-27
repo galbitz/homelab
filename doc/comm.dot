@@ -1,0 +1,41 @@
+digraph {
+    
+    subgraph cluster_machines {
+        label="Physical machines";
+        bee [ shape=square ];
+        firewall [ shape=square ];
+        shadow [ shape=square ];
+    }
+    
+    
+    subgraph cluster_containers {
+        label="Containers";
+        Influx [label="InfluxDB"];
+        grafana -> Influx [ label="3100" ];
+        grafana -> Loki [ label="8086" ];
+        
+        subgraph cluster_promtail {
+            label="Promtail";
+            logshipper [label="Log shipper"];
+            logscraper [label="Local logs"];
+            dockerlogs [label="Docker logs"];
+            sysloglistener [label="Syslog listener"];
+            
+            logscraper -> logshipper;
+            dockerlogs -> logshipper;
+            sysloglistener -> logshipper;
+        }
+        
+        syslogng [label="syslog-ng"];
+        logshipper -> Loki [ label="3100" ];
+        syslogng  -> sysloglistener;
+        grafana -> prometheus [label="9090"];
+        prometheus -> cadvisor [label="8080"];
+        
+    }
+    shadow -> Influx [ label="8086" ];
+    bee -> Influx [ label="8086" ];
+    firewall -> syslogng [ label="9514" ];
+    prometheus -> shadow [label="9100"];
+    prometheus -> bee [label="9100"];
+}

@@ -33,3 +33,7 @@ https://developer.hashicorp.com/terraform/cli/install/apt#repository-configurati
 ./tfrun.sh init
 ./tfrun.sh apply
 ```
+
+## Log and metric collection communication
+
+![](doc/comm.png)
