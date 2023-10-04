@@ -1,0 +1,56 @@
+---
+- name: Check parameters
+  ansible.builtin.include_tasks: checks.yml
+
+- name: Ensuring folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    state: directory
+    mode: u+rwx,g+rwx,o+rxw
+  loop:
+    - "{{ file_backup_dir }}"
+    - "{{ file_backup_mount_dir }}"
+
+- name: Copy files
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: u+rwx
+    force: true
+  loop:
+    - src: "backup.sh"
+      dest: "{{ file_backup_dir }}/backup.sh"
+    - src: folderlist.txt.j2
+      dest: "{{ file_backup_dir }}/folderlist.txt"
+
+- name: Install required packages
+  ansible.builtin.package:
+    name:
+      - cifs-utils
+      - cron
+      - rsync
+    state: present
+  become: true
+
+- name: Mount network share
+  ansible.posix.mount:
+    src: "//{{ file_backup_nas_ip }}/proxmox-data"
+    path: "{{ file_backup_mount_dir }}"
+    fstype: cifs
+    opts: "username={{ file_backup_nas_username }},password={{ file_backup_nas_password }}"
+    state: mounted
+
+- name: Create cron task
+  ansible.builtin.cron:
+    name: "backup to nas"
+    job: "/bin/bash -c '{{ file_backup_dir }}/backup.sh {{ file_backup_dir }}/folderlist.txt {{ file_backup_mount_dir }}/{{ ansible_hostname }} 1>/dev/null 2> >(exec /usr/bin/logger -t crontest -p user.error)'"
+    minute: "{{ file_backup_schedule_minute }}"
+    hour: "{{ file_backup_schedule_hour }}"
+    day: "{{ file_backup_schedule_day }}"
+    month: "{{ file_backup_schedule_month }}"
+    user: root
+  become: true

@@ -1,2 +1,2 @@
 ---
-guacamole_dir: "{{ docker_dir }}/quacamole"
+remote_guacamole_dir: "{{ docker_dir }}/quacamole"

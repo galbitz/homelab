@@ -1,6 +1,18 @@
 ---
 - name: Configure docker-server
   hosts: docker-server
+  vars:
+    file_backup_list_of_folders_to_backup:
+      - "/opt/docker/data/insight/grafana"
+      - "/opt/docker/data/insight/influx/data"
+      - "/opt/docker/data/insight/prometheus-data"
+      - "/opt/docker/data/jellyfin"
+      - "/opt/docker/data/portainer/data"
+    file_backup_mount_dir: "/mnt/diskstation-proxmox-data"
+    file_backup_nas_username: "{{ lookup('ansible.builtin.env', 'NAS_BACKUP_USERNAME') }}"
+    file_backup_nas_password: "{{ lookup('ansible.builtin.env', 'NAS_BACKUP_PASSWORD') }}"
+    file_backup_schedule_hour: "1"
+    file_backup_schedule_minute: "0"
   roles:
     - star4.essentials.timezone
     - star4.essentials.autoupdate
@@ -11,3 +23,4 @@
     - docker_shared
     - watchtower
     - containers
+    - file_backup

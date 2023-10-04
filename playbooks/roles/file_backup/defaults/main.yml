@@ -1,0 +1,15 @@
+---
+file_backup_dir: "/opt/file_backup"
+file_backup_mount_dir:
+
+file_backup_list_of_folders_to_backup: []
+
+file_backup_nas_ip: "192.168.1.15"
+
+file_backup_nas_username:
+file_backup_nas_password:
+
+file_backup_schedule_minute: "*"
+file_backup_schedule_hour: "*"
+file_backup_schedule_day: "*"
+file_backup_schedule_month: "*"

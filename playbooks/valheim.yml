@@ -3,11 +3,13 @@
   hosts: valheim
   vars:
     security_autoupdate_reboot_time: "10:00"
-  tasks:
-    - name: Required packages for smb mount
-      ansible.builtin.package:
-        name: cifs-utils
-        state: present
+    file_backup_list_of_folders_to_backup:
+      - "/opt/docker/data/valheim/valheim-server/config"
+    file_backup_mount_dir: "/mnt/diskstation-proxmox-data"
+    file_backup_nas_username: "{{ lookup('ansible.builtin.env', 'NAS_BACKUP_USERNAME') }}"
+    file_backup_nas_password: "{{ lookup('ansible.builtin.env', 'NAS_BACKUP_PASSWORD') }}"
+    file_backup_schedule_hour: "2"
+    file_backup_schedule_minute: "0"
   roles:
     - star4.essentials.timezone
     - star4.essentials.autoupdate
@@ -18,3 +20,4 @@
     - docker_shared
     - valheim
     - watchtower
+    - file_backup

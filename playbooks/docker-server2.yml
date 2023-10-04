@@ -1,6 +1,15 @@
 ---
 - name: Configure docker-server2
   hosts: docker-server2
+  vars:
+    file_backup_list_of_folders_to_backup:
+      - "/opt/docker/data/quacamole"
+      - "/opt/docker/data/uptime-kuma"
+    file_backup_mount_dir: "/mnt/diskstation-proxmox-data"
+    file_backup_nas_username: "{{ lookup('ansible.builtin.env', 'NAS_BACKUP_USERNAME') }}"
+    file_backup_nas_password: "{{ lookup('ansible.builtin.env', 'NAS_BACKUP_PASSWORD') }}"
+    file_backup_schedule_hour: "23"
+    file_backup_schedule_minute: "0"
   roles:
     - star4.essentials.timezone
     - star4.essentials.autoupdate
@@ -12,3 +21,4 @@
     - watchtower
     - monitor
     - remote
+    - file_backup
