@@ -37,3 +37,9 @@ https://developer.hashicorp.com/terraform/cli/install/apt#repository-configurati
 ## Log and metric collection communication
 
 ![](doc/comm.png)
+
+## Upgrade pip package
+
+```
+pip install ansible-lint -U
+```

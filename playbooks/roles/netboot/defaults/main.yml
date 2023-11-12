@@ -1,0 +1,2 @@
+---
+netboot_dir: "{{ docker_dir }}/netboot"

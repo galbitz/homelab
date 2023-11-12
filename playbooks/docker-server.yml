@@ -24,3 +24,4 @@
     - watchtower
     - containers
     - file_backup
+    - netboot
