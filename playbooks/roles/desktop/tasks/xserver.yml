@@ -1,0 +1,15 @@
+---
+- name: Install X and stuff
+  ansible.builtin.package:
+    name:
+      - xserver-xorg-core
+      - xserver-xorg-video-all
+      - xinit
+      - xinput
+      - x11-xserver-utils
+      - x11-utils
+      - xrdp
+      - lightdm
+      - kitty
+    state: present
+  become: true

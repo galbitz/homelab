@@ -1,0 +1,16 @@
+---
+- name: Capture home directory
+  ansible.builtin.set_fact:
+    home: "{{ ansible_env.HOME }}"
+
+- name: XServer
+  ansible.builtin.include_tasks: xserver.yml
+
+- name: DWM
+  ansible.builtin.include_tasks: dwm.yml
+
+- name: Audio
+  ansible.builtin.include_tasks: audio.yml
+
+- name: Flatpak
+  ansible.builtin.include_tasks: flatpak.yml

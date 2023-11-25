@@ -1,0 +1,10 @@
+---
+- name: Debian desktop
+  hosts: xrdp
+  vars:
+    ansible_user: gabor
+  roles:
+    - star4.essentials.timezone
+    - star4.essentials.autoupdate
+    - star4.essentials.myuser
+    - desktop

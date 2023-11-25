@@ -1,0 +1,21 @@
+---
+- name: Install flatpak
+  ansible.builtin.package:
+    name:
+      - flatpak
+    state: present
+  become: true
+
+- name: Add the flathub flatpak repository
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: system
+  become: true
+
+- name: Install librewolf
+  community.general.flatpak:
+    name: io.gitlab.librewolf-community
+    state: present
+  become: true
