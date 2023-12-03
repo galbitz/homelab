@@ -13,19 +13,13 @@ python3 -m pip install ansible ansible-lint yamllint
 
 https://developer.hashicorp.com/terraform/cli/install/apt#repository-configuration
 
-### Other requirements
+### Ansible playbook requirements
 
-- default vault name: infra
-- pve vault item: proxmox-login
-- proxmox version 7.2-3
-- use wsl
+- User to connect with (rsa key)
+- Sudo right
+- No password requirement for sudo
 
-## Bootstrap PVE server
-
-```
- cd bootstrap
- ./run.sh hostname
-```
+Note: currently connection uses root user but this will change
 
 ## Create servers on PVE
 

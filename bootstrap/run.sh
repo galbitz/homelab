@@ -8,4 +8,4 @@ if [ -z "$1" ]; then
 fi
 
 echo On debian use --become-method su 
-ansible-playbook bootstrap.yml --ask-pass -i "$1," -u gabor -K --become-method su 
+ansible-playbook bootstrap.yml -u gabor --ask-pass --ask-become-pass --ssh-common-args "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" -i "$1,"
