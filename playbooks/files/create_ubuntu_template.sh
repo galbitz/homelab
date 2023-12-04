@@ -1,3 +1,4 @@
+#!/bin/bash
 # installing libguestfs-tools only required once, prior to first run
 apt update -y
 apt install libguestfs-tools -y
@@ -24,6 +25,7 @@ qm set 9000 --boot c --bootdisk scsi0
 qm set 9000 --ide2 local-lvm:cloudinit
 qm set 9000 --agent enabled=1
 qm set 9000 --ipconfig0 ip=dhcp
+qm set 9000 --ostype l26
 qm template 9000
 rm jammy-server-cloudimg-amd64.img
 echo "next up, clone VM, then expand the disk: qm clone 9000 999 --name test-clone-cloud-init "
