@@ -4,3 +4,4 @@
   roles:
     - pve_default_config
     - prometheus.prometheus.node_exporter
+    - logclient

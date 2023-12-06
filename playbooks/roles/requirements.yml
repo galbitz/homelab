@@ -2,6 +2,7 @@
 roles:
   - name: geerlingguy.docker
   - name: geerlingguy.dotfiles
+  - name: patrickjahns.promtail
 
 collections:
   - name: community.docker

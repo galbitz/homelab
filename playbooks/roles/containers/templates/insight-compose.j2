@@ -10,8 +10,8 @@ services:
     volumes:
       - "{{ insight_dir }}/loki:/etc/loki"
     # only containers connect to this (grafana, promtail)
-    # ports:
-    #  - "3100:3100"
+    ports:
+      - "3100:3100"
     restart: always
     command: -config.file=/etc/loki/loki-config.yml
     networks:
