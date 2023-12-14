@@ -43,7 +43,7 @@ variable "hosts" {
 
     "thin" = {
       name = "thin"
-      ip   = "192.168.1.23"
+      ip   = "192.168.1.4"
     }
 
     "docker-server2" = {

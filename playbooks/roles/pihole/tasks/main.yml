@@ -1,0 +1,39 @@
+---
+- name: Make sure that the docker folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    state: directory
+    mode: 0777
+  loop:
+    - "{{ pihole_dir }}"
+    - "{{ pihole_dir }}/etc-pihole"
+    - "{{ pihole_dir }}/etc-dnsmasq.d"
+
+- name: Copy configs fo;es
+  ansible.builtin.copy:
+    dest: "{{ item.dest }}"
+    src: "{{ item.src }}"
+    owner: root
+    group: root
+    mode: u+rwx,g+rwx,o+rxw
+    force: true
+  loop:
+    - src: "./"
+      dest: "{{ pihole_dir }}"
+
+- name: Copy docker compose
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ pihole_dir }}/docker-compose.yml"
+    owner: root
+    group: root
+    mode: u+rwx,g+rwx,o+rxw
+    force: true
+
+- name: Docker-compose up
+  ansible.builtin.command:
+    cmd: "docker compose up -d"
+    chdir: "{{ pihole_dir }}"
+  changed_when: false
