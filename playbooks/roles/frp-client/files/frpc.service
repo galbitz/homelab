@@ -1,0 +1,16 @@
+[Unit]
+Description=Frp Client
+After=network.target
+
+[Service]
+Type=simple
+#DynamicUser=yes
+Restart=on-failure
+RestartSec=5s
+ExecStart=/opt/frp/frpc -c /opt/frp/frpc.toml
+
+[Install]
+WantedBy=multi-user.target
+
+# cp frps.service /usr/lib/systemd/system
+# sudo systemctl enable frps
