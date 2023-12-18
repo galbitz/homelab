@@ -96,7 +96,7 @@ sections: # An array of sections
         url: "http://192.168.1.24:3001/dashboard"
         icon: "icons/dashboard-icons/png/uptime-kuma.png"
       - title: "Pi-Hole"
-        url: "http://192.168.1.17:8080/admin"
+        url: "http://pihole.home.04a.ca/admin"
         icon: "icons/dashboard-icons/png/raspberrypi.png"
       - title: "Portainer"
         url: "http://192.168.1.17:9000"
