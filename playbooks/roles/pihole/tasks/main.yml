@@ -11,7 +11,7 @@
     - "{{ pihole_dir }}/etc-pihole"
     - "{{ pihole_dir }}/etc-dnsmasq.d"
 
-- name: Copy configs fo;es
+- name: Copy configs folders
   ansible.builtin.copy:
     dest: "{{ item.dest }}"
     src: "{{ item.src }}"

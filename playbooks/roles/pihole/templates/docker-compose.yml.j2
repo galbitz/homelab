@@ -11,6 +11,11 @@ services:
       FTLCONF_BLOCK_ICLOUD_PR: "false"
       PIHOLE_DNS_: "9.9.9.9;1.1.1.1"
       DNSMASQ_LISTENING: "all"
+      DHCP_ACTIVE: true
+      DHCP_START: "192.168.1.100"
+      DHCP_END: "192.168.1.199"
+      DHCP_ROUTER: "192.168.1.1"
+      PIHOLE_DOMAIN: "04a.ca"
     volumes:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
