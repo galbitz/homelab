@@ -1,0 +1,26 @@
+---
+- name: Neovim - install prerequisites
+  ansible.builtin.package:
+    name:
+      - git
+      - ninja-build
+      - gettext
+      - cmake
+      - unzip
+      - curl
+    state: present
+  become: true
+
+- name: Neovim - git checkout
+  ansible.builtin.git:
+    repo: https://github.com/neovim/neovim
+    dest: "{{ build_dir }}/neovim"
+    version: stable # noqa: latest
+
+- name: Neovim - install
+  community.general.make:
+    chdir: "{{ build_dir }}/neovim"
+    target: install
+    params:
+      CMAKE_BUILD_TYPE: Release
+  become: true

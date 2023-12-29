@@ -1,7 +1,7 @@
 ---
 # https://c-nergy.be/blog/?p=17734
 
-- name: Pulseaudio
+- name: Pulseaudio - install packages
   ansible.builtin.package:
     name:
       - pulseaudio
@@ -10,7 +10,7 @@
     state: present
   become: true
 
-- name: XRDP PulseAudio module build dependencies
+- name: Pulseaudio - XRDP build dependencies
   ansible.builtin.package:
     name:
       - build-essential
@@ -22,26 +22,32 @@
     state: present
   become: true
 
-- name: Git checkout pulseaudio xrdp module
+- name: Pulseaudio - xrdp checkout source
   ansible.builtin.git:
     repo: https://github.com/neutrinolabs/pulseaudio-module-xrdp.git
-    dest: "{{ home }}/code/pulseaudio-module-xrdp"
+    dest: "{{ build_dir }}/pulseaudio-module-xrdp"
     version: devel # noqa: latest
 
-- name: Run wrapper
+- name: Pulseaudio - xrdp remove previous build directory
+  ansible.builtin.file:
+    path: "/var/lib/pa-build/"
+    state: absent
+  become: true
+
+- name: Pulseaudio - xrdp run wrapper (dependencies)
   ansible.builtin.command:
-    chdir: "{{ home }}/code/pulseaudio-module-xrdp/"
-    cmd: scripts/install_pulseaudio_sources_apt_wrapper.sh
+    chdir: "{{ build_dir }}/pulseaudio-module-xrdp/"
+    cmd: "scripts/install_pulseaudio_sources_apt.sh"
   changed_when: false
 
-- name: Run a configure
+- name: Pulseaudio - xrdp run a configure
   ansible.builtin.shell:
-    chdir: "{{ home }}/code/pulseaudio-module-xrdp/"
+    chdir: "{{ build_dir }}/pulseaudio-module-xrdp/"
     cmd: "./bootstrap && ./configure PULSE_DIR={{ ansible_env.HOME }}/pulseaudio.src"
   changed_when: false
 
-- name: Install pulseaudio xrdp module
+- name: Pulseaudio - Install pulseaudio xrdp module
   community.general.make:
-    chdir: "{{ home }}/code/pulseaudio-module-xrdp"
+    chdir: "{{ build_dir }}/pulseaudio-module-xrdp"
     target: install
   become: true

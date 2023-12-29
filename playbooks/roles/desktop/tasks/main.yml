@@ -1,7 +1,6 @@
 ---
-- name: Capture home directory
-  ansible.builtin.set_fact:
-    home: "{{ ansible_env.HOME }}"
+- name: Configure
+  ansible.builtin.include_tasks: configure.yml
 
 - name: XServer
   ansible.builtin.include_tasks: xserver.yml
@@ -14,3 +13,6 @@
 
 - name: Flatpak
   ansible.builtin.include_tasks: flatpak.yml
+
+- name: Neovim
+  ansible.builtin.include_tasks: neovim.yml

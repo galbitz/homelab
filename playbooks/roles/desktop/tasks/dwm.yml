@@ -1,5 +1,5 @@
 ---
-- name: Install dwm build requirements
+- name: Dwm - Install build requirements
   ansible.builtin.package:
     name:
       - build-essential
@@ -8,55 +8,57 @@
       - libx11-dev
       - libxinerama-dev
       - libxft-dev
+      - rofi
     state: present
   become: true
 
-- name: Git checkout dwm
+- name: Dwm - checkout source
   ansible.builtin.git:
     repo: https://git.suckless.org/dwm
-    dest: "{{ home }}/code/dwm"
+    dest: "{{ build_dir }}/dwm"
     version: master # noqa: latest
 
-- name: Copy file config
+- name: Dwm - Copy config file
   ansible.builtin.copy:
-    src: "{{ home }}/code/dwm/config.def.h"
+    src: "{{ build_dir }}/dwm/config.def.h"
     remote_src: true
-    dest: "{{ home }}/code/dwm/config.h"
+    dest: "{{ build_dir }}/dwm/config.h"
     mode: u+rw,g+r,o+r
     force: false
 
-- name: Ensure term is set to kitty
+- name: Dwm - Ensure term is set to kitty
   ansible.builtin.replace:
-    path: "{{ home }}/code/dwm/config.h"
+    path: "{{ build_dir }}/dwm/config.h"
     regexp: '\"st\"'
     replace: '"kitty"'
 
-- name: Install dwm
+- name: Dwm - add rofi command
+  ansible.builtin.lineinfile:
+    path: "{{ build_dir }}/dwm/config.h"
+    insertafter: '^static const char \*dmenucmd'
+    line: 'static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", NULL };'
+    state: present
+
+- name: Dwm - ensure menu command is set to rofi
+  ansible.builtin.replace:
+    path: "{{ build_dir }}/dwm/config.h"
+    regexp: "{.v = dmenucmd }"
+    replace: "{.v = roficmd }"
+
+- name: Dwm - install
   community.general.make:
-    chdir: "{{ home }}/code/dwm"
+    chdir: "{{ build_dir }}/dwm"
     target: install
   become: true
 
-- name: Git checkout dmenu
-  ansible.builtin.git:
-    repo: https://git.suckless.org/dmenu
-    dest: "{{ home }}/code/dmenu"
-    version: master # noqa: latest
-
-- name: Install dmenu
-  community.general.make:
-    chdir: "{{ home }}/code/dmenu"
-    target: install
-  become: true
-
-- name: Copy xsession
+- name: Dwm - copy xsession
   ansible.builtin.copy:
     src: .xsession
     dest: "{{ home }}/.xsession"
     owner: gabor
     mode: u+rw,g+rw,o+rw
 
-- name: Create session file
+- name: Dwm - create xsession file
   ansible.builtin.copy:
     src: dwm.desktop
     dest: "/usr/share/xsessions/dwm.desktop"

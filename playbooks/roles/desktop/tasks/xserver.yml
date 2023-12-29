@@ -1,5 +1,5 @@
 ---
-- name: Install X and stuff
+- name: Xserver - install X11 and dependencies
   ansible.builtin.package:
     name:
       - xserver-xorg-core
