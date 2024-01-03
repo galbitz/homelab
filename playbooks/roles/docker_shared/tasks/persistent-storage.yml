@@ -8,3 +8,4 @@
     mode: u+rwx,g+rwx,o+rxw
   loop:
     - "{{ docker_dir }}"
+  become: true

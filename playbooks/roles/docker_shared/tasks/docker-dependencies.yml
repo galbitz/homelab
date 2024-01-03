@@ -6,6 +6,7 @@
       - python3-pip
     state: present
   when: ansible_distribution != 'Alpine'
+  become: true
 
 - name: Install docker module for Python
   ansible.builtin.pip:
@@ -13,6 +14,7 @@
       - docker
       - docker-compose
   when: ansible_distribution == 'Ubuntu'
+  become: true
 
 - name: Install python packages on Debian
   ansible.builtin.package:
@@ -20,3 +22,4 @@
       - python3-docker
     state: present
   when: ansible_distribution == 'Debian'
+  become: true
