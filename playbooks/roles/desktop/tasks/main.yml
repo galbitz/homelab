@@ -16,3 +16,6 @@
 
 - name: Neovim
   ansible.builtin.include_tasks: neovim.yml
+
+- name: Apps
+  ansible.builtin.include_tasks: apps.yml
