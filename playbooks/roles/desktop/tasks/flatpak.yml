@@ -13,9 +13,3 @@
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: system
   become: true
-
-- name: Flatpak - install librewolf
-  community.general.flatpak:
-    name: io.gitlab.librewolf-community
-    state: present
-  become: true

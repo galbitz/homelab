@@ -1,0 +1,13 @@
+---
+- name: Apps - install Librewolf (flatpak)
+  community.general.flatpak:
+    name: io.gitlab.librewolf-community
+    state: present
+  become: true
+
+- name: Apps - install apps
+  ansible.builtin.package:
+    name:
+      - thunar
+    state: present
+  become: true
