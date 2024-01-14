@@ -15,8 +15,8 @@ jobs:
       - name: Install devbox
         uses: jetpack-io/devbox-install-action@v0.6.0
 
-      - name: Install playbook dependencies
-        run: devbox run install-dependencies
+      - name: Install playbook requirements
+        run: devbox run install-requirements
 
       - name: Lint
         run: devbox run lint
