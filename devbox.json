@@ -1,0 +1,17 @@
+{
+  "packages": [
+    "ansible@latest",
+    "ansible-lint@latest",
+    "yamllint@latest",
+    "terraform@latest"
+  ],
+  "shell": {
+    "init_hook": ["echo 'Welcome to devbox!'"],
+    "scripts": {
+      "lint": ["yamllint .", "ansible-lint"],
+      "install-requirements": [
+        "ansible-galaxy install -r playbooks/roles/requirements.yml --force"
+      ]
+    }
+  }
+}

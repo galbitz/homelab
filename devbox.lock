@@ -1,0 +1,71 @@
+{
+  "lockfile_version": "1",
+  "packages": {
+    "ansible-lint@latest": {
+      "last_modified": "2023-12-13T22:54:10Z",
+      "resolved": "github:NixOS/nixpkgs/fd04bea4cbf76f86f244b9e2549fca066db8ddff#ansible-lint",
+      "source": "devbox-search",
+      "version": "6.21.1",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/qzlwr8wyjfq9dbs9q3x80f4djl6dfzdl-ansible-lint-6.21.1"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/q2sn4m9lrkzx42r8zr12dlj5r535bzqi-ansible-lint-6.21.1"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/dvf7qywrak0mbddv0gdlks0xi1rspkmj-ansible-lint-6.21.1"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/bziywlwpwk2zcwpg2ihd3nkzpk8rj3hg-ansible-lint-6.21.1"
+        }
+      }
+    },
+    "ansible@latest": {
+      "last_modified": "2023-12-13T22:54:10Z",
+      "resolved": "github:NixOS/nixpkgs/fd04bea4cbf76f86f244b9e2549fca066db8ddff#ansible",
+      "source": "devbox-search",
+      "version": "2.15.5",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/v29wrr20s59q9ijxqxxqk6gf323aslhb-python3.11-ansible-core-2.15.5"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/sbnp7xqd39f77jhvfvskd4kr3is743a2-python3.11-ansible-core-2.15.5"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/l1djylxdf8038v0vanyi8yikdrxj6azy-python3.11-ansible-core-2.15.5"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/169spgh74nq9g2bm5yxmvlx83c6yr2ji-python3.11-ansible-core-2.15.5"
+        }
+      }
+    },
+    "terraform@latest": {
+      "last_modified": "2023-12-18T02:58:18Z",
+      "resolved": "github:NixOS/nixpkgs/ca16221251951e9c6261a1a2bb4f9389038d3632#terraform",
+      "source": "devbox-search",
+      "version": "1.6.6"
+    },
+    "yamllint@latest": {
+      "last_modified": "2023-12-13T22:54:10Z",
+      "resolved": "github:NixOS/nixpkgs/fd04bea4cbf76f86f244b9e2549fca066db8ddff#yamllint",
+      "source": "devbox-search",
+      "version": "1.33.0",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/inyipsq4qdzmai4791zl542dl9995l4w-python3.11-yamllint-1.33.0"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/2y28v3lrnv3m9zgxgksdzjxq3p8n6x4m-python3.11-yamllint-1.33.0"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/7f02h17wxc5agk4aqlmzg9had3k6w3kz-python3.11-yamllint-1.33.0"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/pab7c31znj2lk0w4iw07ay8r8pzfl6q1-python3.11-yamllint-1.33.0"
+        }
+      }
+    }
+  }
+}
