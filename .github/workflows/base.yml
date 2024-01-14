@@ -1,0 +1,24 @@
+---
+name: Base
+"on":
+  pull_request:
+  push:
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v3
+
+      - name: Install devbox
+        uses: jetpack-io/devbox-install-action@v0.7.0
+        with:
+          enable-cache: true
+
+      - name: Install playbook requirements
+        run: devbox run install-requirements
+
+      - name: Lint
+        run: devbox run lint
