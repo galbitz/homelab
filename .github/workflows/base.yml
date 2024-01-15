@@ -18,7 +18,7 @@ jobs:
           enable-cache: true
 
       - name: Install playbook requirements
-        run: devbox run install-requirements
+        run: make install-requirements
 
       - name: Lint
-        run: devbox run lint
+        run: make lint
