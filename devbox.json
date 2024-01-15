@@ -6,7 +6,7 @@
     "terraform@latest"
   ],
   "shell": {
-    "init_hook": ["echo 'Welcome to devbox!'"],
+    "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
     "scripts": {
       "lint": ["yamllint .", "ansible-lint"],
       "install-requirements": [
