@@ -46,3 +46,6 @@
     - NUT:
         href: https://nut.home.04a.ca/cgi-bin/nut/upsstats.cgi
         icon: ups.png
+    - Switch:
+        href: http://switch.04a.ca/
+        icon: mdi-switch
