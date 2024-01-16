@@ -8,7 +8,7 @@ jellyfin_cache_dir: "{{ docker_dir }}/jellyfin/cache"
 
 homer_dir: "{{ docker_dir }}/homer"
 
-dashy_dir: "{{ docker_dir }}/dashy"
+homepage_dir: "{{ docker_dir }}/homepage"
 
 insight_dir: "{{ docker_dir }}/insight"
 
