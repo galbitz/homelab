@@ -1,0 +1,18 @@
+---
+- resources:
+    cpu: true
+    memory: true
+    disk: /
+
+- search:
+    provider: duckduckgo
+    target: _blank
+
+- openweathermap:
+    label: Toronto #optional
+    latitude: 43.4643
+    longitude: 79.253
+    units: metric # or imperial
+    provider: openweathermap
+    apiKey: "{{ lookup('ansible.builtin.env', 'HOMEPAGE_OPENWEATHERAPI_KEY') }}" # required only if not using provider, this reveals api key in requests
+    cache: 5

@@ -15,8 +15,8 @@
   ansible.builtin.include_tasks: cloudflare-tunnel.yml
 - name: Jellyfin
   ansible.builtin.include_tasks: jellyfin.yml
-- name: Dashy
-  ansible.builtin.include_tasks: dashy.yml
+- name: Homepage
+  ansible.builtin.include_tasks: homepage.yml
 - name: Insight Composer stack
   ansible.builtin.include_tasks: insight.yml
 - name: Nut

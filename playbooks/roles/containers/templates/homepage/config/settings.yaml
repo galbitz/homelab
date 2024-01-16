@@ -1,0 +1,21 @@
+---
+providers:
+  openweathermap: openweathermapapikey
+  weatherapi: weatherapiapikey
+
+title: Star 4 - Dashboard
+
+theme: dark
+color: slate
+
+userEqualHeights: true
+
+layout:
+  Hypervisors:
+    header: true
+    style: row
+    columns: 4
+  Services:
+    header: true
+    style: row
+    columns: 4

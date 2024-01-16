@@ -1,0 +1,43 @@
+---
+- name: Make sure that the docker folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    state: directory
+    mode: u+rwx,g+rwx,o+rxw
+  loop:
+    - "{{ homepage_dir }}"
+    - "{{ homepage_dir }}/config"
+
+- name: Copy files
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: u+rwx,g+rwx,o+rxw
+    force: true
+  loop:
+    - src: "homepage/docker-compose.yaml"
+      dest: "{{ homepage_dir }}/docker-compose.yml"
+    - src: "homepage/config/bookmarks.yaml"
+      dest: "{{ homepage_dir }}/config/bookmarks.yaml"
+    - src: "homepage/config/custom.css"
+      dest: "{{ homepage_dir }}/config/custom.css"
+    - src: "homepage/config/custom.js"
+      dest: "{{ homepage_dir }}/config/custom.js"
+    - src: "homepage/config/docker.yaml"
+      dest: "{{ homepage_dir }}/config/docker.yaml"
+    - src: "homepage/config/kubernetes.yaml"
+      dest: "{{ homepage_dir }}/config/kubernetes.yaml"
+    - src: "homepage/config/services.yaml"
+      dest: "{{ homepage_dir }}/config/services.yaml"
+    - src: "homepage/config/settings.yaml"
+      dest: "{{ homepage_dir }}/config/settings.yaml"
+    - src: "homepage/config/widgets.yaml.j2"
+      dest: "{{ homepage_dir }}/config/widgets.yaml"
+
+- name: Deploy docker compose stack
+  community.docker.docker_compose:
+    project_src: "{{ homepage_dir }}"

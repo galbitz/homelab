@@ -1,0 +1,24 @@
+version: "3.3"
+networks:
+  shared:
+    external: true
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: always
+    networks:
+      - shared
+    volumes:
+      - ./config:/app/config # Make sure your local config directory exists
+      - /var/run/docker.sock:/var/run/docker.sock # (optional) For docker integrations
+    labels:
+      "traefik.enable": "true"
+      "traefik.docker.network": "shared"
+      "traefik.http.services.homepage.loadbalancer.server.port": "3000"
+      "traefik.http.services.homepage.loadbalancer.server.scheme": "http"
+      "traefik.http.routers.loadbalancer-http.entrypoints": "web"
+      "traefik.http.routers.loadbalancer-http.rule": "HostRegexp(`{host:dashboard\\..+}`)"
+      "traefik.http.routers.loadbalancer-https.entrypoints": "websecure"
+      "traefik.http.routers.loadbalancer-https.rule": "HostRegexp(`{host:dashboard\\..+}`)"
+      "traefik.http.routers.loadbalancer-https.tls": "true"

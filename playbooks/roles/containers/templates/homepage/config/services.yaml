@@ -1,0 +1,48 @@
+---
+- Hypervisors:
+    - Shadow:
+        href: https://shadow.home.star4.dev:8006/
+        icon: proxmox.png
+    - Exit:
+        href: https://exit.04a.ca:8006/
+        icon: proxmox.png
+    - Fw (down):
+        href: https://192.168.1.164:8006/
+        icon: proxmox.png
+    - PVE2 (Game):
+        href: https://game.04a.ca:8006/
+        icon: proxmox.png
+- Services:
+    - Home Assistant:
+        href: https://ha.home.04a.ca/
+        icon: home-assistant-alt.png
+    - Remote connect:
+        href: https://guacamole.home.04a.ca/
+        icon: guacamole.png
+    - Diskstation:
+        href: https://diskstation.home.star4.dev:5001/
+        icon: synology.png
+    - Unifi wifi:
+        href: https://unifi.home.star4.dev/
+        icon: unifi.png
+    - Firewall:
+        href: https://home.star4.dev/
+        icon: opnsense.png
+    - Uptime Kuma:
+        href: https://uptime.home.04a.ca/
+        icon: uptime-kuma.png
+    - PiHole:
+        href: https://pihole.home.04a.ca/admin/
+        icon: pi-hole.png
+    - Portainer:
+        href: https://portainer.home.04a.ca/
+        icon: portainer.png
+    - Traefik:
+        href: https://traefik.home.04a.ca/
+        icon: traefik.png
+    - Grafana:
+        href: https://grafana.home.04a.ca/
+        icon: grafana.png
+    - NUT:
+        href: https://nut.home.04a.ca/cgi-bin/nut/upsstats.cgi
+        icon: ups.png
