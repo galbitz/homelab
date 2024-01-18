@@ -12,7 +12,7 @@ encrypt-secrets:
 	gpg --symmetric --cipher-algo AES256 -o encrypted_secrets.sh unencrypted_secrets.sh 
 
 decrypt-secrets:
-	gpg --quiet --batch --yes --decrypt --passphrase="$SECRET_PASSPHRASE" --output unencrypted_secrets.sh encrypted_secrets.sh
+	gpg --quiet --batch --yes --decrypt --passphrase="$(SECRET_PASSPHRASE)" --output unencrypted_secrets.sh encrypted_secrets.sh
 	
 test:
 	echo "test"
