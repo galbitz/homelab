@@ -1,19 +1,14 @@
-## Local requirements
+## Requirements
 
-### Install Ansible
+### DevBox
 
-```bash
-sudo apt install python3-pip
-echo 'PATH=$PATH:$HOME/.local/bin' >> ~/.bashrc
-source ~/.bashrc
-python3 -m pip install ansible ansible-lint yamllint
-```
+https://www.jetpack.io/devbox/
 
-### Install terraform
+### Direnv
 
-https://developer.hashicorp.com/terraform/cli/install/apt#repository-configuration
+https://direnv.net/docs/hook.html
 
-### Ansible playbook requirements
+## Ansible execution requirements
 
 - User to connect with (rsa key)
 - Sudo right
@@ -25,15 +20,10 @@ Note: currently connection uses root user but this will change
 
 ```
 ./tfrun.sh init
+./tfrun.sh login # optional
 ./tfrun.sh apply
 ```
 
 ## Log and metric collection communication
 
 ![](doc/comm.png)
-
-## Upgrade pip package
-
-```
-pip install ansible-lint -U
-```
