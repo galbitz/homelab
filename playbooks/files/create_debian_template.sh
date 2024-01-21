@@ -9,15 +9,25 @@ wget https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd
 virt-customize -a debian-12-generic-amd64.raw --update
 virt-customize -a debian-12-generic-amd64.raw --install qemu-guest-agent
 
-qm destroy 9002
-qm create 9002 --name "debian-12-cloudinit-template" --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
-qm importdisk 9002 debian-12-generic-amd64.raw local-lvm
-qm set 9002 --scsihw virtio-scsi-pci --scsi0 local-lvm:vm-9002-disk-0
-qm set 9002 --boot c --bootdisk scsi0
-qm set 9002 --ide2 local-lvm:cloudinit
-qm set 9002 --agent enabled=1
-qm set 9002 --ipconfig0 ip=dhcp
-qm set 9002 --ostype l26
-qm template 9002
+vm_id=9002
+
+qm destroy "$vm_id"
+qm create "$vm_id" --name "debian-12-cloudinit-template" --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
+qm importdisk "$vm_id" debian-12-generic-amd64.raw local-lvm
+qm set "$vm_id" --scsihw virtio-scsi-single --scsi0 local-lvm:vm-"$vm_id"-disk-0,discard=on,ssd=on,iothread=on
+qm set "$vm_id" --boot c --bootdisk scsi0
+qm set "$vm_id" --ide2 local-lvm:cloudinit
+qm set "$vm_id" --agent enabled=1
+qm set "$vm_id" --ipconfig0 ip=dhcp
+qm set "$vm_id" --ostype l26
+qm set "$vm_id" --machine q35
+
+temp_file=$(mktemp)
+curl -s "https://github.com/galbitz.keys" > "$temp_file"
+qm set "$vm_id" --ciuser sysadmin
+qm set "$vm_id" --sshkeys $temp_file
+rm "$temp_file"
+
+qm template "$vm_id"
 rm debian-12-generic-amd64.raw
-echo "next up, clone VM, then expand the disk: qm clone 9000 999 --name test-clone-cloud-init "
+echo "Successfully created debian-12-cloudinit-template"

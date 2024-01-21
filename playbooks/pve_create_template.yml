@@ -1,6 +1,6 @@
 ---
 - name: Create OS cloudinit templates template
-  hosts: bee
+  hosts: shadow, bee
   gather_facts: false
   tasks:
     - name: Create Ubuntu template
