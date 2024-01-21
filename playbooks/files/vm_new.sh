@@ -1,19 +1,24 @@
 #!/usr/bin/env bash
 set -e
 
-if [ "$#" -lt 1 ]; then
-    echo "Usage: $0 <vm-id>"
+if [ "$#" -lt 2 ]; then
+    echo "Usage: $0 <vm-id> <vm-name> [volume-name]"
     exit 1
 fi
 
 vm_id="$1"
+vm_name="$2"
+volume_name="local-lvm"
+if [ -n "$3" ]; then
+    volume_name="$3"
+fi
 
 temp_file=$(mktemp)
 curl -s "https://github.com/galbitz.keys" > "$temp_file"
 
-qm create "$vm_id" --name node1 \
+qm create "$vm_id" --name "$vm_name" \
 --scsihw virtio-scsi-single \
---scsi0 local-big:32,iothread=1,ssd=1,discard=on \
+--scsi0 "$volume_name":32,iothread=1,ssd=1,discard=on \
 --ide2 none \
 --cores 4 \
 --net0 virtio,bridge=vmbr0 \
