@@ -9,23 +9,25 @@ wget https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.i
 virt-customize -a jammy-server-cloudimg-amd64.img --update
 virt-customize -a jammy-server-cloudimg-amd64.img --install qemu-guest-agent
 
-# add user - will be done by playbook
-# virt-customize -a focal-server-cloudimg-amd64.img --run-command 'useradd gabor'
-# virt-customize -a focal-server-cloudimg-amd64.img --run-command 'mkdir -p /home/gabor/.ssh'
-# virt-customize -a focal-server-cloudimg-amd64.img --ssh-inject gabor:file:key.pub
-# virt-customize -a focal-server-cloudimg-amd64.img --run-command 'chown -R gabor:gabor /home/gabor'
-# virt-customize -a focal-server-cloudimg-amd64.img --ssh-inject root:file:key.pub
-# virt-customize -a focal-server-cloudimg-amd64.img --root-password password:P@ssword
-#virt-sysprep -a focal-server-cloudimg-amd64.img
-qm destroy 9000
-qm create 9000 --name "ubuntu-2204-cloudinit-template" --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
-qm importdisk 9000 jammy-server-cloudimg-amd64.img local-lvm
-qm set 9000 --scsihw virtio-scsi-pci --scsi0 local-lvm:vm-9000-disk-0
-qm set 9000 --boot c --bootdisk scsi0
-qm set 9000 --ide2 local-lvm:cloudinit
-qm set 9000 --agent enabled=1
-qm set 9000 --ipconfig0 ip=dhcp
-qm set 9000 --ostype l26
-qm template 9000
+vm_id=9000
+
+qm destroy "$vm_id"
+qm create "$vm_id" --name "ubuntu-2204-cloudinit-template" --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
+qm importdisk "$vm_id" jammy-server-cloudimg-amd64.img local-lvm
+qm set "$vm_id" --scsihw virtio-scsi-single --scsi0 local-lvm:vm-"$vm_id"-disk-0,discard=on,ssd=on,iothread=on
+qm set "$vm_id" --boot c --bootdisk scsi0
+qm set "$vm_id" --ide2 local-lvm:cloudinit
+qm set "$vm_id" --agent enabled=1
+qm set "$vm_id" --ipconfig0 ip=dhcp
+qm set "$vm_id" --ostype l26
+qm set "$vm_id" --machine q35
+
+temp_file=$(mktemp)
+curl -s "https://github.com/galbitz.keys" > "$temp_file"
+qm set "$vm_id" --ciuser sysadmin
+qm set "$vm_id" --sshkeys $temp_file
+rm "$temp_file"
+
+qm template "$vm_id"
 rm jammy-server-cloudimg-amd64.img
-echo "next up, clone VM, then expand the disk: qm clone 9000 999 --name test-clone-cloud-init "
+echo "Successfully created ubuntu-2204-cloudinit-template"
