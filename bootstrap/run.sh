@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 export ANSIBLE_FORCE_COLOR=True
 export ANSIBLE_HOST_KEY_CHECKING=False
 
