@@ -7,13 +7,13 @@
     state: directory
     mode: u+rwx,g+rwx,o+rxw
   loop:
-    - "{{ portainer_dir }}"
-    - "{{ portainer_dir }}/data"
+    - "{{ containers_portainer_dir }}"
+    - "{{ containers_portainer_dir }}/data"
 
 - name: Copy docker compose for portainer
   ansible.builtin.template:
     src: portainer-compose.j2
-    dest: "{{ portainer_dir }}/docker-compose.yml"
+    dest: "{{ containers_portainer_dir }}/docker-compose.yml"
     owner: root
     group: root
     mode: u+rwx,g+rwx,o+rxw
@@ -21,4 +21,4 @@
 
 - name: Deploy Docker Compose stack
   community.docker.docker_compose:
-    project_src: "{{ portainer_dir }}"
+    project_src: "{{ containers_portainer_dir }}"

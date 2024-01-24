@@ -10,16 +10,16 @@
     state: directory
     mode: u+rwx,g+rwx,o+rxw
   loop:
-    - "{{ insight_dir }}"
-    - "{{ insight_dir }}/prometheus-data"
-    - "{{ insight_dir }}/influx"
-    - "{{ insight_dir }}/influx/data"
-    - "{{ insight_dir }}/influx/config"
+    - "{{ containers_insight_dir }}"
+    - "{{ containers_insight_dir }}/prometheus-data"
+    - "{{ containers_insight_dir }}/influx"
+    - "{{ containers_insight_dir }}/influx/data"
+    - "{{ containers_insight_dir }}/influx/config"
 
 - name: Copy docker compose for insight
   ansible.builtin.template:
     src: insight-compose.j2
-    dest: "{{ insight_dir }}/docker-compose.yml"
+    dest: "{{ containers_insight_dir }}/docker-compose.yml"
     owner: root
     group: root
     mode: u+rwx,g+rwx,o+rxw
@@ -35,8 +35,8 @@
     force: true
   loop:
     - src: "insight/"
-      dest: "{{ insight_dir }}"
+      dest: "{{ containers_insight_dir }}"
 
 - name: Deploy Docker Compose stack
   community.docker.docker_compose:
-    project_src: "{{ insight_dir }}"
+    project_src: "{{ containers_insight_dir }}"

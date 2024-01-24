@@ -8,7 +8,7 @@ services:
     container_name: portainer
     image: portainer/portainer-ce:latest
     volumes:
-      - "{{ portainer_dir }}/data:/data"
+      - "{{ containers_portainer_dir }}/data:/data"
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
     networks:

@@ -61,7 +61,7 @@ tls:
       defaultGeneratedCert:
         resolver: production
         domain:
-          main: "*.{{ traefik_main_domain }}"
+          main: "*.{{ containers_traefik_main_domain }}"
           # sans:
           #   - foo.example.org
           #   - bar.example.org
@@ -74,7 +74,7 @@ providers:
   docker:
     # -- (Optional) Enable this, if you want to expose all containers automatically
     exposedByDefault: false
-    defaultRule: 'Host(`{{ "{{" }} .ContainerName {{ "}}" }}.{{ traefik_main_domain }}`)'
+    defaultRule: 'Host(`{{ "{{" }} .ContainerName {{ "}}" }}.{{ containers_traefik_main_domain }}`)'
   file:
     filename: /etc/traefik/dynamic_conf.yaml
     watch: true

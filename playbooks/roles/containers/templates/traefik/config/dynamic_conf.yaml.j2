@@ -19,38 +19,38 @@ http:
           - url: http://192.168.1.4/
   routers:
     ha:
-      rule: Host(`ha.{{ traefik_main_domain }}`)
+      rule: Host(`ha.{{ containers_traefik_main_domain }}`)
       service: ha
       entrypoints: web
     ha-ssl:
-      rule: Host(`ha.{{ traefik_main_domain }}`)
+      rule: Host(`ha.{{ containers_traefik_main_domain }}`)
       service: ha
       entrypoints: websecure
       tls: {}
     uptime:
-      rule: Host(`uptime.{{ traefik_main_domain }}`)
+      rule: Host(`uptime.{{ containers_traefik_main_domain }}`)
       service: uptime
       entrypoints: web
     uptime-ssl:
-      rule: Host(`uptime.{{ traefik_main_domain }}`)
+      rule: Host(`uptime.{{ containers_traefik_main_domain }}`)
       service: uptime
       entrypoints: websecure
       tls: {}
     guac:
-      rule: Host(`guacamole.{{ traefik_main_domain }}`)
+      rule: Host(`guacamole.{{ containers_traefik_main_domain }}`)
       service: guac
       entrypoints: web
     guac-ssl:
-      rule: Host(`guacamole.{{ traefik_main_domain }}`)
+      rule: Host(`guacamole.{{ containers_traefik_main_domain }}`)
       service: guac
       entrypoints: websecure
       tls: {}
     pihole:
-      rule: Host(`pihole.{{ traefik_main_domain }}`)
+      rule: Host(`pihole.{{ containers_traefik_main_domain }}`)
       service: pihole
       entrypoints: web
     pihole-ssl:
-      rule: Host(`pihole.{{ traefik_main_domain }}`)
+      rule: Host(`pihole.{{ containers_traefik_main_domain }}`)
       service: pihole
       entrypoints: websecure
       tls: {}
