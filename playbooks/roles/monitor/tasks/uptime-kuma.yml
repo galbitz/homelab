@@ -7,14 +7,14 @@
     state: directory
     mode: 0777
   loop:
-    - "{{ uptime_kuma_dir }}"
+    - "{{ monitor_uptime_kuma_dir }}"
 
 - name: Create uptime-kuma container
   community.docker.docker_container:
     name: uptime-kuma
     image: louislam/uptime-kuma:latest
     volumes:
-      - "{{ uptime_kuma_dir }}:/app/data"
+      - "{{ monitor_uptime_kuma_dir }}:/app/data"
     ports:
       - 3001:3001
     state: started

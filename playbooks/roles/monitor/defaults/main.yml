@@ -1,2 +1,2 @@
 ---
-uptime_kuma_dir: "{{ docker_dir }}/uptime-kuma"
+monitor_uptime_kuma_dir: "{{ docker_dir }}/uptime-kuma"

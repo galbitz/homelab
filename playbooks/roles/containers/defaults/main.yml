@@ -1,20 +1,15 @@
 ---
-ntfy_etc_dir: "{{ docker_dir }}/ntfy/etc"
-ntfy_data_dir: "{{ docker_dir }}/ntfy/data"
+containers_jellyfin_mountpoint: "/media/jellyfin"
+containers_jellyfin_config_dir: "{{ docker_dir }}/jellyfin/config"
+containers_jellyfin_cache_dir: "{{ docker_dir }}/jellyfin/cache"
 
-jellyfin_mountpoint: "/media/jellyfin"
-jellyfin_config_dir: "{{ docker_dir }}/jellyfin/config"
-jellyfin_cache_dir: "{{ docker_dir }}/jellyfin/cache"
+containers_homepage_dir: "{{ docker_dir }}/homepage"
 
-homer_dir: "{{ docker_dir }}/homer"
+containers_containers_insight_dir: "{{ docker_dir }}/insight"
 
-homepage_dir: "{{ docker_dir }}/homepage"
+containers_nut_dir: "{{ docker_dir }}/nut"
 
-insight_dir: "{{ docker_dir }}/insight"
+containers_portainer_dir: "{{ docker_dir }}/portainer"
 
-nut_dir: "{{ docker_dir }}/nut"
-
-portainer_dir: "{{ docker_dir }}/portainer"
-
-traefik_dir: "{{ docker_dir }}/traefik"
-traefik_main_domain: "home.04a.ca"
+containers_traefik_dir: "{{ docker_dir }}/traefik"
+containers_traefik_main_domain: "home.04a.ca"
