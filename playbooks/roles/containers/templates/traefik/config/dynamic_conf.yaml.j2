@@ -1,4 +1,14 @@
 ---
+tls:
+  stores:
+    default:
+      defaultGeneratedCert:
+        resolver: "production"
+        domain:
+          main: "*.{{ containers_traefik_main_domain }}"
+          sans:
+            - "*.{{ containers_traefik_tunnel_domain }}"
+
 http:
   services:
     ha:
@@ -17,6 +27,10 @@ http:
       loadbalancer:
         servers:
           - url: http://192.168.1.4/
+  middlewares:
+    authelia:
+      forwardAuth:
+        address: "http://authelia:9091/api/verify?rd=https://auth.{{ containers_traefik_tunnel_domain }}"
   routers:
     ha:
       rule: Host(`ha.{{ containers_traefik_main_domain }}`)
@@ -41,10 +55,12 @@ http:
       service: guac
       entrypoints: web
     guac-ssl:
-      rule: Host(`guacamole.{{ containers_traefik_main_domain }}`)
+      rule: Host(`guacamole.{{ containers_traefik_main_domain }}`,`access.{{ containers_traefik_tunnel_domain }}`)
       service: guac
       entrypoints: websecure
       tls: {}
+      middlewares:
+        - authelia      
     pihole:
       rule: Host(`pihole.{{ containers_traefik_main_domain }}`)
       service: pihole

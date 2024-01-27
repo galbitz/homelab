@@ -1,0 +1,20 @@
+---
+###############################################################
+#                         Users Database                      #
+###############################################################
+
+# This file can be used if you do not have an LDAP set up.
+
+# generate hash:
+# docker run authelia/authelia:latest authelia hash-password 'yourpassword'
+
+# List of users
+users:
+  gabor:
+    displayname: "Gabor"
+    # Password is Authelia
+    password: "$argon2id$v=19$m=65536,t=3,p=4$kfBzTA6cxXEN9PikyHpApQ$MWMG1aV+xdrzqLi2r/vmAGST1lIxv+fBklhSw5m6lrI"
+    email: gabor@gabor.one
+    groups:
+      - admins
+      - dev

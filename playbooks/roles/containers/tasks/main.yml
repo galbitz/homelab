@@ -25,3 +25,5 @@
   ansible.builtin.include_tasks: portainer.yml
 - name: Traefik
   ansible.builtin.include_tasks: traefik.yml
+- name: Authelia
+  ansible.builtin.include_tasks: authelia.yml
