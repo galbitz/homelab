@@ -29,16 +29,16 @@ entryPoints:
     address: :443
 
 certificatesResolvers:
-  staging:
-    acme:
-      email: gabor@gabor.one
-      storage: /etc/traefik/acme.json
-      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
-      dnsChallenge:
-        provider: cloudflare
-        resolvers:
-          - "1.1.1.1:53"
-          - "8.8.8.8:53"
+#  staging:
+#    acme:
+#      email: gabor@gabor.one
+#      storage: /etc/traefik/acme.json
+#      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+#      dnsChallenge:
+#        provider: cloudflare
+#        resolvers:
+#          - "1.1.1.1:53"
+#          - "8.8.8.8:53"
   production:
     acme:
       email: gabor@gabor.one
@@ -55,16 +55,16 @@ certificatesResolvers:
 #   insecureSkipVerify: true
 
 # -- (Optional) Overwrite Default Certificates
-tls:
-  stores:
-    default:
-      defaultGeneratedCert:
-        resolver: production
-        domain:
-          main: "*.{{ containers_traefik_main_domain }}"
-          # sans:
-          #   - foo.example.org
-          #   - bar.example.org
+# tls:
+#   stores:
+#     default:
+#       defaultGeneratedCert:
+#         resolver: production
+#         domain:
+#           main: "*.{{ containers_traefik_main_domain }}"
+#           # sans:
+#           #   - foo.example.org
+#           #   - bar.example.org
 # -- (Optional) Disable TLS version 1.0 and 1.1
 #   options:
 #     default:
