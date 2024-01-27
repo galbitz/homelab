@@ -12,5 +12,7 @@ docker_daemon_options:
     max-size: "30m"
     max-file: "3"
 
-security_notification_email: "gabor@gabor.one"
+homelab_email: "{{ lookup('ansible.builtin.env', 'HOMELAB_EMAIL') }}"
+
+security_notification_email: "{{ homelab_email }}"
 mta_remotes: "{{ lookup('ansible.builtin.env', 'MTA_REMOTES') }}"

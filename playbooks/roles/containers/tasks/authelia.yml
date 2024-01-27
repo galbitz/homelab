@@ -23,7 +23,7 @@
       dest: "{{ containers_authelia_dir }}/docker-compose.yml"
     - src: "authelia/config/configuration.yml.j2"
       dest: "{{ containers_authelia_dir }}/config/configuration.yml"
-    - src: "authelia/config/users_database.yml"
+    - src: "authelia/config/users_database.yml.j2"
       dest: "{{ containers_authelia_dir }}/config/users_database.yml"
 
 - name: Deploy docker compose stack

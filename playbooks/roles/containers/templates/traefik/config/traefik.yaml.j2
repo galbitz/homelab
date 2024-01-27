@@ -31,7 +31,7 @@ entryPoints:
 certificatesResolvers:
 #  staging:
 #    acme:
-#      email: gabor@gabor.one
+#      email: {{ homelab_email }}
 #      storage: /etc/traefik/acme.json
 #      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
 #      dnsChallenge:
@@ -41,7 +41,7 @@ certificatesResolvers:
 #          - "8.8.8.8:53"
   production:
     acme:
-      email: gabor@gabor.one
+      email: {{ homelab_email }}
       storage: /etc/traefik/acme.json
       caServer: "https://acme-v02.api.letsencrypt.org/directory"
       dnsChallenge:
