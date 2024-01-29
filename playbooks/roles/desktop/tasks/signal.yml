@@ -1,14 +1,13 @@
 ---
 - name: Add repo using key from URL
   ansible.builtin.deb822_repository:
-    name: 1password
+    name: signal
     types: deb
-    uris: https://downloads.1password.com/linux/debian/amd64
-    suites: stable
+    uris: https://updates.signal.org/desktop/apt
+    suites: xenial
     components: main
     architectures: amd64
-    signed_by: https://downloads.1password.com/linux/keys/1password.asc
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+    signed_by: https://updates.signal.org/desktop/apt/keys.asc
   become: true
 
 - name: Update apt package cache
@@ -17,11 +16,10 @@
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
   become: true
 
-- name: Install 1Password
+- name: Signal
   ansible.builtin.apt:
     name:
-      - 1password
-      - 1password-cli
+      - signal-desktop
     state: present
   when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
   become: true
