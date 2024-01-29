@@ -1,0 +1,74 @@
+---
+- name: Check that frp_type variable is set to either 'client' or 'server'
+  ansible.builtin.assert:
+    that:
+      - frp_type is defined
+      - frp_type == "client" or frp_type == "server"
+
+- name: Ensure program folder exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    state: directory
+    mode: u+rw,g+rw,o+r
+  loop:
+    - "{{ frp_dir }}"
+
+- name: Copy config files
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: u+rw,g+rw,o+r
+    force: true
+  loop:
+    - src: "frpc.service.j2"
+      dest: "/usr/lib/systemd/system/frpc.service"
+      type: client
+    - src: "frpc.toml.j2"
+      dest: "{{ frp_dir }}/frpc.toml"
+      type: client
+    - src: "frps.service.j2"
+      dest: "/usr/lib/systemd/system/frps.service"
+      type: server
+    - src: "frps.toml.j2"
+      dest: "{{ frp_dir }}/frps.toml"
+      type: server
+  when: item.type == frp_type
+  become: true
+
+- name: Download frp binaries
+  ansible.builtin.get_url:
+    url: "https://github.com/fatedier/frp/releases/download/v{{ frp_version }}/frp_{{ frp_version }}_linux_amd64.tar.gz"
+    dest: "{{ frp_temp_dir }}/frp_{{ frp_version }}_linux_amd64.tar.gz"
+    force: true
+    mode: u+rw
+
+- name: Unpack frp binaries
+  ansible.builtin.unarchive:
+    src: "{{ frp_temp_dir }}/frp_{{ frp_version }}_linux_amd64.tar.gz"
+    dest: "{{ frp_temp_dir }}/"
+    remote_src: true
+  become: true
+
+- name: Copy binaries
+  ansible.builtin.copy:
+    src: "{{ frp_temp_dir }}/frp_{{ frp_version }}_linux_amd64/{{ item }}"
+    dest: "{{ frp_dir }}/{{ item }}"
+    force: true
+    mode: a+rx
+    remote_src: true
+  become: true
+  loop:
+    - "frpc"
+    - "frps"
+
+- name: Ensure frp service is started and enabled
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: true
+    name: "{{ 'frpc' if frp_type == 'client' else 'frps' }}.service"
+    state: started
+    enabled: true
