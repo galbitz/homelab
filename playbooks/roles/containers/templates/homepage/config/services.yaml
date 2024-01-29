@@ -1,4 +1,5 @@
 ---
+# find icons here: https://github.com/walkxcode/dashboard-icons
 - Hypervisors:
     - Shadow:
         href: https://shadow.home.star4.dev:8006/
@@ -49,3 +50,6 @@
     - Switch:
         href: http://switch.04a.ca/
         icon: mdi-switch
+    - Netboot:
+        href: http://192.168.1.17:3500/
+        icon: netboot.png
