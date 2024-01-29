@@ -2,6 +2,8 @@
 # thin - simple jumpbox with debian
 - name: Configure thin
   hosts: thin
+  vars:
+    frp_type: client
   roles:
     - star4.essentials.timezone
     - star4.essentials.autoupdate
@@ -12,3 +14,4 @@
     - docker_shared
     - logclient
     - pihole
+    - frp

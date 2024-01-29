@@ -1,0 +1,4 @@
+---
+frp_dir: "/opt/frp"
+frp_version: "0.53.2"
+frp_temp_dir: "/tmp"
