@@ -11,14 +11,14 @@
 - name: Audio
   ansible.builtin.include_tasks: audio.yml
 
-- name: Flatpak
-  ansible.builtin.include_tasks: flatpak.yml
+- name: Flatpak apps
+  ansible.builtin.include_tasks: flatpak-apps.yml
 
 - name: Neovim
   ansible.builtin.include_tasks: neovim.yml
 
-- name: Apps
-  ansible.builtin.include_tasks: apps.yml
+- name: Desktop apps
+  ansible.builtin.include_tasks: desktop-apps.yml
 
 - name: 1password
   ansible.builtin.include_tasks: 1password.yml

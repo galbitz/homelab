@@ -1,0 +1,7 @@
+---
+- name: Desktop-apps - install apps
+  ansible.builtin.package:
+    name:
+      - thunar
+    state: present
+  become: true
