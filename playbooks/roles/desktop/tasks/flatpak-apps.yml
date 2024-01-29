@@ -13,3 +13,11 @@
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
     method: system
   become: true
+
+- name: Flatpak - install apps (flatpak)
+  community.general.flatpak:
+    name:
+      - io.gitlab.librewolf-community
+      - com.discordapp.Discord
+    state: present
+  become: true
