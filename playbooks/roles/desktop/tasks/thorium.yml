@@ -1,0 +1,21 @@
+---
+- name: Add thorium repo
+  ansible.builtin.apt_repository:
+    repo: deb [trusted=yes arch=amd64] https://dl.thorium.rocks/debian/ stable main
+    state: present
+    filename: thorium
+  become: true
+
+- name: Update apt package cache
+  ansible.builtin.apt:
+    update_cache: true
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+  become: true
+
+- name: Install thorium browser
+  ansible.builtin.apt:
+    name:
+      - thorium-browser
+    state: present
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+  become: true

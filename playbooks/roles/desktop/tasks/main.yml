@@ -25,3 +25,6 @@
 
 - name: Signal
   ansible.builtin.include_tasks: signal.yml
+
+- name: Thorium
+  ansible.builtin.include_tasks: thorium.yml
