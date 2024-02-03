@@ -7,7 +7,7 @@ fi
 
 username=sysadmin
 
-useradd -m -s /bin/bash"$username"
+useradd -m -s /bin/bash "$username"
 usermod -aG sudo "$username"
 
 echo "$username ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/"$username"

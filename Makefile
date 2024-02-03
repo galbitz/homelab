@@ -9,15 +9,11 @@ generate-graph:
 	dot -Tpng ./doc/comm.dot -o ./doc/comm.png
 
 encrypt-secrets:
-	gpg --symmetric --cipher-algo AES256 -o encrypted_secrets.sh unencrypted_secrets.sh 
+	devbox run gpg --symmetric --cipher-algo AES256 -o encrypted_secrets.sh unencrypted_secrets.sh 
 
 decrypt-secrets:
-	gpg --quiet --batch --yes --decrypt --passphrase="$(SECRET_PASSPHRASE)" --output unencrypted_secrets.sh encrypted_secrets.sh
+	devbox run gpg --quiet --batch --yes --decrypt --passphrase="$(SECRET_PASSPHRASE)" --output unencrypted_secrets.sh encrypted_secrets.sh
 	
-test:
-	echo "test"
-	echo "test2"
-
 lint:
 	devbox run lint
 
@@ -25,7 +21,13 @@ install-requirements:
 	devbox run install-requirements
 
 tf-init:
-	./tfrun.sh init -input=false
+	devbox run ./tfrun.sh init -input=false
 
 tf-apply:
-	./tfrun.sh apply -input=false -compact-warnings -auto-approve
+	devbox run ./tfrun.sh apply -input=false -compact-warnings -auto-approve
+
+generate-ansible-inventory:
+	devbox run ./tfrun.sh apply -target=local_file.hosts -compact-warnings -auto-approve
+
+ansible-run:
+	devbox run "cd playbooks && ./run.sh $(ARGS)"

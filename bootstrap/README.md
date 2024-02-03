@@ -1,3 +1,5 @@
-Requirements
+## Create sysadmin user
 
-- Install sudo, python3
+```
+curl -sSL https://raw.githubusercontent.com/galbitz/homelab/main/bootstrap/create_sysadmin.sh | sudo bash
+```
