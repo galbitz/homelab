@@ -17,7 +17,7 @@ tasks:
 
   decrypt-secrets:
     desc: Decrypt secrets
-    cmd: gpg --quiet --batch --yes --decrypt --passphrase="$(SECRET_PASSPHRASE)" --output unencrypted_secrets.sh encrypted_secrets.sh
+    cmd: gpg --quiet --batch --yes --decrypt --passphrase="$SECRET_PASSPHRASE" --output unencrypted_secrets.sh encrypted_secrets.sh
 
   lint:
     desc: Lint
@@ -80,3 +80,6 @@ tasks:
   ansible-install-requirements:
     desc: Install ansible requirements
     cmd: ansible-galaxy install -r playbooks/roles/requirements.yml --force
+
+  p:
+    cmd: printenv
