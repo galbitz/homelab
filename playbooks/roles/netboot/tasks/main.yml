@@ -10,6 +10,7 @@
     - "{{ netboot_dir }}"
     - "{{ netboot_dir }}/assets"
     - "{{ netboot_dir }}/config"
+  become: true
 
 - name: Copy docker compose
   ansible.builtin.template:
@@ -19,6 +20,7 @@
     group: root
     mode: u+rwx,g+rwx,o+rxw
     force: true
+  become: true
 
 - name: Docker-compose up
   ansible.builtin.command:

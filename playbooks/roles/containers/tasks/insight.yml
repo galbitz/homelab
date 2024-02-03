@@ -15,6 +15,7 @@
     - "{{ containers_insight_dir }}/influx"
     - "{{ containers_insight_dir }}/influx/data"
     - "{{ containers_insight_dir }}/influx/config"
+  become: true
 
 - name: Copy docker compose for insight
   ansible.builtin.template:
@@ -24,6 +25,7 @@
     group: root
     mode: u+rwx,g+rwx,o+rxw
     force: true
+  become: true
 
 - name: Copy configs
   ansible.builtin.copy:
@@ -36,6 +38,7 @@
   loop:
     - src: "insight/"
       dest: "{{ containers_insight_dir }}"
+  become: true
 
 - name: Deploy Docker Compose stack
   community.docker.docker_compose:

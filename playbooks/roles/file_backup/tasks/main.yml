@@ -12,6 +12,7 @@
   loop:
     - "{{ file_backup_dir }}"
     - "{{ file_backup_mount_dir }}"
+  become: true
 
 - name: Copy files
   ansible.builtin.template:
@@ -26,6 +27,7 @@
       dest: "{{ file_backup_dir }}/backup.sh"
     - src: folderlist.txt.j2
       dest: "{{ file_backup_dir }}/folderlist.txt"
+  become: true
 
 - name: Install required packages
   ansible.builtin.package:
@@ -43,6 +45,7 @@
     fstype: cifs
     opts: "username={{ file_backup_nas_username }},password={{ file_backup_nas_password }}"
     state: mounted
+  become: true
 
 - name: Create cron task
   ansible.builtin.cron:

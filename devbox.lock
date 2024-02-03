@@ -101,6 +101,46 @@
         }
       }
     },
+    "gnutar@latest": {
+      "last_modified": "2024-01-14T03:55:27Z",
+      "resolved": "github:NixOS/nixpkgs/dd5621df6dcb90122b50da5ec31c411a0de3e538#gnutar",
+      "source": "devbox-search",
+      "version": "1.35",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/k912mx14nbw7khwh2d1461x0b69ahdp9-gnutar-1.35"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/jxgj42301fqv35l3dchy22j949rw3xdc-gnutar-1.35"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/w7psxayx9yinbf0qaj5hhsw5sl4bvr4q-gnutar-1.35"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/20rsi77ny2i4i1rbd63h4392a245j5dz-gnutar-1.35"
+        }
+      }
+    },
+    "go-task@latest": {
+      "last_modified": "2024-01-14T03:55:27Z",
+      "resolved": "github:NixOS/nixpkgs/dd5621df6dcb90122b50da5ec31c411a0de3e538#go-task",
+      "source": "devbox-search",
+      "version": "3.33.1",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/k7aci7300d9c4zcndphk4dygp68a6lrh-go-task-3.33.1"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/x1gpvyvv3205y24d7dp5npr08wmi9q75-go-task-3.33.1"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/ls28zh4f5xiqkxm11jrk3vm8p5x08ngl-go-task-3.33.1"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/g5zjm8r0ahz74qfl0i7mxvq3hg91bzqa-go-task-3.33.1"
+        }
+      }
+    },
     "terraform@latest": {
       "last_modified": "2023-12-18T02:58:18Z",
       "resolved": "github:NixOS/nixpkgs/ca16221251951e9c6261a1a2bb4f9389038d3632#terraform",

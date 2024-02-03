@@ -13,10 +13,12 @@ jobs:
       - name: Install devbox
         uses: jetpack-io/devbox-install-action@v0.7.0
 
-      - run: make decrypt-secrets
+      - run: devbox run task decrypt-secrets
         env:
           SECRET_PASSPHRASE: ${{ secrets.SECRET_PASSPHRASE }}
-      - run: make tf-init
-      - run: make tf-apply
 
-      - run: make ansible-run ARGS=docker-server.yml
+      - run: devbox run task tf-init
+      - run: devbox run task tf-apply
+
+      - run: devbox run task ansible-install-requirements
+      - run: devbox run task ansible-run -- docker-server.yml
