@@ -80,6 +80,3 @@ tasks:
   ansible-install-requirements:
     desc: Install ansible requirements
     cmd: ansible-galaxy install -r playbooks/roles/requirements.yml --force
-
-  p:
-    cmd: printenv

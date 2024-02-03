@@ -23,4 +23,4 @@ jobs:
       - run: devbox run task tf-apply
 
       - run: devbox run task ansible-install-requirements
-      - run: devbox run task ansible-run -- docker-server.yml
+      - run: devbox run -- task ansible-run -- docker-server.yml
