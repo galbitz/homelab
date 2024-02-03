@@ -5,7 +5,8 @@
     "yamllint@latest",
     "terraform@latest",
     "gnumake@latest",
-    "gnupg@latest"
+    "gnupg@latest",
+    "git@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
