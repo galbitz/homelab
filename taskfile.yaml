@@ -3,6 +3,7 @@
 version: "3"
 tasks:
   default:
+    desc: List all tasks
     silent: false
     cmd: task --list-all
 
@@ -11,39 +12,46 @@ tasks:
     cmd: dot -Tpng ./doc/comm.dot -o ./doc/comm.png
 
   encrypt-secrets:
+    desc: Encrypt secrets
     cmd: gpg --symmetric --cipher-algo AES256 -o encrypted_secrets.sh unencrypted_secrets.sh
 
   decrypt-secrets:
+    desc: Decrypt secrets
     cmd: gpg --quiet --batch --yes --decrypt --passphrase="$(SECRET_PASSPHRASE)" --output unencrypted_secrets.sh encrypted_secrets.sh
 
   lint:
+    desc: Lint
     cmd: |
       yamllint .
       ansible-lint
 
   tf-init:
-    cmds:
-      - task: .tf-execute
-        vars: { ARGS: "init -input=false" }
-
-  tf-apply:
-    cmds:
-      - task: .tf-execute
-        vars: { ARGS: "apply -compact-warnings -auto-approve -input=false" }
-
-  tf-generate-inventory:
+    desc: Initialize terraform
     cmds:
       - task: .tf-execute
         vars:
-          {
-            ARGS: "apply -target=local_file.hosts -compact-warnings -auto-approve",
-          }
+          ARGS: "init -input=false"
+
+  tf-apply:
+    desc: Apply terraform
+    cmds:
+      - task: .tf-execute
+        vars:
+          ARGS: "apply -compact-warnings -auto-approve -input=false"
+
+  tf-generate-inventory:
+    desc: Generate ansible host inventory
+    cmds:
+      - task: .tf-execute
+        vars:
+          ARGS: "apply -target=local_file.hosts -compact-warnings -auto-approve"
 
   tf-run:
     desc: Run terraform. Add command as parameter eg. `task tf-run -- plan`
     cmds:
       - task: .tf-execute
-        vars: { ARGS: "{{.CLI_ARGS}}" }
+        vars:
+          ARGS: "{{.CLI_ARGS}}"
 
   .tf-execute:
     internal: true
@@ -57,16 +65,18 @@ tasks:
       terraform {{.ARGS}}
 
   ansible-run:
+    desc: Run ansible playbook
     dir: playbooks
     cmds:
       - cmd: |
           export ANSIBLE_CONFIG=ansible.cfg
           export ANSIBLE_FORCE_COLOR=True
-          set -a 
+          set -a
           source ../unencrypted_secrets.sh
           # no_proxy needed to circumvent a forking error on mac os
           export no_proxy='*'
           ansible-playbook {{.CLI_ARGS}}
 
   ansible-install-requirements:
+    desc: Install ansible requirements
     cmd: ansible-galaxy install -r playbooks/roles/requirements.yml --force
