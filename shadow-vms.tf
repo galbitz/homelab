@@ -26,15 +26,20 @@ resource "proxmox_vm_qemu" "docker_server" {
   sshkeys = <<EOF
     ${data.http.public_keys.response_body}
   EOF
-
-  disk {
-    slot     = 0
-    size     = "30G"
-    type     = "scsi"
-    storage  = "local-big"
-    iothread = 1
+  disks {
+    scsi {
+      scsi0 {
+        disk {
+          size = "30"
+          storage = "local-big"
+          iothread = true
+          discard = true
+          emulatessd = true
+          replicate = true
+        }
+      }
+    }
   }
-
   #   # if you want two NICs, just copy this whole network section and duplicate it
   #   network {
   #     model = "virtio"
@@ -124,12 +129,19 @@ resource "proxmox_vm_qemu" "valheim-server" {
     ${data.http.public_keys.response_body}
   EOF
 
-  disk {
-    slot     = 0
-    size     = "20G"
-    type     = "scsi"
-    storage  = "local-big"
-    iothread = 1
+    disks {
+    scsi {
+      scsi0 {
+        disk {
+          size = "20"
+          storage = "local-big"
+          iothread = true
+          discard = true
+          emulatessd = true
+          replicate = true
+        }
+      }
+    }
   }
 
   # not sure exactly what this is for. presumably something about MAC addresses and ignore network changes during the life of the VM

@@ -30,12 +30,19 @@ resource "proxmox_vm_qemu" "docker_server2" {
     ${data.http.public_keys.response_body}
   EOF
 
-  disk {
-    slot     = 0
-    size     = "20G"
-    type     = "scsi"
-    storage  = "local-lvm"
-    iothread = 1
+  disks {
+    scsi {
+      scsi0 {
+        disk {
+          size = "20"
+          storage = "local-lvm"
+          iothread = true
+          discard = true
+          emulatessd = true
+          replicate = true
+        }
+      }
+    }
   }
 
   #   # if you want two NICs, just copy this whole network section and duplicate it
