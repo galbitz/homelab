@@ -41,6 +41,46 @@
         }
       }
     },
+    "gnumake@latest": {
+      "last_modified": "2024-01-14T03:55:27Z",
+      "resolved": "github:NixOS/nixpkgs/dd5621df6dcb90122b50da5ec31c411a0de3e538#gnumake",
+      "source": "devbox-search",
+      "version": "4.4.1",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/842p7sln6lmwixwqaacdikczlshisqrw-gnumake-4.4.1"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/hwvb3cf5jxpqz1bsk5hlmzf046i4lrii-gnumake-4.4.1"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/3h1gyaznjhgahx5igk6g21b3ljsg71bn-gnumake-4.4.1"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/cnxla8md1vc7ip0rqkaiz6airb7v4ny1-gnumake-4.4.1"
+        }
+      }
+    },
+    "gnupg@latest": {
+      "last_modified": "2024-01-27T14:55:31Z",
+      "resolved": "github:NixOS/nixpkgs/160b762eda6d139ac10ae081f8f78d640dd523eb#gnupg",
+      "source": "devbox-search",
+      "version": "2.4.3",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/yyiy5i58pdfkh3qn4926sawclpkf50zr-gnupg-2.4.3"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/ycq0vghp7zj75ciil7iaaijicybassba-gnupg-2.4.3"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/xyxivw6r46al4xnl105fak7l6gdjbgm5-gnupg-2.4.3"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/pi9q2l51c03p4dv2xi2rf2ysgz81rgwm-gnupg-2.4.3"
+        }
+      }
+    },
     "terraform@latest": {
       "last_modified": "2023-12-18T02:58:18Z",
       "resolved": "github:NixOS/nixpkgs/ca16221251951e9c6261a1a2bb4f9389038d3632#terraform",

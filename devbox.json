@@ -3,7 +3,9 @@
     "ansible@latest",
     "ansible-lint@latest",
     "yamllint@latest",
-    "terraform@latest"
+    "terraform@latest",
+    "gnumake@latest",
+    "gnupg@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
@@ -11,7 +13,8 @@
       "lint": ["yamllint .", "ansible-lint"],
       "install-requirements": [
         "ansible-galaxy install -r playbooks/roles/requirements.yml --force"
-      ]
+      ],
+      "make": "make $*"
     }
   }
 }
