@@ -13,11 +13,7 @@ tasks:
 
   encrypt-secrets:
     desc: Encrypt secrets
-    cmd: gpg --symmetric --cipher-algo AES256 -o encrypted_secrets.sh unencrypted_secrets.sh
-
-  decrypt-secrets:
-    desc: Decrypt secrets
-    cmd: gpg --quiet --batch --yes --decrypt --passphrase="$SECRET_PASSPHRASE" --output unencrypted_secrets.sh encrypted_secrets.sh
+    cmd: sops -e main.secret.env > main.secret.sops.env
 
   lint:
     desc: Lint
@@ -58,10 +54,10 @@ tasks:
     vars:
       ARGS: "{{.ARGS}}"
     cmd: |
-      export TF_VAR_HOME_IP=`curl -sS https://ifconfig.co`
-
       set -a
-      source unencrypted_secrets.sh
+      export TF_VAR_HOME_IP=`curl -sS https://ifconfig.co`
+      # import secrets to env
+      source <(sops -d {{.ROOT_DIR}}/main.secret.sops.env)
       terraform {{.ARGS}}
 
   ansible-run:
@@ -69,12 +65,13 @@ tasks:
     dir: playbooks
     cmds:
       - cmd: |
+          set -a
           export ANSIBLE_CONFIG=ansible.cfg
           export ANSIBLE_FORCE_COLOR=True
-          set -a
-          source ../unencrypted_secrets.sh
           # no_proxy needed to circumvent a forking error on mac os
           export no_proxy='*'
+          # import secrets to env
+          source <(sops -d {{.ROOT_DIR}}/main.secret.sops.env)
           ansible-playbook {{.CLI_ARGS}}
 
   ansible-install-requirements:

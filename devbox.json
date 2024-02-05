@@ -4,11 +4,11 @@
     "ansible-lint@latest",
     "yamllint@latest",
     "terraform@latest",
-    "gnumake@latest",
-    "gnupg@latest",
     "git@latest",
     "go-task@latest",
-    "gnutar@latest"
+    "gnutar@latest",
+    "sops@latest",
+    "age@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],

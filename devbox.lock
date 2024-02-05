@@ -1,6 +1,26 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "age@latest": {
+      "last_modified": "2024-01-14T03:55:27Z",
+      "resolved": "github:NixOS/nixpkgs/dd5621df6dcb90122b50da5ec31c411a0de3e538#age",
+      "source": "devbox-search",
+      "version": "1.1.1",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/6663hv5zjkd9m4q1ipzy7h1p0pjghbj0-age-1.1.1"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/7ck3hv6hhan75sbz04iciw4jn0fd2bfj-age-1.1.1"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/jq560hh1x1hkm76qpggpp86d89d9n2ln-age-1.1.1"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/j3c0pjg6l3bfdxylwp9illf8vsm3bg8f-age-1.1.1"
+        }
+      }
+    },
     "ansible-lint@latest": {
       "last_modified": "2023-12-13T22:54:10Z",
       "resolved": "github:NixOS/nixpkgs/fd04bea4cbf76f86f244b9e2549fca066db8ddff#ansible-lint",
@@ -61,46 +81,6 @@
         }
       }
     },
-    "gnumake@latest": {
-      "last_modified": "2024-01-14T03:55:27Z",
-      "resolved": "github:NixOS/nixpkgs/dd5621df6dcb90122b50da5ec31c411a0de3e538#gnumake",
-      "source": "devbox-search",
-      "version": "4.4.1",
-      "systems": {
-        "aarch64-darwin": {
-          "store_path": "/nix/store/842p7sln6lmwixwqaacdikczlshisqrw-gnumake-4.4.1"
-        },
-        "aarch64-linux": {
-          "store_path": "/nix/store/hwvb3cf5jxpqz1bsk5hlmzf046i4lrii-gnumake-4.4.1"
-        },
-        "x86_64-darwin": {
-          "store_path": "/nix/store/3h1gyaznjhgahx5igk6g21b3ljsg71bn-gnumake-4.4.1"
-        },
-        "x86_64-linux": {
-          "store_path": "/nix/store/cnxla8md1vc7ip0rqkaiz6airb7v4ny1-gnumake-4.4.1"
-        }
-      }
-    },
-    "gnupg@latest": {
-      "last_modified": "2024-01-27T14:55:31Z",
-      "resolved": "github:NixOS/nixpkgs/160b762eda6d139ac10ae081f8f78d640dd523eb#gnupg",
-      "source": "devbox-search",
-      "version": "2.4.3",
-      "systems": {
-        "aarch64-darwin": {
-          "store_path": "/nix/store/yyiy5i58pdfkh3qn4926sawclpkf50zr-gnupg-2.4.3"
-        },
-        "aarch64-linux": {
-          "store_path": "/nix/store/ycq0vghp7zj75ciil7iaaijicybassba-gnupg-2.4.3"
-        },
-        "x86_64-darwin": {
-          "store_path": "/nix/store/xyxivw6r46al4xnl105fak7l6gdjbgm5-gnupg-2.4.3"
-        },
-        "x86_64-linux": {
-          "store_path": "/nix/store/pi9q2l51c03p4dv2xi2rf2ysgz81rgwm-gnupg-2.4.3"
-        }
-      }
-    },
     "gnutar@latest": {
       "last_modified": "2024-01-14T03:55:27Z",
       "resolved": "github:NixOS/nixpkgs/dd5621df6dcb90122b50da5ec31c411a0de3e538#gnutar",
@@ -138,6 +118,26 @@
         },
         "x86_64-linux": {
           "store_path": "/nix/store/g5zjm8r0ahz74qfl0i7mxvq3hg91bzqa-go-task-3.33.1"
+        }
+      }
+    },
+    "sops@latest": {
+      "last_modified": "2024-01-14T03:55:27Z",
+      "resolved": "github:NixOS/nixpkgs/dd5621df6dcb90122b50da5ec31c411a0de3e538#sops",
+      "source": "devbox-search",
+      "version": "3.8.1",
+      "systems": {
+        "aarch64-darwin": {
+          "store_path": "/nix/store/495hjqkydvs4sln3ylqm8v0bxvp0frxc-sops-3.8.1"
+        },
+        "aarch64-linux": {
+          "store_path": "/nix/store/r3in2nvpfwhb5p7vf43ggv5vh7ib2z2b-sops-3.8.1"
+        },
+        "x86_64-darwin": {
+          "store_path": "/nix/store/6xs106h8whznla92j69dkr9zmcvwsd6j-sops-3.8.1"
+        },
+        "x86_64-linux": {
+          "store_path": "/nix/store/xinfyvy7iw6841agy9azbfxp2kjlcd6m-sops-3.8.1"
         }
       }
     },
