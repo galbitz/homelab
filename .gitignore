@@ -35,8 +35,7 @@ override.tf.json
 terraform.rc
 
 # Generated files
-playbooks/hosts
-playbooks/group_vars/all/tf_ansible_vars_file.yml
+ansible/hosts
 unencrypted_secrets.sh
 
 temp.yml

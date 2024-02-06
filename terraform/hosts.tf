@@ -120,5 +120,5 @@ resource "local_file" "hosts" {
       hosts = var.hosts
     }
   )
-  filename = "playbooks/hosts"
+  filename = "../ansible/hosts"
 }

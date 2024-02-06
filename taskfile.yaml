@@ -50,6 +50,7 @@ tasks:
           ARGS: "{{.CLI_ARGS}}"
 
   .tf-execute:
+    dir: ./terraform
     internal: true
     vars:
       ARGS: "{{.ARGS}}"
@@ -62,7 +63,7 @@ tasks:
 
   ansible-run:
     desc: Run ansible playbook
-    dir: playbooks
+    dir: ansible
     cmds:
       - cmd: |
           set -a
@@ -76,4 +77,4 @@ tasks:
 
   ansible-install-requirements:
     desc: Install ansible requirements
-    cmd: ansible-galaxy install -r playbooks/roles/requirements.yml --force
+    cmd: ansible-galaxy install -r ansible/roles/requirements.yml --force
