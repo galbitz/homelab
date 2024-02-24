@@ -18,3 +18,19 @@ localIP = "192.168.1.17"
 localPort = 443
 customDomains = ["access.tunnel.04a.ca"]
 hostHeaderRewrite = "access.tunnel.04a.ca"
+
+[[proxies]]
+name = "auth.k"
+type = "https"
+localIP = "192.168.1.65"
+localPort = 443
+customDomains = ["auth.t.04a.ca"]
+hostHeaderRewrite = "auth.t.04a.ca"
+
+[[proxies]]
+name = "access"
+type = "https"
+localIP = "192.168.1.64"
+localPort = 443
+customDomains = ["access.t.04a.ca"]
+hostHeaderRewrite = "access.t.04a.ca"
