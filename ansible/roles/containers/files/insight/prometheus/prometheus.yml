@@ -37,3 +37,11 @@ scrape_configs:
   - job_name: "shadow"
     static_configs:
       - targets: ["192.168.1.14:9100"]
+
+  - job_name: "shadow2"
+    static_configs:
+      - targets: ["192.168.1.20:9100"]
+
+  - job_name: "exit"
+    static_configs:
+      - targets: ["192.168.1.5:9100"]
