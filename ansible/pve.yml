@@ -1,6 +1,8 @@
 ---
 - name: Configure PVE node
-  hosts: bee, shadow
+  hosts: bee, shadow, shadow2, exit
+  vars:
+    logclient_additional_groups: ["adm"]
   roles:
     - pve_default_config
     - prometheus.prometheus.node_exporter

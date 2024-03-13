@@ -113,6 +113,10 @@ variable "hosts" {
   }
 }
 
+# k3 cluster net 192.168.1.6x
+# k3 on game 192.168.1.7x
+# talos server 192.168.1.8x
+
 # generate inventory file for Ansible
 resource "local_file" "hosts" {
   content = templatefile("templates/ansible_inventory.tpl",
