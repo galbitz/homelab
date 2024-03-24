@@ -1,6 +1,6 @@
 ---
 - name: Configure PVE node
-  hosts: bee, shadow, shadow2, exit
+  hosts: bee, shadow, shadow2, exit, shadow3
   vars:
     logclient_additional_groups: ["adm"]
   roles:
