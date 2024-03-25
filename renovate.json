@@ -15,6 +15,6 @@
     ]
   },
   "docker-compose": {
-    "fileMatch": ["^compose\\.ya?ml(?:\\.j2)?$"]
+    "fileMatch": ["(^|/)compose\\.ya?ml(?:\\.j2)?$"]
   }
 }
