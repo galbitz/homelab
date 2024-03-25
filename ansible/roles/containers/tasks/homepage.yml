@@ -2,8 +2,8 @@
 - name: Make sure that the docker folders exist
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: root
-    group: root
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     state: directory
     mode: u+rwx,g+rwx,o+rxw
   loop:
@@ -14,8 +14,8 @@
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: root
-    group: root
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: u+rwx,g+rwx,o+rxw
     force: true
   loop:
@@ -39,5 +39,5 @@
       dest: "{{ containers_homepage_dir }}/config/widgets.yaml"
 
 - name: Deploy docker compose stack
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ containers_homepage_dir }}"

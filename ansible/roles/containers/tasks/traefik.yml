@@ -1,9 +1,10 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
 - name: Traefik - Make sure that folders exist
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: root
-    group: root
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     state: directory
     mode: u+rwx,g+rwx,o+rxw
   loop:
@@ -14,8 +15,8 @@
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: root
-    group: root
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: u+rwx,g+rwx,o+rxw
     force: true
   loop:

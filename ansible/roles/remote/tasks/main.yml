@@ -2,8 +2,8 @@
 - name: Make sure that the docker folders exist
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: root
-    group: root
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     state: directory
     mode: 0777
   loop:
@@ -17,7 +17,7 @@
       - "{{ remote_guacamole_dir }}:/config"
       - "/etc/localtime:/etc/localtime:ro"
     ports:
-      - 8080:8080
+      - 8085:8080
     env:
       TZ: "America/Toronto"
     state: started

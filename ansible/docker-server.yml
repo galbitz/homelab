@@ -8,6 +8,8 @@
       - "/opt/docker/data/insight/prometheus-data"
       - "/opt/docker/data/jellyfin"
       - "/opt/docker/data/portainer/data"
+      - "/opt/docker/data/quacamole"
+      - "/opt/docker/data/uptime-kuma"
     file_backup_mount_dir: "/mnt/diskstation-proxmox-data"
     file_backup_nas_username: "{{ lookup('ansible.builtin.env', 'NAS_BACKUP_USERNAME') }}"
     file_backup_nas_password: "{{ lookup('ansible.builtin.env', 'NAS_BACKUP_PASSWORD') }}"
@@ -23,5 +25,7 @@
     - docker_shared
     - watchtower
     - containers
+    - monitor
+    - remote
     - file_backup
     - netboot
