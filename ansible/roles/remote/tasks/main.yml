@@ -12,7 +12,7 @@
 - name: Create guacamole container
   community.docker.docker_container:
     name: guacamole
-    image: flcontainers/guacamole:1.5.3
+    image: flcontainers/guacamole:1.5.4
     volumes:
       - "{{ remote_guacamole_dir }}:/config"
       - "/etc/localtime:/etc/localtime:ro"
