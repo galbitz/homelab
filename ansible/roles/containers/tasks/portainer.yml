@@ -2,10 +2,11 @@
 - name: Make sure that portainer folder exists
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: root
-    group: root
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     state: directory
     mode: u+rwx,g+rwx,o+rxw
+  become: true
   loop:
     - "{{ containers_portainer_dir }}"
     - "{{ containers_portainer_dir }}/data"
@@ -14,11 +15,11 @@
   ansible.builtin.template:
     src: portainer-compose.yml.j2
     dest: "{{ containers_portainer_dir }}/docker-compose.yml"
-    owner: root
-    group: root
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: u+rwx,g+rwx,o+rxw
     force: true
 
 - name: Deploy Docker Compose stack
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ containers_portainer_dir }}"

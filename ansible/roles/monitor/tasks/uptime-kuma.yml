@@ -6,6 +6,7 @@
     group: "{{ ansible_user }}"
     state: directory
     mode: 0777
+  become: true
   loop:
     - "{{ monitor_uptime_kuma_dir }}"
 

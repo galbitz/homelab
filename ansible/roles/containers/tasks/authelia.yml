@@ -2,10 +2,11 @@
 - name: Make sure that the docker folders exist
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: root
-    group: root
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     state: directory
     mode: u+rwx,g+rwx,o+rxw
+  become: true
   loop:
     - "{{ containers_authelia_dir }}"
     - "{{ containers_authelia_dir }}/config"
@@ -14,10 +15,11 @@
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: root
-    group: root
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: u+rwx,g+rwx,o+rxw
     force: true
+  become: true
   loop:
     - src: "authelia/docker-compose.yml.j2"
       dest: "{{ containers_authelia_dir }}/docker-compose.yml"
@@ -27,5 +29,5 @@
       dest: "{{ containers_authelia_dir }}/config/users_database.yml"
 
 - name: Deploy docker compose stack
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ containers_authelia_dir }}"
