@@ -13,7 +13,7 @@
 
 - name: Copy docker compose for nut
   ansible.builtin.template:
-    src: nut-compose.j2
+    src: nut-compose.yml.j2
     dest: "{{ containers_nut_dir }}/docker-compose.yml"
     owner: root
     group: root

@@ -19,7 +19,7 @@
 
 - name: Copy docker compose for insight
   ansible.builtin.template:
-    src: insight-compose.j2
+    src: insight-compose.yml.j2
     dest: "{{ containers_insight_dir }}/docker-compose.yml"
     owner: root
     group: root
