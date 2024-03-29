@@ -73,4 +73,3 @@
     name: "{{ 'frpc' if frp_type == 'client' else 'frps' }}.service"
     state: started
     enabled: true
-  become: true
