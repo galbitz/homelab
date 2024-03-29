@@ -8,19 +8,20 @@
 - name: Ensure program folder exists
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: root
-    group: root
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     state: directory
     mode: u+rw,g+rw,o+r
   loop:
     - "{{ frp_dir }}"
+  become: true
 
 - name: Copy config files
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: root
-    group: root
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: u+rw,g+rw,o+r
     force: true
   loop:
@@ -72,3 +73,4 @@
     name: "{{ 'frpc' if frp_type == 'client' else 'frps' }}.service"
     state: started
     enabled: true
+  become: true
