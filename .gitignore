@@ -46,3 +46,6 @@ temp.yml
 .decrypted~*
 *.secret.env
 *.secret.yaml
+
+talosconfig
+kubeconfig
