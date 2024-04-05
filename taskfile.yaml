@@ -13,8 +13,8 @@ env:
   KUBECONFIG: "{{.KUBECONFIG_FILE}}"
 
 includes:
-  talos: .taskfiles/Talos/Taskfile.yaml
-  sops: .taskfiles/Sops/Taskfile.yaml
+  talos: .taskfiles/talos/Taskfile.yaml
+  sops: .taskfiles/sops/Taskfile.yaml
 
 tasks:
   default:
