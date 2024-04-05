@@ -1,0 +1,21 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: gabor@gabor.one
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+      - dns01:
+          cloudflare:
+            email: gabor@gabor.one
+            apiTokenSecretRef:
+              name: cloudflare-secret
+              key: CLOUDFLARE_API_KEY
+        selector:
+          dnsZones:
+            - "04a.ca"

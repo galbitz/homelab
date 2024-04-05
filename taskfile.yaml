@@ -1,6 +1,21 @@
 ---
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
+
+vars:
+  # renovate: datasource=github-releases depName=prometheus-operator/prometheus-operator
+  PROMETHEUS_OPERATOR_VERSION: v0.71.2
+  KUBECONFIG_FILE: "{{.ROOT_DIR}}/kubeconfig"
+  KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
+  AGE_FILE: "{{.ROOT_DIR}}/age.key"
+
+env:
+  KUBECONFIG: "{{.KUBECONFIG_FILE}}"
+
+includes:
+  talos: .taskfiles/Talos/Taskfile.yaml
+  sops: .taskfiles/Sops/Taskfile.yaml
+
 tasks:
   default:
     desc: List all tasks
@@ -19,7 +34,7 @@ tasks:
     desc: Lint
     cmd: |
       yamllint .
-      ansible-lint
+      ansible-lint ansible/
 
   tf-init:
     desc: Initialize terraform
@@ -78,3 +93,27 @@ tasks:
   ansible-install-requirements:
     desc: Install ansible requirements
     cmd: ansible-galaxy install -r ansible/roles/requirements.yml --force
+
+  bootstrap:
+    cmds:
+      #- scp -o StrictHostKeyChecking=no sysadmin@192.168.1.61:/home/sysadmin/.kube/config {{.KUBECONFIG_FILE}}
+      - kubectl apply --kubeconfig {{.KUBECONFIG_FILE}} --server-side --filename https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/{{.PROMETHEUS_OPERATOR_VERSION}}/example/prometheus-operator-crd/monitoring.coreos.com_podmonitors.yaml
+      - kubectl apply --kubeconfig {{.KUBECONFIG_FILE}} --server-side --filename https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/{{.PROMETHEUS_OPERATOR_VERSION}}/example/prometheus-operator-crd/monitoring.coreos.com_prometheusrules.yaml
+      - kubectl apply --kubeconfig {{.KUBECONFIG_FILE}} --server-side --filename https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/{{.PROMETHEUS_OPERATOR_VERSION}}/example/prometheus-operator-crd/monitoring.coreos.com_scrapeconfigs.yaml
+      - kubectl apply --kubeconfig {{.KUBECONFIG_FILE}} --server-side --filename https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/{{.PROMETHEUS_OPERATOR_VERSION}}/example/prometheus-operator-crd/monitoring.coreos.com_servicemonitors.yaml
+      - kubectl create namespace flux-system --dry-run=client -o yaml | kubectl --kubeconfig {{.KUBECONFIG_FILE}} apply --filename -
+      - cat age.key | kubectl --kubeconfig {{.KUBECONFIG_FILE}} create secret generic sops-age --namespace=flux-system --from-file=age.agekey=/dev/stdin
+      - flux --kubeconfig {{.KUBECONFIG_FILE}} bootstrap github --token-auth --owner=galbitz --repository=homelab --branch=test --path=kubernetes/main --personal
+      #- kubectl apply --kubeconfig {{.KUBECONFIG_FILE}} --server-side -f https://raw.githubusercontent.com/longhorn/longhorn/v1.6.0/deploy/prerequisite/longhorn-iscsi-installation.yaml
+      #- kubectl apply --kubeconfig {{.KUBECONFIG_FILE}} --server-side -f https://raw.githubusercontent.com/longhorn/longhorn/v1.6.0/deploy/prerequisite/longhorn-nfs-installation.yaml
+
+    preconditions:
+      - sh: test ! -z "$GITHUB_TOKEN"
+        msg: "GitHub token not found"
+      - msg: "Missing kubeconfig"
+        sh: "test -f {{.KUBECONFIG_FILE}}"
+
+  copyconfig:
+    dir: "{{.ROOT_DIR}}"
+    cmds:
+      - cp -vR kubeconfig ~/.kube/config
