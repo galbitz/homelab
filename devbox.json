@@ -8,10 +8,11 @@
     "go-task@latest",
     "gnutar@latest",
     "sops@latest",
-    "age@latest"
+    "age@latest",
+    "cilium-cli@latest"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
-    "scripts": {}
+    "scripts":   {}
   }
 }

@@ -7,4 +7,12 @@ rules:
     max: 300
     level: warning
   comments:
-    min-spaces-from-content: 1
+    min-spaces-from-content: 0
+    require-starting-space: false
+  comments-indentation: disable
+  braces:
+    max-spaces-inside: 2
+
+ignore: |
+  /kubernetes/main/flux-system/gotk-components.yaml
+  .devbox/*
