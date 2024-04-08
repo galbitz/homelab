@@ -28,7 +28,7 @@ spec:
       namespace: glauth
   values:
     controllers:
-      main:
+      authelia:
         replicas: 2
         strategy: RollingUpdate
         annotations:
@@ -42,7 +42,7 @@ spec:
               - secretRef:
                   name: authelia-secret
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/authelia/authelia
               tag: 4.38.7@sha256:1bfa7206c144f8cd184743a7ed629f4a02d2dceb50e7260588373fe6de4cd959
@@ -54,9 +54,7 @@ spec:
               AUTHELIA_THEME: dark
               X_AUTHELIA_CONFIG: /config/configuration.yaml
               X_AUTHELIA_CONFIG_FILTERS: expand-env
-            envFrom:
-              - secretRef:
-                  name: authelia-secret
+            envFrom: *envFrom
             probes:
               liveness: &probes
                 enabled: true
@@ -89,7 +87,7 @@ spec:
                 matchLabels:
                   app.kubernetes.io/name: *app
     service:
-      main:
+      app:
         controller: authelia
         ports:
           http:
@@ -97,7 +95,7 @@ spec:
           metrics:
             port: 8080
     serviceMonitor:
-      main:
+      app:
         serviceName: authelia
         enabled: true
         endpoints:
