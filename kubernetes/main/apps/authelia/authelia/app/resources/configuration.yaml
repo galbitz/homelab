@@ -116,5 +116,5 @@ identity_providers:
 log:
   level: "debug"
   format: "text"
-  file_path: "/tmp/authelia.log"
-  keep_stdout: false
+  file_path: ""
+  keep_stdout: true
