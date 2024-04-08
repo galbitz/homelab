@@ -1,5 +1,29 @@
 ---
 # Note: Authelia vars should be escaped with $${VAR_NAME} to avoid interpolation by Flux
+authentication_backend:
+  ldap:
+    address: ldap://glauth.glauth.svc.cluster.local:389
+    implementation: custom
+    timeout: 5s
+    start_tls: false
+    base_dn: dc=04a,dc=ca
+    additional_users_dn: ou=users
+    users_filter: (&({username_attribute}={input})(objectClass=posixAccount))
+    additional_groups_dn: ou=groups
+    groups_filter: (&(memberUid={username})(objectClass=posixGroup))
+    group_search_mode: filter
+    user: cn=search,ou=svcaccts,dc=04a,dc=ca
+    password: password
+    attributes:
+      username: uid
+      display_name: givenName
+      mail: mail
+      member_of: memberOf
+      group_name: cn
+  password_reset:
+    disable: true
+  refresh_interval: 1m
+
 session:
   name: authelia_session
   expiration: 1h
@@ -88,32 +112,3 @@ identity_providers:
 #         scopes: ["openid", "profile", "groups", "email"]
 #         redirect_uris: ["https://miniflux.devbu.io/oauth2/oidc/callback"]
 #         userinfo_signed_response_alg: none
-
-authentication_backend:
-  password_reset:
-    disable: true
-  refresh_interval: 1m
-  ldap:
-    address: ldap://glauth.glauth.svc.cluster.local:389
-    implementation: custom
-    timeout: 5s
-    start_tls: false
-    base_dn: dc=04a,dc=ca
-    additional_users_dn: ou=users
-    users_filter: (&({username_attribute}={input})(objectClass=posixAccount))
-    additional_groups_dn: ou=groups
-    groups_filter: (&(memberUid={username})(objectClass=posixGroup))
-    group_search_mode: filter
-    user: cn=search,ou=svcaccts,dc=04a,dc=ca
-    password: password
-    attributes:
-      username: uid
-      display_name: givenName
-      mail: mail
-      member_of: memberOf
-      group_name: cn
-
-regulation:
-  max_retries: 3
-  find_time: 120
-  ban_time: 300
