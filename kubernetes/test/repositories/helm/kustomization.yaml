@@ -6,8 +6,7 @@ resources:
   - ./cilium.yaml
   - ./jetstack.yaml
   - ./metrics-server.yaml
-  #  - ./openebs.yaml
-  #  - ./stakater.yaml
+  - ./stakater.yaml
   - openebs.yaml
   - cloudnative-pg.yaml
   - postfinance.yaml
