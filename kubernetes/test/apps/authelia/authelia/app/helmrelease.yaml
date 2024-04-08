@@ -21,13 +21,15 @@ spec:
   upgrade:
     cleanupOnFail: true
     remediation:
+      strategy: rollback
       retries: 3
-  uninstall:
-    keepHistory: false
+  dependsOn:
+    - name: glauth
+      namespace: glauth
   values:
     controllers:
       main:
-        replicas: 1
+        replicas: 2
         strategy: RollingUpdate
         annotations:
           reloader.stakater.com/auto: "true"
@@ -43,7 +45,7 @@ spec:
           main:
             image:
               repository: ghcr.io/authelia/authelia
-              tag: v4.38.0-beta3@sha256:1c13c1cbc883ddd311c55bd7ae2143dabf01fdadcf30cb87d16e955384b22947
+              tag: 4.38.7@sha256:1bfa7206c144f8cd184743a7ed629f4a02d2dceb50e7260588373fe6de4cd959
             env:
               AUTHELIA_SERVER_ADDRESS: tcp://0.0.0.0:80
               AUTHELIA_SERVER_DISABLE_HEALTHCHECK: "true"
@@ -69,8 +71,6 @@ spec:
                   timeoutSeconds: 1
                   failureThreshold: 3
               readiness: *probes
-              startup:
-                enabled: false
             securityContext:
               allowPrivilegeEscalation: true
               readOnlyRootFilesystem: true
@@ -78,7 +78,6 @@ spec:
                 drop:
                   - ALL
         pod:
-          enableServiceLinks: false
           securityContext:
             runAsUser: 568
             runAsGroup: 568
@@ -92,6 +91,7 @@ spec:
                   app.kubernetes.io/name: *app
     service:
       main:
+        controller: authelia
         ports:
           http:
             port: *port
@@ -99,6 +99,7 @@ spec:
             port: 8080
     serviceMonitor:
       main:
+        serviceName: authelia
         enabled: true
         endpoints:
           - port: metrics
@@ -129,7 +130,6 @@ spec:
     #           - *host
     persistence:
       config:
-        enabled: true
         type: configMap
         name: authelia-configmap
         namespace: authelia
