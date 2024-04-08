@@ -15,4 +15,8 @@ rules:
 
 ignore: |
   /kubernetes/main/flux-system/gotk-components.yaml
+  /kubernetes/test/flux-system/gotk-components.yaml
   .devbox/*
+  /kubernetes/main/bootstrap/talos/clusterconfig
+  /kubernetes/test/bootstrap/talos/clusterconfig
+  /.taskfiles/talos/Taskfile.yaml
