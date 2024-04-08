@@ -13,8 +13,8 @@ tasks:
         vars: *vars
       # - task: :rook:reset
       #   vars: *vars
-      # - task: :flux:bootstrap
-      #   vars: *vars
+      - task: :flux:bootstrap
+        vars: *vars
     # preconditions:
     #   - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
     #   - talosctl --context {{.cluster}} config info >/dev/null 2>&1

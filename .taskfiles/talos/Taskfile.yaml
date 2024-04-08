@@ -7,8 +7,8 @@ version: "3"
 # TALHELPER_SECRET_FILE: "{{.TALOS_DIR}}/talsecret.sops.yaml"
 # TALHELPER_CONFIG_FILE: "{{.TALOS_DIR}}/talconfig.yaml"
 
-env:
-  TALOSCONFIG: "{{.TALOS_DIR}}/clusterconfig/talosconfig"
+#env:
+#  TALOSCONFIG: "{{.TALOS_DIR}}/clusterconfig/talosconfig"
 
 tasks:
   bootstrap:
@@ -132,9 +132,17 @@ tasks:
     prompt: This will destroy your cluster and reset the nodes back to maintenance mode... continue?
     dir: "{{.TALOS_DIR}}"
     cmd: talhelper gencommand reset --extra-flags "--reboot --system-labels-to-wipe STATE --system-labels-to-wipe EPHEMERAL --graceful=false --wait=false" | bash
+    vars:
+      TALOS_DIR: "{{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos"
+    requires:
+      vars: ["cluster"]
 
   hard-nuke:
     desc: Resets nodes back completely and reboots them
     prompt: This will destroy your cluster and reset the nodes... continue?
     dir: "{{.TALOS_DIR}}"
     cmd: talhelper gencommand reset --extra-flags "--reboot --graceful=false --wait=false" | bash
+    vars:
+      TALOS_DIR: "{{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/talos"
+    requires:
+      vars: ["cluster"]
