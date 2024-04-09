@@ -7,13 +7,13 @@ authentication_backend:
     timeout: 5s
     start_tls: false
     base_dn: dc=04a,dc=ca
-    additional_users_dn: ou=people
+    # additional_users_dn: ou=people
     users_filter: (&({username_attribute}={input})(objectClass=posixAccount))
-    additional_groups_dn: ou=groups
+    # additional_groups_dn: ou=groups
     groups_filter: (&(memberUid={username})(objectClass=posixGroup))
     group_search_mode: filter
     user: cn=search,ou=svcaccts,dc=04a,dc=ca
-    password: $${AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD}
+    password: password
     attributes:
       username: uid
       display_name: givenName
