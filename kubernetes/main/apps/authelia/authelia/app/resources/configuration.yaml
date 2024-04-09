@@ -19,7 +19,7 @@ authentication_backend:
       display_name: givenName
       mail: mail
       member_of: memberOf
-      group_name: cn
+      group_name: uid
   password_reset:
     disable: true
   refresh_interval: 1m
