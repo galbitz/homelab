@@ -16,9 +16,15 @@ spec:
         - name: authelia
           namespace: authelia
           port: 80
+      middlewares:
+        - name: authelia-middleware
+          namespace: traefik
     - match: Host(`auth.t.04a.ca`)
       kind: Rule
       services:
         - name: authelia
           namespace: authelia
           port: 80
+      middlewares:
+        - name: authelia-middleware
+          namespace: traefik
