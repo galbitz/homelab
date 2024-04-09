@@ -113,5 +113,5 @@ identity_providers:
 #         redirect_uris: ["https://miniflux.devbu.io/oauth2/oidc/callback"]
 #         userinfo_signed_response_alg: none
 
-log:
-  level: "trace"
+# log:
+#  level: "trace"
