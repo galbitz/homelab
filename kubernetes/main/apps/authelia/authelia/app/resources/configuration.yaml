@@ -31,7 +31,7 @@ session:
   remember_me: 1M
   cookies:
     - name: authelia_session
-      domain: auth.k.04a.ca
+      domain: 04a.ca
       authelia_url: https://auth.k.04a.ca
       default_redirection_url: https://auth.t.04a.ca
 
@@ -114,4 +114,4 @@ identity_providers:
 #         userinfo_signed_response_alg: none
 
 log:
-  level: "debug"
+  level: "trace"
