@@ -15,7 +15,7 @@ authentication_backend:
     user: cn=search,ou=svcaccts,dc=home,dc=arpa
     password: password
     attributes:
-      username: cn
+      username: doesnotexist
       display_name: givenName
       mail: mail
       member_of: memberOf
