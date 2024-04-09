@@ -25,9 +25,9 @@ authentication_backend:
   refresh_interval: 1m
 
 session:
-  name: authelia_session
-  expiration: 1h
+  same_site: lax
   inactivity: 5m
+  expiration: 1h
   remember_me: 1M
   cookies:
     - name: authelia_session
