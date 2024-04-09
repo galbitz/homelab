@@ -13,7 +13,7 @@ authentication_backend:
     groups_filter: (&(memberUid={username})(objectClass=posixGroup))
     group_search_mode: filter
     user: cn=search,ou=svcaccts,dc=04a,dc=ca
-    password: password
+    password: $${AUTHELIA_AUTHENTICATION_BACKEND_LDAP_PASSWORD}
     attributes:
       username: uid
       display_name: givenName
