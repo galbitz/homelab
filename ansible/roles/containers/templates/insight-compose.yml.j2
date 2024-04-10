@@ -19,7 +19,7 @@ services:
       - shared
   promtail:
     container_name: promtail
-    image: grafana/promtail:2.9.6
+    image: grafana/promtail:2.9.7
     volumes:
       - /var/log:/var/log # local syslog scraping
       - /var/lib/docker/containers:/var/lib/docker/containers:ro # docker container log scraping
