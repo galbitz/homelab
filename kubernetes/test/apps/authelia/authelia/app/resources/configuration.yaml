@@ -1,15 +1,39 @@
 ---
 # Note: Authelia vars should be escaped with $${VAR_NAME} to avoid interpolation by Flux
+authentication_backend:
+  ldap:
+    address: ldap://glauth.glauth.svc.cluster.local:389
+    implementation: custom
+    timeout: 5s
+    start_tls: false
+    base_dn: dc=04a,dc=ca
+    additional_users_dn: ou=people,ou=users
+    users_filter: (&({username_attribute}={input})(objectClass=posixAccount))
+    additional_groups_dn: ou=users
+    groups_filter: (&(memberUid={username})(objectClass=posixGroup))
+    group_search_mode: filter
+    user: cn=search,ou=svcaccts,dc=04a,dc=ca
+    password: password
+    attributes:
+      username: uid
+      display_name: givenName
+      mail: mail
+      member_of: memberOf
+      group_name: uid
+  password_reset:
+    disable: true
+  refresh_interval: 1m
+
 session:
-  name: authelia_session
-  expiration: 1h
+  same_site: lax
   inactivity: 5m
+  expiration: 1h
   remember_me: 1M
   cookies:
     - name: authelia_session
       domain: 04a.ca
-      authelia_url: https://auth.k.04a.ca
-      default_redirection_url: https://auth.t.04a.ca
+      authelia_url: https://auth.kt.04a.ca
+      default_redirection_url: https://auth.tt.04a.ca
 
 notifier:
   disable_startup_check: true
@@ -20,7 +44,7 @@ notifier:
 
 totp:
   disable: false
-  issuer: auth.k.04a.ca
+  issuer: auth.kt.04a.ca
 
 webauthn:
   disable: true
@@ -32,9 +56,9 @@ access_control:
   default_policy: two_factor
   rules:
     # Rules applied to everyone
-    - domain: guacamole.k.04a.ca
+    - domain: guacamole.kt.04a.ca
       policy: bypass
-    - domain: access.t.04a.ca
+    - domain: access.tt.04a.ca
       policy: bypass
     # - domain: auth.k.04a.ca
     #   policy: two_factor
@@ -58,7 +82,7 @@ identity_providers:
         public: false
         authorization_policy: two_factor
         redirect_uris:
-          - https://access.t.04a.ca
+          - https://access.tt.04a.ca
         scopes:
           - openid
           - profile
@@ -89,31 +113,5 @@ identity_providers:
 #         redirect_uris: ["https://miniflux.devbu.io/oauth2/oidc/callback"]
 #         userinfo_signed_response_alg: none
 
-authentication_backend:
-  password_reset:
-    disable: true
-  refresh_interval: 1m
-  ldap:
-    address: ldap://glauth.glauth.svc.cluster.local:389
-    implementation: custom
-    timeout: 5s
-    start_tls: false
-    base_dn: dc=04a,dc=ca
-    additional_users_dn: ou=users
-    users_filter: (&({username_attribute}={input})(objectClass=posixAccount))
-    additional_groups_dn: ou=groups
-    groups_filter: (&(memberUid={username})(objectClass=posixGroup))
-    group_search_mode: filter
-    user: cn=search,ou=svcaccts,dc=04a,dc=ca
-    password: password
-    attributes:
-      username: uid
-      display_name: givenName
-      mail: mail
-      member_of: memberOf
-      group_name: cn
-
-regulation:
-  max_retries: 3
-  find_time: 120
-  ban_time: 300
+# log:
+#  level: "trace"
