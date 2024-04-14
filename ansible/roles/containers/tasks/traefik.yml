@@ -28,5 +28,5 @@
       dest: "{{ containers_traefik_dir }}/config/dynamic_conf.yaml"
 
 - name: Traefik - deploy docker compose stack
-  community.docker.docker_compose:
+  community.docker.docker_compose_v2:
     project_src: "{{ containers_traefik_dir }}"
