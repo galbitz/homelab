@@ -27,5 +27,5 @@ tasks:
 
     vars:
       # renovate: datasource=github-releases depName=prometheus-operator/prometheus-operator
-      PROMETHEUS_OPERATOR_VERSION: v0.73.1
+      PROMETHEUS_OPERATOR_VERSION: v0.73.2
       KUBECONFIG_FILE: "{{.ROOT_DIR}}/kubernetes/{{.cluster}}/bootstrap/talos/kubeconfig"
