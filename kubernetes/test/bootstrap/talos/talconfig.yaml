@@ -1,9 +1,9 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/budimanjojo/talhelper/master/pkg/config/schemas/talconfig.json
 ---
 # renovate: datasource=docker depName=ghcr.io/siderolabs/installer
-talosVersion: v1.6.7
+talosVersion: v1.7.0
 # renovate: datasource=docker depName=ghcr.io/siderolabs/kubelet
-kubernetesVersion: v1.29.2
+kubernetesVersion: v1.30.0
 
 clusterName: &cluster home-kubernetes-test
 endpoint: https://192.168.1.90:6443
@@ -23,7 +23,7 @@ nodes:
     ipAddress: "192.168.1.91"
     installDisk: "/dev/sda"
     # talos options: intel-ucode, iscsi-tools, qemu-guest, utils-linux
-    talosImageURL: factory.talos.dev/installer/cc493cae44e0bdbbefb5b5d1fb22ff724134cd7c6bb65172fa84e181568be45d
+    talosImageURL: factory.talos.dev/installer/e7bfbb65634c02b970e735a5194b68731b53a2c3e92edc16cfa450f93d75905e
     controlPlane: true
     networkInterfaces:
       - interface: eth0
@@ -39,7 +39,7 @@ nodes:
   - hostname: "t2-test"
     ipAddress: "192.168.1.92"
     installDisk: "/dev/sda"
-    talosImageURL: factory.talos.dev/installer/cc493cae44e0bdbbefb5b5d1fb22ff724134cd7c6bb65172fa84e181568be45d
+    talosImageURL: factory.talos.dev/installer/e7bfbb65634c02b970e735a5194b68731b53a2c3e92edc16cfa450f93d75905e
     controlPlane: true
     networkInterfaces:
       - interface: eth0
@@ -55,7 +55,7 @@ nodes:
   - hostname: "t3-test"
     ipAddress: "192.168.1.93"
     installDisk: "/dev/sda"
-    talosImageURL: factory.talos.dev/installer/cc493cae44e0bdbbefb5b5d1fb22ff724134cd7c6bb65172fa84e181568be45d
+    talosImageURL: factory.talos.dev/installer/e7bfbb65634c02b970e735a5194b68731b53a2c3e92edc16cfa450f93d75905e
     controlPlane: true
     networkInterfaces:
       - interface: eth0
