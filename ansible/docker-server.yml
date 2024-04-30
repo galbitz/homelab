@@ -23,7 +23,6 @@
     - star4.essentials.forwardmta
     - geerlingguy.docker
     - docker_shared
-    - watchtower
     - containers
     - monitor
     - remote
