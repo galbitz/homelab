@@ -8,7 +8,7 @@ kubernetesVersion: v1.30.0
 clusterName: &cluster home-kubernetes-test
 endpoint: https://192.168.1.90:6443
 clusterPodNets:
-  - "10.69.0.0/16"
+  - "10.91.0.0/16"
 clusterSvcNets:
   - "10.96.0.0/16"
 additionalApiServerCertSans: &sans
