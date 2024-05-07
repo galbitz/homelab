@@ -120,16 +120,16 @@ spec:
         ports:
           http:
             port: *apiPort
-    ingress:
-      app:
-        className: internal
-        hosts:
-          - host: "{{ .Release.Name }}.devbu.io"
-            paths:
-              - path: /
-                service:
-                  identifier: app
-                  port: http
+    # ingress:
+    #   app:
+    #     className: internal
+    #     hosts:
+    #       - host: "{{ .Release.Name }}.04a.ca"
+    #         paths:
+    #           - path: /
+    #             service:
+    #               identifier: app
+    #               port: http
     persistence:
       config:
         type: emptyDir
