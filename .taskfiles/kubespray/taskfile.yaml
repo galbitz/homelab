@@ -1,0 +1,65 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+vars:
+  PYTHON_BIN: python3
+  KUBESPRAY_PATH: "{{.KUBERNETES_DIR}}/kubespray"
+env:
+  PATH: "{{.ROOT_DIR}}/.venv/bin:$PATH"
+  VIRTUAL_ENV: "{{.ROOT_DIR}}/.venv"
+  # ANSIBLE_COLLECTIONS_PATH: "{{.ROOT_DIR}}/.venv/galaxy"
+  # ANSIBLE_ROLES_PATH: "{{.ROOT_DIR}}/.venv/galaxy/ansible_roles"
+  # ANSIBLE_VARS_ENABLED: "host_group_vars"
+
+tasks:
+  venv:
+    desc: Set up Python virtual environment
+    cmds:
+      - true && {{.PYTHON_BIN}} -m venv {{.ROOT_DIR}}/.venv
+      - .venv/bin/python3 -m pip install --upgrade --requirement {{.KUBESPRAY_PATH}}/requirements.txt
+    sources:
+      - "{{.KUBESPRAY_PATH}}/requirements.txt"
+    generates:
+      - "{{.ROOT_DIR}}/.venv/pyvenv.cfg"
+
+  run:
+    desc: Run an Ansible playbook for configuring a cluster
+    summary: |
+      Args:
+        cluster: Cluster to run command against (required)
+        playbook: Playbook to run (required)
+    prompt: Run Ansible playbook '{{.playbook}}' against the '{{.cluster}}' cluster ... continue?
+    deps: ["venv"]
+    dir: "{{ .KUBESPRAY_PATH }}"
+    cmd: |
+      {{.ROOT_DIR}}/.venv/bin/ansible-playbook --become --become-user=root\
+        --inventory {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/generic/inventory/mycluster/hosts.yaml \
+        {{.KUBESPRAY_PATH}}/{{.playbook}}.yml {{.CLI_ARGS}}
+    requires:
+      vars: ["cluster", "playbook"]
+    preconditions:
+      - test -d {{.ROOT_DIR}}/.venv
+      - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/bootstrap/generic/inventory/mycluster/hosts.yaml
+
+  reset:
+    desc: Reset the cluster
+    summary: "Reset the cluster"
+    cmds:
+      - task: run
+        vars:
+          playbook: reset
+          cluster: "{{.cluster}}"
+    requires:
+      vars: ["cluster"]
+
+  cluster:
+    desc: Create cluster
+    summary: "Create cluster"
+    cmds:
+      - task: run
+        vars:
+          playbook: cluster
+          cluster: "{{.cluster}}"
+    requires:
+      vars: ["cluster"]

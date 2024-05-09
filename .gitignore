@@ -49,3 +49,8 @@ temp.yml
 
 talosconfig
 kubeconfig
+
+.venv/
+.task/
+
+kubeadm_certificate_key.creds

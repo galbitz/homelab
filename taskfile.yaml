@@ -11,6 +11,7 @@ includes:
   bootstrap: .taskfiles/bootstrap/Taskfile.yaml
   talos: .taskfiles/talos/Taskfile.yaml
   sops: .taskfiles/sops/Taskfile.yaml
+  kubespray: .taskfiles/kubespray/Taskfile.yaml
 
 tasks:
   default:
