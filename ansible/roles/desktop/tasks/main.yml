@@ -5,8 +5,8 @@
 - name: XServer
   ansible.builtin.include_tasks: xserver.yml
 
-- name: DWM
-  ansible.builtin.include_tasks: dwm.yml
+# - name: DWM
+#   ansible.builtin.include_tasks: dwm.yml
 
 - name: Audio
   ansible.builtin.include_tasks: audio.yml
@@ -20,8 +20,8 @@
 - name: Desktop apps
   ansible.builtin.include_tasks: desktop-apps.yml
 
-- name: 1password
-  ansible.builtin.include_tasks: 1password.yml
+# - name: 1password
+#  ansible.builtin.include_tasks: 1password.yml
 
 - name: Signal
   ansible.builtin.include_tasks: signal.yml

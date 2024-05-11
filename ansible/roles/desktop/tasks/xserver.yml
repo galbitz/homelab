@@ -11,5 +11,7 @@
       - xrdp
       - lightdm
       - kitty
+      - i3
+      - i3blocks
     state: present
   become: true
