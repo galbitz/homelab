@@ -22,11 +22,11 @@ spec:
     remediation:
       strategy: rollback
       retries: 3
+  dependsOn:
+    - name: onepassword-connect
+      namespace: external-secrets
   values:
     installCRDs: true
-    image:
-      repository: ghcr.io/skarlso/external-secrets
-      tag: v0.9.13-44.gb4208003
     serviceMonitor:
       enabled: true
       interval: 1m
