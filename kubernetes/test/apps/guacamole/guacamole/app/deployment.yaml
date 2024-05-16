@@ -27,7 +27,7 @@ spec:
             - name: GUACAMOLE_HOME
               value: /app/guacamole
             - name: TOTP_ENABLED
-              value: true
+              value: "true"
             - name: TOTP_ISSUER
               value: k8s-test
           imagePullPolicy: IfNotPresent
