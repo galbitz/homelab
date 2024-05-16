@@ -21,11 +21,15 @@ spec:
             - name: TZ
               value: "America/Toronto"
             - name: EXTENSIONS
-              value: auth-sso-openid
+              value: auth-totp
             - name: GUACD_LOG_LEVEL
               value: debug
             - name: GUACAMOLE_HOME
               value: /app/guacamole
+            - name: TOTP_ENABLED
+              value: true
+            - name: TOTP_ISSUER
+              value: k8s-test
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: config
