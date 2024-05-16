@@ -28,8 +28,6 @@ spec:
               value: /app/guacamole
             - name: TOTP_ENABLED
               value: "true"
-            - name: TOTP_ISSUER
-              value: k8s-test
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: config
