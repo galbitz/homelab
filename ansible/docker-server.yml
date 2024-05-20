@@ -1,5 +1,5 @@
 ---
-# Main docker node
+# Main docker node v1
 - name: Configure docker-server
   hosts: docker-server
   vars:
