@@ -7,7 +7,7 @@ name: Self-hosted - docker server
       - ansible/docker-server.yml
 
 jobs:
-  build-infrastructure:
+  main-job:
     runs-on: self-hosted
     env:
       SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
@@ -20,6 +20,9 @@ jobs:
         uses: jetpack-io/devbox-install-action@v0.11.0
         with:
           enable-cache: true
+
+      - run: devbox run task tf-init
+      - run: devbox run task tf-generate-inventory
 
       - run: devbox run task ansible-install-requirements
       - run: devbox run -- task ansible-run -- docker-server.yml
