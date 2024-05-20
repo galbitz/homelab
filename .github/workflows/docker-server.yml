@@ -2,6 +2,7 @@
 name: Self-hosted - docker server
 "on":
   push:
+    branches: ["main"]
     paths:
       - ansible/docker-server.yml
 
