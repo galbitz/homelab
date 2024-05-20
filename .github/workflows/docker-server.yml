@@ -1,5 +1,5 @@
 ---
-name: Self-hosted deployment
+name: Self-hosted - docker server
 "on":
   push:
     paths:
