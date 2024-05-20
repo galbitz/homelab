@@ -1,0 +1,24 @@
+---
+name: Self-hosted deployment
+"on":
+  push:
+    paths:
+      - ansible/docker-server.yml
+
+jobs:
+  build-infrastructure:
+    runs-on: self-hosted
+    env:
+      SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v4
+
+      - name: Install devbox
+        uses: jetpack-io/devbox-install-action@v0.11.0
+        with:
+          enable-cache: true
+
+      - run: devbox run task ansible-install-requirements
+      - run: devbox run -- task ansible-run -- docker-server.yml

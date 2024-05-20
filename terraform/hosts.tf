@@ -80,6 +80,11 @@ variable "hosts" {
       ip   = "192.168.1.25"
       mac  = "C0:3C:59:A3:78:BB"
     }
+    "githubrunner" = {
+      name = "githubrunner"
+      ip   = "192.168.1.26"
+      mac  = ""
+    }
     "ha" = {
       name = "ha"
       ip   = "192.168.1.40"
