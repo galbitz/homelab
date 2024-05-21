@@ -6,6 +6,7 @@
     "terraform@latest",
     "git@latest",
     "go-task@latest",
+    "gnutar@latest",
     "sops@latest",
     "age@latest",
     "cilium-cli@latest"
