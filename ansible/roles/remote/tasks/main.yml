@@ -20,5 +20,10 @@
       - 8085:8080
     env:
       TZ: "America/Toronto"
+      EXTENSIONS: auth-totp
+      TOTP_ENABLED: "true"
+      TOTP_ISSUER: "Guacamole bee"
+      GUACD_LOG_LEVEL: "debug"
+      GUACAMOLE_HOME: "/app/guacamole"
     state: started
     restart_policy: always

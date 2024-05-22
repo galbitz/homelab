@@ -1,5 +1,5 @@
 ---
-# Main docker node v2
+# Main docker node v2024-05-21-01
 - name: Configure docker-server
   hosts: docker-server
   vars:
