@@ -1,0 +1,6 @@
+---
+- name: Configure core services
+  hosts: core
+  roles:
+    - role: core-server
+      become: true

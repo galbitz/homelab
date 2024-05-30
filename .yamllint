@@ -20,3 +20,5 @@ ignore: |
   /kubernetes/main/bootstrap/talos/clusterconfig
   /kubernetes/test/bootstrap/talos/clusterconfig
   /.taskfiles/talos/Taskfile.yaml
+  /.venv/*
+  /kubernetes/kubespray/*

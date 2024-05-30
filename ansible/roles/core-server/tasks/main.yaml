@@ -1,0 +1,61 @@
+---
+- name: Install packages
+  community.general.rpm_ostree_pkg:
+    name:
+      - bind-utils
+      - fastfetch
+      - fzf
+      - htop
+      - moreutils
+      - nano
+      - net-tools
+      - netcat
+      - nmap
+      - rsync
+      - systemd-networkd
+      - tcpdump
+      - telnet
+      - tree
+      - wget
+      - yq
+    state: present
+
+- name: Create podman container network
+  containers.podman.podman_network:
+    name: containernet
+    driver: ipvlan
+    ip_range: 192.168.1.62-192.168.1.69
+    subnet: 192.168.1.0/24
+    gateway: 192.168.1.1
+
+- name: Copy network configuration
+  ansible.builtin.copy:
+    dest: "/etc/systemd/network/{{ item }}"
+    src: "{{ item }}"
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+    force: true
+  loop:
+    - containernet.netdev
+    - containernet.network
+    - enp6s18.network
+
+- name: Disable network manager
+  ansible.builtin.systemd_service:
+    state: stopped
+    enabled: false
+    name: NetworkManager
+
+- name: Enable systemd-networkd
+  ansible.builtin.systemd_service:
+    state: restarted
+    enabled: true
+    daemon_reload: true
+    name: systemd-networkd
+
+- name: Disable fireworkd
+  ansible.builtin.systemd_service:
+    state: stopped
+    enabled: false
+    name: firewalld.service
