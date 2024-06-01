@@ -9,7 +9,7 @@
     "**/*.sops.*",
     "**/.archive/**",
     "**/resources/**",
-    "kubernetes/"
+    "kubernetes/**"
   ],
   "flux": {
     "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"]
