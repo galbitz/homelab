@@ -5,7 +5,7 @@
     "github>galbitz/homelab//.github/renovate/clusters.json5",
     "github>galbitz/homelab//.github/renovate/customManagers.json5"
   ],
-  "ignorePaths": ["**/*.sops.*", "**/.archive/**", "**/resources/**"],
+  "ignorePaths": ["**/*.sops.*", "**/.archive/**", "**/resources/**","/kubernetes/**"],
   "flux": {
     "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"]
   },
