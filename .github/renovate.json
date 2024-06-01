@@ -6,6 +6,18 @@
     "github>galbitz/homelab//.github/renovate/customManagers.json5"
   ],
   "ignorePaths": ["**/*.sops.*", "**/.archive/**", "**/resources/**","/kubernetes/**"],
+  "flux": {
+    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"]
+  },
+  "helm-values": {
+    "fileMatch": ["(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"]
+  },
+  "kubernetes": {
+    "fileMatch": [
+      "(^|/)\\.taskfiles/.+\\.ya?ml(?:\\.j2)?$",
+      "(^|/)kubernetes/.+\\.ya?ml(?:\\.j2)?$"
+    ]
+  },
   "docker-compose": {
     "fileMatch": ["(^|/)ansible/.+compose\\.ya?ml(?:\\.j2)?$"]
   }
