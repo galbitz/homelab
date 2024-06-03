@@ -1,0 +1,36 @@
+serverAddr = "{{ lookup('ansible.builtin.env', 'CLOUDFLARE_WORMHOLE_HOSTNAME') }}"
+serverPort = 7000
+auth.token = "{{ lookup('ansible.builtin.env', 'FRP_AUTH_TOKEN') }}"
+log.level = "info"
+
+[[proxies]]
+name = "auth"
+type = "https"
+localIP = "192.168.1.17"
+localPort = 443
+customDomains = ["auth.tunnel.04a.ca"]
+hostHeaderRewrite = "auth.tunnel.04a.ca"
+
+[[proxies]]
+name = "access"
+type = "https"
+localIP = "192.168.1.17"
+localPort = 443
+customDomains = ["access.tunnel.04a.ca"]
+hostHeaderRewrite = "access.tunnel.04a.ca"
+
+[[proxies]]
+name = "auth.t"
+type = "https"
+localIP = "192.168.1.85"
+localPort = 443
+customDomains = ["auth.t.04a.ca"]
+hostHeaderRewrite = "auth.t.04a.ca"
+
+[[proxies]]
+name = "access.t"
+type = "https"
+localIP = "192.168.1.85"
+localPort = 443
+customDomains = ["access.t.04a.ca"]
+hostHeaderRewrite = "access.t.04a.ca"

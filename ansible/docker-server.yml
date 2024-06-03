@@ -30,3 +30,4 @@
     - file_backup
     - netboot
     - tailscale
+    - frpc_container

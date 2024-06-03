@@ -1,0 +1,8 @@
+---
+services:
+  frpc:
+    image: galbitz/frpc
+    container_name: frpc
+    volumes:
+      - ./config/frpc.toml:/etc/frp/frpc.toml
+    restart: always

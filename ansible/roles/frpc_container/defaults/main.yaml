@@ -1,0 +1,2 @@
+---
+frpc_container_dir: "{{ docker_dir }}/frpc"

@@ -1,0 +1,29 @@
+---
+- name: Create docker folders
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: u+rwx,g+rwx,o+rxw
+  loop:
+    - "{{ frpc_container_dir }}"
+    - "{{ frpc_container_dir }}/config"
+
+- name: Copy files
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u+rwx,g+rwx,o+rxw
+    force: true
+  loop:
+    - src: docker-compose.yaml.j2
+      dest: "{{ frpc_container_dir }}/docker-compose.yml"
+    - src: frpc.toml.j2
+      dest: "{{ frpc_container_dir }}/config/frpc.toml"
+
+- name: Docker-compose up
+  community.docker.docker_compose_v2:
+    project_src: "{{ frpc_container_dir }}"
