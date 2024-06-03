@@ -18,7 +18,7 @@ variable "hosts" {
     "thin" = {
       name = "thin"
       ip   = "192.168.1.4"
-      mac  = "3a:39:e4:df:ef:7e"
+      mac  = "c4:65:16:30:f6:4a"
     }
     "exit" = {
       name = "exit"
@@ -88,7 +88,7 @@ variable "hosts" {
     "ha" = {
       name = "ha"
       ip   = "192.168.1.40"
-      mac  = ""
+      mac  = "3a:39:e4:df:ef:7e"
     }
     "switchA" = {
       name = "switchA"
