@@ -27,3 +27,5 @@
   ansible.builtin.include_tasks: traefik.yml
 - name: Authelia
   ansible.builtin.include_tasks: authelia.yml
+- name: Cloudflare
+  ansible.builtin.include_tasks: cloudflare-dns-update.yml
