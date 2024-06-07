@@ -4,14 +4,11 @@
     - Shadow:
         href: https://shadow.home.star4.dev:8006/
         icon: proxmox.png
-    - Exit:
-        href: https://exit.04a.ca:8006/
-        icon: proxmox.png
-    - Fw (down):
-        href: https://192.168.1.164:8006/
+    - Bee:
+        href: https://bee:8006/
         icon: proxmox.png
     - PVE2 (Game):
-        href: https://game.04a.ca:8006/
+        href: https://game:8006/
         icon: proxmox.png
 - Services:
     - Home Assistant:
@@ -24,7 +21,7 @@
         href: https://diskstation.home.star4.dev:5001/
         icon: synology.png
     - Unifi wifi:
-        href: https://unifi.home.star4.dev/
+        href: https://unifi.ui.com/
         icon: unifi.png
     - Firewall:
         href: https://home.star4.dev/
@@ -32,9 +29,6 @@
     - Uptime Kuma:
         href: https://uptime.home.04a.ca/
         icon: uptime-kuma.png
-    - PiHole:
-        href: https://pihole.home.04a.ca/admin/
-        icon: pi-hole.png
     - Portainer:
         href: https://portainer.home.04a.ca/
         icon: portainer.png
