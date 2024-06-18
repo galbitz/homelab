@@ -54,7 +54,7 @@
     daemon_reload: true
     name: systemd-networkd
 
-- name: Disable fireworkd
+- name: Disable firewalld
   ansible.builtin.systemd_service:
     state: stopped
     enabled: false
