@@ -9,19 +9,15 @@
   loop:
     - "{{ remote_guacamole_dir }}"
 
-- name: Create guacamole container
-  community.docker.docker_container:
-    name: guacamole
-    image: flcontainers/guacamole:1.5.4
-    volumes:
-      - "{{ remote_guacamole_dir }}:/config"
-      - "/etc/localtime:/etc/localtime:ro"
-    ports:
-      - 8085:8080
-    env:
-      TZ: "America/Toronto"
-      EXTENSIONS: auth-totp
-      GUACD_LOG_LEVEL: "debug"
-      GUACAMOLE_HOME: "/app/guacamole"
-    state: started
-    restart_policy: always
+- name: Copy docker compose
+  ansible.builtin.template:
+    src: docker-compose.yaml.j2
+    dest: "{{ remote_guacamole_dir }}/docker-compose.yaml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u+rw,g+rw,o+rw
+    force: true
+
+- name: Docker-compose up
+  community.docker.docker_compose_v2:
+    project_src: "{{ remote_guacamole_dir }}"

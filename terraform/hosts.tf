@@ -50,6 +50,11 @@ variable "hosts" {
       ip   = "192.168.1.17"
       mac  = ""
     }
+    "docker-server-guacamole" = {
+      name = "docker-server-guacamole"
+      ip   = "192.168.1.18"
+      mac  = ""
+    }
     "pikvm" = {
       name = "pikvm"
       ip   = "192.168.1.19"

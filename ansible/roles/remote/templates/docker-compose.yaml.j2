@@ -1,0 +1,29 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+services:
+  guacamole:
+    image: flcontainers/guacamole:1.5.4
+    container_name: guacamole
+    volumes:
+      - "{{ remote_guacamole_dir }}:/config"
+      - "/etc/localtime:/etc/localtime:ro"
+    environment:
+      TZ: "America/Toronto"
+      EXTENSIONS: auth-totp
+      GUACD_LOG_LEVEL: "debug"
+      GUACAMOLE_HOME: "/app/guacamole"
+    ports:
+      - "8085:8080"
+    restart: always
+    # networks:
+    #   guacamole_net:
+    #     ipv4_address: 192.168.1.18
+# networks:
+#   guacamole_net:
+#     driver: macvlan
+#     driver_opts:
+#       parent: eth0
+#     ipam:
+#       config:
+#         - subnet: 192.168.1.0/24
+#           gateway: 192.168.1.1
