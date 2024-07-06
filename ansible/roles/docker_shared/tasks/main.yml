@@ -11,6 +11,7 @@
 - name: Persistent storage
   ansible.builtin.include_tasks: persistent-storage.yml
 
+# bug. sometimes it needs: pip install requests==2.31 to pin library
 - name: Create shared network [shared]
   community.docker.docker_network:
     name: shared

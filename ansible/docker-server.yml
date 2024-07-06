@@ -24,6 +24,7 @@
     - star4.essentials.forwardmta
     - geerlingguy.docker
     - docker_shared
+    - docker_network
     - containers
     - monitor
     - remote

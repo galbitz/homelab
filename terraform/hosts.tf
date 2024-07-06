@@ -75,8 +75,8 @@ variable "hosts" {
       ip   = "192.168.1.22"
       mac  = "7C:83:34:B9:2A:A0"
     }
-    "docker-server2" = {
-      name = "docker-server2"
+    "docker-test" = {
+      name = "docker-test"
       ip   = "192.168.1.24"
       mac  = ""
     }
@@ -123,9 +123,7 @@ variable "hosts" {
   }
 }
 
-# core docker network 192.168.1.6X
-# main kubernetes cluster 192.168.1.8x
-# test kubernetes cluster 192.168.1.9x
+# core docker network 192.168.1.60-61
 
 # generate inventory file for Ansible
 resource "local_file" "hosts" {

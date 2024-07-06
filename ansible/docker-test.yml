@@ -1,0 +1,11 @@
+---
+- name: Configure docker-test
+  hosts: docker-test
+  roles:
+    - star4.essentials.timezone
+    - star4.essentials.autoupdate
+    - star4.essentials.hardening
+    - role: geerlingguy.docker
+      become: true
+    - docker_shared
+    - docker_network

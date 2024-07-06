@@ -12,12 +12,19 @@ services:
       EXTENSIONS: auth-totp
       GUACD_LOG_LEVEL: "debug"
       GUACAMOLE_HOME: "/app/guacamole"
-    ports:
-      - "8085:8080"
+#    ports:
+#      - "8085:8080"
     restart: always
+    networks:
+      containernet:
+        ipv4_address: 192.168.1.65
+
     # networks:
     #   guacamole_net:
     #     ipv4_address: 192.168.1.18
+networks:
+  containernet:
+    external: true
 # networks:
 #   guacamole_net:
 #     driver: macvlan

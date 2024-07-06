@@ -12,6 +12,7 @@ includes:
   talos: .taskfiles/talos/Taskfile.yaml
   sops: .taskfiles/sops/Taskfile.yaml
   kubespray: .taskfiles/kubespray/Taskfile.yaml
+  tf: .taskfiles/terraform/Taskfile.yaml
 
 tasks:
   default:
@@ -32,46 +33,6 @@ tasks:
     cmd: |
       yamllint .
       ansible-lint ansible/
-
-  tf-init:
-    desc: Initialize terraform
-    cmds:
-      - task: .tf-execute
-        vars:
-          ARGS: "init -input=false"
-
-  tf-apply:
-    desc: Apply terraform
-    cmds:
-      - task: .tf-execute
-        vars:
-          ARGS: "apply -compact-warnings -auto-approve -input=false"
-
-  tf-generate-inventory:
-    desc: Generate ansible host inventory
-    cmds:
-      - task: .tf-execute
-        vars:
-          ARGS: "apply -target=local_file.hosts -compact-warnings -auto-approve"
-
-  tf-run:
-    desc: Run terraform. Add command as parameter eg. `task tf-run -- plan`
-    cmds:
-      - task: .tf-execute
-        vars:
-          ARGS: "{{.CLI_ARGS}}"
-
-  .tf-execute:
-    dir: ./terraform
-    internal: true
-    vars:
-      ARGS: "{{.ARGS}}"
-    cmd: |
-      set -a
-      export TF_VAR_HOME_IP=`curl -sS https://ifconfig.co`
-      # import secrets to env
-      source <(sops -d {{.ROOT_DIR}}/main.secret.sops.env)
-      terraform {{.ARGS}}
 
   ansible-run:
     desc: Run ansible playbook

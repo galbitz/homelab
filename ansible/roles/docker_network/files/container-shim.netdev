@@ -1,0 +1,8 @@
+# /etc/systemd/network/container-shim.netdev
+
+[NetDev]
+Name=container-shim
+Kind=macvlan
+
+[MACVLAN]
+Mode=bridge
