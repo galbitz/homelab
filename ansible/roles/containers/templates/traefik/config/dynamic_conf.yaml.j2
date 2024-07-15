@@ -59,8 +59,8 @@ http:
       service: guac
       entrypoints: websecure
       tls: {}
-      middlewares:
-        - authelia      
+#      middlewares:
+#        - authelia      
     pihole:
       rule: Host(`pihole.{{ containers_traefik_main_domain }}`)
       service: pihole
