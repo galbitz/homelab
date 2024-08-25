@@ -20,6 +20,14 @@ customDomains = ["access.tunnel.04a.ca"]
 hostHeaderRewrite = "access.tunnel.04a.ca"
 
 [[proxies]]
+name = "pikvm"
+type = "https"
+localIP = "192.168.1.17"
+localPort = 443
+customDomains = ["pikvm.tunnel.04a.ca"]
+hostHeaderRewrite = "pikvm.tunnel.04a.ca"
+
+[[proxies]]
 name = "auth.t"
 type = "https"
 localIP = "192.168.1.85"

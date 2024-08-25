@@ -27,6 +27,10 @@ http:
       loadbalancer:
         servers:
           - url: http://192.168.1.4/
+    pikvm:
+      loadbalancer:
+        servers:
+          - url: https://192.168.1.19/
   middlewares:
     authelia:
       forwardAuth:
@@ -70,3 +74,15 @@ http:
       service: pihole
       entrypoints: websecure
       tls: {}
+    pikvm:
+      rule: Host(`pikvm.{{ containers_traefik_main_domain }}`) || Host(`pikvm.{{ containers_traefik_tunnel_domain }}`)
+      service: pikvm
+      entrypoints: web
+    pikvm-ssl:
+      rule: Host(`pikvm.{{ containers_traefik_main_domain }}`) || Host(`pikvm.{{ containers_traefik_tunnel_domain }}`)
+      service: pikvm
+      entrypoints: websecure
+      tls: {}
+      middlewares:
+        - authelia
+      

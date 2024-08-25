@@ -5,7 +5,7 @@ networks:
     external: true
 services:
   traefik:
-    image: traefik:v3.0
+    image: traefik:v3.1.1
     container_name: traefik
     ports:
       - 80:80
@@ -15,7 +15,10 @@ services:
       - ./config:/etc/traefik
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      - CF_DNS_API_TOKEN={{ cloudflare_api_token }}
+      - CF_DNS_API_TOKEN={{ cloudflare_traefik_dns_token }}
+      - CF_ZONE_API_TOKEN={{ cloudflare_traefik_dns_token }}
+      - CLOUDFLARE_PROPAGATION_TIMEOUT=600
+      - CLOUDFLARE_TTL=Auto
     networks:
       - shared
     restart: always
