@@ -5,6 +5,8 @@ name: Self-hosted - docker server
     branches: ["main"]
     paths:
       - ansible/docker-server.yml
+  workflow_dispatch:
+
 
 jobs:
   main-job:
