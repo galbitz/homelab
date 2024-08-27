@@ -23,8 +23,8 @@ jobs:
         with:
           enable-cache: true
 
-      - run: devbox run task tf:init
-      - run: devbox run task tf:generate-inventory
+#     - run: devbox run task tf:init
+#     - run: devbox run task tf:generate-inventory
 
       - run: devbox run task ansible-install-requirements
       - run: devbox run -- task ansible-run -- docker-server.yml
