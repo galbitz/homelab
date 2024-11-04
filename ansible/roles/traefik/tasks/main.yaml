@@ -1,0 +1,32 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+- name: Traefik - Make sure that folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: u+rwx,g+rwx,o+rxw
+  loop:
+    - "{{ traefik_dir }}"
+    - "{{ traefik_dir }}/config"
+
+- name: Traefik - Copy docker compose file
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u+rwx,g+rwx,o+rxw
+    force: true
+  loop:
+    - src: "compose.yaml.j2"
+      dest: "{{ traefik_dir }}/docker-compose.yaml"
+    - src: config/traefik.yaml.j2
+      dest: "{{ traefik_dir }}/config/traefik.yaml"
+    - src: config/dynamic_conf.yaml.j2
+      dest: "{{ traefik_dir }}/config/dynamic_conf.yaml"
+
+- name: Traefik - deploy docker compose stack
+  community.docker.docker_compose_v2:
+    project_src: "{{ traefik_dir }}"

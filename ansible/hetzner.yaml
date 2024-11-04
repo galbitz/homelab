@@ -1,0 +1,18 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/playbook
+- name: Configure hetzner
+  hosts: rd
+  pre_tasks:
+    - name: Update apt cache
+      become: true
+      ansible.builtin.apt:
+        update_cache: true
+  roles:
+    - star4.essentials.timezone
+    - star4.essentials.autoupdate
+    - star4.essentials.hardening
+    - star4.essentials.forwardmta
+    - role: geerlingguy.docker
+      become: true
+    - traefik
+    - guacamole

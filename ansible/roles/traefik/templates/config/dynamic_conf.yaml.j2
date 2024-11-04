@@ -1,0 +1,11 @@
+---
+tls:
+  stores:
+    default:
+      defaultGeneratedCert:
+        resolver: "production"
+        domain:
+          main: "*.{{ traefik_main_domain }}"
+          sans:
+            - "{{ traefik_main_domain }}"
+

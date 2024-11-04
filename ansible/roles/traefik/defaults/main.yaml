@@ -1,0 +1,5 @@
+---
+traefik_dir: "{{ docker_dir }}/traefik"
+
+traefik_main_domain: "rd.04a.ca"
+traefik_main_domain_aliases: ""
