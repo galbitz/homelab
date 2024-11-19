@@ -6,7 +6,7 @@ networks:
 services:
   loki:
     container_name: loki
-    image: grafana/loki:3.1.1
+    image: grafana/loki:3.3.0
     volumes:
       - "{{ containers_insight_dir }}/loki:/etc/loki"
     # only containers connect to this (grafana, promtail)
