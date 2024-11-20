@@ -32,7 +32,7 @@ services:
       - shared
   grafana:
     container_name: grafana
-    image: grafana/grafana:11.2.0
+    image: grafana/grafana:11.3.1
     user: "1000"
     volumes:
       - "{{ containers_insight_dir }}/grafana/etc/provisioning:/etc/grafana/provisioning"
