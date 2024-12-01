@@ -5,7 +5,7 @@
         href: https://shadow.home.star4.dev:8006/
         icon: proxmox.png
     - Bee:
-        href: https://bee:8006/
+        href: https://bee.home.star4.dev:8006/
         icon: proxmox.png
     - PVE2 (Game):
         href: https://game:8006/
