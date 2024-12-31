@@ -20,4 +20,4 @@ jobs:
 
       - run: devbox run task tf:init
       - run: devbox run task tf:plan
-      - run: devbox run task tf:apply -- -target=module.hostrecords
+      - run: devbox run -- task tf:apply -- -target=module.hostrecords
