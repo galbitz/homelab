@@ -4,7 +4,7 @@ name: Self-hosted Cloudflare hosts
   workflow_dispatch:
 
 jobs:
-  build-infrastructure:
+  update-cloudflare-hosts:
     runs-on: self-hosted
     env:
       SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
