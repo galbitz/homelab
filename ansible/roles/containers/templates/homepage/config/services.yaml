@@ -7,9 +7,6 @@
     - Bee:
         href: https://bee.home.star4.dev:8006/
         icon: proxmox.png
-    - PVE2 (Game):
-        href: https://game:8006/
-        icon: proxmox.png
 - Services:
     - Home Assistant:
         href: https://ha.home.04a.ca/
@@ -23,9 +20,6 @@
     - Unifi wifi:
         href: https://unifi.ui.com/
         icon: unifi.png
-    - Firewall:
-        href: https://home.star4.dev/
-        icon: opnsense.png
     - Uptime Kuma:
         href: https://uptime.home.04a.ca/
         icon: uptime-kuma.png
@@ -42,7 +36,7 @@
         href: https://nut.home.04a.ca/cgi-bin/nut/upsstats.cgi
         icon: ups.png
     - Switch:
-        href: http://switch.04a.ca/
+        href: http://192.168.1.3/
         icon: mdi-switch
     - Netboot:
         href: http://192.168.1.17:3500/
