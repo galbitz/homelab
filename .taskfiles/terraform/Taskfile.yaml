@@ -29,7 +29,7 @@ tasks:
     cmds:
       - task: .execute
         vars:
-          ARGS: "apply -target=local_file.hosts -compact-warnings -auto-approve"
+          ARGS: "apply -target=module.hostrecords.local_file.hosts -compact-warnings -auto-approve"
 
   run:
     desc: Run terraform. Add command as parameter eg. `task tf-run -- plan`
@@ -56,4 +56,4 @@ tasks:
       export TF_VAR_HOME_IP=`curl -sS https://ifconfig.co`
       # import secrets to env
       source <(sops -d {{.ROOT_DIR}}/main.secret.sops.env)
-      terraform {{.ARGS}}
+      terraform {{.ARGS}} {{.CLI_ARGS}}

@@ -1,6 +1,6 @@
 # Required permissions for dns: Zone:Zone:Edit, Zone:Zone Settings:Edit, Zone:DNS:Edit
 # + Add Zone Resources include All zones
-# Required permissions for tunnel: Account:Cloudflare Tunnel:Edit, Account:Access Appsand Policies:Edit, Zone:DNS:Edit
+# Required permissions for tunnel: Account:Cloudflare Tunnel:Edit, Account:Access Append Policies:Edit, Zone:DNS:Edit
 provider "cloudflare" {
   api_token = var.CLOUDFLARE_API_TOKEN
 }
@@ -14,14 +14,17 @@ resource "cloudflare_zone" "home_zone" {
 resource "cloudflare_record" "home_dnsrecord" {
   zone_id = cloudflare_zone.home_zone.id
   name    = "home"
-  value   = var.HOME_IP
+  value = var.HOME_IP
   type    = "A"
   proxied = false
 }
 
 resource "cloudflare_record" "host_records" {
-
-  for_each = var.hosts
+  # Only create records where create_dns_record is true
+  for_each = {
+    for k, v in var.hosts : k => v
+    if lookup(v, "create_dns_record", true)  # defaults to true if not specified
+  }
 
   zone_id = cloudflare_zone.home_zone.id
   name    = "${each.value.name}.home"
