@@ -32,3 +32,4 @@
     - netboot
     - tailscale
     - frpc_container
+    - beszel_hub
