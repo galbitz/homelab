@@ -1,0 +1,33 @@
+---
+- name: Make sure that the docker folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: a+rw,g+rw,o+rw
+  loop:
+    - "{{ beszel_hub_dir }}"
+    - "{{ beszel_hub_dir }}/beszel-hub/tailscale/config"
+
+- name: Copy docker compose
+  ansible.builtin.template:
+    src: compose.yaml.j2
+    dest: "{{ beszel_hub_dir }}/compose.yaml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u+rw,g+rw,o+rw
+    force: true
+
+- name: Copy beszel hub config
+  ansible.builtin.template:
+    src: beszel-hub.json.j2
+    dest: "{{ beszel_hub_dir }}/beszel-hub/tailscale/config/beszel-hub.json"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u+rw,g+rw,o+rw
+    force: true
+
+- name: Docker-compose up
+  community.docker.docker_compose_v2:
+    project_src: "{{ beszel_hub_dir }}"

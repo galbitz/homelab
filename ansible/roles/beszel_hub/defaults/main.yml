@@ -1,0 +1,4 @@
+---
+beszel_hub_dir: "{{ docker_dir }}/beszel"
+
+beszel_hub_tailscale_oauth_token: "{{ lookup('ansible.builtin.env', 'TAILSCALE_BESZEL_TOKEN') }}"
