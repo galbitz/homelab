@@ -11,6 +11,7 @@
       - "/opt/docker/data/portainer/data"
       - "/opt/docker/data/quacamole"
       - "/opt/docker/data/uptime-kuma"
+      - "/opt/docker/data/beszel/beszel-hub"
     file_backup_mount_dir: "/mnt/diskstation-proxmox-data"
     file_backup_nas_username: "{{ lookup('ansible.builtin.env', 'NAS_BACKUP_USERNAME') }}"
     file_backup_nas_password: "{{ lookup('ansible.builtin.env', 'NAS_BACKUP_PASSWORD') }}"
