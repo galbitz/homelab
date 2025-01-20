@@ -8,6 +8,9 @@
         href: https://bee.home.star4.dev:8006/
         icon: proxmox.png
 - Services:
+    - Beszel Hub:
+        href: http://192.168.1.17:348090/
+        icon: beszel.png
     - Home Assistant:
         href: https://ha.home.04a.ca/
         icon: home-assistant-alt.png
