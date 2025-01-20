@@ -15,7 +15,7 @@ services:
       - ${PWD}/beszel-hub/tailscale/state:/var/lib/tailscale
       - ${PWD}/beszel-hub/tailscale/config:/config
     ports:
-      - 348090:8090
+      - 38090:8090
     restart: unless-stopped
     cap_add:
       - net_admin
