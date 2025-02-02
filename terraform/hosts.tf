@@ -78,13 +78,16 @@ variable "hosts" {
       ip   = "192.168.1.44"
       mac  = "60:55:F9:33:19:34"
     }
-
     "ha-screen" = {
       name = "ha-screen"
       ip   = "192.168.1.45"
       mac  = "d8:3a:dd:4d:14:7c"
     }
-
+    "hue" = {
+      name = "hue"
+      ip   = "192.168.1.46"
+      mac  = "ec:b5:fa:bc:1a:56"
+    }
     "valheim-server" = {
       name = "valheim"
       ip   = "192.168.1.50"
