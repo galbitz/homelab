@@ -44,3 +44,6 @@
     - Netboot:
         href: http://192.168.1.17:3500/
         icon: netboot.png
+    - Syncthing:
+        href: http://localhost:8384/
+        icon: syncthing.png
