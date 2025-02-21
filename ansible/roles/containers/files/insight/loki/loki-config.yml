@@ -7,7 +7,7 @@ server:
 
 compactor:
   working_directory: /tmp/loki/compactor
-  compactor_interval: 60m
+  compaction_interval: 60m
   retention_enabled: true
   retention_delete_delay: 1m
   delete_request_store: filesystem
