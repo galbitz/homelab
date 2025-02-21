@@ -5,6 +5,16 @@ server:
   http_listen_port: 3100
   grpc_listen_port: 9096
 
+compactor:
+  working_directory: /tmp/loki/compactor
+  compactor_interval: 60m
+  retention_enabled: true
+  retention_delete_delay: 1m
+  delete_request_store: filesystem
+
+limits_config:
+  retention_period: 672h
+
 common:
   path_prefix: /tmp/loki
   storage:
