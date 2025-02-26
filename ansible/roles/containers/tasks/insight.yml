@@ -15,6 +15,8 @@
     - "{{ containers_insight_dir }}/influx"
     - "{{ containers_insight_dir }}/influx/data"
     - "{{ containers_insight_dir }}/influx/config"
+    - "{{ containers_insight_dir }}/loki"
+    - "{{ containers_insight_dir }}/loki/data"
   become: true
 
 - name: Copy docker compose for insight

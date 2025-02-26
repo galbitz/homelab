@@ -9,6 +9,7 @@ services:
     image: grafana/loki:3.3.0
     volumes:
       - "{{ containers_insight_dir }}/loki:/etc/loki"
+      - "{{ containers_insight_dir }}/loki/data:/etc/loki/data"
     # only containers connect to this (grafana, promtail)
     ports:
       - "3100:3100"
