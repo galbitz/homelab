@@ -7,8 +7,6 @@ containers_homepage_dir: "{{ docker_dir }}/homepage"
 
 containers_insight_dir: "{{ docker_dir }}/insight"
 
-containers_nut_dir: "{{ docker_dir }}/nut"
-
 containers_portainer_dir: "{{ docker_dir }}/portainer"
 
 containers_traefik_dir: "{{ docker_dir }}/traefik"
