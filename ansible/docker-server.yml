@@ -34,3 +34,4 @@
     - tailscale
     - frpc_container
     - beszel_hub
+    - nut-server-container

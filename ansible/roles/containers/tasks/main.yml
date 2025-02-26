@@ -19,8 +19,6 @@
   ansible.builtin.include_tasks: homepage.yml
 - name: Insight Composer stack
   ansible.builtin.include_tasks: insight.yml
-- name: Nut
-  ansible.builtin.include_tasks: nut.yml
 - name: Portainer
   ansible.builtin.include_tasks: portainer.yml
 - name: Traefik

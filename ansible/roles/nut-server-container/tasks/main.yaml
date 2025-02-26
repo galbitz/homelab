@@ -9,13 +9,13 @@
     state: directory
     mode: u+rwx,g+rwx,o+rxw
   loop:
-    - "{{ containers_nut_dir }}"
+    - "{{ nut_server_container_dir }}"
   become: true
 
 - name: Copy docker compose for nut
   ansible.builtin.template:
-    src: nut-compose.yml.j2
-    dest: "{{ containers_nut_dir }}/docker-compose.yml"
+    src: compose.yaml.j2
+    dest: "{{ nut_server_container_dir }}/compose.yaml"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: u+rwx,g+rwx,o+rxw
@@ -23,4 +23,4 @@
 
 - name: Deploy Docker Compose stack
   community.docker.docker_compose_v2:
-    project_src: "{{ containers_nut_dir }}"
+    project_src: "{{ nut_server_container_dir }}"
