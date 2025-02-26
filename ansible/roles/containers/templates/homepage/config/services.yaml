@@ -36,7 +36,7 @@
         href: https://grafana.home.04a.ca/
         icon: grafana.png
     - NUT:
-        href: https://nut.home.04a.ca/cgi-bin/nut/upsstats.cgi
+        href: https://nut.home.04a.ca/ups/CP
         icon: ups.png
     - Switch:
         href: http://192.168.1.3/

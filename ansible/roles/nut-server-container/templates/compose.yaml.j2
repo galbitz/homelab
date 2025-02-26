@@ -30,11 +30,6 @@ services:
       - UPSD_ADDR=192.168.1.17
     networks:
       - shared
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/health"]
-      interval: 200s
-      timeout: 200s
-      retries: 5
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=shared"
