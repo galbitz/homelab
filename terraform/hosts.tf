@@ -17,6 +17,16 @@ variable "hosts" {
       ip   = "192.168.1.4"
       mac  = "c4:65:16:30:f6:4a"
     }
+    "king" = {
+      name = "king"
+      ip   = "192.168.1.9"
+      mac  = "d0:11:e5:36:4a:22"
+    }
+    "game" = {
+      name = "game"
+      ip   = "192.168.1.10"
+      mac  = "50:EB:F6:7F:EC:D1"
+    }
     "shadow" = {
       name = "shadow"
       ip   = "192.168.1.14"
@@ -42,6 +52,11 @@ variable "hosts" {
       name = "pikvm"
       ip   = "192.168.1.19"
       mac  = "DC:A6:32:28:0C:23"
+    }
+    "damage" = {
+      name = "damage"
+      ip   = "192.168.1.20"
+      mac  = ""
     }
     "bee" = {
       name = "bee"
@@ -87,11 +102,6 @@ variable "hosts" {
       name = "hue"
       ip   = "192.168.1.46"
       mac  = "ec:b5:fa:bc:1a:56"
-    }
-    "valheim-server" = {
-      name = "valheim"
-      ip   = "192.168.1.50"
-      mac  = ""
     }
   }
 }
