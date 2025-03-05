@@ -9,6 +9,7 @@ type = "https"
 localIP = "192.168.1.17"
 localPort = 443
 customDomains = ["auth.tunnel.04a.ca"]
+[proxies.plugin]
 hostHeaderRewrite = "auth.tunnel.04a.ca"
 
 [[proxies]]
@@ -17,28 +18,5 @@ type = "https"
 localIP = "192.168.1.17"
 localPort = 443
 customDomains = ["access.tunnel.04a.ca"]
+[proxies.plugin]
 hostHeaderRewrite = "access.tunnel.04a.ca"
-
-[[proxies]]
-name = "pikvm"
-type = "https"
-localIP = "192.168.1.17"
-localPort = 443
-customDomains = ["pikvm.tunnel.04a.ca"]
-hostHeaderRewrite = "pikvm.tunnel.04a.ca"
-
-[[proxies]]
-name = "auth.t"
-type = "https"
-localIP = "192.168.1.85"
-localPort = 443
-customDomains = ["auth.t.04a.ca"]
-hostHeaderRewrite = "auth.t.04a.ca"
-
-[[proxies]]
-name = "access.t"
-type = "https"
-localIP = "192.168.1.85"
-localPort = 443
-customDomains = ["access.t.04a.ca"]
-hostHeaderRewrite = "access.t.04a.ca"
