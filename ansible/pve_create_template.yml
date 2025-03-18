@@ -1,20 +1,21 @@
 ---
 - name: Create OS cloudinit templates template
-  hosts: game
+  hosts: damage,shadow
   gather_facts: false
+  become: true
   tasks:
     - name: Create Ubuntu template
-      ansible.builtin.script: ./files/create_ubuntu_template.sh
+      ansible.builtin.script: ./files/create_proxmox_template.sh local-big 9404 https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.img ubuntu-2404-cloudinit-template
       register: results_ubuntu
-      become: true
+
     - name: Debug value
       ansible.builtin.debug:
         var: results_ubuntu.stdout
 
     - name: Create Debian template
-      ansible.builtin.script: ./files/create_debian_template.sh
+      ansible.builtin.script: ./files/create_proxmox_template.sh local-big 9002 https://cloud.debian.org/images/cloud/bookworm/latest/debian-12-generic-amd64.raw debian-12-cloudinit-template
       register: results_debian
-      become: true
+
     - name: Debug value
       ansible.builtin.debug:
         var: results_debian.stdout
