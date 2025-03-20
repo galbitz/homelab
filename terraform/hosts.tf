@@ -37,6 +37,11 @@ variable "hosts" {
       ip   = "192.168.1.15"
       mac  = "00:11:32:B5:51:B1"
     }
+    "truenas" = {
+      name = "truenas"
+      ip   = "192.168.1.16"
+      mac  = "BC:24:11:0D:FE:0F"
+    }
     "docker-server" = {
       name = "docker-server"
       ip   = "192.168.1.17"
