@@ -11,6 +11,8 @@
     "ntfy",
     "posix",
     "promtail",
+    "qbittorent",
+    "qbittorrent",
     "rgba",
     "syslogs",
     "varlogs"

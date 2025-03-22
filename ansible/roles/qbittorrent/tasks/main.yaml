@@ -1,0 +1,40 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+- name: Ensuring folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    state: directory
+    mode: u+rwx,g+rwx,o+rxw
+  loop:
+    - "{{ qbittorrent_mount_path }}"
+    - "{{ qbittorrent_dir }}"
+    - "{{ qbittorrent_dir }}/config"
+  become: true
+
+- name: Mount network share
+  ansible.posix.mount:
+    src: "//{{ qbittorrent_mount_server }}/movies"
+    path: "{{ qbittorrent_mount_path }}"
+    fstype: cifs
+    opts: "username={{ qbittorrent_mount_username }},password={{ qbittorrent_mount_password }},file_mode=0777,dir_mode=0777"
+    state: mounted
+  become: true
+
+- name: Copy files
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: u+rwx,g+rwx,o+rxw
+    force: true
+  become: true
+  loop:
+    - src: compose.yaml.j2
+      dest: "{{ qbittorrent_dir }}/compose.yaml"
+
+- name: Docker-compose up
+  community.docker.docker_compose_v2:
+    project_src: "{{ qbittorrent_dir }}"

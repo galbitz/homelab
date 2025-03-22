@@ -1,0 +1,19 @@
+--- 
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+services:
+    qbittorrent:
+        image: lscr.io/linuxserver/qbittorrent:5.0.4
+        container_name: qbittorrent
+        environment:
+        - PUID=1000
+        - PGID=1000
+        - TZ=America/Toronto
+        - WEBUI_PORT=8085
+        volumes:
+        - "{{ qbittorrent_dir }}/config:/config"
+        - "{{ qbittorrent_mount_path }}/downloads:/downloads"
+        ports:
+        - "6881:6881"
+        - "6881:6881/udp"
+        - "8085:8085"
+        restart: always
