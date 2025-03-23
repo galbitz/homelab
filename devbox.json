@@ -3,7 +3,7 @@
     "ansible@latest",
     "ansible-lint@latest",
     "yamllint@latest",
-    "terraform@latest",
+    "terraform@0.12.31",
     "git@latest",
     "go-task@latest",
     "gnutar@latest",
