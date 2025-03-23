@@ -8,18 +8,8 @@
     state: directory
     mode: u+rwx,g+rwx,o+rxw
   loop:
-    - "{{ qbittorrent_mount_path }}"
     - "{{ qbittorrent_dir }}"
     - "{{ qbittorrent_dir }}/config"
-  become: true
-
-- name: Mount network share
-  ansible.posix.mount:
-    src: "//{{ qbittorrent_mount_server }}/movies"
-    path: "{{ qbittorrent_mount_path }}"
-    fstype: cifs
-    opts: "username={{ qbittorrent_mount_username }},password={{ qbittorrent_mount_password }},file_mode=0777,dir_mode=0777"
-    state: mounted
   become: true
 
 - name: Copy files

@@ -1,7 +1,3 @@
 ---
-qbittorrent_mount_server: truenas.04a.ca
-qbittorrent_mount_username: "{{ lookup('ansible.builtin.env', 'TRUENAS_USERNAME') }}"
-qbittorrent_mount_password: "{{ lookup('ansible.builtin.env', 'TRUENAS_PASSWORD') }}"
-
 qbittorrent_mount_path: /mnt/movies
 qbittorrent_dir: "{{ docker_dir }}/qbittorrent"

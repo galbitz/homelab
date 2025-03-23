@@ -2,8 +2,6 @@
 - name: Check parameters
   ansible.builtin.assert:
     that:
-      - file_backup_nas_username
-      - file_backup_nas_password
       - file_backup_mount_dir
       - file_backup_list_of_folders_to_backup | length > 0
     fail_msg: "One or more file_backup variable is not set"

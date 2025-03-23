@@ -1,10 +1,4 @@
 ---
-containers_jellyfin_mountpoint: "/media/jellyfin"
-containers_jellyfin_config_dir: "{{ docker_dir }}/jellyfin/config"
-containers_jellyfin_cache_dir: "{{ docker_dir }}/jellyfin/cache"
-
-containers_homepage_dir: "{{ docker_dir }}/homepage"
-
 containers_insight_dir: "{{ docker_dir }}/insight"
 
 containers_portainer_dir: "{{ docker_dir }}/portainer"

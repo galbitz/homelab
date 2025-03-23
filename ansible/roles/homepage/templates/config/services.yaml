@@ -1,6 +1,9 @@
 ---
 # find icons here: https://github.com/walkxcode/dashboard-icons
 - Hypervisors:
+    - Damage:
+        href: https://damage.04a.ca:8006/
+        icon: proxmox.png
     - Shadow:
         href: https://shadow.home.star4.dev:8006/
         icon: proxmox.png
@@ -47,3 +50,9 @@
     - Syncthing:
         href: http://localhost:8384/
         icon: syncthing.png
+    - TrueNAS:
+        href: https://truenas.04a.ca/
+        icon: truenas.png
+    - Qbittorrent:
+        href: http://192.168.1.17:8085/
+        icon: qbittorrent.png

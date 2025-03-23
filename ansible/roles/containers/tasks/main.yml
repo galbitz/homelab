@@ -13,10 +13,6 @@
     fail_msg: "tf_* variable usually defined in 'group_vars/tf_ansible_vars_file.yml' is missing"
 - name: Cloudflare tunnel
   ansible.builtin.include_tasks: cloudflare-tunnel.yml
-- name: Jellyfin
-  ansible.builtin.include_tasks: jellyfin.yml
-- name: Homepage
-  ansible.builtin.include_tasks: homepage.yml
 - name: Insight Composer stack
   ansible.builtin.include_tasks: insight.yml
 - name: Portainer

@@ -1,0 +1,26 @@
+---
+- name: Required packages
+  ansible.builtin.package:
+    name: cifs-utils
+    state: present
+  become: true
+
+- name: Create local paths
+  ansible.builtin.file:
+    path: "{{ item.local_path }}"
+    owner: root
+    group: root
+    state: directory
+    mode: u+rw,g+rw,o+rw
+  loop: "{{ network_mounts_mounts }}"
+  become: true
+
+- name: Mount network shares
+  ansible.posix.mount:
+    src: "{{ item.network_path }}"
+    path: "{{ item.local_path }}"
+    fstype: cifs
+    opts: "username={{ item.username }},password={{ item.password }},file_mode=0777,dir_mode=0777"
+    state: mounted
+  become: true
+  loop: "{{ network_mounts_mounts }}"

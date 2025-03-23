@@ -12,9 +12,7 @@
       - "/opt/docker/data/quacamole"
       - "/opt/docker/data/uptime-kuma"
       - "/opt/docker/data/beszel/beszel-hub"
-    file_backup_mount_dir: "/mnt/diskstation-proxmox-data"
-    file_backup_nas_username: "{{ lookup('ansible.builtin.env', 'NAS_BACKUP_USERNAME') }}"
-    file_backup_nas_password: "{{ lookup('ansible.builtin.env', 'NAS_BACKUP_PASSWORD') }}"
+    file_backup_mount_dir: "/mnt/backup"
     file_backup_schedule_hour: "1"
     file_backup_schedule_minute: "0"
   roles:
@@ -26,6 +24,7 @@
       become: true
     - docker_shared
     - docker_network
+    - network-mounts
     - containers
     - monitor
     - remote
@@ -36,3 +35,5 @@
     - beszel_hub
     - nut-server-container
     - qbittorrent
+    - jellyfin
+    - homepage
