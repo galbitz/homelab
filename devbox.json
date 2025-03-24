@@ -8,7 +8,7 @@
     "go-task@latest",
     "gnutar@latest",
     "sops@latest",
-    "age@latest",
+    "age@1.2.1",
     "cilium-cli@latest"
   ],
   "shell": {
