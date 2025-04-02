@@ -11,21 +11,30 @@ services:
       - TS_SERVE_CONFIG=/config/beszel-hub.json
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_USERSPACE=false
+      - TS_ENABLE_HEALTH_CHECK=true # Enable healthcheck endpoint: "/healthz"
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234
     volumes:
       - ./beszel-hub/tailscale/state:/var/lib/tailscale
       - ./beszel-hub/tailscale/config:/config
     ports:
       - 38090:8090
-    restart: unless-stopped
+    restart: always
     cap_add:
       - net_admin
       - sys_module
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 10s # Time to wait before starting health checks
   beszel:
     image: henrygd/beszel:0.10.2
     container_name: beszel-hub
     network_mode: service:ts-beszel-hub
     depends_on:
-      - ts-beszel-hub
+      ts-beszel-hub:
+        condition: service_healthy
     volumes:
       - ./beszel-hub/beszel_data:/beszel_data
-    restart: unless-stopped
+    restart: always
