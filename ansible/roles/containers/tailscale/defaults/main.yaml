@@ -1,0 +1,4 @@
+---
+containers_tailscale_oauth_token: "{{ lookup('ansible.builtin.env', 'TAILSCALE_OAUTH_TOKEN') }}"
+
+containers_tailscale_dir: "{{ docker_dir }}/tailscale"

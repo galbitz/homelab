@@ -5,7 +5,7 @@ services:
     container_name: tailscale
     hostname: tailscale-container
     environment:
-      - TS_AUTHKEY={{ tailscale_oauth_token }}
+      - TS_AUTHKEY={{ containers_tailscale_oauth_token }}
       - TS_EXTRA_ARGS=--advertise-tags=tag:container --advertise-exit-node
       # - TS_STATE_DIR=/var/lib/tailscale
       # - TS_USERSPACE=false

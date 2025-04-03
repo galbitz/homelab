@@ -35,7 +35,7 @@
     - containers/uptime-kuma
     - containers/guacamole
     - containers/netboot
-    - tailscale
+    - containers/tailscale
     - frpc_container
     - containers/beszel_hub
     - role: containers/nut-server
