@@ -6,7 +6,7 @@ services:
     container_name: ts-beszel-hub
     hostname: beszel
     environment:
-      - TS_AUTHKEY={{ beszel_hub_tailscale_oauth_token }}
+      - TS_AUTHKEY={{ containers_beszel_hub_tailscale_oauth_token }}
       - TS_EXTRA_ARGS=--advertise-tags=tag:beszel
       - TS_SERVE_CONFIG=/config/beszel-hub.json
       - TS_STATE_DIR=/var/lib/tailscale

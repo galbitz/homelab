@@ -1,2 +1,2 @@
 ---
-docker_base_network_name: "proxy"
+containers_docker_base_network_name: "proxy"

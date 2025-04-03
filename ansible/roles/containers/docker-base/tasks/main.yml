@@ -15,6 +15,6 @@
 # bug. sometimes it needs: pip install requests==2.31 to pin library
 - name: Create shared network [proxy]
   community.docker.docker_network:
-    name: "{{ docker_base_network_name }}"
+    name: "{{ containers_docker_base_network_name }}"
     state: present
     driver: bridge

@@ -22,6 +22,7 @@
     - star4.essentials.hardening
     - star4.essentials.forwardmta
     - role: containers/docker-base
+    - role: containers/traefik
     - network-mounts
     - containers
     - monitor
