@@ -1,22 +1,22 @@
 networks:
-  shared:
+  proxy:
     external: true
 services:
   jellyfin:
     container_name: jellyfin
     image: jellyfin/jellyfin:10.10.6
     volumes:
-      - "{{ jellyfin_config_dir }}:/config"
-      - "{{ jellyfin_cache_dir }}:/cache"
+      - "{{ containers_jellyfin_config_dir }}:/config"
+      - "{{ containers_jellyfin_cache_dir }}:/cache"
       # TODO: Extract to variable
       - "/mnt/music:/music"
       - "/mnt/movies:/movies"
     restart: always
     networks:
-      - shared
+      - proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=shared"
+      - "traefik.docker.network=proxy"
       - "traefik.http.services.jellyfin.loadbalancer.server.port=8096"
       - "traefik.http.services.jellyfin.loadbalancer.server.scheme=http"
       - "traefik.http.routers.jellyfin-http.entrypoints=web"

@@ -7,15 +7,15 @@
     state: directory
     mode: u+rw,g+rw,o+rw
   loop:
-    - "{{ jellyfin_dir }}"
-    - "{{ jellyfin_config_dir }}"
-    - "{{ jellyfin_cache_dir }}"
+    - "{{ containers_jellyfin_dir }}"
+    - "{{ containers_jellyfin_config_dir }}"
+    - "{{ containers_jellyfin_cache_dir }}"
   become: true
 
 - name: Copy docker compose for jellyfin
   ansible.builtin.template:
     src: compose.yaml.j2
-    dest: "{{ jellyfin_dir }}/compose.yaml"
+    dest: "{{ containers_jellyfin_dir }}/compose.yaml"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     mode: u+rw,g+rw,o+rw
@@ -24,4 +24,4 @@
 
 - name: Deploy Docker Compose stack
   community.docker.docker_compose_v2:
-    project_src: "{{ jellyfin_dir }}"
+    project_src: "{{ containers_jellyfin_dir }}"

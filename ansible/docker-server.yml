@@ -40,5 +40,5 @@
     - containers/beszel_hub
     - role: containers/nut-server
     - qbittorrent
-    - jellyfin
+    - role: containers/jellyfin
     - role: containers/homepage

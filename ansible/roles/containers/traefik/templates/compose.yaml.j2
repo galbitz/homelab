@@ -3,8 +3,6 @@
 networks:
   proxy:
     external: true
-  shared:
-    external: true
 services:
   traefik:
     image: traefik:v3.3.4
@@ -21,7 +19,6 @@ services:
       - CLOUDFLARE_PROPAGATION_TIMEOUT=600
       - CLOUDFLARE_TTL=Auto
     networks:
-      - shared
       - proxy
     restart: always
     labels:
