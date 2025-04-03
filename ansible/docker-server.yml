@@ -28,6 +28,7 @@
     - role: containers/authelia
     - role: containers/portainer
     - role: containers/cloudflare-dns
+    - role: containers/cloudflare-tunnel
     - network-mounts
     - containers
     - monitor
