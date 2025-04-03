@@ -1,9 +1,0 @@
----
-- name: Set up cloudflare tunnel
-  community.docker.docker_container:
-    name: cloudflare-tunnel
-    image: cloudflare/cloudflared:latest
-    pull: true
-    state: started
-    restart_policy: always
-    command: "tunnel --no-autoupdate --loglevel error run --token {{ cloudflare_tunnel_token }}"

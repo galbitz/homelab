@@ -20,7 +20,7 @@
 - name: Set up container to run cron
   community.docker.docker_container:
     name: cloudflare-dns
-    image: alpine
+    image: alpine:3.21.3
     pull: true
     state: started
     restart_policy: always

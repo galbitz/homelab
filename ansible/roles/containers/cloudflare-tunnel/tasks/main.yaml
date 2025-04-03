@@ -1,0 +1,16 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+- name: Check pre req
+  ansible.builtin.assert:
+    that:
+      - cloudflare_tunnel_token is defined
+    fail_msg: "variable is missing. Define it in global vars"
+
+- name: Set up cloudflare tunnel
+  community.docker.docker_container:
+    name: cloudflare-tunnel
+    image: cloudflare/cloudflared:2025.4.0
+    pull: true
+    state: started
+    restart_policy: always
+    command: "tunnel --no-autoupdate --loglevel error run --token {{ cloudflare_tunnel_token }}"
