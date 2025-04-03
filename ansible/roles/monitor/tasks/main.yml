@@ -1,3 +1,0 @@
----
-- name: Uptime-kuma
-  ansible.builtin.include_tasks: uptime-kuma.yml

@@ -32,7 +32,7 @@
     - role: containers/grafana-stack
     - network-mounts
     - file_backup
-    - monitor
+    - containers/uptime-kuma
     - remote
     - netboot
     - tailscale

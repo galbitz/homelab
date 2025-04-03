@@ -1,4 +1,11 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+- name: Check pre req
+  ansible.builtin.assert:
+    that:
+      - docker_dir is defined
+    fail_msg: "variable is missing. Define it in global vars"
+
 - name: Make sure that the docker folders exist
   ansible.builtin.file:
     path: "{{ item }}"
@@ -8,14 +15,14 @@
     mode: 0777
   become: true
   loop:
-    - "{{ monitor_uptime_kuma_dir }}"
+    - "{{ containers_uptime_kuma_dir }}"
 
 - name: Create uptime-kuma container
   community.docker.docker_container:
     name: uptime-kuma
     image: louislam/uptime-kuma:1.23.16
     volumes:
-      - "{{ monitor_uptime_kuma_dir }}:/app/data"
+      - "{{ containers_uptime_kuma_dir }}:/app/data"
     ports:
       - 3001:3001
     state: started
