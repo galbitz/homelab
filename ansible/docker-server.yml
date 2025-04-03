@@ -19,10 +19,10 @@
     file_backup_schedule_hour: "1"
     file_backup_schedule_minute: "0"
   roles:
-    - star4.essentials.timezone
-    - star4.essentials.autoupdate
-    - star4.essentials.hardening
-    - star4.essentials.forwardmta
+    - role: star4.essentials.timezone
+    - role: star4.essentials.autoupdate
+    - role: star4.essentials.hardening
+    - role: star4.essentials.forwardmta
     - role: containers/docker-base
     - role: containers/traefik
     - role: containers/authelia
@@ -30,14 +30,14 @@
     - role: containers/cloudflare-dns
     - role: containers/cloudflare-tunnel
     - role: containers/grafana-stack
-    - network-mounts
-    - file_backup
-    - containers/uptime-kuma
-    - containers/guacamole
-    - containers/netboot
-    - containers/tailscale
-    - containers/frp-client
-    - containers/beszel_hub
+    - role: network-mounts
+    - role: file_backup
+    - role: containers/uptime-kuma
+    - role: containers/guacamole
+    - role: containers/netboot
+    - role: containers/tailscale
+    - role: containers/frp-client
+    - role: containers/beszel_hub
     - role: containers/nut-server
     - role: containers/qbittorrent
     - role: containers/jellyfin
