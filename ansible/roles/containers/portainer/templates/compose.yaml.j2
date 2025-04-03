@@ -1,6 +1,6 @@
 ---
 networks:
-  shared:
+  proxy:
     external: true
 services:
   app:
@@ -11,10 +11,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
     networks:
-      - shared
+      - proxy
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=shared"
+      - "traefik.docker.network=proxy"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
       - "traefik.http.services.portainer.loadbalancer.server.scheme=http"
       - "traefik.http.routers.portainer-http.entrypoints=web"

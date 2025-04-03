@@ -26,7 +26,7 @@ services:
     restart: always
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=shared"
+      - "traefik.docker.network=proxy"
       - "traefik.http.services.traefik.loadbalancer.server.port=8080"
       - "traefik.http.services.traefik.loadbalancer.server.scheme=http"
       - "traefik.http.routers.traefik-http.entrypoints=web"
@@ -38,7 +38,7 @@ services:
 #    restart: always
 #    labels:
 #      - "traefik.enable=true"
-#      - "traefik.docker.network=shared"
+#      - "traefik.docker.network=proxy"
 #      - "traefik.http.routers.whoami-http.entrypoints=web"
 #      - "traefik.http.routers.whoami-http.priority=1"
 #      - "traefik.http.routers.whoami-http.rule=HostRegexp(`{host:.+}`)"
@@ -47,4 +47,4 @@ services:
 #      - "traefik.http.routers.whoami-https.priority=1"
 #      - "traefik.http.routers.whoami-https.rule=HostRegexp(`{host:.+}`)"
 #    networks:
-#      - shared
+#      - proxy

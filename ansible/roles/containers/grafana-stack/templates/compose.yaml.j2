@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
 networks:
-  shared:
+  proxy:
     external: true
   private:
 services:
@@ -17,7 +17,7 @@ services:
     restart: always
     command: -config.file=/etc/loki/loki-config.yml
     networks:
-      - shared
+      - proxy
   promtail:
     container_name: promtail
     image: grafana/promtail:3.3.0
@@ -31,7 +31,7 @@ services:
     restart: always
     command: -config.file=/etc/promtail/promtail-config.yml
     networks:
-      - shared
+      - proxy
   grafana:
     container_name: grafana
     image: grafana/grafana:11.3.1
@@ -43,7 +43,7 @@ services:
       - "3000:3000"
     restart: always
     networks:
-      - shared
+      - proxy
     environment:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
       - GF_AUTH_ANONYMOUS_ENABLED=true
@@ -52,7 +52,7 @@ services:
       - GF_USERS_ALLOW_SIGN_UP=false
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=shared"
+      - "traefik.docker.network=proxy"
       - "traefik.http.services.grafana.loadbalancer.server.port=3000"
       - "traefik.http.services.grafana.loadbalancer.server.scheme=http"
       - "traefik.http.routers.grafana-http.entrypoints=web"
@@ -65,7 +65,7 @@ services:
       - promtail
     image: balabit/syslog-ng:4.8.0
     networks:
-      - shared
+      - proxy
     ports:
       - protocol: udp
         published: 9514
@@ -81,7 +81,7 @@ services:
     container_name: influxdb
     image: influxdb:2.7.10
     networks:
-      - shared
+      - proxy
     ports:
       - "8086:8086"
     volumes:
@@ -100,7 +100,7 @@ services:
     container_name: cadvisor
     image: gcr.io/cadvisor/cadvisor:v0.51.0
     networks:
-      - shared
+      - proxy
     # ports:
     #   - "8081:8080"
     restart: always
@@ -120,7 +120,7 @@ services:
     container_name: prometheus
     image: prom/prometheus:v3.0.1
     networks:
-      - shared
+      - proxy
     ports:
       - published: 9090
         target: 9090
