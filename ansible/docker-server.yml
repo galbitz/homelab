@@ -29,6 +29,7 @@
     - role: containers/portainer
     - role: containers/cloudflare-dns
     - role: containers/cloudflare-tunnel
+    - role: containers/grafana-stack
     - network-mounts
     - containers
     - monitor

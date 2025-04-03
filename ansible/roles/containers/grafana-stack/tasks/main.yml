@@ -1,6 +1,12 @@
 ---
 # Idea from: https://docs.technotim.live/posts/grafana-loki/
 # Docker parser: https://ruanbekker.medium.com/logging-with-docker-promtail-and-grafana-loki-d920fd790ca8
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+- name: Check pre req
+  ansible.builtin.assert:
+    that:
+      - docker_dir is defined
+    fail_msg: "variable is missing. Define it in global vars"
 
 - name: Make sure that insight folders exist
   ansible.builtin.file:
@@ -21,8 +27,8 @@
 
 - name: Copy docker compose for insight
   ansible.builtin.template:
-    src: insight-compose.yml.j2
-    dest: "{{ containers_insight_dir }}/docker-compose.yml"
+    src: compose.yaml.j2
+    dest: "{{ containers_insight_dir }}/compose.yaml"
     owner: root
     group: root
     mode: u+rwx,g+rwx,o+rxw
