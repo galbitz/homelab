@@ -15,5 +15,3 @@
   ansible.builtin.include_tasks: cloudflare-tunnel.yml
 - name: Insight Composer stack
   ansible.builtin.include_tasks: insight.yml
-- name: Cloudflare
-  ansible.builtin.include_tasks: cloudflare-dns-update.yml

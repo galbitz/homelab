@@ -27,6 +27,7 @@
     - role: containers/traefik
     - role: containers/authelia
     - role: containers/portainer
+    - role: containers/cloudflare-dns
     - network-mounts
     - containers
     - monitor
