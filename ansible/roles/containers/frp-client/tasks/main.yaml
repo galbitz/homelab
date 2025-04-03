@@ -1,0 +1,36 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+- name: Check pre req
+  ansible.builtin.assert:
+    that:
+      - docker_dir is defined
+    fail_msg: "variable is missing. Define it in global vars"
+
+- name: Create docker folders
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: u+rwx,g+rwx,o+rxw
+  loop:
+    - "{{ containers_frp_client_dir }}"
+    - "{{ containers_frp_client_dir }}/config"
+
+- name: Copy files
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u+rwx,g+rwx,o+rxw
+    force: true
+  loop:
+    - src: compose.yaml.j2
+      dest: "{{ containers_frp_client_dir }}/compose.yaml"
+    - src: frpc.toml.j2
+      dest: "{{ containers_frp_client_dir }}/config/frpc.toml"
+
+- name: Docker-compose up
+  community.docker.docker_compose_v2:
+    project_src: "{{ containers_frp_client_dir }}"

@@ -1,0 +1,2 @@
+---
+containers_frp_client_dir: "{{ docker_dir }}/frpc"

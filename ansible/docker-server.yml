@@ -36,7 +36,7 @@
     - containers/guacamole
     - containers/netboot
     - containers/tailscale
-    - frpc_container
+    - containers/frp-client
     - containers/beszel_hub
     - role: containers/nut-server
     - role: containers/qbittorrent
