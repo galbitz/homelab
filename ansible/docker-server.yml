@@ -30,7 +30,7 @@
     - netboot
     - tailscale
     - frpc_container
-    - beszel_hub
+    - containers/beszel_hub
     - nut-server-container
     - qbittorrent
     - jellyfin

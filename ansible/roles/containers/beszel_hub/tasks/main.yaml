@@ -1,4 +1,11 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+- name: Check pre req
+  ansible.builtin.assert:
+    that:
+      - docker_dir is defined
+    fail_msg: "variable is missing. Define it in global vars"
+
 - name: Make sure that the docker folders exist
   ansible.builtin.file:
     path: "{{ item }}"
