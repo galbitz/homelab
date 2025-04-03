@@ -15,7 +15,7 @@
       - "/opt/docker/data/quacamole"
       - "/opt/docker/data/uptime-kuma"
       - "/opt/docker/data/beszel/beszel-hub"
-    file_backup_mount_dir: "/mnt/backup"
+    file_backup_destination: "/mnt/backup"
     file_backup_schedule_hour: "1"
     file_backup_schedule_minute: "0"
   roles:
@@ -31,10 +31,9 @@
     - role: containers/cloudflare-tunnel
     - role: containers/grafana-stack
     - network-mounts
-    - containers
+    - file_backup
     - monitor
     - remote
-    - file_backup
     - netboot
     - tailscale
     - frpc_container

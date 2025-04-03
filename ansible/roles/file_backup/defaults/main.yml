@@ -1,6 +1,6 @@
 ---
 file_backup_dir: "/opt/file_backup"
-file_backup_mount_dir:
+file_backup_destination:
 
 file_backup_list_of_folders_to_backup: []
 

@@ -39,7 +39,7 @@
 - name: Create cron task
   ansible.builtin.cron:
     name: "backup to nas"
-    job: "/bin/bash -c '{{ file_backup_dir }}/backup.sh {{ file_backup_dir }}/folderlist.txt {{ file_backup_mount_dir }}/{{ ansible_hostname }} 1>/dev/null 2> >(exec /usr/bin/logger -t crontest -p user.error)'"
+    job: "/bin/bash -c '{{ file_backup_dir }}/backup.sh {{ file_backup_dir }}/folderlist.txt {{ file_backup_destination }}/{{ ansible_hostname }} 1>/dev/null 2> >(exec /usr/bin/logger -t crontest -p user.error)'"
     minute: "{{ file_backup_schedule_minute }}"
     hour: "{{ file_backup_schedule_hour }}"
     day: "{{ file_backup_schedule_day }}"
