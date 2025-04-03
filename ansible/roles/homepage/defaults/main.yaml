@@ -1,2 +1,0 @@
----
-homepage_dir: "{{ docker_dir }}/homepage"

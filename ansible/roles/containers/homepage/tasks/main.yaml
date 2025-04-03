@@ -1,0 +1,50 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+- name: Check pre req
+  ansible.builtin.assert:
+    that:
+      - docker_dir is defined
+    fail_msg: "variable is missing. Define it in global vars"
+
+- name: Make sure that the docker folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: u+rw,g+rw,o+rw
+  loop:
+    - "{{ containers_homepage_dir }}"
+    - "{{ containers_homepage_dir }}/config"
+
+- name: Copy files
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u+rw,g+rw,o+rw
+    force: true
+  loop:
+    - src: "compose.yaml"
+      dest: "{{ containers_homepage_dir }}/docker-compose.yml"
+    - src: "config/bookmarks.yaml"
+      dest: "{{ containers_homepage_dir }}/config/bookmarks.yaml"
+    - src: "config/custom.css"
+      dest: "{{ containers_homepage_dir }}/config/custom.css"
+    - src: "config/custom.js"
+      dest: "{{ containers_homepage_dir }}/config/custom.js"
+    - src: "config/docker.yaml"
+      dest: "{{ containers_homepage_dir }}/config/docker.yaml"
+    - src: "config/kubernetes.yaml"
+      dest: "{{ containers_homepage_dir }}/config/kubernetes.yaml"
+    - src: "config/services.yaml"
+      dest: "{{ containers_homepage_dir }}/config/services.yaml"
+    - src: "config/settings.yaml"
+      dest: "{{ containers_homepage_dir }}/config/settings.yaml"
+    - src: "config/widgets.yaml.j2"
+      dest: "{{ containers_homepage_dir }}/config/widgets.yaml"
+
+- name: Deploy docker compose stack
+  community.docker.docker_compose_v2:
+    project_src: "{{ containers_homepage_dir }}"
