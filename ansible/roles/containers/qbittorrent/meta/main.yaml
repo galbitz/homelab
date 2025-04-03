@@ -1,4 +1,3 @@
 ---
 dependencies:
-  - role: network-mounts
   - role: containers/docker-base

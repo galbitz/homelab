@@ -1,5 +1,12 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Check pre req
+  ansible.builtin.assert:
+    that:
+      - docker_dir is defined
+    fail_msg: "variable is missing. Define it in global vars"
+
 - name: Ensuring folders exist
   ansible.builtin.file:
     path: "{{ item }}"
@@ -8,8 +15,8 @@
     state: directory
     mode: u+rwx,g+rwx,o+rxw
   loop:
-    - "{{ qbittorrent_dir }}"
-    - "{{ qbittorrent_dir }}/config"
+    - "{{ containers_qbittorrent_dir }}"
+    - "{{ containers_qbittorrent_dir }}/config"
   become: true
 
 - name: Copy files
@@ -23,8 +30,8 @@
   become: true
   loop:
     - src: compose.yaml.j2
-      dest: "{{ qbittorrent_dir }}/compose.yaml"
+      dest: "{{ containers_qbittorrent_dir }}/compose.yaml"
 
 - name: Docker-compose up
   community.docker.docker_compose_v2:
-    project_src: "{{ qbittorrent_dir }}"
+    project_src: "{{ containers_qbittorrent_dir }}"

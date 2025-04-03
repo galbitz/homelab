@@ -1,3 +1,0 @@
----
-qbittorrent_mount_path: /mnt/movies
-qbittorrent_dir: "{{ docker_dir }}/qbittorrent"

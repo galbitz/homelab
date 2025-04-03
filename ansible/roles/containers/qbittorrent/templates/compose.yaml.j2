@@ -10,8 +10,8 @@ services:
         - TZ=America/Toronto
         - WEBUI_PORT=8085
         volumes:
-        - "{{ qbittorrent_dir }}/config:/config"
-        - "{{ qbittorrent_mount_path }}/downloads:/downloads"
+        - "{{ containers_qbittorrent_dir }}/config:/config"
+        - "{{ containers_qbittorrent_file_path }}/downloads:/downloads"
         ports:
         - "6881:6881"
         - "6881:6881/udp"

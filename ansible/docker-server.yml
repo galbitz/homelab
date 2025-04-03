@@ -39,6 +39,6 @@
     - frpc_container
     - containers/beszel_hub
     - role: containers/nut-server
-    - qbittorrent
+    - role: containers/qbittorrent
     - role: containers/jellyfin
     - role: containers/homepage
