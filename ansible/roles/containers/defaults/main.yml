@@ -1,4 +1,2 @@
 ---
 containers_insight_dir: "{{ docker_dir }}/insight"
-
-containers_portainer_dir: "{{ docker_dir }}/portainer"

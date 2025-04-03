@@ -26,6 +26,7 @@
     - role: containers/docker-base
     - role: containers/traefik
     - role: containers/authelia
+    - role: containers/portainer
     - network-mounts
     - containers
     - monitor
