@@ -1,2 +1,0 @@
----
-nut_server_container_dir: "{{ docker_dir }}/nut"

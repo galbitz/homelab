@@ -38,7 +38,7 @@
     - tailscale
     - frpc_container
     - containers/beszel_hub
-    - nut-server-container
+    - role: containers/nut-server
     - qbittorrent
     - jellyfin
     - role: containers/homepage

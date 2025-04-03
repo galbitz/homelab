@@ -1,7 +1,7 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
 networks:
-  shared:
+  proxy:
     external: true
 services:
   nut-server:
@@ -20,7 +20,7 @@ services:
     devices:
       - "/dev/bus/usb/002/002:/dev/bus/usb/002/002"
     networks:
-      - shared
+      - proxy 
   nut:
     container_name: nut
     image: ghcr.io/superioone/nut_webgui:0.4
@@ -29,10 +29,10 @@ services:
       - UPSD_USER=CP
       - UPSD_ADDR=192.168.1.17
     networks:
-      - shared
+      - proxy 
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=shared"
+      - "traefik.docker.network=proxy"
       - "traefik.http.services.nut.loadbalancer.server.port=9000"
       - "traefik.http.services.nut.loadbalancer.server.scheme=http"
       - "traefik.http.routers.nut-http.entrypoints=web"
