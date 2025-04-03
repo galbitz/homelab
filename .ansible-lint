@@ -1,0 +1,5 @@
+---
+parseable: true
+skip_list:
+  - "role-name[path]"
+  - "var-naming[no-role-prefix]"

@@ -15,8 +15,7 @@
     - star4.essentials.autoupdate
     - star4.essentials.hardening
     - star4.essentials.forwardmta
-    - geerlingguy.docker
-    - docker_shared
+    - containers/docker-base
     - valheim
     - watchtower
     - file_backup

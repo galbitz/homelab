@@ -1,6 +1,8 @@
 ---
 # yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
 networks:
+  proxy:
+    external: true
   shared:
     external: true
 services:
@@ -20,6 +22,7 @@ services:
       - CLOUDFLARE_TTL=Auto
     networks:
       - shared
+      - proxy
     restart: always
     labels:
       - "traefik.enable=true"

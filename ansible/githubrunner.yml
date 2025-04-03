@@ -6,7 +6,5 @@
     - star4.essentials.autoupdate
     - star4.essentials.hardening
     - star4.essentials.forwardmta
-    - role: geerlingguy.docker
-      become: true
-    - docker_shared
+    - containers/docker-base
     - logclient

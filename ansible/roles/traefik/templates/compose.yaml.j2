@@ -15,7 +15,7 @@ services:
       - ./config:/etc/traefik
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - shared
+      - proxy
     environment:
       - CF_DNS_API_TOKEN={{ cloudflare_traefik_dns_token }}
       - CLOUDFLARE_PROPAGATION_TIMEOUT=600
