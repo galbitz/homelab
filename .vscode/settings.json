@@ -1,5 +1,7 @@
 {
   "cSpell.words": [
+    "authelia",
+    "beszel",
     "datasource",
     "datasources",
     "gabor",
@@ -15,6 +17,9 @@
     "qbittorrent",
     "rgba",
     "syslogs",
-    "varlogs"
+    "tailscale",
+    "valheim",
+    "varlogs",
+    "websecure"
   ]
 }

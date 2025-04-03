@@ -6,6 +6,3 @@ containers_portainer_dir: "{{ docker_dir }}/portainer"
 containers_traefik_dir: "{{ docker_dir }}/traefik"
 containers_traefik_main_domain: "home.04a.ca"
 containers_traefik_tunnel_domain: "tunnel.04a.ca"
-containers_main_domain: "04a.ca"
-
-containers_authelia_dir: "{{ docker_dir }}/authelia"

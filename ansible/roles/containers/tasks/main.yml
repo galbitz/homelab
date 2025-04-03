@@ -17,7 +17,5 @@
   ansible.builtin.include_tasks: insight.yml
 - name: Portainer
   ansible.builtin.include_tasks: portainer.yml
-- name: Authelia
-  ansible.builtin.include_tasks: authelia.yml
 - name: Cloudflare
   ansible.builtin.include_tasks: cloudflare-dns-update.yml

@@ -4,6 +4,8 @@
   hosts: docker-server
   vars:
     docker_dir: /opt/docker/data
+    containers_traefik_main_domain: "home.04a.ca"
+    containers_traefik_tunnel_domain: "tunnel.04a.ca"
     file_backup_list_of_folders_to_backup:
       - "/opt/docker/data/insight/grafana"
       - "/opt/docker/data/insight/influx/data"
@@ -23,6 +25,7 @@
     - star4.essentials.forwardmta
     - role: containers/docker-base
     - role: containers/traefik
+    - role: containers/authelia
     - network-mounts
     - containers
     - monitor
