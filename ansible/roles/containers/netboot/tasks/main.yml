@@ -1,0 +1,36 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+- name: Check pre req
+  ansible.builtin.assert:
+    that:
+      - docker_dir is defined
+    fail_msg: "variable is missing. Define it in global vars"
+
+- name: Make sure that the docker folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    state: directory
+    mode: 0777
+  loop:
+    - "{{ containers_netboot_dir }}"
+    - "{{ containers_netboot_dir }}/assets"
+    - "{{ containers_netboot_dir }}/config"
+  become: true
+
+- name: Copy docker compose
+  ansible.builtin.template:
+    src: compose.yaml.j2
+    dest: "{{ containers_netboot_dir }}/compose.yaml"
+    owner: root
+    group: root
+    mode: u+rwx,g+rwx,o+rxw
+    force: true
+  become: true
+
+- name: Docker-compose up
+  ansible.builtin.command:
+    cmd: "docker-compose up -d"
+    chdir: "{{ containers_netboot_dir }}"
+  changed_when: false

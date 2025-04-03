@@ -34,7 +34,7 @@
     - file_backup
     - containers/uptime-kuma
     - containers/guacamole
-    - netboot
+    - containers/netboot
     - tailscale
     - frpc_container
     - containers/beszel_hub
