@@ -33,7 +33,7 @@
     - network-mounts
     - file_backup
     - containers/uptime-kuma
-    - remote
+    - containers/guacamole
     - netboot
     - tailscale
     - frpc_container
