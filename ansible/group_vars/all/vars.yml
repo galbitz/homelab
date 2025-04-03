@@ -2,17 +2,6 @@
 ansible_ssh_common_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
 ansible_user: sysadmin
 
-docker_users:
-  - gabor
-  - sysadmin
-
-docker_dir: /opt/docker/data
-
-docker_daemon_options:
-  log-opts:
-    max-size: "30m"
-    max-file: "3"
-
 homelab_email: "{{ lookup('ansible.builtin.env', 'HOMELAB_EMAIL') }}"
 
 security_notification_email: "{{ homelab_email }}"

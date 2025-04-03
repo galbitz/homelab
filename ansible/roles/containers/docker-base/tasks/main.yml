@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
 - name: Check pre req
   ansible.builtin.assert:
     that:
@@ -12,6 +13,8 @@
   ansible.builtin.include_tasks: persistent-storage.yml
 
 # bug. sometimes it needs: pip install requests==2.31 to pin library
-- name: Create shared network [shared]
+- name: Create shared network [proxy]
   community.docker.docker_network:
-    name: shared
+    name: "{{ docker_base_network_name }}"
+    state: present
+    driver: bridge

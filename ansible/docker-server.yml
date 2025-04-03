@@ -3,6 +3,7 @@
 - name: Configure docker-server
   hosts: docker-server
   vars:
+    docker_dir: /opt/docker/data
     file_backup_list_of_folders_to_backup:
       - "/opt/docker/data/insight/grafana"
       - "/opt/docker/data/insight/influx/data"
@@ -20,10 +21,7 @@
     - star4.essentials.autoupdate
     - star4.essentials.hardening
     - star4.essentials.forwardmta
-    - role: geerlingguy.docker
-      become: true
-    - docker_shared
-    - docker_network
+    - role: containers/docker-base
     - network-mounts
     - containers
     - monitor

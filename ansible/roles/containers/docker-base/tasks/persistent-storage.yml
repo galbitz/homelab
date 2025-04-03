@@ -5,7 +5,7 @@
     owner: root
     group: root
     state: directory
-    mode: u+rwx,g+rwx,o+rxw
+    mode: u+rwx,g+rwx,o+rwx
   loop:
     - "{{ docker_dir }}"
   become: true
