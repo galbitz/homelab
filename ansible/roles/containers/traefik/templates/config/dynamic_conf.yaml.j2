@@ -15,10 +15,6 @@ http:
       loadbalancer:
         servers:
           - url: http://192.168.1.40:8123/
-    guac:
-      loadbalancer:
-        servers:
-          - url: http://192.168.1.65:8080/
     uptime:
       loadbalancer:
         servers:
@@ -54,17 +50,6 @@ http:
       service: uptime
       entrypoints: websecure
       tls: {}
-    guac:
-      rule: Host(`guacamole.{{ containers_traefik_main_domain }}`)
-      service: guac
-      entrypoints: web
-    guac-ssl:
-      rule: Host(`guacamole.{{ containers_traefik_main_domain }}`) || Host(`access.{{ containers_traefik_tunnel_domain }}`)
-      service: guac
-      entrypoints: websecure
-      tls: {}
-#      middlewares:
-#        - authelia      
     pihole:
       rule: Host(`pihole.{{ containers_traefik_main_domain }}`)
       service: pihole

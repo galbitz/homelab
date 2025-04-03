@@ -14,6 +14,8 @@ services:
     volumes:
       - ./config:/etc/traefik
       - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     environment:
       - CF_DNS_API_TOKEN={{ cloudflare_traefik_dns_token }}
       - CLOUDFLARE_PROPAGATION_TIMEOUT=600

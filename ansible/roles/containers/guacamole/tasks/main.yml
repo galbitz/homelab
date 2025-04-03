@@ -12,7 +12,7 @@
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
     state: directory
-    mode: 0777
+    mode: a+rw,g+rw,o+rw
   loop:
     - "{{ containers_guacamole_dir }}"
 
