@@ -7,7 +7,7 @@ networks:
 services:
   loki:
     container_name: loki
-    image: grafana/loki:3.3.0
+    image: grafana/loki:3.4.3
     volumes:
       - "{{ containers_insight_dir }}/loki:/etc/loki"
       - "{{ containers_insight_dir }}/loki/data:/etc/loki/data"
