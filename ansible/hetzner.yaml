@@ -7,12 +7,13 @@
       become: true
       ansible.builtin.apt:
         update_cache: true
+  vars:
+    docker_dir: /opt/docker/data
   roles:
     - star4.essentials.timezone
     - star4.essentials.autoupdate
     - star4.essentials.hardening
     - star4.essentials.forwardmta
-    - role: geerlingguy.docker
-      become: true
+    - containers/docker-base
     - traefik
-    - guacamole
+    - containers/guacamole
