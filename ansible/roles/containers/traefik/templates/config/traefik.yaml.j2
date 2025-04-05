@@ -1,4 +1,5 @@
 ---
+# yaml-language-server: $schema=https://json.schemastore.org/traefik-v3.json
 global:
   checkNewVersion: false
   sendAnonymousUsage: false
@@ -29,19 +30,19 @@ entryPoints:
     address: :443
 
 certificatesResolvers:
-#  staging:
-#    acme:
-#      email: {{ homelab_email }}
-#      storage: /etc/traefik/acme.json
-#      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
-#      dnsChallenge:
-#        provider: cloudflare
-#        resolvers:
-#          - "1.1.1.1:53"
-#          - "8.8.8.8:53"
+  #  staging:
+  #    acme:
+  #      email: {{ homelab_email }}
+  #      storage: /etc/traefik/acme.json
+  #      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+  #      dnsChallenge:
+  #        provider: cloudflare
+  #        resolvers:
+  #          - "1.1.1.1:53"
+  #          - "8.8.8.8:53"
   production:
     acme:
-      email: {{ homelab_email }}
+      email: "{{ homelab_email }}"
       storage: /etc/traefik/acme.json
       caServer: "https://acme-v02.api.letsencrypt.org/directory"
       dnsChallenge:
@@ -74,7 +75,19 @@ providers:
   docker:
     # -- (Optional) Enable this, if you want to expose all containers automatically
     exposedByDefault: false
-    defaultRule: 'Host(`{{ "{{" }} .ContainerName {{ "}}" }}.{{ containers_traefik_main_domain }}`)'
+    defaultRule: 'HostRegexp(`^{{ "{{" }} .ContainerName {{ "}}" }}\..+`)'
   file:
-    filename: /etc/traefik/dynamic_conf.yaml
+    directory: /etc/traefik/extra
     watch: true
+
+tls:
+  stores:
+    default:
+      defaultGeneratedCert:
+        resolver: "production"
+        domain:
+          main: "*.{{ containers_traefik_main_domain }}"
+          {% if containers_traefik_tunnel_domain|length > 0 %}
+sans:
+            - "*.{{ containers_traefik_tunnel_domain }}"
+          {% endif %}

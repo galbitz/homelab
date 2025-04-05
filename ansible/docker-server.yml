@@ -25,6 +25,8 @@
     - role: star4.essentials.forwardmta
     - role: containers/docker-base
     - role: containers/traefik
+      vars:
+        containers_traefik_dynamic_conf: templates/config/dynamic_conf.yaml.j2 # noqa: var-naming[no-role-prefix]
     - role: containers/authelia
     - role: containers/portainer
     - role: containers/cloudflare-dns

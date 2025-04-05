@@ -9,11 +9,12 @@
         update_cache: true
   vars:
     docker_dir: /opt/docker/data
+    containers_traefik_main_domain: "rd.04a.ca"
   roles:
     - star4.essentials.timezone
     - star4.essentials.autoupdate
     - star4.essentials.hardening
     - star4.essentials.forwardmta
     - containers/docker-base
-    - traefik
+    - role: containers/traefik
     - containers/guacamole

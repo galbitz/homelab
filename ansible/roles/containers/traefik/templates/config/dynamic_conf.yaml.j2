@@ -1,14 +1,4 @@
 ---
-tls:
-  stores:
-    default:
-      defaultGeneratedCert:
-        resolver: "production"
-        domain:
-          main: "*.{{ containers_traefik_main_domain }}"
-          sans:
-            - "*.{{ containers_traefik_tunnel_domain }}"
-
 http:
   services:
     ha:
@@ -19,55 +9,26 @@ http:
       loadbalancer:
         servers:
           - url: http://192.168.1.17:3001/
-    pihole:
-      loadbalancer:
-        servers:
-          - url: http://192.168.1.4/
-    pikvm:
-      loadbalancer:
-        servers:
-          - url: https://192.168.1.19/
   middlewares:
     authelia:
       forwardAuth:
         address: "http://authelia:9091/api/verify?rd=https://auth.{{ containers_traefik_tunnel_domain }}"
   routers:
     ha:
-      rule: Host(`ha.{{ containers_traefik_main_domain }}`)
+      rule: HostRegexp(`ha\..+`)
       service: ha
       entrypoints: web
     ha-ssl:
-      rule: Host(`ha.{{ containers_traefik_main_domain }}`)
+      rule: HostRegexp(`ha\..+`)
       service: ha
       entrypoints: websecure
       tls: {}
     uptime:
-      rule: Host(`uptime.{{ containers_traefik_main_domain }}`)
+      rule: HostRegexp(`uptime\..+`)
       service: uptime
       entrypoints: web
     uptime-ssl:
-      rule: Host(`uptime.{{ containers_traefik_main_domain }}`)
+      rule: HostRegexp(`uptime\..+`)
       service: uptime
       entrypoints: websecure
       tls: {}
-    pihole:
-      rule: Host(`pihole.{{ containers_traefik_main_domain }}`)
-      service: pihole
-      entrypoints: web
-    pihole-ssl:
-      rule: Host(`pihole.{{ containers_traefik_main_domain }}`)
-      service: pihole
-      entrypoints: websecure
-      tls: {}
-    pikvm:
-      rule: Host(`pikvm.{{ containers_traefik_main_domain }}`) || Host(`pikvm.{{ containers_traefik_tunnel_domain }}`)
-      service: pikvm
-      entrypoints: web
-    pikvm-ssl:
-      rule: Host(`pikvm.{{ containers_traefik_main_domain }}`) || Host(`pikvm.{{ containers_traefik_tunnel_domain }}`)
-      service: pikvm
-      entrypoints: websecure
-      tls: {}
-      middlewares:
-        - authelia
-      

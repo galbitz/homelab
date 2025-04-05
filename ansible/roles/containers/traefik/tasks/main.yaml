@@ -4,6 +4,7 @@
   ansible.builtin.assert:
     that:
       - docker_dir is defined
+      - containers_traefik_main_domain is defined
     fail_msg: "variable is missing. Define it in global vars"
 
 - name: Traefik - Make sure that folders exist
@@ -16,8 +17,9 @@
   loop:
     - "{{ containers_traefik_dir }}"
     - "{{ containers_traefik_dir }}/config"
+    - "{{ containers_traefik_dir }}/config/extra"
 
-- name: Traefik - Copy docker compose file
+- name: Traefik - Copy config files
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -30,8 +32,16 @@
       dest: "{{ containers_traefik_dir }}/compose.yaml"
     - src: config/traefik.yaml.j2
       dest: "{{ containers_traefik_dir }}/config/traefik.yaml"
-    - src: config/dynamic_conf.yaml.j2
-      dest: "{{ containers_traefik_dir }}/config/dynamic_conf.yaml"
+
+- name: Traefik - Copy optional file
+  ansible.builtin.template:
+    src: "{{ containers_traefik_dynamic_conf }}"
+    dest: "{{ containers_traefik_dir }}/config/extra/dynamic_conf.yaml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u+rwx,g+rwx,o+rxw
+    force: true
+  when: containers_traefik_dynamic_conf is defined and containers_traefik_dynamic_conf | default('') | trim != ""
 
 - name: Traefik - deploy docker compose stack
   community.docker.docker_compose_v2:

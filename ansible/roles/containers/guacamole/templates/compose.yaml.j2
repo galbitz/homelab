@@ -20,6 +20,8 @@ services:
       - "traefik.docker.network=proxy"
       - "traefik.http.services.guacamole.loadbalancer.server.port=8080"
       - "traefik.http.services.guacamole.loadbalancer.server.scheme=http"
+      - "traefik.http.routers.guacamole-http.rule=HostRegexp(`^access\\..+`) || HostRegexp(`^guacamole\\..+`)"
+      - "traefik.http.routers.guacamole-https.rule=HostRegexp(`^access\\..+`) || HostRegexp(`^guacamole\\..+`)"
       - "traefik.http.routers.guacamole-http.entrypoints=web"
       - "traefik.http.routers.guacamole-https.entrypoints=websecure"
       - "traefik.http.routers.guacamole-https.tls=true"
