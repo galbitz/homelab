@@ -27,7 +27,7 @@
     force: true
   loop:
     - src: "compose.yaml"
-      dest: "{{ containers_homepage_dir }}/docker-compose.yml"
+      dest: "{{ containers_homepage_dir }}/compose.yaml"
     - src: "config/bookmarks.yaml"
       dest: "{{ containers_homepage_dir }}/config/bookmarks.yaml"
     - src: "config/custom.css"
