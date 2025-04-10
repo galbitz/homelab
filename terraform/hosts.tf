@@ -47,8 +47,8 @@ variable "hosts" {
       ip   = "192.168.1.17"
       mac  = ""
     }
-    "docker-server-guacamole" = {
-      name              = "docker-server-guacamole"
+    "docker-test" = {
+      name              = "docker-test"
       ip                = "192.168.1.18"
       mac               = ""
       create_dns_record = false
