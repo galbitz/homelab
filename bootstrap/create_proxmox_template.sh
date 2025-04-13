@@ -47,16 +47,23 @@ virt-customize -a $TEMP_IMAGE --update
 virt-customize -a $TEMP_IMAGE --install qemu-guest-agent
 
 qm destroy "$vm_id"
-qm create "$vm_id" --name $TEMPLATE_NAME --memory 2048 --cores 2 --net0 virtio,bridge=vmbr0
-qm importdisk "$vm_id" $TEMP_IMAGE $STORAGE
-qm set "$vm_id" --scsihw virtio-scsi-single \
-    --scsi0 $STORAGE:vm-"$vm_id"-disk-0,discard=on,ssd=on,iothread=on \
-    --boot c --bootdisk scsi0 \
-    --ide2 $STORAGE:cloudinit \
+qm create "$vm_id" \
+    --name $TEMPLATE_NAME \
+    --memory 2048 \
+    --cores 2 \
+    --net0 virtio,bridge=vmbr0 \
+    --bios ovmf \
+    --efidisk0 $STORAGE:1,efitype=4m,pre-enrolled-keys=0 \
     --agent enabled=1 \
     --ipconfig0 ip=dhcp \
     --ostype l26 \
-    --machine q35 \
+    --machine q35
+qm importdisk "$vm_id" $TEMP_IMAGE $STORAGE
+qm set "$vm_id" \
+    --scsihw virtio-scsi-single \
+    --scsi0 $STORAGE:vm-"$vm_id"-disk-1,discard=on,ssd=on,iothread=on \
+    --boot c --bootdisk scsi0 \
+    --ide2 $STORAGE:cloudinit \
     --ciuser sysadmin \
     --sshkeys $TEMP_KEYS
 
