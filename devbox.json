@@ -1,6 +1,6 @@
 {
   "packages": [
-    "ansible@latest",
+    "ansible@2.18.4",
     "ansible-lint@latest",
     "yamllint@latest",
     "terraform@latest",
