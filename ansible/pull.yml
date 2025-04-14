@@ -1,0 +1,7 @@
+---
+- hosts: linux_generic
+  gather_facts: true
+  become: true
+  roles:
+    - role: linux-generic
+      tags: linux-generic
