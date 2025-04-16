@@ -18,3 +18,4 @@
     name: "{{ containers_docker_base_network_name }}"
     state: present
     driver: bridge
+  become: true
