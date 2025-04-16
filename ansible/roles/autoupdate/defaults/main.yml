@@ -1,0 +1,5 @@
+---
+security_autoupdate_reboot: "true"
+security_autoupdate_reboot_time: "03:00"
+
+security_notification_email: ""

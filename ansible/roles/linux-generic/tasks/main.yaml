@@ -20,3 +20,23 @@
       - openssh-client
     state: present
   become: true
+
+- name: Allow pubkey authentication
+  ansible.builtin.lineinfile:
+    dest: /etc/ssh/sshd_config
+    search_string: "PubkeyAuthentication"
+    line: "PubkeyAuthentication yes"
+    state: present
+    validate: "sshd -T -f %s"
+  become: true
+  notify: Restart ssh
+
+- name: Disallow password authentication
+  ansible.builtin.lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+    validate: "sshd -T -f %s"
+  become: true
+  notify: Restart ssh
