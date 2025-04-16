@@ -3,3 +3,20 @@
   community.general.timezone:
     name: America/Toronto
   become: true
+
+- name: Install common packages
+  ansible.builtin.package:
+    name:
+      - git
+      - curl
+      - wget
+      - htop
+      - jq
+      - nmap
+      - tmux
+      - tree
+      - sudo
+      - vim
+      - openssh-client
+    state: present
+  become: true
