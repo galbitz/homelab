@@ -1,0 +1,31 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+version: "3"
+
+vars:
+  ANSIBLE_DIR: "{{.ROOT_DIR}}/ansible"
+  AGE_FILE: "{{.ROOT_DIR}}/age.key"
+
+tasks:
+  run:
+    desc: Run ansible playbook
+    dir: "{{ .ANSIBLE_DIR }}"
+    cmds:
+      - cmd: |
+          set -a
+          # no_proxy needed to circumvent a forking error on mac os
+          export no_proxy='*'
+          # import secrets to env
+          source <(sops -d {{.ROOT_DIR}}/main.secret.sops.env)
+          ansible-playbook {{.CLI_ARGS}}
+
+  lint:
+    desc: Lint ansible playbooks
+    cmd: |
+      yamllint .
+      ansible-lint ansible/
+
+  install-requirements:
+    dir: "{{ .ANSIBLE_DIR }}"
+    desc: Install ansible requirements
+    cmd: ansible-galaxy install -r roles/requirements.yml --force
