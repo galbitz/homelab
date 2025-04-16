@@ -7,6 +7,7 @@ vars:
   KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
 
 includes:
+  ansible: .taskfiles/ansible/Taskfile.yaml
   flux: .taskfiles/flux/Taskfile.yaml
   bootstrap: .taskfiles/bootstrap/Taskfile.yaml
   talos: .taskfiles/talos/Taskfile.yaml
@@ -27,27 +28,3 @@ tasks:
   encrypt-secrets:
     desc: Encrypt secrets
     cmd: sops -e main.secret.env > main.secret.sops.env
-
-  lint:
-    desc: Lint
-    cmd: |
-      yamllint .
-      ansible-lint ansible/
-
-  ansible-run:
-    desc: Run ansible playbook
-    dir: ansible
-    cmds:
-      - cmd: |
-          set -a
-          export ANSIBLE_CONFIG=ansible.cfg
-          export ANSIBLE_FORCE_COLOR=True
-          # no_proxy needed to circumvent a forking error on mac os
-          export no_proxy='*'
-          # import secrets to env
-          source <(sops -d {{.ROOT_DIR}}/main.secret.sops.env)
-          ansible-playbook {{.CLI_ARGS}}
-
-  ansible-install-requirements:
-    desc: Install ansible requirements
-    cmd: ansible-galaxy install -r ansible/roles/requirements.yml --force
