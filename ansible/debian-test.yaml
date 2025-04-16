@@ -1,0 +1,6 @@
+---
+- name: Test new role structure
+  hosts: linux-generic
+  gather_facts: true
+  roles:
+    - role: linux-generic

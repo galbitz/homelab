@@ -35,7 +35,6 @@ override.tf.json
 terraform.rc
 
 # Generated files
-ansible/hosts
 unencrypted_secrets.sh
 
 temp.yml
