@@ -5,3 +5,4 @@
   roles:
     - role: linux-generic
     - role: autoupdate
+    - role: containers/docker-base
