@@ -1,12 +1,12 @@
-Unattended-Upgrade::Automatic-Reboot "{{ security_autoupdate_reboot }}";
-Unattended-Upgrade::Automatic-Reboot-Time "{{ security_autoupdate_reboot_time }}";
+Unattended-Upgrade::Automatic-Reboot "{{ autoupdate_reboot }}";
+Unattended-Upgrade::Automatic-Reboot-Time "{{ autoupdate_reboot_time }}";
 Unattended-Upgrade::Automatic-Reboot-WithUsers "true";
 
 Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";
 Unattended-Upgrade::Remove-New-Unused-Dependencies "true";
 Unattended-Upgrade::Remove-Unused-Dependencies "true"; 
 
-Unattended-Upgrade::Mail "{{ security_notification_email }}";
+Unattended-Upgrade::Mail "{{ autoupdate_notification_email }}";
 Unattended-Upgrade::MailReport "only-on-error";
 
 Unattended-Upgrade::Origins-Pattern {
