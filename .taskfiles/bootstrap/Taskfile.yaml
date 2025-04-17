@@ -2,41 +2,11 @@
 # yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
+vars:
+  BOOTSTRAP_DIR: "{{.ROOT_DIR}}/bootstrap"
+
 tasks:
-  test:
-    vars: &vars
-      cluster: test
-      # cephnodes: k8s-0 k8s-1 k8s-2 k8s-3 k8s-4 k8s-5
-      # cephdisk: /dev/nvme0n1
-    cmds:
-      - task: :talos:bootstrap
-        vars: *vars
-      # - task: :rook:reset
-      #   vars: *vars
-      - task: :flux:bootstrap
-        vars: *vars
-    # preconditions:
-    #   - test -f {{.KUBERNETES_DIR}}/{{.cluster}}/talosconfig
-    #   - talosctl --context {{.cluster}} config info >/dev/null 2>&1
-
-  test2:
-    vars: &vars
-      cluster: test
-    cmds:
-      - task: :kubespray:venv
-      - task: :kubespray:cluster
-        vars: *vars
-      - task: :flux:bootstrap
-        vars: *vars
-
-  # main-incomplete:
-  #   vars: &vars
-  #     cluster: storage
-  #     playbook: cluster-installation
-  #   cmds:
-  #     - task: :ansible:venv
-  #       vars: *vars
-  #     - task: :ansible:run
-  #       vars: *vars
-  #     - task: :flux:bootstrap
-  #       vars: *vars
+  resetvm:
+    cmd: |
+      ssh root@damage -T qm rollback 603 justinstalled
+      ssh root@damage -T qm start 603
