@@ -46,7 +46,10 @@ wget -nv -O $TEMP_IMAGE $URL
 virt-customize -a $TEMP_IMAGE --update
 virt-customize -a $TEMP_IMAGE --install qemu-guest-agent
 
-qm destroy "$vm_id"
+if qm status "$vm_id" &>/dev/null; then
+    qm destroy "$vm_id"
+fi
+
 qm create "$vm_id" \
     --name $TEMPLATE_NAME \
     --memory 2048 \
