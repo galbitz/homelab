@@ -31,3 +31,6 @@ qm set "$vm_id" \
     --sshkeys $temp_file
 
 rm "$temp_file"
+
+echo "VM $vm_id ($vm_name) cloned from template $template_id with volume $volume_name."
+echo "VM $vm_id is ready to use."
