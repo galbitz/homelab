@@ -44,7 +44,7 @@ apt install libguestfs-tools -y
 
 wget -nv -O $TEMP_IMAGE $URL
 virt-customize -a $TEMP_IMAGE --update
-virt-customize -a $TEMP_IMAGE --install qemu-guest-agent
+virt-customize -a $TEMP_IMAGE --install qemu-guest-agent --truncate /etc/machine-id
 
 if qm status "$vm_id" &>/dev/null; then
     qm destroy "$vm_id"
