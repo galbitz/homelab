@@ -1,2 +1,3 @@
 ---
-containers_frp_client_dir: "{{ docker_dir }}/frpc"
+containers_frp_client_docker_root_dir: "{{ docker_dir }}"
+containers_frp_client_dir: "{{ containers_frp_client_docker_root_dir }}/frpc"

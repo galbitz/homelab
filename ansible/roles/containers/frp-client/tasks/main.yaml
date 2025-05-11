@@ -3,7 +3,7 @@
 - name: Check pre req
   ansible.builtin.assert:
     that:
-      - docker_dir is defined
+      - containers_frp_client_docker_root_dir | length > 0
     fail_msg: "variable is missing. Define it in global vars"
 
 - name: Create docker folders
