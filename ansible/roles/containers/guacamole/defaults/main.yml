@@ -1,2 +1,3 @@
 ---
-containers_guacamole_dir: "{{ docker_dir }}/guacamole"
+containers_guacamole_docker_root_dir: "{{ docker_dir }}"
+containers_guacamole_dir: "{{ containers_guacamole_docker_root_dir }}/guacamole"
