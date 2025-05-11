@@ -1,2 +1,3 @@
 ---
-containers_portainer_dir: "{{ docker_dir }}/portainer"
+containers_portainer_docker_root_dir: "{{ docker_dir }}"
+containers_portainer_dir: "{{ containers_portainer_docker_root_dir }}/portainer"
