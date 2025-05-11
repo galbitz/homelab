@@ -4,7 +4,7 @@
 - name: Check pre req
   ansible.builtin.assert:
     that:
-      - docker_dir is defined
+      - containers_nut_server_docker_root_dir | length > 0
     fail_msg: "variable is missing. Define it in global vars"
 
 - name: Make sure that nut folder exists
