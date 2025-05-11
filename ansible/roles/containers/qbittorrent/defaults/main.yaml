@@ -1,3 +1,4 @@
 ---
 containers_qbittorrent_file_path: /mnt/movies
-containers_qbittorrent_dir: "{{ docker_dir }}/qbittorrent"
+containers_qbittorrent_docker_root_dir: "{{ docker_dir }}"
+containers_qbittorrent_dir: "{{ containers_qbittorrent_docker_root_dir }}/qbittorrent"
