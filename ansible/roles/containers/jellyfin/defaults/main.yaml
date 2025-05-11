@@ -1,4 +1,5 @@
 ---
-containers_jellyfin_dir: "{{ docker_dir }}/jellyfin"
+containers_jellyfin_docker_root_dir: "{{ docker_dir }}"
+containers_jellyfin_dir: "{{ containers_jellyfin_docker_root_dir }}/jellyfin"
 containers_jellyfin_config_dir: "{{ containers_jellyfin_dir }}/config"
 containers_jellyfin_cache_dir: "{{ containers_jellyfin_dir }}/cache"
