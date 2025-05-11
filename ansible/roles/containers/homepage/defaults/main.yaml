@@ -1,2 +1,3 @@
 ---
-containers_homepage_dir: "{{ docker_dir }}/homepage"
+containers_homepage_docker_root_dir: "{{ docker_dir }}"
+containers_homepage_dir: "{{ containers_homepage_docker_root_dir }}/homepage"
