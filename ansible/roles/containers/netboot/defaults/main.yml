@@ -1,2 +1,3 @@
 ---
-containers_netboot_dir: "{{ docker_dir }}/netboot"
+containers_netboot_docker_root_dir: "{{ docker_dir }}"
+containers_netboot_dir: "{{ containers_netboot_docker_root_dir }}/netboot"
