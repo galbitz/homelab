@@ -1,3 +1,4 @@
 ---
 containers_docker_base_network_name: "proxy"
-docker_dir: "/opt/docker" # noqa var-naming[no-role-prefix]
+
+containers_docker_base_docker_root_dir: "{{ docker_dir }}"
