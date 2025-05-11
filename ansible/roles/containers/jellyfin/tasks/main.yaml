@@ -1,4 +1,11 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+- name: Check pre req
+  ansible.builtin.assert:
+    that:
+      - containers_jellyfin_docker_root_dir | length > 0
+    fail_msg: "variable is missing. Define it in global vars"
+
 - name: Make sure that Jellyfin folders exist
   ansible.builtin.file:
     path: "{{ item }}"
