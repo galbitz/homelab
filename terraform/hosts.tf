@@ -108,5 +108,10 @@ variable "hosts" {
       ip   = "192.168.1.46"
       mac  = "ec:b5:fa:bc:1a:56"
     }
+    "tplinksmartswitch" = {
+      name = "tplinksmartswitch"
+      ip   = "192.168.1.47"
+      mac  = "dc:62:79:88:4f:68"
+    }
   }
 }
