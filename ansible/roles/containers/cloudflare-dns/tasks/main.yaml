@@ -3,7 +3,7 @@
 - name: Check pre req
   ansible.builtin.assert:
     that:
-      - docker_dir is defined
+      - containers_cloudflare_dns_docker_root_dir | length > 0
       - cloudflare_zone_id is defined
       - cloudflare_home_record_id is defined
       - cloudflare_email is defined
@@ -12,10 +12,21 @@
       - cloudflare_home_record_content is defined
     fail_msg: "variable is missing. Define it in global vars"
 
+- name: Make sure that the docker folders exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: u+rwx,g+rwx,o+rxw
+  become: true
+  loop:
+    - "{{ containers_cloudflare_dns_dir }}"
+
 - name: Copy dns update script
   ansible.builtin.template:
     src: cloudflare-dns-update.j2
-    dest: "{{ docker_dir }}/cloudflare-dns-update.sh"
+    dest: "{{ containers_cloudflare_dns_dir }}/cloudflare-dns-update.sh"
     mode: a+x
 - name: Set up container to run cron
   community.docker.docker_container:
@@ -25,4 +36,4 @@
     state: started
     restart_policy: always
     command: "crond -f -l 8"
-    volumes: "{{ docker_dir }}/cloudflare-dns-update.sh:/etc/periodic/daily/cloudflare-dns-update.sh"
+    volumes: "{{ containers_cloudflare_dns_dir }}/cloudflare-dns-update.sh:/etc/periodic/daily/cloudflare-dns-update.sh"
