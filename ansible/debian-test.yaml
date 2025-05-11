@@ -2,6 +2,8 @@
 - name: Test new role structure
   hosts: debian-test
   gather_facts: true
+  vars:
+    docker_dir: "/opt/docker"
   roles:
     - role: linux-generic
     - role: autoupdate

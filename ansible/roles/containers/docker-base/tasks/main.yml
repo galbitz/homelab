@@ -3,8 +3,8 @@
 - name: Check pre req
   ansible.builtin.assert:
     that:
-      - docker_dir is defined
-    fail_msg: "variable is missing. Define it in global vars"
+      - containers_docker_base_docker_root_dir | length > 0
+    fail_msg: "docker_dir global variable might be empty"
 
 - name: Dependencies
   ansible.builtin.include_tasks: docker-dependencies.yml
