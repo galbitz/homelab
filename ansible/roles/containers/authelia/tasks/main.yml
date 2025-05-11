@@ -4,7 +4,7 @@
 - name: Check pre req
   ansible.builtin.assert:
     that:
-      - docker_dir is defined
+      - containers_authelia_docker_root_dir | length > 0
       - containers_traefik_main_domain is defined
       - containers_traefik_tunnel_domain is defined
       - homelab_email is defined

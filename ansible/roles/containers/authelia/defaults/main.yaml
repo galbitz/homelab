@@ -1,5 +1,6 @@
 ---
-containers_authelia_dir: "{{ docker_dir }}/authelia"
+containers_authelia_docker_root_dir: "{{ docker_dir }}"
+containers_authelia_dir: "{{ containers_authelia_docker_root_dir }}/authelia"
 
 containers_authelia_session_secret: "{{ lookup('ansible.builtin.env', 'AUTHELIA_MY_SESSION_SECRET') }}"
 containers_authelia_encryption_key: "{{ lookup('ansible.builtin.env', 'AUTHELIA_MY_STORAGE_ENCRYPTION_KEY') }}"
