@@ -5,7 +5,7 @@
 - name: Check pre req
   ansible.builtin.assert:
     that:
-      - docker_dir is defined
+      - containers_grafana_stack_docker_root_dir | length > 0
     fail_msg: "variable is missing. Define it in global vars"
 
 - name: Make sure that insight folders exist
@@ -16,19 +16,19 @@
     state: directory
     mode: u+rwx,g+rwx,o+rxw
   loop:
-    - "{{ containers_insight_dir }}"
-    - "{{ containers_insight_dir }}/prometheus-data"
-    - "{{ containers_insight_dir }}/influx"
-    - "{{ containers_insight_dir }}/influx/data"
-    - "{{ containers_insight_dir }}/influx/config"
-    - "{{ containers_insight_dir }}/loki"
-    - "{{ containers_insight_dir }}/loki/data"
+    - "{{ containers_grafana_stack_dir }}"
+    - "{{ containers_grafana_stack_dir }}/prometheus-data"
+    - "{{ containers_grafana_stack_dir }}/influx"
+    - "{{ containers_grafana_stack_dir }}/influx/data"
+    - "{{ containers_grafana_stack_dir }}/influx/config"
+    - "{{ containers_grafana_stack_dir }}/loki"
+    - "{{ containers_grafana_stack_dir }}/loki/data"
   become: true
 
 - name: Copy docker compose for insight
   ansible.builtin.template:
     src: compose.yaml.j2
-    dest: "{{ containers_insight_dir }}/compose.yaml"
+    dest: "{{ containers_grafana_stack_dir }}/compose.yaml"
     owner: root
     group: root
     mode: u+rwx,g+rwx,o+rxw
@@ -45,9 +45,9 @@
     force: true
   loop:
     - src: "insight/"
-      dest: "{{ containers_insight_dir }}"
+      dest: "{{ containers_grafana_stack_dir }}"
   become: true
 
 - name: Deploy Docker Compose stack
   community.docker.docker_compose_v2:
-    project_src: "{{ containers_insight_dir }}"
+    project_src: "{{ containers_grafana_stack_dir }}"
