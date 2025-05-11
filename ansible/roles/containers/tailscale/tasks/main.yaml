@@ -3,7 +3,7 @@
 - name: Check pre req
   ansible.builtin.assert:
     that:
-      - containers_tailscale_dir | length > 0
+      - containers_tailscale_docker_root_dir | length > 0
     fail_msg: "variable is missing. Define it in global vars"
 
 - name: Make sure that the docker folders exist
