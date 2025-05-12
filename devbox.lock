@@ -49,67 +49,19 @@
         }
       }
     },
-    "ansible-lint@latest": {
-      "last_modified": "2025-03-26T18:47:43Z",
-      "resolved": "github:NixOS/nixpkgs/bd3bac8bfb542dbde7ffffb6987a1a1f9d41699f#ansible-lint",
+    "ansible-lint@4.3.7": {
+      "last_modified": "2021-03-20T16:50:34Z",
+      "resolved": "github:NixOS/nixpkgs/4e0d3868c679da20108db402785f924daa1a7fb5#ansible-lint",
       "source": "devbox-search",
-      "version": "24.12.2",
+      "version": "4.3.7",
       "systems": {
-        "aarch64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/adzdaalq69i8azg28cp8hv5ipm0p6g5x-ansible-lint-24.12.2",
-              "default": true
-            },
-            {
-              "name": "dist",
-              "path": "/nix/store/qz2bf7as0hc1hzjrvnvkkhvnn00zpcq3-ansible-lint-24.12.2-dist"
-            }
-          ],
-          "store_path": "/nix/store/adzdaalq69i8azg28cp8hv5ipm0p6g5x-ansible-lint-24.12.2"
-        },
-        "aarch64-linux": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/a66azbd0jwfbz8a6zrncr113c7q4h9g5-ansible-lint-24.12.2",
-              "default": true
-            },
-            {
-              "name": "dist",
-              "path": "/nix/store/y5sxy80vkv4h2bwxrzvsyy1wc6cinhn7-ansible-lint-24.12.2-dist"
-            }
-          ],
-          "store_path": "/nix/store/a66azbd0jwfbz8a6zrncr113c7q4h9g5-ansible-lint-24.12.2"
-        },
-        "x86_64-darwin": {
-          "outputs": [
-            {
-              "name": "out",
-              "path": "/nix/store/7q2v8yissrz3flkp3x23vxsgf6i44jws-ansible-lint-24.12.2",
-              "default": true
-            },
-            {
-              "name": "dist",
-              "path": "/nix/store/klnkc6mpwr3x8vggdib8calwrh5czvgm-ansible-lint-24.12.2-dist"
-            }
-          ],
-          "store_path": "/nix/store/7q2v8yissrz3flkp3x23vxsgf6i44jws-ansible-lint-24.12.2"
-        },
         "x86_64-linux": {
           "outputs": [
             {
-              "name": "out",
-              "path": "/nix/store/aqkx9lxp7rinknyxxr66vkksr5fwf3wk-ansible-lint-24.12.2",
+              "path": "/tmp/containerbase/cache/nix/store/hg1d6ijcsl8gc9wy8fnr6x28f22ssc00-python3.8-ansible-lint-4.3.7",
               "default": true
-            },
-            {
-              "name": "dist",
-              "path": "/nix/store/lng47ha3v875kyym81hg76vyskizc86l-ansible-lint-24.12.2-dist"
             }
-          ],
-          "store_path": "/nix/store/aqkx9lxp7rinknyxxr66vkksr5fwf3wk-ansible-lint-24.12.2"
+          ]
         }
       }
     },

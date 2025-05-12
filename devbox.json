@@ -1,7 +1,7 @@
 {
   "packages": [
     "ansible@2.18.4",
-    "ansible-lint@latest",
+    "ansible-lint@4.3.7",
     "yamllint@latest",
     "terraform@0.12.31",
     "git@latest",
