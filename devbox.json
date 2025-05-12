@@ -5,7 +5,7 @@
     "yamllint@latest",
     "terraform@0.12.31",
     "git@latest",
-    "go-task@latest",
+    "go-task@3.43.2",
     "gnutar@latest",
     "sops@latest",
     "age@1.2.1",
