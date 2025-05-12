@@ -57,6 +57,8 @@ access_control:
       policy: bypass
     - domain: access.{{ containers_traefik_tunnel_domain }}
       policy: two_factor
+    - domain: silverbullet.{{ containers_traefik_main_domain }}
+      policy: bypass
 
 session:
   name: authelia_session
