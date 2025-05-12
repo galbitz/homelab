@@ -44,3 +44,5 @@
     - role: containers/qbittorrent
     - role: containers/jellyfin
     - role: containers/homepage
+    - role: containers/notes_storage
+    - role: containers/silverbullet
