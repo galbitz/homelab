@@ -2,17 +2,17 @@
   "packages": [
     "ansible@2.18.4",
     "ansible-lint@25.4.0",
-    "yamllint@latest",
-    "terraform@0.12.31",
-    "git@latest",
+    "yamllint@1.37.0",
+    "git@2.49.0",
     "go-task@3.43.2",
-    "gnutar@latest",
-    "sops@latest",
+    "gnutar@1.35",
+    "sops@3.10.2",
     "age@1.2.1",
-    "cilium-cli@latest"
+    "cilium-cli@0.18.3",
+    "terraform@1.11.4"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
-    "scripts":   {}
+    "scripts": {}
   }
 }
