@@ -20,7 +20,7 @@ services:
       - proxy
   promtail:
     container_name: promtail
-    image: grafana/promtail:3.3.0
+    image: grafana/promtail:3.5.0
     volumes:
       - /var/log:/var/log # local syslog scraping
       - /var/lib/docker/containers:/var/lib/docker/containers:ro # docker container log scraping
