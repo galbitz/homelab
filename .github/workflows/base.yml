@@ -16,6 +16,7 @@ jobs:
         uses: jetpack-io/devbox-install-action@v0.12.0
         with:
           enable-cache: true
+          devbox-version: 0.14.2
 
       - name: Install playbook requirements
         run: devbox run task ansible:install-requirements
