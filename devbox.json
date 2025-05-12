@@ -7,7 +7,7 @@
     "git@latest",
     "go-task@latest",
     "gnutar@latest",
-    "sops@latest",
+    "sops@3.10.2",
     "age@1.2.1",
     "cilium-cli@latest"
   ],
