@@ -47,8 +47,11 @@
     - Netboot:
         href: http://192.168.1.17:3500/
         icon: netboot.png
-    - Syncthing:
+    - Syncthing (local):
         href: http://localhost:8384/
+        icon: syncthing.png
+    - Syncthing (container):
+        href: https://syncthing.home.04a.ca/
         icon: syncthing.png
     - TrueNAS:
         href: https://truenas.04a.ca/
@@ -56,3 +59,6 @@
     - Qbittorrent:
         href: http://192.168.1.17:8085/
         icon: qbittorrent.png
+    - SilverBullet:
+        href: https://silverbullet.home.04a.ca/
+        icon: silverbullet.png
