@@ -1,0 +1,5 @@
+---
+dependencies:
+  - role: containers/docker-base
+  - role: network-mounts
+  - role: containers/notes_storage

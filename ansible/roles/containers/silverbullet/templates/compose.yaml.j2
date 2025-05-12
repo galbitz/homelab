@@ -1,0 +1,26 @@
+--- 
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+networks:
+    proxy:
+        external: true
+services:
+    silverbullet:
+        image: ghcr.io/silverbulletmd/silverbullet:v2
+        container_name: silverbullet
+        environment:
+        - TZ=America/Toronto
+        volumes:
+        - "{{ containers_notes_storage_dir }}:/space"
+        restart: always
+        networks:
+        - proxy
+        labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=proxy"
+        - "traefik.http.services.silverbullet.loadbalancer.server.port=3000"
+        - "traefik.http.services.silverbullet.loadbalancer.server.scheme=http"
+        - "traefik.http.routers.silverbullet-https.rule=HostRegexp(`^silverbullet\\..+`)"
+        - "traefik.http.routers.silverbullet-http.entrypoints=web"
+        - "traefik.http.routers.silverbullet-https.entrypoints=websecure"
+        - "traefik.http.routers.silverbullet-https.tls=true"
+        - "traefik.http.routers.silverbullet-https.middlewares=authelia@docker"

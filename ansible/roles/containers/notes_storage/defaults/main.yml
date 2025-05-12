@@ -1,0 +1,3 @@
+---
+containers_notes_storage_docker_root_dir: "{{ docker_dir }}"
+containers_notes_storage_dir: "{{ containers_notes_storage_docker_root_dir }}/notes_storage"
