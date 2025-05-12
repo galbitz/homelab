@@ -1,0 +1,3 @@
+---
+containers_syncthing_docker_root_dir: "{{ docker_dir }}"
+containers_syncthing_dir: "{{ containers_syncthing_docker_root_dir }}/syncthing"
