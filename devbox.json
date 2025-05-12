@@ -4,7 +4,7 @@
     "ansible-lint@latest",
     "yamllint@latest",
     "terraform@0.12.31",
-    "git@latest",
+    "git@2.49.0",
     "go-task@3.43.2",
     "gnutar@latest",
     "sops@latest",
