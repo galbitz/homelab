@@ -9,7 +9,7 @@
     "gnutar@latest",
     "sops@latest",
     "age@1.2.1",
-    "cilium-cli@latest"
+    "cilium-cli@0.18.3"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
