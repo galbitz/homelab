@@ -2,7 +2,7 @@
   "packages": [
     "ansible@2.18.4",
     "ansible-lint@25.4.0",
-    "yamllint@1.37.0",
+    "yamllint@1.37.1",
     "git@2.49.0",
     "go-task@3.43.2",
     "gnutar@1.35",
