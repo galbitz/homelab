@@ -18,3 +18,10 @@
         containers_traefik_api: false
         containers_traefik_dashboard: false
     - containers/guacamole
+    - containers/notes_storage
+    - role: containers/syncthing
+      vars:
+        containers_syncthing_enable_traefik: false
+    - role: containers/silverbullet
+      vars:
+        containers_silverbullet_user: "{{ silverbullet_user }}"
