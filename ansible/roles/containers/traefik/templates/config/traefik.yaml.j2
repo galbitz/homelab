@@ -14,8 +14,8 @@ log:
 #   filePath: /var/log/traefik/access.log
 
 api:
-  dashboard: true
-  insecure: true
+  dashboard: "{{ containers_traefik_api | default(true) }}"
+  insecure: "{{ containers_traefik_dashboard | default(true) }}"
 
 entryPoints:
   web:
@@ -87,7 +87,7 @@ tls:
         resolver: "production"
         domain:
           main: "*.{{ containers_traefik_main_domain }}"
-          {% if containers_traefik_tunnel_domain|length > 0 %}
+          {% if containers_traefik_tunnel_domain | length > 0 %}
 sans:
             - "*.{{ containers_traefik_tunnel_domain }}"
           {% endif %}

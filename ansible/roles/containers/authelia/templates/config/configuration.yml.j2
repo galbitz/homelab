@@ -59,6 +59,20 @@ access_control:
       policy: two_factor
     - domain: silverbullet.{{ containers_traefik_main_domain }}
       policy: bypass
+    - domain: notes.{{ containers_traefik_main_domain }}
+      policy: bypass
+    - domain: notes.{{ containers_traefik_tunnel_domain }}
+      resources:
+        - '/.client/manifest.json$'
+        - '/.client/[a-zA-Z0-9_-]+.png$'
+        - '/service_worker.js$'
+      policy: bypass
+    - domain: silverbullet.{{ containers_traefik_tunnel_domain }}
+      resources:
+        - '/.client/manifest.json$'
+        - '/.client/[a-zA-Z0-9_-]+.png$'
+        - '/service_worker.js$'
+      policy: bypass
 
 session:
   name: authelia_session

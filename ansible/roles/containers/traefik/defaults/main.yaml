@@ -2,6 +2,9 @@
 containers_traefik_docker_root_dir: "{{ docker_dir }}"
 containers_traefik_dir: "{{ containers_traefik_docker_root_dir }}/traefik"
 containers_traefik_main_domain:
-containers_traefik_tunnel_domain:
+containers_traefik_tunnel_domain: ""
 
 containers_traefik_dynamic_conf: ""
+
+containers_traefik_api: true
+containers_traefik_dashboard: true

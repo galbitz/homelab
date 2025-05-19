@@ -11,10 +11,10 @@
     docker_dir: /opt/docker/data
     containers_traefik_main_domain: "rd.04a.ca"
   roles:
-    - star4.essentials.timezone
-    - star4.essentials.autoupdate
-    - star4.essentials.hardening
-    - star4.essentials.forwardmta
     - containers/docker-base
     - role: containers/traefik
+      vars:
+        containers_traefik_dynamic_conf: templates/config/dynamic_conf.empty.yaml.j2 # noqa: var-naming[no-role-prefix]
+        containers_traefik_api: false
+        containers_traefik_dashboard: false
     - containers/guacamole

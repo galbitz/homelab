@@ -5,6 +5,7 @@
     that:
       - containers_traefik_docker_root_dir | length > 0
       - containers_traefik_main_domain is defined
+      - containers_traefik_tunnel_domain is defined
     fail_msg: "variable is missing. Define it in global vars"
 
 - name: Traefik - Make sure that folders exist
