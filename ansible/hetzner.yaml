@@ -15,13 +15,13 @@
     - role: containers/traefik
       vars:
         containers_traefik_dynamic_conf: templates/config/dynamic_conf.empty.yaml.j2 # noqa: var-naming[no-role-prefix]
-        containers_traefik_api: false
-        containers_traefik_dashboard: false
+        containers_traefik_api: false # noqa: var-naming[no-role-prefix]
+        containers_traefik_dashboard: false # noqa: var-naming[no-role-prefix]
     - containers/guacamole
     - containers/notes_storage
     - role: containers/syncthing
       vars:
-        containers_syncthing_enable_traefik: false
+        containers_syncthing_enable_traefik: false # noqa: var-naming[no-role-prefix]
     - role: containers/silverbullet
       vars:
-        containers_silverbullet_user: "{{ silverbullet_user }}"
+        containers_silverbullet_user: "{{ silverbullet_user }}" # noqa: var-naming[no-role-prefix]
