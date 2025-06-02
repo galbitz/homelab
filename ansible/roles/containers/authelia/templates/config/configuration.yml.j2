@@ -48,31 +48,7 @@ authentication_backend:
       #   salt_length: 16
 
 access_control:
-  default_policy: two_factor
-  rules:
-    # Rules applied to everyone
-    - domain: pikvm.{{ containers_traefik_main_domain }}
-      policy: bypass
-    - domain: guacamole.{{ containers_traefik_main_domain }}
-      policy: bypass
-    - domain: access.{{ containers_traefik_tunnel_domain }}
-      policy: two_factor
-    - domain: silverbullet.{{ containers_traefik_main_domain }}
-      policy: bypass
-    - domain: notes.{{ containers_traefik_main_domain }}
-      policy: bypass
-    - domain: notes.{{ containers_traefik_tunnel_domain }}
-      resources:
-        - '/.client/manifest.json$'
-        - '/.client/[a-zA-Z0-9_-]+.png$'
-        - '/service_worker.js$'
-      policy: bypass
-    - domain: silverbullet.{{ containers_traefik_tunnel_domain }}
-      resources:
-        - '/.client/manifest.json$'
-        - '/.client/[a-zA-Z0-9_-]+.png$'
-        - '/service_worker.js$'
-      policy: bypass
+{{ containers_authelia_access_rules | to_nice_yaml() | indent(2, True) }}
 
 session:
   name: authelia_session
@@ -82,8 +58,8 @@ session:
   inactivity: 300 # 5 minutes
   same_site: lax
   cookies:
-    - domain: "04a.ca" # Should match whatever your root protected domain is
-      authelia_url: "https://auth.{{ containers_traefik_tunnel_domain }}"
+    - domain: {{ containers_authelia_session_cookie_domain }} 
+      authelia_url: "{{ containers_authelia_authelia_url }}"
 
   # redis:
   #   host: redis
@@ -111,3 +87,71 @@ notifier:
   #   sender: admin@example.com
   filesystem:
     filename: /config/notification.txt
+
+identity_providers:
+  oidc:
+    hmac_secret: "{{ containers_authelia_hmac_secret }}"
+    enable_client_debug_messages: true
+#    cors:
+#      endpoints: ["authorization", "token", "revocation", "introspection"]
+#      allowed_origins: "*"
+    jwks:
+      - key_id: "authelia"
+        use: 'sig'
+        algorithm: 'RS256'
+        key: |
+            -----BEGIN PRIVATE KEY-----
+            MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDZTB3X1Uy84tZj
+            v5fJBEAN8I0j9JxWtEQR1GuR3E4ZO26HWp2DGHslL32958RkHdN2l6L1m6BnSEBa
+            u7tkzsExxnNsMdE1/EIq2Yrnwp6LaxB5ktJuqyBmRqXopmNT1BYCSWPggUQhgrbM
+            pL1L6lmOmhbHUe93gRqkOa34aA8qs4mE1/DbHD/pYCDgJz0Uifu6d42fe75hrmt/
+            sJx5SbXkkhwhBY7pSt17ifF4x3INAfPiufV8Ep6RRsWfSLBY17Gh9wty6jd7vGkf
+            AS1FRYqGxXiVK8Yr4ZGFppm5u4fBuaihRvcmrGCMcAY/PbdFceMA0WRzTRcn2l3I
+            0QB+VhrfAgMBAAECggEAHLjFZw5wDrVy/gtIjk7sAouttDd0ZLd+Gdc4graachZb
+            dTOihz34pQEifzP/zvXsSgwgA5PW/1/a9cNDsT7s5V3kSsRI8XhO7KgFhr3ARBBa
+            RJ+GBg/DgBFNg7NehKmPYSz/MSEU9tL2w5Tw2nR28vTmFuF7JBIiCdv/5Uon2w5S
+            wFYwupGj7uuXEDx9YNsFbjueWO5H/ghgJRvclYq3wIVm4v+/0HRDZ8iyQ2m86UeC
+            JV4rAKdxicZ5jAGnQzGOsfEjBZdyplBaLH3CQZiJ+Jx2C66Qbnlz4MPYkm30mkBx
+            Fsh5xRMfGNsSCYUVpQKGfhiajQW6zPhK0Fu95JbAqQKBgQDtnjInVZ+wVG/JpMQl
+            ZN2L79JgNuR2fXAniAPmLA8gN7ORenxcjd5LW90YVvsCJlFr0y9W60ep1JJnDFeG
+            RxDXr8FABJnlzOz1LQOgQCZSaVhZKIZRuugSvJLAabWKgRTxXrEpQfTsCq1L2/CA
+            o8Y7q+zAgmUpZ3KBekU8oaLr9wKBgQDqG31QGLySZvvWVA/eau/h17S/z59dohBd
+            bXTlbR89YS4siwDrivyhIpVHTRfcWBmunaanaDf0kXBnTq8qT3VgwCrrm2WxfCCi
+            a+WuBRVrpn5Y6jZc7lcm6z+izzAOecCtaZP4btlY0RM3yr9EXufw5j69/Oz1OPaM
+            GK9AG0X+WQKBgBXstdX5SY28jL//SvXkU6jYzQGBrxzbwCB1pV50jES9vvzaX2Uu
+            1ecAJ+taAzkUjgiz6LdNaERcT9HgSqciIYS1O9CLXCPe/7IzoBUGNkL+Y19+pL4f
+            z9ACxEuqtUx9UpBe21viMRYiehD4zz0fX2gcGfE9VtY2LFOUE5VfmKfLAoGBAJpU
+            rPPUmtvY0ESm/h8eWC2GSj343ZKYeDlfIyTsHyATpKDwshaVdZ20cryicgxsd+HJ
+            REgwSFMOXg98q7U01KiHhsPzmcK7lbf9cVibOVfSVpC/Nj9lUEbz5uupsoCYexDW
+            /RlV2irXCdhJ7HViK32AC/SrfHrcpowM6dtVH3thAoGATtOdKzbUB9BQz92gbFwO
+            KbQenNruGguj+q02E05C03Y6uiafPZBdOLBOdKuiDA6ehQoxNpOQNiBHpXpS5nq/
+            BpQCsJDL84dYm4DRIWmmP0yGCy4PniIm0BccyoHLhYXXShjPrkNwMfoGCRzZQLMI
+            gT18hHenBS7BOFVNypiWQVA=
+            -----END PRIVATE KEY-----
+        certificate_chain: |
+              -----BEGIN CERTIFICATE-----
+              MIIDXzCCAkegAwIBAgIUFdsRPV4VZJN5aRv7t2QLCAT1idkwDQYJKoZIhvcNAQEL
+              BQAwPzELMAkGA1UEBhMCQ0ExEDAOBgNVBAgMB09udGFyaW8xEDAOBgNVBAcMB1Rv
+              cm9udG8xDDAKBgNVBAoMAzA0YTAeFw0yNTA2MDExNjE2NTdaFw0zNTA1MzAxNjE2
+              NTdaMD8xCzAJBgNVBAYTAkNBMRAwDgYDVQQIDAdPbnRhcmlvMRAwDgYDVQQHDAdU
+              b3JvbnRvMQwwCgYDVQQKDAMwNGEwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+              AoIBAQDZTB3X1Uy84tZjv5fJBEAN8I0j9JxWtEQR1GuR3E4ZO26HWp2DGHslL329
+              58RkHdN2l6L1m6BnSEBau7tkzsExxnNsMdE1/EIq2Yrnwp6LaxB5ktJuqyBmRqXo
+              pmNT1BYCSWPggUQhgrbMpL1L6lmOmhbHUe93gRqkOa34aA8qs4mE1/DbHD/pYCDg
+              Jz0Uifu6d42fe75hrmt/sJx5SbXkkhwhBY7pSt17ifF4x3INAfPiufV8Ep6RRsWf
+              SLBY17Gh9wty6jd7vGkfAS1FRYqGxXiVK8Yr4ZGFppm5u4fBuaihRvcmrGCMcAY/
+              PbdFceMA0WRzTRcn2l3I0QB+VhrfAgMBAAGjUzBRMB0GA1UdDgQWBBSJSMHORmjt
+              DTns87SaiINOqkTL/TAfBgNVHSMEGDAWgBSJSMHORmjtDTns87SaiINOqkTL/TAP
+              BgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4IBAQCR2OUPpU4P54i4OIPN
+              4JB3JggzgTf9zXyi4J2IFB/xDgpipa/v1PtVvw6vz6lhGSai08AYXRM+ns2XFI75
+              s+U8na9vQoWFQdCZzvM9Z5zWRmxowwBUVNYmXoM8AhU7kEQdlIcv3V9jUwgCl7I5
+              VrsHAzymixEd/C4JXxy15I0ia6xOU9HjlJQCeVFBC0cRv4SqXVo+FYnpicHA5XwH
+              t7YlrzVJhtrMebIPRuFfs7MB7AC3EpBD9FzkzMg69fZCZgj3cN93O4Fi2QojKCCL
+              B40eCvPNZXAfHLnX+N6iyJrHk0qSQI6kvs6EBGbs3BJhqA4O1TnwbTej4ChfpCJ+
+              4ufz
+              -----END CERTIFICATE-----
+
+    ## The other portions of the mandatory OpenID Connect 1.0 configuration go here.
+    ## See: https://www.authelia.com/c/oidc
+    clients: 
+{{ containers_authelia_clients | to_nice_yaml() | indent(4, True) }}

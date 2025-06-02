@@ -11,17 +11,54 @@
     docker_dir: /opt/docker/data
     containers_traefik_main_domain: "rd.04a.ca"
   roles:
-    - containers/docker-base
+    - role: containers/docker-base
     - role: containers/traefik
       vars:
         containers_traefik_dynamic_conf: templates/config/dynamic_conf.empty.yaml.j2 # noqa: var-naming[no-role-prefix]
         containers_traefik_api: false # noqa: var-naming[no-role-prefix]
         containers_traefik_dashboard: false # noqa: var-naming[no-role-prefix]
-    - containers/guacamole
-    - containers/notes_storage
+    - role: containers/guacamole
+      vars:
+        containers_guacamole_main_domain: "{{ containers_traefik_main_domain }}" # noqa: var-naming[no-role-prefix]
+    - role: containers/authelia
+      vars:
+        containers_authelia_access_rules: # noqa: var-naming[no-role-prefix]
+          default_policy: two_factor
+          rules:
+            - domain: notes.{{ containers_traefik_main_domain }}
+              resources:
+                - "/.client/manifest.json$"
+                - "/.client/[a-zA-Z0-9_-]+.png$"
+                - "/service_worker.js$"
+              policy: bypass
+            - domain: silverbullet.{{ containers_traefik_main_domain }}
+              resources:
+                - "/.client/manifest.json$"
+                - "/.client/[a-zA-Z0-9_-]+.png$"
+                - "/service_worker.js$"
+              policy: bypass
+        containers_authelia_session_cookie_domain: "rd.04a.ca" # noqa: var-naming[no-role-prefix]
+        containers_authelia_authelia_url: "https://auth.{{ containers_traefik_main_domain }}" # noqa: var-naming[no-role-prefix]
+        containers_authelia_clients: # noqa: var-naming[no-role-prefix]
+          - client_id: "guacamole"
+            client_name: "Apache Guacamole"
+            client_secret: ""
+            public: true
+            authorization_policy: "two_factor"
+            redirect_uris:
+              - "https://access.{{ containers_traefik_main_domain }}"
+            scopes:
+              - "openid"
+              - "profile"
+              - "groups"
+              - "email"
+            response_types:
+              - "id_token"
+            grant_types:
+              - "implicit"
+            userinfo_signed_response_alg: "none"
+    - role: containers/notes_storage
     - role: containers/syncthing
       vars:
         containers_syncthing_enable_traefik: false # noqa: var-naming[no-role-prefix]
     - role: containers/silverbullet
-      vars:
-        containers_silverbullet_user: "{{ silverbullet_user }}" # noqa: var-naming[no-role-prefix]

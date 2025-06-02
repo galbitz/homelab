@@ -1,0 +1,20 @@
+postgresql-hostname: localhost
+postgresql-port: 5432
+postgresql-database: guacamole_db
+postgresql-username: guacamole
+postgresql-password: null
+
+enable-clipboard-integration: true
+
+openid-client-id: guacamole
+openid-scope: openid profile groups email
+openid-issuer: {{ containers_guacamole_issuer }} 
+openid-jwks-endpoint: {{ containers_guacamole_jwks_endpoint }}
+openid-authorization-endpoint: {{ containers_guacamole_authorization_endpoint }}
+openid-redirect-uri: {{ containers_guacamole_redirect_uri }}
+openid-username-claim-type: preferred_username
+openid-groups-claim-type: groups
+
+ignore-cert: true
+
+extension-priority:openid

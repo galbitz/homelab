@@ -36,6 +36,8 @@
     - role: file_backup
     - role: containers/uptime-kuma
     - role: containers/guacamole
+      vars:
+        containers_guacamole_main_domain: "{{ containers_traefik_tunnel_domain }}" # noqa: var-naming[no-role-prefix]
     - role: containers/netboot
     - role: containers/tailscale
     - role: containers/frp-client

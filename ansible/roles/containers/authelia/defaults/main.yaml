@@ -7,3 +7,53 @@ containers_authelia_encryption_key: "{{ lookup('ansible.builtin.env', 'AUTHELIA_
 containers_authelia_jwt_secret: "{{ lookup('ansible.builtin.env', 'AUTHELIA_MY_JWT') }}"
 
 containers_authelia_email: "{{ homelab_email }}"
+
+containers_authelia_hmac_secret: "{{ lookup('ansible.builtin.env', 'AUTHELIA_MY_HMAC_SECRET') }}"
+
+containers_authelia_access_rules:
+  default_policy: two_factor
+  rules:
+    - domain: pikvm.{{ containers_traefik_main_domain }}
+      policy: bypass
+    - domain: guacamole.{{ containers_traefik_main_domain }}
+      policy: bypass
+    - domain: access.{{ containers_traefik_tunnel_domain }}
+      policy: two_factor
+    - domain: silverbullet.{{ containers_traefik_main_domain }}
+      policy: bypass
+    - domain: notes.{{ containers_traefik_main_domain }}
+      policy: bypass
+    - domain: notes.{{ containers_traefik_tunnel_domain }}
+      resources:
+        - "/.client/manifest.json$"
+        - "/.client/[a-zA-Z0-9_-]+.png$"
+        - "/service_worker.js$"
+      policy: bypass
+    - domain: silverbullet.{{ containers_traefik_tunnel_domain }}
+      resources:
+        - "/.client/manifest.json$"
+        - "/.client/[a-zA-Z0-9_-]+.png$"
+        - "/service_worker.js$"
+      policy: bypass
+
+containers_authelia_session_cookie_domain: "04a.ca"
+containers_authelia_authelia_url: "https://auth.{{ containers_traefik_tunnel_domain }}"
+
+containers_authelia_clients:
+  - client_id: "guacamole"
+    client_name: "Apache Guacamole"
+    client_secret: ""
+    public: true
+    authorization_policy: "two_factor"
+    redirect_uris:
+      - "https://access.{{ containers_traefik_tunnel_domain }}"
+    scopes:
+      - "openid"
+      - "profile"
+      - "groups"
+      - "email"
+    response_types:
+      - "id_token"
+    grant_types:
+      - "implicit"
+    userinfo_signed_response_alg: "none"

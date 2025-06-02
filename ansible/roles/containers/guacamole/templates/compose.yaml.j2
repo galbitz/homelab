@@ -9,7 +9,7 @@ services:
       - "/etc/localtime:/etc/localtime:ro"
     environment:
       TZ: "America/Toronto"
-      EXTENSIONS: auth-totp
+      EXTENSIONS: "auth-sso-openid"
       GUACD_LOG_LEVEL: "debug"
 
     restart: always
