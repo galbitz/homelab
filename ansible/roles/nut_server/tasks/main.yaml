@@ -1,0 +1,36 @@
+---
+- name: Install nut
+  ansible.builtin.package:
+    name: nut
+    state: present
+  become: true
+
+- name: Copy configuration files
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: nut
+    mode: u+rw,g+r
+  become: true
+  loop:
+    - src: ups.conf.j2
+      dest: /etc/nut/ups.conf
+    - src: upsd.conf.j2
+      dest: /etc/nut/upsd.conf
+    - src: upsd.users.j2
+      dest: /etc/nut/upsd.users
+    - src: upsmon.conf.j2
+      dest: /etc/nut/upsmon.conf
+    - src: nut.conf.j2
+      dest: /etc/nut/nut.conf
+
+- name: Ensure nut service is enabled and started
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: true
+    state: restarted
+  become: true
+  loop:
+    - nut-server
+    - nut-monitor

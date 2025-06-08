@@ -4,30 +4,30 @@ networks:
   proxy:
     external: true
 services:
-  nut-server:
-    container_name: nut-server
-    image: instantlinux/nut-upsd:2.8.2-r2
-    ports:
-      - "3493:3493"
-    restart: always
-    environment:
-      - NAME=CP
-      - VENDORID=0764
-      - SERIAL=CXXMU2001429
-      - API_USER=admin
-      - API_PASSWORD=secret
-      - POLLINTERVAL=15
-    devices:
-      - "/dev/bus/usb/002/002:/dev/bus/usb/002/002"
-    networks:
-      - proxy 
+#  nut-server:
+#    container_name: nut-server
+#    image: instantlinux/nut-upsd:2.8.2-r2
+#    ports:
+#      - "3493:3493"
+#    restart: always
+#    environment:
+#      - NAME=CP
+#      - VENDORID=0764
+#      - SERIAL=CXXMU2001429
+#      - API_USER=admin
+#      - API_PASSWORD=secret
+#      - POLLINTERVAL=15
+#    devices:
+#      - "/dev/bus/usb/002/002:/dev/bus/usb/002/002"
+#    networks:
+#      - proxy 
   nut:
     container_name: nut
-    image: ghcr.io/superioone/nut_webgui:0.4
+    image: ghcr.io/superioone/nut_webgui:0.4.2
     restart: always
     environment:
       - UPSD_USER=CP
-      - UPSD_ADDR=192.168.1.17
+      - UPSD_ADDR=192.168.1.4
     networks:
       - proxy 
     labels:
