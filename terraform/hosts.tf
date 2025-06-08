@@ -25,7 +25,7 @@ variable "hosts" {
     "game" = {
       name = "game"
       ip   = "192.168.1.10"
-      mac  = "50:EB:F6:7F:EC:D1"
+      mac  = "10:7c:61:74:6d:c8"
     }
     "shadow" = {
       name = "shadow"
