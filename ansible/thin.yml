@@ -2,11 +2,15 @@
 # thin - simple jumpbox with debian
 - name: Configure thin
   hosts: thin
-  vars:
-    frp_type: client
+  gather_facts: true
+
   roles:
-    - star4.essentials.timezone
-    - star4.essentials.autoupdate
-    - star4.essentials.forwardmta
-    - desktop
-    - gantsign.visual-studio-code
+    - role: linux-generic
+    - role: autoupdate
+      vars:
+        autoupdate_notification_email: "{{ homelab_email }}"
+    - role: frp
+      vars:
+        frp_type: "client"
+        frp_version: "0.62.1"
+    - role: mta

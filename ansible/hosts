@@ -1,5 +1,7 @@
 docker-server
 rd
+wormhole
 
 [linux_generic]
 debian-test
+thin

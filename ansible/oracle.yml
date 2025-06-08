@@ -3,7 +3,11 @@
 - name: Configure wormhole
   hosts: wormhole
   vars:
-    ansible_user: ubuntu
+    ansible_user: gabor
+    zone_id: "{{ cloudflare_wormhole_zone_id }}"
+    record_id: "{{ cloudflare_wormhole_record_id }}"
+    api_token: "{{ cloudflare_wormhole_api_token }}"
+    hostname: "{{ cloudflare_wormhole_hostname }}"
   tasks:
     - name: Ensure cron dir for cloudflare exists
       ansible.builtin.file:

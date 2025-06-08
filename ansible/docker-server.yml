@@ -30,7 +30,6 @@
     - role: containers/authelia
     - role: containers/portainer
     - role: containers/cloudflare-dns
-    - role: containers/cloudflare-tunnel
     - role: containers/grafana-stack
     - role: network-mounts
     - role: file_backup
@@ -40,7 +39,6 @@
         containers_guacamole_main_domain: "{{ containers_traefik_tunnel_domain }}" # noqa: var-naming[no-role-prefix]
     - role: containers/netboot
     - role: containers/tailscale
-    - role: containers/frp-client
     - role: containers/beszel_hub
     - role: containers/nut-server
     - role: containers/qbittorrent
