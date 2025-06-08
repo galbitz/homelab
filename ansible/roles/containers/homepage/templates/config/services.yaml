@@ -5,10 +5,7 @@
         href: https://damage.04a.ca:8006/
         icon: proxmox.png
     - Shadow:
-        href: https://shadow.home.star4.dev:8006/
-        icon: proxmox.png
-    - Bee:
-        href: https://bee.home.star4.dev:8006/
+        href: https://shadow.04a.ca:8006/
         icon: proxmox.png
 - Services:
     - Beszel Hub:
@@ -20,9 +17,6 @@
     - Remote connect:
         href: https://guacamole.home.04a.ca/
         icon: guacamole.png
-    - Diskstation:
-        href: https://diskstation.home.star4.dev:5001/
-        icon: synology.png
     - Unifi wifi:
         href: https://unifi.ui.com/
         icon: unifi.png
