@@ -33,4 +33,14 @@
   become: true
   loop:
     - nut-server
+
+# Don't want automatic shutdown of the system
+- name: Disable nut client and monitor services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  become: true
+  loop:
+    - nut-client
     - nut-monitor
