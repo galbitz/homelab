@@ -9,7 +9,7 @@
     "sops@3.10.2",
     "age@1.2.1",
     "cilium-cli@0.18.3",
-    "terraform@1.11.4"
+    "terraform@1.12.2"
   ],
   "shell": {
     "init_hook": ["echo 'Welcome to devbox!' > /dev/null"],
