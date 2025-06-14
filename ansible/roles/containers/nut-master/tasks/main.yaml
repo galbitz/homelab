@@ -1,0 +1,32 @@
+---
+# https://docs.technotim.live/posts/NUT-server-guide/
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+- name: Check pre req
+  ansible.builtin.assert:
+    that:
+      - containers_nut_server_docker_root_dir | length > 0
+    fail_msg: "variable is missing. Define it in global vars"
+
+- name: Make sure that nut folder exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: directory
+    mode: u+rwx,g+rwx,o+rxw
+  loop:
+    - "{{ containers_nut_server_dir }}"
+  become: true
+
+- name: Copy docker compose for nut
+  ansible.builtin.template:
+    src: compose.yaml.j2
+    dest: "{{ containers_nut_server_dir }}/compose.yaml"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u+rwx,g+rwx,o+rxw
+    force: true
+
+- name: Deploy Docker Compose stack
+  community.docker.docker_compose_v2:
+    project_src: "{{ containers_nut_server_dir }}"

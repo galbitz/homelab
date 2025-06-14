@@ -1,0 +1,24 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+networks:
+  proxy:
+    external: true
+services:
+  nut-server:
+    container_name: nut-server
+    image: instantlinux/nut-upsd:2.8.2-r2
+    ports:
+      - "3493:3493"
+    restart: always
+    environment:
+      - NAME=CP
+      - VENDORID=0764
+      - SERIAL=CXXMU2001429
+      - API_USER=admin
+      - API_PASSWORD=secret
+      - POLLINTERVAL=15
+      - SDORDER=-1 
+    devices:
+      - "/dev/bus/usb/001/002:/dev/bus/usb/001/002"
+    networks:
+      - proxy 

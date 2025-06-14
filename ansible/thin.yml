@@ -3,7 +3,8 @@
 - name: Configure thin
   hosts: thin
   gather_facts: true
-
+  vars:
+    docker_dir: /opt/docker
   roles:
     - role: linux-generic
     - role: autoupdate
@@ -14,4 +15,5 @@
         frp_type: "client"
         frp_version: "0.62.1"
     - role: mta
-    - role: nut_server
+    # - role: nut_server
+    - role: containers/nut-master

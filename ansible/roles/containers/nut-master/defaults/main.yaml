@@ -1,0 +1,3 @@
+---
+containers_nut_server_docker_root_dir: "{{ docker_dir }}"
+containers_nut_server_dir: "{{ containers_nut_server_docker_root_dir }}/nut"
