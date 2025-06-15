@@ -8,4 +8,11 @@ name = "docker-server"
 type = "https"
 localIP = "192.168.1.17"
 localPort = 443
-customDomains = ["auth.tunnel.04a.ca","access.tunnel.04a.ca","silverbullet.tunnel.04a.ca","notes.tunnel.04a.ca","media.tunnel.04a.ca","ha.tunnel.04a.ca"]
+customDomains = ["auth.tunnel.04a.ca","access.tunnel.04a.ca","silverbullet.tunnel.04a.ca","notes.tunnel.04a.ca","media.tunnel.04a.ca"]
+
+[[proxies]]
+name = "ha"
+type = "https"
+localIP = "192.168.1.40"
+localPort = 443
+customDomains = ["ha.tunnel.04a.ca"]

@@ -1,10 +1,6 @@
 ---
 http:
   services:
-    ha:
-      loadbalancer:
-        servers:
-          - url: http://192.168.1.40:8123/
     uptime:
       loadbalancer:
         servers:
@@ -14,15 +10,6 @@ http:
       forwardAuth:
         address: "http://authelia:9091/api/verify?rd=https://auth.{{ containers_traefik_tunnel_domain }}"
   routers:
-    ha:
-      rule: HostRegexp(`ha\..+`)
-      service: ha
-      entrypoints: web
-    ha-ssl:
-      rule: HostRegexp(`ha\..+`)
-      service: ha
-      entrypoints: websecure
-      tls: {}
     uptime:
       rule: HostRegexp(`uptime\..+`)
       service: uptime

@@ -12,7 +12,7 @@
         href: http://192.168.1.17:38090/
         icon: beszel.png
     - Home Assistant:
-        href: https://ha.home.04a.ca/
+        href: https://ha.04a.ca/
         icon: home-assistant-alt.png
     - Remote connect:
         href: https://guacamole.home.04a.ca/
