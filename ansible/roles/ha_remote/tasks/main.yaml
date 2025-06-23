@@ -1,0 +1,38 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Create the user with no password
+  ansible.builtin.user:
+    name: "{{ ha_remote_username }}"
+    shell: /bin/bash
+    create_home: yes
+    password: "!" # Locked password disables password login[2]
+    state: present
+  become: true
+
+- name: Create .ssh directory
+  ansible.builtin.file:
+    path: "/home/{{ ha_remote_username }}/.ssh"
+    state: directory
+    owner: "{{ ha_remote_username }}"
+    group: "{{ ha_remote_username }}"
+    mode: "0700"
+  become: true
+
+- name: Add authorized key for the user
+  ansible.builtin.authorized_key:
+    user: "{{ ha_remote_username }}"
+    key: "{{ ha_remote_ssh_key }}"
+    state: present
+    path: "/home/{{ ha_remote_username }}/.ssh/authorized_keys"
+  become: true
+
+- name: Ensure user can poweroff (sudo without password)
+  ansible.builtin.copy:
+    dest: "/etc/sudoers.d/{{ ha_remote_username }}-poweroff"
+    content: "{{ ha_remote_username }} ALL=(ALL) NOPASSWD: /sbin/poweroff, /sbin/reboot, /sbin/shutdown"
+    validate: "visudo -cf %s"
+    owner: root
+    group: root
+    mode: "0440"
+  become: true

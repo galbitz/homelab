@@ -61,7 +61,7 @@ variable "hosts" {
     "damage" = {
       name = "damage"
       ip   = "192.168.1.20"
-      mac  = ""
+      mac  = "60:cf:84:64:8a:34"
     }
     "bee" = {
       name = "bee"
@@ -72,6 +72,16 @@ variable "hosts" {
       name = "githubrunner"
       ip   = "192.168.1.26"
       mac  = ""
+    }
+    "slzb" = {
+      name = "slzb"
+      ip   = "192.168.1.38"
+      mac  = "78:1c:3c:a7:14:0f"
+    }
+    "bone" = {
+      name = "bone"
+      ip   = "192.168.1.39"
+      mac  = "84:3a:5b:11:9c:46"
     }
     "ha" = {
       name = "ha"

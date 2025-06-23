@@ -2,6 +2,14 @@ docker-server
 rd
 wormhole
 
+
 [linux_generic]
 debian-test
 thin
+
+[ha-remote]
+port
+githubrunner
+docker-server
+damage
+shadow
