@@ -4,6 +4,9 @@
     - Damage:
         href: https://damage.04a.ca:8006/
         icon: proxmox.png
+    - Bone:
+        href: https://bone.04a.ca:8006/
+        icon: proxmox.png
     - Shadow:
         href: https://shadow.04a.ca:8006/
         icon: proxmox.png
