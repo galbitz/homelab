@@ -22,5 +22,5 @@ services:
       - "traefik.http.routers.jellyfin-http.entrypoints=web"
       - "traefik.http.routers.jellyfin-http.rule=HostRegexp(`^jellyfin\\..+`) || HostRegexp(`^media\\..+`)"
       - "traefik.http.routers.jellyfin-https.entrypoints=websecure"
-      - "traefik.http.routers.jellyfin-https.rule=HostRegexp(`^jellyfin\\..+}`) || HostRegexp(`^media\\..+`)"
+      - "traefik.http.routers.jellyfin-https.rule=HostRegexp(`^jellyfin\\..+`) || HostRegexp(`^media\\..+`)"
       - "traefik.http.routers.jellyfin-https.tls=true"
