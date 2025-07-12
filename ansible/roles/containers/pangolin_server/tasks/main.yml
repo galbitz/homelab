@@ -1,0 +1,45 @@
+---
+# https://docs.technotim.live/posts/NUT-server-guide/
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+- name: Check pre req
+  ansible.builtin.assert:
+    that:
+      - containers_pangolin_server_docker_root_dir | length > 0
+    fail_msg: "variable is missing. Define it in global vars"
+
+- name: Make sure that pangolin folder exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: root
+    group: root
+    state: directory
+    mode: u+rwx,g+rx,o+rx
+  loop:
+    - "{{ containers_pangolin_server_dir }}"
+    - "{{ containers_pangolin_server_dir }}/config"
+    - "{{ containers_pangolin_server_dir }}/config/traefik"
+  become: true
+
+- name: Copy files for pangolin
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: u+rw,g+r,o+r
+    force: true
+  loop:
+    - src: docker-compose.yml.j2
+      dest: "{{ containers_pangolin_server_dir }}/docker-compose.yml"
+    - src: config/config.yml.j2
+      dest: "{{ containers_pangolin_server_dir }}/config/config.yml"
+    - src: config/traefik/traefik_config.yml.j2
+      dest: "{{ containers_pangolin_server_dir }}/config/traefik/traefik_config.yml"
+    - src: config/traefik/dynamic_config.yml.j2
+      dest: "{{ containers_pangolin_server_dir }}/config/traefik/dynamic_config.yml"
+  become: true
+
+- name: Deploy Docker Compose stack
+  community.docker.docker_compose_v2:
+    project_src: "{{ containers_pangolin_server_dir }}"
+  become: true

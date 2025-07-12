@@ -8,6 +8,7 @@
     record_id: "{{ cloudflare_wormhole_record_id }}"
     api_token: "{{ cloudflare_wormhole_api_token }}"
     hostname: "{{ cloudflare_wormhole_hostname }}"
+    docker_dir: /opt/docker
   tasks:
     - name: Ensure cron dir for cloudflare exists
       ansible.builtin.file:
@@ -35,3 +36,4 @@
     - star4.essentials.autoupdate
     - star4.essentials.hardening
     - star4.essentials.forwardmta
+    - role: containers/pangolin_server
