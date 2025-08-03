@@ -2,14 +2,14 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
 services:
   guacamole:
-    image: flcontainers/guacamole:1.5.5
+    image: flcontainers/guacamole:1.6.0
     container_name: guacamole
     volumes:
       - "{{ containers_guacamole_dir }}:/config"
       - "/etc/localtime:/etc/localtime:ro"
     environment:
       TZ: "America/Toronto"
-      EXTENSIONS: "auth-sso-openid"
+      EXTENSIONS: "{{ containers_guacamole_extensions }}"
       GUACD_LOG_LEVEL: "debug"
 
     restart: always

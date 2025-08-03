@@ -12,3 +12,5 @@ containers_guacamole_issuer: "https://{{ containers_guacamole_auth_host }}.{{ co
 containers_guacamole_jwks_endpoint: "{{ containers_guacamole_issuer }}/jwks.json"
 containers_guacamole_authorization_endpoint: "{{ containers_guacamole_issuer }}/api/oidc/authorization?state=1234abcedfdhf"
 containers_guacamole_redirect_uri: "https://{{ containers_guacamole_guacamole_host }}.{{ containers_guacamole_main_domain }}"
+
+containers_guacamole_extensions: "auth-sso-openid"
