@@ -4,7 +4,7 @@ dependencies:
     become: true
     vars:
       docker_daemon_options:
-        log-driver: "local" #local driver has log rotation enabled by default
+        log-driver: "journald" #journald for grafana alloy compatibility
       docker_users:
         - gabor
         - sysadmin

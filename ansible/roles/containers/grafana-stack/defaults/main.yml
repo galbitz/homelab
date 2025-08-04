@@ -1,3 +1,5 @@
 ---
 containers_grafana_stack_docker_root_dir: "{{ docker_dir }}"
 containers_grafana_stack_dir: "{{ containers_grafana_stack_docker_root_dir }}/insight"
+
+containers_grafana_stack_alloy_config: ""

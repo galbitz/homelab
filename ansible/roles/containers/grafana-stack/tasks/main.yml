@@ -8,6 +8,12 @@
       - containers_grafana_stack_docker_root_dir | length > 0
     fail_msg: "variable is missing. Define it in global vars"
 
+- name: Fail when containers_grafana_stack_alloy_config is not defined
+  ansible.builtin.fail:
+    msg: Variable containers_grafana_stack_alloy_config is required!
+  when:
+    - containers_grafana_stack_alloy_config | length < 1
+
 - name: Make sure that insight folders exist
   ansible.builtin.file:
     path: "{{ item }}"
@@ -23,6 +29,8 @@
     - "{{ containers_grafana_stack_dir }}/influx/config"
     - "{{ containers_grafana_stack_dir }}/loki"
     - "{{ containers_grafana_stack_dir }}/loki/data"
+    - "{{ containers_grafana_stack_dir }}/alloy"
+    - "{{ containers_grafana_stack_dir }}/alloy/data"
   become: true
 
 - name: Copy docker compose for insight
@@ -46,6 +54,16 @@
   loop:
     - src: "insight/"
       dest: "{{ containers_grafana_stack_dir }}"
+  become: true
+
+- name: Copy alloy config
+  ansible.builtin.template:
+    src: alloy/config.alloy.j2
+    dest: "{{ containers_grafana_stack_dir }}/alloy/config.alloy"
+    owner: root
+    group: root
+    mode: u+rw,g+rw,o+rw
+    force: true
   become: true
 
 - name: Deploy Docker Compose stack

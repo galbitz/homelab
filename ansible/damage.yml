@@ -1,0 +1,10 @@
+---
+- name: Damage
+  hosts: damage
+  become: true
+  tasks:
+    - name: Install Alloy
+      ansible.builtin.include_role:
+        name: grafana.grafana.alloy
+      vars:
+        alloy_config: "{{ lookup('template', 'alloy/generic.config.alloy.j2') }}"

@@ -7,7 +7,7 @@ networks:
 services:
   loki:
     container_name: loki
-    image: grafana/loki:3.5.0
+    image: grafana/loki:3.5.3
     volumes:
       - "{{ containers_grafana_stack_dir }}/loki:/etc/loki"
       - "{{ containers_grafana_stack_dir }}/loki/data:/etc/loki/data"
@@ -18,23 +18,23 @@ services:
     command: -config.file=/etc/loki/loki-config.yml
     networks:
       - proxy
-  promtail:
-    container_name: promtail
-    image: grafana/promtail:3.5.0
-    volumes:
-      - /var/log:/var/log # local syslog scraping
-      - /var/lib/docker/containers:/var/lib/docker/containers:ro # docker container log scraping
-      - /var/run/docker.sock:/var/run/docker.sock
-      - "{{ containers_grafana_stack_dir }}/promtail:/etc/promtail"
-    ports:
-      - "1514:1514" # this is only needed if you are going to send syslogs
-    restart: always
-    command: -config.file=/etc/promtail/promtail-config.yml
-    networks:
-      - proxy
+#  promtail:
+#    container_name: promtail
+#    image: grafana/promtail:3.5.0
+#    volumes:
+#      - /var/log:/var/log # local syslog scraping
+#      - /var/lib/docker/containers:/var/lib/docker/containers:ro # docker container log scraping
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - "{{ containers_grafana_stack_dir }}/promtail:/etc/promtail"
+#    ports:
+#      - "1514:1514" # this is only needed if you are going to send syslogs
+#    restart: always
+#    command: -config.file=/etc/promtail/promtail-config.yml
+#    networks:
+#      - proxy
   grafana:
     container_name: grafana
-    image: grafana/grafana:12.0.0
+    image: grafana/grafana:12.1.0
     user: "1000"
     volumes:
       - "{{ containers_grafana_stack_dir }}/grafana/etc/provisioning:/etc/grafana/provisioning"
@@ -58,28 +58,28 @@ services:
       - "traefik.http.routers.grafana-http.entrypoints=web"
       - "traefik.http.routers.grafana-https.entrypoints=websecure"
       - "traefik.http.routers.grafana-https.tls=true"  
-  syslog-ng:
-    command: -edv
-    container_name: syslog-ng
-    depends_on:
-      - promtail
-    image: balabit/syslog-ng:4.8.3
-    networks:
-      - proxy
-    ports:
-      - protocol: udp
-        published: 9514
-        target: 514
-      - protocol: tcp
-        published: 9601
-        target: 601
-    volumes:
-      - "{{ containers_grafana_stack_dir }}/syslog-ng/syslog-ng.conf:/etc/syslog-ng/syslog-ng.conf:ro"
-    restart: always
+#  syslog-ng:
+#    command: -edv
+#    container_name: syslog-ng
+#    depends_on:
+#      - promtail
+#    image: balabit/syslog-ng:4.8.3
+#    networks:
+#      - proxy
+#    ports:
+#      - protocol: udp
+#        published: 9514
+#        target: 514
+#      - protocol: tcp
+#        published: 9601
+#        target: 601
+#    volumes:
+#      - "{{ containers_grafana_stack_dir }}/syslog-ng/syslog-ng.conf:/etc/syslog-ng/syslog-ng.conf:ro"
+#    restart: always
   influxdb:
     command: --reporting-disabled
     container_name: influxdb
-    image: influxdb:2.7.11
+    image: influxdb:2.7.12
     networks:
       - proxy
     ports:
@@ -96,29 +96,30 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=home-bucket
       - DOCKER_INFLUXDB_INIT_RETENTION=14d
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=influxdbadmintoken
-  cadvisor:
-    container_name: cadvisor
-    image: gcr.io/cadvisor/cadvisor:v0.52.1
-    networks:
-      - proxy
+#  cadvisor:
+#    container_name: cadvisor
+#    image: gcr.io/cadvisor/cadvisor:v0.52.1
+#    networks:
+#      - proxy
     # ports:
     #   - "8081:8080"
-    restart: always
-    volumes:
-      - /:/rootfs:ro
-      - /var/run:/var/run:rw
-      - /sys:/sys:ro
-      - /var/lib/docker:/var/lib/docker:ro
-    devices:
-      - /dev/kmsg
+#    restart: always
+#    volumes:
+#      - /:/rootfs:ro
+#      - /var/run:/var/run:rw
+#      - /sys:/sys:ro
+#      - /var/lib/docker:/var/lib/docker:ro
+#    devices:
+#      - /dev/kmsg
   prometheus:
     command:
       - --config.file=/etc/prometheus/prometheus.yml
       - --storage.tsdb.path=/prometheus
       - --web.enable-admin-api
       - --web.enable-lifecycle
+      - --web.enable-remote-write-receiver
     container_name: prometheus
-    image: prom/prometheus:v3.3.1
+    image: prom/prometheus:v3.5.0
     networks:
       - proxy
     ports:
@@ -128,3 +129,31 @@ services:
     volumes:
       - "{{ containers_grafana_stack_dir }}/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro"
       - "{{ containers_grafana_stack_dir }}/prometheus-data:/prometheus"
+  alloy:
+    container_name: alloy
+    image: grafana/alloy:v1.10.0
+    hostname: docker-server
+    networks:
+      - proxy
+    ports:
+      - "12345:12345"
+      - protocol: udp
+        published: 9514
+        target: 514
+    volumes:
+      - "{{ containers_grafana_stack_dir }}/alloy/config.alloy:/etc/alloy/config.alloy"
+      - "{{ containers_grafana_stack_dir }}/alloy/data:/var/lib/alloy/data"
+      - /:/rootfs:ro
+      - /run:/run:ro
+      - /var/log:/var/log:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker/:ro
+      - /run/udev/data:/run/udev/data:ro
+    restart: always
+    command:
+      - run
+      - --server.http.listen-addr=0.0.0.0:12345
+      - --storage.path=/var/lib/alloy/data
+      - /etc/alloy/config.alloy
+    devices:
+      - /dev/kmsg
