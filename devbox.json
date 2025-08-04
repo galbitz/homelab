@@ -8,7 +8,7 @@
     "gnutar@1.35",
     "sops@3.10.2",
     "age@1.2.1",
-    "cilium-cli@0.18.3",
+    "cilium-cli@0.18.5",
     "terraform@1.11.4"
   ],
   "shell": {
