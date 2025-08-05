@@ -16,6 +16,7 @@
   loop:
     - "{{ containers_homepage_dir }}"
     - "{{ containers_homepage_dir }}/config"
+  become: true
 
 - name: Copy files
   ansible.builtin.template:
@@ -44,6 +45,7 @@
       dest: "{{ containers_homepage_dir }}/config/settings.yaml"
     - src: "config/widgets.yaml.j2"
       dest: "{{ containers_homepage_dir }}/config/widgets.yaml"
+  become: true
 
 - name: Deploy docker compose stack
   community.docker.docker_compose_v2:
