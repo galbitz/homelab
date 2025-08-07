@@ -6,7 +6,7 @@
     "yamllint@1.37.1",
     "ansible@2.18.7",
     "ansible-lint@25.5.0",
-    "git@2.50.0",
+    "git@2.50.1",
     "go-task@3.44.0",
     "terraform@1.12.2"
   ],
