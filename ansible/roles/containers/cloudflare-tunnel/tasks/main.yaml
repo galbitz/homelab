@@ -9,7 +9,7 @@
 - name: Set up cloudflare tunnel
   community.docker.docker_container:
     name: cloudflare-tunnel
-    image: cloudflare/cloudflared:2025.7.0
+    image: cloudflare/cloudflared:2025.8.0
     pull: true
     state: started
     restart_policy: always
