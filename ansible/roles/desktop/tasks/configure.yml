@@ -1,8 +1,8 @@
 ---
 - name: Configure - Capture home directory
   ansible.builtin.set_fact:
-    home: "{{ ansible_env.HOME }}"
+    desktop_home: "{{ ansible_env.HOME }}"
 
 - name: Configure - Set build directory
   ansible.builtin.set_fact:
-    build_dir: "{{ home }}/build"
+    desktop_build_dir: "{{ desktop_home }}/build"

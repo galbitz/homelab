@@ -54,7 +54,7 @@
 - name: Dwm - copy xsession
   ansible.builtin.copy:
     src: .xsession
-    dest: "{{ home }}/.xsession"
+    dest: "{{ desktop_home }}/.xsession"
     owner: gabor
     mode: u+rw,g+rw,o+rw
 

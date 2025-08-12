@@ -14,13 +14,13 @@
 - name: Neovim - git checkout
   ansible.builtin.git:
     repo: https://github.com/neovim/neovim
-    dest: "{{ build_dir }}/neovim"
+    dest: "{{ desktop_build_dir }}/neovim"
     force: true
     version: stable # noqa: latest
 
 - name: Neovim - install
   community.general.make:
-    chdir: "{{ build_dir }}/neovim"
+    chdir: "{{ desktop_build_dir }}/neovim"
     target: install
     params:
       CMAKE_BUILD_TYPE: Release
