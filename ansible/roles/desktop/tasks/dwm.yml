@@ -15,39 +15,39 @@
 - name: Dwm - checkout source
   ansible.builtin.git:
     repo: https://git.suckless.org/dwm
-    dest: "{{ build_dir }}/dwm"
+    dest: "{{ desktop_build_dir }}/dwm"
     version: master # noqa: latest
 
 - name: Dwm - Copy config file
   ansible.builtin.copy:
-    src: "{{ build_dir }}/dwm/config.def.h"
+    src: "{{ desktop_build_dir }}/dwm/config.def.h"
     remote_src: true
-    dest: "{{ build_dir }}/dwm/config.h"
+    dest: "{{ desktop_build_dir }}/dwm/config.h"
     mode: u+rw,g+r,o+r
     force: false
 
 - name: Dwm - Ensure term is set to kitty
   ansible.builtin.replace:
-    path: "{{ build_dir }}/dwm/config.h"
+    path: "{{ desktop_build_dir }}/dwm/config.h"
     regexp: '\"st\"'
     replace: '"kitty"'
 
 - name: Dwm - add rofi command
   ansible.builtin.lineinfile:
-    path: "{{ build_dir }}/dwm/config.h"
+    path: "{{ desktop_build_dir }}/dwm/config.h"
     insertafter: '^static const char \*dmenucmd'
     line: 'static const char *roficmd[] = { "rofi", "-show", "drun", "-show-icons", NULL };'
     state: present
 
 - name: Dwm - ensure menu command is set to rofi
   ansible.builtin.replace:
-    path: "{{ build_dir }}/dwm/config.h"
+    path: "{{ desktop_build_dir }}/dwm/config.h"
     regexp: "{.v = dmenucmd }"
     replace: "{.v = roficmd }"
 
 - name: Dwm - install
   community.general.make:
-    chdir: "{{ build_dir }}/dwm"
+    chdir: "{{ desktop_build_dir }}/dwm"
     target: install
   become: true
 
