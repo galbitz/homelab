@@ -2,3 +2,5 @@
 containers_silverbullet_docker_root_dir: "{{ docker_dir }}"
 containers_silverbullet_dir: "{{ containers_silverbullet_docker_root_dir }}/silverbullet"
 containers_silverbullet_user: ""
+containers_silverbullet_enable_traefik: true
+containers_silverbullet_docker_network: "proxy"

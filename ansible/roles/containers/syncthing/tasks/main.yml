@@ -34,3 +34,4 @@
 - name: Docker-compose up
   community.docker.docker_compose_v2:
     project_src: "{{ containers_syncthing_dir }}"
+  become: true

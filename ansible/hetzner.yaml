@@ -57,8 +57,3 @@
             grant_types:
               - "implicit"
             userinfo_signed_response_alg: "none"
-    - role: containers/notes_storage
-    - role: containers/syncthing
-      vars:
-        containers_syncthing_enable_traefik: false # noqa: var-naming[no-role-prefix]
-    - role: containers/silverbullet

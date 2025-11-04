@@ -1,5 +1,9 @@
 # To see all available options, please visit the docs:
-# https://docs.fossorial.io/Pangolin/Configuration/config
+# https://docs.pangolin.net/
+
+gerbil:
+    start_port: 51820
+    base_endpoint: "pangolin.pa.04a.ca"
 
 app:
     dashboard_url: "https://pangolin.pa.04a.ca"
@@ -17,16 +21,10 @@ server:
         methods: ["GET", "POST", "PUT", "DELETE", "PATCH"]
         allowed_headers: ["X-CSRF-Token", "Content-Type"]
         credentials: false
-
-gerbil:
-    start_port: 51820
-    base_endpoint: "pangolin.pa.04a.ca"
-
-
+    maxmind_db_path: "./config/GeoLite2-Country.mmdb"
 
 flags:
     require_email_verification: false
     disable_signup_without_invite: true
     disable_user_create_org: false
     allow_raw_resources: true
-    allow_base_domain_resources: true

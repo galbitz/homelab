@@ -37,3 +37,12 @@
     - star4.essentials.hardening
     - star4.essentials.forwardmta
     - role: containers/pangolin_server
+    - role: containers/notes_storage
+    - role: containers/syncthing
+      vars:
+        containers_syncthing_enable_traefik: false # noqa: var-naming[no-role-prefix]
+        containers_syncthing_docker_network: "pangolin" # noqa: var-naming[no-role-prefix]
+    - role: containers/silverbullet
+      vars:
+        containers_silverbullet_enable_traefik: false # noqa: var-naming[no-role-prefix]
+        containers_silverbullet_docker_network: "pangolin" # noqa: var-naming[no-role-prefix]
