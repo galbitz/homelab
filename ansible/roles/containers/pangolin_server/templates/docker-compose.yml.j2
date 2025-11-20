@@ -1,7 +1,8 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
 name: pangolin
 services:
   pangolin:
-    image: docker.io/fosrl/pangolin:1.11.1
+    image: docker.io/fosrl/pangolin:1.12.2
     container_name: pangolin
     restart: unless-stopped
     volumes:
@@ -33,7 +34,7 @@ services:
       - 443:443
       - 80:80
   traefik:
-    image: docker.io/traefik:v3.5
+    image: docker.io/traefik:v3.6.2
     container_name: traefik
     restart: unless-stopped
     network_mode: service:gerbil
