@@ -73,6 +73,10 @@ variable "hosts" {
       ip   = "192.168.1.26"
       mac  = ""
     }
+    "master"  = {
+      name = "master"
+      ip   = "192.168.1.27"
+    }
     "slzb" = {
       name = "slzb"
       ip   = "192.168.1.38"
