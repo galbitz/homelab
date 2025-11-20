@@ -1,7 +1,7 @@
 {
   "packages": [
     "gnutar@1.35",
-    "sops@3.10.2",
+    "sops@3.11.0",
     "age@1.2.1",
     "yamllint@1.37.1",
     "ansible@2.18.7",
