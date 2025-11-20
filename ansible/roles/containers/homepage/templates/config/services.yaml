@@ -10,6 +10,9 @@
     - Shadow:
         href: https://shadow.04a.ca:8006/
         icon: proxmox.png
+    - Master:
+        href: https://master.04a.ca:8006/
+        icon: proxmox.png
 - Services:
     - Beszel Hub:
         href: http://192.168.1.17:38090/
@@ -17,7 +20,7 @@
     - Home Assistant:
         href: https://ha.04a.ca/
         icon: home-assistant-alt.png
-    - Remote connect:
+    - Guacamole (local):
         href: https://guacamole.home.04a.ca/
         icon: guacamole.png
     - Unifi wifi:
@@ -29,14 +32,14 @@
     - Portainer:
         href: https://portainer.home.04a.ca/
         icon: portainer.png
-    - Traefik:
+    - Traefik (local):
         href: https://traefik.home.04a.ca/
         icon: traefik.png
     - Grafana:
         href: https://grafana.home.04a.ca/
         icon: grafana.png
     - NUT:
-        href: https://nut.home.04a.ca/ups/CP
+        href: https://nut.home.04a.ca/ups/default/CP
         icon: ups.png
     - Switch:
         href: http://192.168.1.3/
@@ -47,8 +50,8 @@
     - Syncthing (local):
         href: http://localhost:8384/
         icon: syncthing.png
-    - Syncthing (container):
-        href: https://syncthing.home.04a.ca/
+    - Syncthing (hosted):
+        href: https://syncthing.pa.04a.ca/
         icon: syncthing.png
     - TrueNAS:
         href: https://truenas.04a.ca/
@@ -59,3 +62,6 @@
     - SilverBullet:
         href: https://silverbullet.home.04a.ca/
         icon: silverbullet.png
+    - Pangolin:
+        href: https://pangolin.pa.04a.ca/
+        icon: pangolin.png
