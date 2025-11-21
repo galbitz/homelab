@@ -2,6 +2,6 @@
 - name: Check parameters
   ansible.builtin.assert:
     that:
-      - file_backup_destination
+      - file_backup_destination | length > 0
       - file_backup_list_of_folders_to_backup | length > 0
     fail_msg: "One or more file_backup variable is not set"
