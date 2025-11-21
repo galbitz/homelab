@@ -10,10 +10,10 @@
     - role: autoupdate
       vars:
         autoupdate_notification_email: "{{ homelab_email }}"
-    - role: frp
-      vars:
-        frp_type: "client"
-        frp_version: "0.62.1"
+    #    - role: frp
+    #      vars:
+    #        frp_type: "client"
+    #        frp_version: "0.62.1"
     - role: mta
     # - role: nut_server
     - role: containers/nut-master
