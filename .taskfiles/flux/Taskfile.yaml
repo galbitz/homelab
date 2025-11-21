@@ -27,5 +27,5 @@ tasks:
 
     vars:
       # renovate: datasource=github-releases depName=prometheus-operator/prometheus-operator
-      PROMETHEUS_OPERATOR_VERSION: v0.86.2
+      PROMETHEUS_OPERATOR_VERSION: v0.87.0
       KUBECONFIG_FILE: "{{.ROOT_DIR}}/kubernetes/{{.cluster}}/bootstrap/generic/inventory/mycluster/artifacts/admin.conf"
