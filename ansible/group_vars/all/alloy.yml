@@ -1,3 +1,6 @@
 ---
 alloy_internal_loki_endpoint_url: "http://192.168.1.17:3100/loki/api/v1/push"
 alloy_internal_prometheus_endpoint_url: "http://192.168.1.17:9090/api/v1/write"
+
+alloy_grafanacloud_loki_endpoint_url: "https://logs-prod-006.grafana.net/loki/api/v1/push"
+alloy_grafanacloud_prometheus_endpoint_url: "https://prometheus-prod-13-prod-us-east-0.grafana.net/api/prom/push"

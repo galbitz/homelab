@@ -1,0 +1,18 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json#/$defs/tasks
+
+- name: Fail when alloy_my_config is not defined
+  ansible.builtin.fail:
+    msg: Variable alloy_my_config is required!
+  when:
+    - alloy_my_config | length < 1
+
+- name: Install Alloy
+  ansible.builtin.include_role:
+    name: grafana.grafana.alloy
+  vars:
+    alloy_config: "{{ alloy_my_config }}"
+    alloy_user_groups:
+      - adm
+      - systemd-journal
+      - docker

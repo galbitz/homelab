@@ -17,3 +17,8 @@
     - role: mta
     # - role: nut_server
     - role: containers/nut-master
+    - role: alloy
+      vars:
+        alloy_my_config: "{{ lookup('template', 'alloy/lokionly.config.alloy.j2') }}"
+      tags: ["alloy"]
+      become: true

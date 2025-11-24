@@ -35,8 +35,11 @@
     - Traefik (local):
         href: https://traefik.home.04a.ca/
         icon: traefik.png
-    - Grafana:
+    - Grafana (local):
         href: https://grafana.home.04a.ca/
+        icon: grafana.png
+    - Grafana (cloud):
+        href: https://derive.grafana.net/a/grafana-setupguide-app/home
         icon: grafana.png
     - NUT:
         href: https://nut.home.04a.ca/ups/default/CP
