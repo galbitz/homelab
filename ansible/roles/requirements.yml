@@ -2,7 +2,6 @@
 roles:
   - name: geerlingguy.docker
   - name: geerlingguy.dotfiles
-  - name: patrickjahns.promtail
   - name: gantsign.visual-studio-code
 
 collections:

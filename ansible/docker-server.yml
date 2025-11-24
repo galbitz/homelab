@@ -32,8 +32,8 @@
     - role: containers/cloudflare-dns
     - role: containers/grafana-stack
       vars:
-        alloy_internal_loki_endpoint_url: "http://loki:3100/loki/api/v1/push"
-        alloy_internal_prometheus_endpoint_url: "http://prometheus:9090/api/v1/write"
+        #        alloy_internal_loki_endpoint_url: "http://loki:3100/loki/api/v1/push"
+        #        alloy_internal_prometheus_endpoint_url: "http://prometheus:9090/api/v1/write"
         containers_grafana_stack_alloy_config: "{{ lookup('template', 'alloy/generic.config.alloy.j2') }}"
       tags: ["grafana-stack"]
     - role: network-mounts

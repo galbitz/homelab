@@ -7,4 +7,3 @@
     - star4.essentials.hardening
     - star4.essentials.forwardmta
     - containers/docker-base
-    - logclient
