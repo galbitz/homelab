@@ -68,3 +68,6 @@
     - Pangolin:
         href: https://pangolin.pa.04a.ca/
         icon: pangolin.png
+    - SLZB:
+        href: http://192.168.1.38/
+        icon: zigbee2mqtt.png
