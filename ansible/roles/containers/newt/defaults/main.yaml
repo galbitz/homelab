@@ -1,0 +1,7 @@
+---
+containers_newt_docker_root_dir: "{{ docker_dir }}"
+containers_newt_dir: "{{ containers_newt_docker_root_dir }}/newt"
+
+containers_newt_id: ""
+containers_newt_secret: ""
+containers_newt_endpoint: "https://pangolin.pa.04a.ca"

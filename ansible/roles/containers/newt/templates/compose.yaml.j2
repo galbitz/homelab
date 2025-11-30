@@ -1,0 +1,11 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+services:
+  newt:
+    image: fosrl/newt:1.6.0
+    container_name: newt
+    restart: unless-stopped
+    environment:
+      - PANGOLIN_ENDPOINT={{ containers_newt_endpoint }}
+      - NEWT_ID={{ containers_newt_id }}
+      - NEWT_SECRET={{ containers_newt_secret }}
