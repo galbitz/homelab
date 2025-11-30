@@ -25,6 +25,6 @@
     - role: containers/tailscale
     - role: containers/newt
       vars:
-        containers_newt_id: "{{ lookup('ansible.builtin.env', 'PANGOLIN_NEWT_ID_THIN') }}"
-        containers_newt_secret: "{{ lookup  ('ansible.builtin.env', 'PANGOLIN_NEWT_SECRET_THIN') }}"
+        containers_newt_id: "{{ lookup('ansible.builtin.env', 'PANGOLIN_NEWT_ID_THIN') }}" # noqa: var-naming[no-role-prefix]
+        containers_newt_secret: "{{ lookup  ('ansible.builtin.env', 'PANGOLIN_NEWT_SECRET_THIN') }}" # noqa: var-naming[no-role-prefix]
       tags: ["newt"]

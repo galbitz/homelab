@@ -51,6 +51,6 @@
     - role: containers/homepage
     - role: containers/newt
       vars:
-        containers_newt_id: "{{ lookup('ansible.builtin.env', 'PANGOLIN_NEWT_ID_DOCKER_SERVER') }}"
-        containers_newt_secret: "{{ lookup  ('ansible.builtin.env', 'PANGOLIN_NEWT_SECRET_DOCKER_SERVER') }}"
+        containers_newt_id: "{{ lookup('ansible.builtin.env', 'PANGOLIN_NEWT_ID_DOCKER_SERVER') }}" # noqa: var-naming[no-role-prefix]
+        containers_newt_secret: "{{ lookup  ('ansible.builtin.env', 'PANGOLIN_NEWT_SECRET_DOCKER_SERVER') }}" # noqa: var-naming[no-role-prefix]
       tags: ["newt"]
