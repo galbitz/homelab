@@ -1,0 +1,5 @@
+---
+containers_beszel_agent_docker_root_dir: "{{ docker_dir }}"
+containers_beszel_agent_dir: "{{ containers_beszel_agent_docker_root_dir }}/beszel-agent"
+
+containers_beszel_agent_ssh_public_key: ""

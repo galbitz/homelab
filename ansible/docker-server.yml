@@ -54,3 +54,7 @@
         containers_newt_id: "{{ lookup('ansible.builtin.env', 'PANGOLIN_NEWT_ID_DOCKER_SERVER') }}" # noqa: var-naming[no-role-prefix]
         containers_newt_secret: "{{ lookup  ('ansible.builtin.env', 'PANGOLIN_NEWT_SECRET_DOCKER_SERVER') }}" # noqa: var-naming[no-role-prefix]
       tags: ["newt"]
+    - role: containers/beszel-agent
+      vars:
+        containers_beszel_agent_ssh_public_key: "{{ lookup('ansible.builtin.env', 'BESZEL_AGENT_DOCKER_SERVER') }}" # noqa: var-naming[no-role-prefix]
+      tags: ["beszel-agent"]
