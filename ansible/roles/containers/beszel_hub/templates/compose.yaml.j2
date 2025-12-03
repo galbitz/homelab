@@ -29,7 +29,7 @@ services:
       retries: 3 # Number of retries before marking as unhealthy
       start_period: 10s # Time to wait before starting health checks
   beszel:
-    image: henrygd/beszel:0.16.1
+    image: henrygd/beszel:0.17.0
     container_name: beszel-hub
     network_mode: service:ts-beszel-hub
     depends_on:
