@@ -27,7 +27,7 @@
     - role: containers/traefik
       vars:
         containers_traefik_dynamic_conf: templates/config/dynamic_conf.yaml.j2 # noqa: var-naming[no-role-prefix]
-    - role: containers/authelia
+    # - role: containers/authelia
     - role: containers/portainer
     - role: containers/cloudflare-dns
     - role: containers/grafana-stack
@@ -39,10 +39,10 @@
     - role: network-mounts
     - role: file_backup
     - role: containers/uptime-kuma
-    - role: containers/guacamole
-      vars:
-        containers_guacamole_main_domain: "{{ containers_traefik_tunnel_domain }}" # noqa: var-naming[no-role-prefix]
-        containers_guacamole_extensions: "" # noqa: var-naming[no-role-prefix]
+    #- role: containers/guacamole
+    #  vars:
+    #    containers_guacamole_main_domain: "{{ containers_traefik_tunnel_domain }}" # noqa: var-naming[no-role-prefix]
+    #    containers_guacamole_extensions: "" # noqa: var-naming[no-role-prefix]
     - role: containers/netboot
     - role: containers/beszel_hub
     - role: containers/nut-server
