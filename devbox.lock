@@ -413,51 +413,51 @@
         }
       }
     },
-    "terraform@1.14.1": {
-      "last_modified": "2025-12-03T20:43:00Z",
-      "resolved": "github:NixOS/nixpkgs/ebc94f855ef25347c314258c10393a92794e7ab9#terraform",
+    "terraform@1.14.2": {
+      "last_modified": "2025-12-13T16:46:16Z",
+      "resolved": "github:NixOS/nixpkgs/23735a82a828372c4ef92c660864e82fbe2f5fbe#terraform",
       "source": "devbox-search",
-      "version": "1.14.1",
+      "version": "1.14.2",
       "systems": {
         "aarch64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/n9dasqgxsrxaxn8mqgn3drjnfw9fv0b4-terraform-1.14.1",
+              "path": "/nix/store/9rzjvdbhhsnla339zg7d6jslxwpxgbi8-terraform-1.14.2",
               "default": true
             }
           ],
-          "store_path": "/nix/store/n9dasqgxsrxaxn8mqgn3drjnfw9fv0b4-terraform-1.14.1"
+          "store_path": "/nix/store/9rzjvdbhhsnla339zg7d6jslxwpxgbi8-terraform-1.14.2"
         },
         "aarch64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/9zcqvyz5rjqd93pg33gsrsh2v8prz8hn-terraform-1.14.1",
+              "path": "/nix/store/5jh44gnqsa8sqjfz36v3zgngzh4lr3vs-terraform-1.14.2",
               "default": true
             }
           ],
-          "store_path": "/nix/store/9zcqvyz5rjqd93pg33gsrsh2v8prz8hn-terraform-1.14.1"
+          "store_path": "/nix/store/5jh44gnqsa8sqjfz36v3zgngzh4lr3vs-terraform-1.14.2"
         },
         "x86_64-darwin": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/ldaycnkfssarabk4jv4dwahdcmd4lbv5-terraform-1.14.1",
+              "path": "/nix/store/g3mfj7phkwsk37ca2qp2wqq07gd002p2-terraform-1.14.2",
               "default": true
             }
           ],
-          "store_path": "/nix/store/ldaycnkfssarabk4jv4dwahdcmd4lbv5-terraform-1.14.1"
+          "store_path": "/nix/store/g3mfj7phkwsk37ca2qp2wqq07gd002p2-terraform-1.14.2"
         },
         "x86_64-linux": {
           "outputs": [
             {
               "name": "out",
-              "path": "/nix/store/b1by4apynbpjq2ggnnx9vszz7ha5qvdz-terraform-1.14.1",
+              "path": "/nix/store/2wljmzh52119cvvx8ys212xzhkzpagpq-terraform-1.14.2",
               "default": true
             }
           ],
-          "store_path": "/nix/store/b1by4apynbpjq2ggnnx9vszz7ha5qvdz-terraform-1.14.1"
+          "store_path": "/nix/store/2wljmzh52119cvvx8ys212xzhkzpagpq-terraform-1.14.2"
         }
       }
     },
