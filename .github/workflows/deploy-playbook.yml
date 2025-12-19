@@ -2,6 +2,12 @@
 name: Deploy playbook
 "on":
   workflow_dispatch:
+    inputs:
+      playbook:
+        description: "Playbook to run"
+        required: true
+        default: "thin.yml"
+        type: string
 
 jobs:
   build-infrastructure:
@@ -29,4 +35,4 @@ jobs:
           tags: tag:github-ci
 
       - run: devbox run task ansible:install-requirements
-      - run: devbox run -- task ansible:run -- thin.yml
+      - run: devbox run -- task ansible:run -- ${{ inputs.playbook }}
