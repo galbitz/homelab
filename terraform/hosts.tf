@@ -112,8 +112,8 @@ variable "hosts" {
       ip   = "192.168.1.44"
       mac  = "60:55:F9:33:19:34"
     }
-    "ha-screen" = {
-      name = "ha-screen"
+    "kiosk" = {
+      name = "kiosk"
       ip   = "192.168.1.45"
       mac  = "d8:3a:dd:4d:14:7c"
     }
