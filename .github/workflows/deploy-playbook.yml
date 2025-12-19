@@ -1,0 +1,32 @@
+---
+name: Deploy playbook
+"on":
+  workflow_dispatch:
+
+jobs:
+  build-infrastructure:
+    runs-on: ubuntu-latest
+    env:
+      SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v6
+
+      - name: Install devbox
+        uses: jetpack-io/devbox-install-action@v0.14.0
+        with:
+          enable-cache: true
+
+      #      - run: devbox run task tf:init
+      #      - run: devbox run task tf:generate-inventory
+
+      - name: Connect Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:github-ci
+
+      - run: devbox run task ansible:install-requirements
+      - run: devbox run -- task ansible:run -- thin.yml
