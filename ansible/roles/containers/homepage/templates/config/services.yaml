@@ -13,6 +13,9 @@
     - Master:
         href: https://master.04a.ca:8006/
         icon: proxmox.png
+    - Hero:
+        href: https://hero.04a.ca:8006/
+        icon: proxmox.png
 - Services:
     - Beszel Hub:
         href: http://192.168.1.17:38090/
