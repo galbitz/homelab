@@ -17,6 +17,11 @@ variable "hosts" {
       ip   = "192.168.1.4"
       mac  = "c4:65:16:30:f6:4a"
     }
+    "hero" = {
+      name = "hero"
+      ip   = "192.168.1.5"
+      mac  = "64:c9:01:dd:7f:62"
+    }
     "king" = {
       name = "king"
       ip   = "192.168.1.9"
