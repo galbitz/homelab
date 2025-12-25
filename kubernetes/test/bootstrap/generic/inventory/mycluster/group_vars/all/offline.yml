@@ -22,7 +22,6 @@
 # kubectl_download_url: "{{ files_repo }}/dl.k8s.io/release/{{ kube_version }}/bin/linux/{{ image_arch }}/kubectl"
 # kubelet_download_url: "{{ files_repo }}/dl.k8s.io/release/{{ kube_version }}/bin/linux/{{ image_arch }}/kubelet"
 
-
 ## Two options - Override entire repository or override only a single binary.
 
 ## [Optional] 1 - Override entire binary repository

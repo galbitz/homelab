@@ -9,7 +9,7 @@
 - name: Update apt package cache
   ansible.builtin.apt:
     update_cache: true
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+  when: ansible_facts['distribution']  == 'Ubuntu' or ansible_facts['distribution'] == 'Debian'
   become: true
 
 - name: Install thorium browser
@@ -17,5 +17,5 @@
     name:
       - thorium-browser
     state: present
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+  when: ansible_facts['distribution']  == 'Ubuntu' or ansible_facts['distribution']  == 'Debian'
   become: true
