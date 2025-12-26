@@ -1,0 +1,91 @@
+---
+- name: Set timezone to Toronto
+  community.general.timezone:
+    name: America/Toronto
+  become: true
+
+- name: Install common packages
+  ansible.builtin.package:
+    name:
+      - git
+      - curl
+      - wget
+      - htop
+      - jq
+      - nmap
+      - tmux
+      - tree
+      - sudo
+      - vim
+      - openssh-client
+    state: present
+  become: true
+
+- name: Check if sysadmin user exists
+  ansible.builtin.getent:
+    database: passwd
+    key: sysadmin
+  become: true
+  register: sysadmin_user
+
+- name: Assert sysadmin user exists
+  ansible.builtin.assert:
+    that:
+      - sysadmin_user is defined
+      - sysadmin_user.ansible_facts.getent_passwd.sysadmin is defined
+    fail_msg: "sysadmin user does not exist"
+    success_msg: "sysadmin user exists"
+
+- name: Check sysadmin sudo access
+  ansible.builtin.command: sudo -l -U sysadmin
+  become: true
+  register: sudo_check
+  changed_when: false
+  failed_when: false
+
+- name: Assert sysadmin has sudo access
+  ansible.builtin.assert:
+    that:
+      - sudo_check.rc == 0
+      - "'(ALL) NOPASSWD: ALL' in sudo_check.stdout or '(ALL : ALL) ALL' in sudo_check.stdout or '(ALL) ALL' in sudo_check.stdout"
+    fail_msg: "sysadmin user does not have sudo access"
+    success_msg: "sysadmin user has sudo access"
+
+- name: Ensure sysadmin .ssh directory exists
+  ansible.builtin.file:
+    path: /home/sysadmin/.ssh
+    state: directory
+    owner: sysadmin
+    group: sysadmin
+    mode: "0700"
+  become: true
+
+- name: Update sysadmin authorized_keys from GitHub
+  ansible.builtin.get_url:
+    url: https://github.com/galbitz.keys
+    dest: /home/sysadmin/.ssh/authorized_keys
+    owner: sysadmin
+    group: sysadmin
+    mode: "0600"
+    force: true
+  become: true
+
+- name: Allow pubkey authentication
+  ansible.builtin.lineinfile:
+    dest: /etc/ssh/sshd_config
+    search_string: "PubkeyAuthentication"
+    line: "PubkeyAuthentication yes"
+    state: present
+    validate: "sshd -T -f %s"
+  become: true
+  notify: Restart ssh
+
+- name: Disallow password authentication
+  ansible.builtin.lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+    validate: "sshd -T -f %s"
+  become: true
+  notify: Restart ssh

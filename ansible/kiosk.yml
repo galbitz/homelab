@@ -1,0 +1,11 @@
+---
+- name: Configure kiosk
+  hosts: kiosk
+  vars:
+
+  roles:
+    - role: linux-auth
+    - role: autoupdate
+      vars:
+        autoupdate_notification_email: "{{ homelab_email }}"
+    - role: mta

@@ -3,7 +3,7 @@
   ansible.builtin.service:
     name: ssh
     state: restarted
-  when: (ansible_facts['distribution']  or ansible_facts['distribution']  == 'Ubuntu') and (ansible_env['WSLENV'] is not defined)
+  when: (ansible_facts['distribution'] == 'Debian' or ansible_facts['distribution']  == 'Ubuntu') and (ansible_env['WSLENV'] is not defined)
   become: true
 
 - name: Restart ssh (Redhat)
