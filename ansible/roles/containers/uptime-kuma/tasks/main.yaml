@@ -16,14 +16,22 @@
   become: true
   loop:
     - "{{ containers_uptime_kuma_dir }}"
+    - "{{ containers_uptime_kuma_dir }}/data "
 
-- name: Create uptime-kuma container
-  community.docker.docker_container:
-    name: uptime-kuma
-    image: louislam/uptime-kuma:2.0.2
-    volumes:
-      - "{{ containers_uptime_kuma_dir }}:/app/data"
-    ports:
-      - 3001:3001
-    state: started
-    restart_policy: always
+- name: Copy config files
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: u+rwx,g+rwx,o+rxw
+    force: true
+  loop:
+    - src: "compose.yaml.j2"
+      dest: "{{ containers_uptime_kuma_dir }}/compose.yaml"
+  become: true
+
+- name: Deploy docker compose stack
+  community.docker.docker_compose_v2:
+    project_src: "{{ containers_uptime_kuma_dir }}"
+  become: true

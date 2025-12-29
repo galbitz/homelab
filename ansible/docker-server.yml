@@ -39,6 +39,7 @@
     - role: network-mounts
     - role: file_backup
     - role: containers/uptime-kuma
+      tags: ["uptime-kuma"]
     #- role: containers/guacamole
     #  vars:
     #    containers_guacamole_main_domain: "{{ containers_traefik_tunnel_domain }}" # noqa: var-naming[no-role-prefix]
