@@ -1,8 +1,6 @@
 ---
 - name: Configure kiosk
   hosts: kiosk
-  vars:
-
   roles:
     - role: linux-auth
     - role: autoupdate

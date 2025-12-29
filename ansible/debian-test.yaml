@@ -5,7 +5,7 @@
   vars:
     docker_dir: "/opt/docker"
   roles:
-    - role: linux-generic
+    - role: linux-auth
     - role: autoupdate
       vars:
         autoupdate_notification_email: "{{ homelab_email }}"
