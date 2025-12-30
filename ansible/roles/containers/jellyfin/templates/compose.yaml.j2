@@ -5,12 +5,17 @@ services:
   jellyfin:
     container_name: jellyfin
     image: jellyfin/jellyfin:10.11.5
+    user: "{{ containers_jellyfin_uid }}:{{ containers_jellyfin_gid }}"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     volumes:
       - "{{ containers_jellyfin_config_dir }}:/config"
       - "{{ containers_jellyfin_cache_dir }}:/cache"
       # TODO: Extract to variable
-      - "/mnt/music:/music"
-      - "/mnt/movies:/movies"
+      - /mnt/music:/music:ro
+      - /mnt/movies:/movies:ro
     restart: always
     networks:
       - proxy

@@ -5,19 +5,26 @@ network_mounts_mounts:
     local_path: /mnt/music
     username: "{{ lookup('ansible.builtin.env', 'TRUENAS_MUSIC_USERNAME') }}"
     password: "{{ lookup('ansible.builtin.env', 'TRUENAS_MUSIC_PASSWORD') }}"
+    file_mode: "0755"
+    dir_mode: "0755"
   - name: movies
     network_path: "//truenas.04a.ca/movies"
     local_path: /mnt/movies
     username: "{{ lookup('ansible.builtin.env', 'TRUENAS_MOVIES_USERNAME') }}"
     password: "{{ lookup('ansible.builtin.env', 'TRUENAS_MOVIES_PASSWORD') }}"
+    file_mode: "0755"
+    dir_mode: "0755"
   - name: backup
     network_path: "//truenas.04a.ca/filebackup"
     local_path: /mnt/backup
     username: "{{ lookup('ansible.builtin.env', 'TRUENAS_BACKUP_USERNAME') }}"
     password: "{{ lookup('ansible.builtin.env', 'TRUENAS_BACKUP_PASSWORD') }}"
-
+    file_mode: "0777"
+    dir_mode: "0777"
   - name: notes
     network_path: "//truenas.04a.ca/notes"
     local_path: /mnt/notes
     username: "{{ lookup('ansible.builtin.env', 'TRUENAS_NOTES_USERNAME') }}"
     password: "{{ lookup('ansible.builtin.env', 'TRUENAS_NOTES_PASSWORD') }}"
+    file_mode: "0777"
+    dir_mode: "0777"

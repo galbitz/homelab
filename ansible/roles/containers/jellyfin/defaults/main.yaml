@@ -3,3 +3,8 @@ containers_jellyfin_docker_root_dir: "{{ docker_dir }}"
 containers_jellyfin_dir: "{{ containers_jellyfin_docker_root_dir }}/jellyfin"
 containers_jellyfin_config_dir: "{{ containers_jellyfin_dir }}/config"
 containers_jellyfin_cache_dir: "{{ containers_jellyfin_dir }}/cache"
+
+containers_jellyfin_user: "jellyfin"
+containers_jellyfin_group: "jellyfin"
+containers_jellyfin_uid: 2001
+containers_jellyfin_gid: 2001

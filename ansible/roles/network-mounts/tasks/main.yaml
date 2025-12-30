@@ -20,7 +20,7 @@
     src: "{{ item.network_path }}"
     path: "{{ item.local_path }}"
     fstype: cifs
-    opts: "username={{ item.username }},password={{ item.password }},file_mode=0777,dir_mode=0777"
+    opts: "username={{ item.username }},password={{ item.password }},file_mode={{ item.file_mode }},dir_mode={{ item.dir_mode }}"
     state: mounted
   become: true
   loop: "{{ network_mounts_mounts }}"

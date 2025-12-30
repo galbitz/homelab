@@ -6,11 +6,28 @@
       - containers_jellyfin_docker_root_dir | length > 0
     fail_msg: "variable is missing. Define it in global vars"
 
+- name: Ensure group jellyfin exists
+  ansible.builtin.group:
+    name: "{{ containers_jellyfin_group }}"
+    gid: "{{ containers_jellyfin_gid }}"
+    state: present
+  become: true
+
+- name: Create Jellyfin user
+  ansible.builtin.user:
+    name: "{{ containers_jellyfin_user }}"
+    group: "{{ containers_jellyfin_group }}"
+    uid: "{{ containers_jellyfin_uid }}"
+    system: true
+    shell: /usr/sbin/nologin
+    create_home: false
+  become: true
+
 - name: Make sure that Jellyfin folders exist
   ansible.builtin.file:
     path: "{{ item }}"
-    owner: root
-    group: root
+    owner: "{{ containers_jellyfin_user }}"
+    group: "{{ containers_jellyfin_group }}"
     state: directory
     mode: u+rw,g+rw,o+rw
   loop:
@@ -25,10 +42,11 @@
     dest: "{{ containers_jellyfin_dir }}/compose.yaml"
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: u+rw,g+rw,o+rw
+    mode: u+rw,g+rw,o+r-w
     force: true
   become: true
 
 - name: Deploy Docker Compose stack
   community.docker.docker_compose_v2:
     project_src: "{{ containers_jellyfin_dir }}"
+  become: true

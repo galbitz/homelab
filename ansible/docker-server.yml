@@ -37,6 +37,7 @@
         containers_grafana_stack_alloy_config: "{{ lookup('template', 'alloy/docker-server.config.alloy.j2') }}"
       tags: ["grafana-stack"]
     - role: network-mounts
+      tags: ["network-mounts"]
     - role: file_backup
     - role: containers/uptime-kuma
       tags: ["uptime-kuma"]
@@ -49,6 +50,7 @@
     - role: containers/nut-server
     - role: containers/qbittorrent
     - role: containers/jellyfin
+      tags: ["jellyfin"]
     - role: containers/homepage
     - role: containers/newt
       vars:
