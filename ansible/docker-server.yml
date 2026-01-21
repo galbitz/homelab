@@ -52,6 +52,7 @@
     - role: containers/jellyfin
       tags: ["jellyfin"]
     - role: containers/homepage
+      tags: ["homepage"]
     - role: containers/newt
       vars:
         containers_newt_id: "{{ lookup('ansible.builtin.env', 'PANGOLIN_NEWT_ID_DOCKER_SERVER') }}" # noqa: var-naming[no-role-prefix]

@@ -7,10 +7,10 @@ variable "hosts" {
   }))
   default = {
 
-    "switch" = {
-      name = "switch"
-      ip   = "192.168.1.3"
-      mac  = "AC:15:A2:B9:2F:80"
+    "u16" = {
+      name = "u16"
+      ip   = "192.168.1.2"
+      mac  = "6c:63:f8:98:ee:74"
     }
     "thin" = {
       name = "thin"
@@ -26,21 +26,6 @@ variable "hosts" {
       name = "king"
       ip   = "192.168.1.9"
       mac  = "d0:11:e5:36:4a:22"
-    }
-    "game" = {
-      name = "game"
-      ip   = "192.168.1.10"
-      mac  = "10:7c:61:74:6d:c8"
-    }
-    "shadow" = {
-      name = "shadow"
-      ip   = "192.168.1.14"
-      mac  = "04:7B:CB:48:C1:92"
-    }
-    "diskstation" = {
-      name = "diskstation"
-      ip   = "192.168.1.15"
-      mac  = "00:11:32:B5:51:B1"
     }
     "truenas" = {
       name = "truenas"
@@ -72,11 +57,6 @@ variable "hosts" {
       name = "bee"
       ip   = "192.168.1.22"
       mac  = "7C:83:34:B9:2A:A0"
-    }
-    "githubrunner" = {
-      name = "githubrunner"
-      ip   = "192.168.1.26"
-      mac  = ""
     }
     "master"  = {
       name = "master"
@@ -121,11 +101,6 @@ variable "hosts" {
       name = "kiosk"
       ip   = "192.168.1.45"
       mac  = "d8:3a:dd:4d:14:7c"
-    }
-    "hue" = {
-      name = "hue"
-      ip   = "192.168.1.46"
-      mac  = "ec:b5:fa:bc:1a:56"
     }
     "tplinksmartswitch" = {
       name = "tplinksmartswitch"

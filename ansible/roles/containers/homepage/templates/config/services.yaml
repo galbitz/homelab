@@ -7,9 +7,6 @@
     - Bone:
         href: https://bone.04a.ca:8006/
         icon: proxmox.png
-    - Shadow:
-        href: https://shadow.04a.ca:8006/
-        icon: proxmox.png
     - Master:
         href: https://master.04a.ca:8006/
         icon: proxmox.png
@@ -26,7 +23,7 @@
     - Guacamole (local):
         href: https://guacamole.home.04a.ca/
         icon: guacamole.png
-    - Unifi wifi:
+    - Unifi:
         href: https://unifi.ui.com/
         icon: unifi.png
     - Uptime Kuma:
@@ -47,9 +44,6 @@
     - NUT:
         href: https://nut.home.04a.ca/ups/default/CP
         icon: ups.png
-    - Switch:
-        href: http://192.168.1.3/
-        icon: mdi-switch
     - Netboot:
         href: http://192.168.1.17:3500/
         icon: netboot.png
