@@ -7,4 +7,4 @@
       ansible.builtin.include_role:
         name: grafana.grafana.alloy
       vars:
-        alloy_config: "{{ lookup('template', 'alloy/generic.config.alloy.j2') }}"
+        alloy_config: "{{ lookup('template', 'alloy/lokionly.config.alloy.j2') }}"
