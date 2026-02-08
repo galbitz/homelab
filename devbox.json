@@ -7,7 +7,7 @@
     "ansible@2.20.0",
     "terraform@1.14.4",
     "git@2.52.0",
-    "go-task@3.45.5",
+    "go-task@3.48.0",
     "ansible-lint@25.8.2"
   ],
   "shell": {
