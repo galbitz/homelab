@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#MISE description="Plan terraform"
+#MISE dir="{{config_root}}/terraform"
+
+set -a
+export TF_VAR_HOME_IP=$(curl -sS https://ifconfig.co)
+# import secrets to env
+terraform plan -compact-warnings -input=false "$@"

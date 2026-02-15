@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#MISE description="Generate ansible host inventory"
+#MISE dir="{{config_root}}/terraform"
+
+set -a
+export TF_VAR_HOME_IP=$(curl -sS https://ifconfig.co)
+# import secrets to env
+terraform apply -target=module.hostrecords.local_file.hosts -compact-warnings -auto-approve

@@ -1,12 +1,8 @@
 ## Requirements
 
-### DevBox
+### Mise
 
-https://www.jetpack.io/devbox/
-
-### Direnv
-
-https://direnv.net/docs/hook.html
+https://mise.jdx.dev/
 
 ## Ansible execution requirements
 

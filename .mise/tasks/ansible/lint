@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Lint ansible playbooks"
+
+yamllint .
+ansible-lint ansible/

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#MISE description="Run terraform with custom command (pass command as args)"
+#MISE dir="{{config_root}}/terraform"
+
+set -a
+export TF_VAR_HOME_IP=$(curl -sS https://ifconfig.co)
+# import secrets to en
+terraform "$@"

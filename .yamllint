@@ -14,5 +14,4 @@ rules:
     max-spaces-inside: 2
 
 ignore: |
-  .devbox/*
   /.venv

@@ -45,6 +45,7 @@ temp.yml
 .decrypted~*
 *.secret.env
 *.secret.yaml
+*.secret.json
 
 talosconfig
 kubeconfig
