@@ -19,13 +19,13 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v6
 
-      - name: Install devbox
-        uses: jetpack-io/devbox-install-action@v0.14.0
+      - name: Install mise
+        uses: jdx/mise-action@v3
         with:
-          enable-cache: true
+          cache: true
 
-      #      - run: devbox run task tf:init
-      #      - run: devbox run task tf:generate-inventory
+      #      - run: task tf:init
+      #      - run: task tf:generate-inventory
 
       - name: Connect Tailscale
         uses: tailscale/github-action@v4
@@ -34,5 +34,5 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:github-ci
 
-      - run: devbox run task ansible:install-requirements
-      - run: devbox run -- task ansible:run -- ${{ inputs.playbook }}
+      - run: task ansible:install-requirements
+      - run: task ansible:run -- ${{ inputs.playbook }}
