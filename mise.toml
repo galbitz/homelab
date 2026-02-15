@@ -1,0 +1,13 @@
+[tools]
+age = "latest"
+ansible-core = "latest"
+pipx = "latest"
+"pipx:ansible-lint" = "latest"
+python = "latest"
+sops = "latest"
+task = "latest"
+yamllint = "latest"
+
+[env]
+# Set SOPS_AGE_KEY_FILE to ./age.key if SOPS_AGE_KEY is not set
+SOPS_AGE_KEY_FILE = "{% if env.SOPS_AGE_KEY %}{% else %}{{ config_root }}/age.key{% endif %}"
