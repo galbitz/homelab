@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Install ansible requirements"
+#MISE dir="{{config_root}}/ansible"
+
+ansible-galaxy install -r roles/requirements.yml --force

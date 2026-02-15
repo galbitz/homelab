@@ -17,7 +17,7 @@ jobs:
           cache: true
 
       - name: Install playbook requirements
-        run: task ansible:install-requirements
+        run: mise run ansible:install-requirements
 
       - name: Lint
-        run: task ansible:lint
+        run: mise run ansible:lint

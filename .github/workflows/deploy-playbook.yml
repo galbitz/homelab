@@ -34,5 +34,5 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:github-ci
 
-      - run: task ansible:install-requirements
-      - run: task ansible:run -- ${{ inputs.playbook }}
+      - run: mise run ansible:install-requirements
+      - run: mise run ansible:run -- ${{ inputs.playbook }}

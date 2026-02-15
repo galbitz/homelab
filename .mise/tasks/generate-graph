@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#MISE description="Generate graph from dot file"
+
+dot -Tpng ./doc/comm.dot -o ./doc/comm.png

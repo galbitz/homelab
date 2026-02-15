@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#MISE description="Run ansible playbook"
+#MISE dir="{{config_root}}/ansible"
+
+set -a
+# no_proxy needed to circumvent a forking error on mac os
+export no_proxy='*'
+# import secrets to env
+source <(sops -d "$MISE_CONFIG_ROOT/main.secret.sops.env")
+ansible-playbook "$@"
