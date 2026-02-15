@@ -4,8 +4,14 @@
     "config:recommended",
     "github>galbitz/homelab//.github/renovate/customManagers.json5"
   ],
-  "ignorePaths": ["**/*.sops.*", "**/.archive/**", "**/resources/**"],
+  "ignorePaths": [
+    "**/*.sops.*",
+    "**/.archive/**",
+    "**/resources/**"
+  ],
   "docker-compose": {
-    "fileMatch": ["(^|/)ansible/.+compose\\.ya?ml(?:\\.j2)?$"]
+    "managerFilePatterns": [
+      "/(^|/)ansible/.+compose\\.ya?ml(?:\\.j2)?$/"
+    ]
   }
 }
