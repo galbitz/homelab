@@ -1,3 +1,0 @@
----
-providerRegex: ^(temp1|temp2|temp3)$
-bypassDnsResolution: true
