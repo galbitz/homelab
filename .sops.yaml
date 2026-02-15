@@ -14,6 +14,10 @@ creation_rules:
     key_groups:
       - age:
           - age1rmlyc7jr5a0eqtlz9gdr2lwlnz2r9gcfz3w2ah6jyk4a8uy47sasfyxdzj
+  - path_regex: .*\.secret(\.sops)?\.json
+    key_groups:
+      - age:
+          - age1rmlyc7jr5a0eqtlz9gdr2lwlnz2r9gcfz3w2ah6jyk4a8uy47sasfyxdzj
 stores:
   yaml:
     indent: 2
