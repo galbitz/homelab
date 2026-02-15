@@ -7,6 +7,8 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+    env:
+      MISE_SOPS_STRICT: "false"
 
     steps:
       - name: Check out the codebase.
@@ -16,8 +18,6 @@ jobs:
         uses: jdx/mise-action@v3
         with:
           cache: true
-        env:
-          MISE_SOPS_STRICT: "false"
 
       - name: Install playbook requirements
         run: mise run ansible:install-requirements
