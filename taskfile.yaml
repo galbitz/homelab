@@ -7,7 +7,6 @@ vars:
 
 includes:
   ansible: .taskfiles/ansible/Taskfile.yaml
-  sops: .taskfiles/sops/Taskfile.yaml
   tf: .taskfiles/terraform/Taskfile.yaml
 
 tasks:
