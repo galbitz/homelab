@@ -5,7 +5,6 @@ pipx = "latest"
 "pipx:ansible-lint" = "latest"
 python = "latest"
 sops = "latest"
-task = "latest"
 yamllint = "latest"
 
 [env]
