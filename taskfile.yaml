@@ -4,7 +4,6 @@ version: "3"
 
 vars:
   AGE_FILE: "{{.ROOT_DIR}}/age.key"
-  KUBERNETES_DIR: "{{.ROOT_DIR}}/kubernetes"
 
 includes:
   ansible: .taskfiles/ansible/Taskfile.yaml
