@@ -18,6 +18,9 @@ jobs:
         uses: jdx/mise-action@v3
         with:
           cache: true
+          mise_toml: |
+            [sops]
+            strict = false
 
       - name: Install playbook requirements
         run: mise run ansible:install-requirements
