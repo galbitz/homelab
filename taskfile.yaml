@@ -8,11 +8,7 @@ vars:
 
 includes:
   ansible: .taskfiles/ansible/Taskfile.yaml
-  flux: .taskfiles/flux/Taskfile.yaml
-  bootstrap: .taskfiles/bootstrap/Taskfile.yaml
-  talos: .taskfiles/talos/Taskfile.yaml
   sops: .taskfiles/sops/Taskfile.yaml
-  kubespray: .taskfiles/kubespray/Taskfile.yaml
   tf: .taskfiles/terraform/Taskfile.yaml
 
 tasks:
