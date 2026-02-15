@@ -11,14 +11,13 @@ jobs:
       - name: Check out the codebase.
         uses: actions/checkout@v6
 
-      - name: Install devbox
-        uses: jetpack-io/devbox-install-action@v0.14.0
+      - name: Install mise
+        uses: jdx/mise-action@v3
         with:
-          enable-cache: true
-          devbox-version: 0.14.2
+          cache: true
 
       - name: Install playbook requirements
-        run: devbox run task ansible:install-requirements
+        run: task ansible:install-requirements
 
       - name: Lint
-        run: devbox run task ansible:lint
+        run: task ansible:lint
