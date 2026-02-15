@@ -7,8 +7,6 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
-    env:
-      SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
 
     steps:
       - name: Check out the codebase.
@@ -19,8 +17,8 @@ jobs:
         with:
           cache: true
           mise_toml: |
-            [sops]
-            strict = false
+            [settings]
+            sops.strict = false
 
       - name: Install playbook requirements
         run: mise run ansible:install-requirements
