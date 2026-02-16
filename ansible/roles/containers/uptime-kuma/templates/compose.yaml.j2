@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
 services:
   uptime-kuma:
-    image: louislam/uptime-kuma:2.1.0
+    image: louislam/uptime-kuma:2.1.1
     restart: unless-stopped
     volumes:
       - {{ containers_uptime_kuma_dir }}/data:/app/data
