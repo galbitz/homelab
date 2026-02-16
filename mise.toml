@@ -11,3 +11,6 @@ yamllint = "latest"
 # Set SOPS_AGE_KEY_FILE to ./age.key if SOPS_AGE_KEY is not set
 SOPS_AGE_KEY_FILE = "{% if env.SOPS_AGE_KEY %}{% else %}{{ config_root }}/age.key{% endif %}"
 _.file = { path = ".env.json", redact = true }
+
+[settings]
+sops.strict = false
