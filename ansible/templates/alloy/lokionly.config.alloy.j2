@@ -66,6 +66,7 @@ loki.source.file "system" {
 // !SECTION
 
 // SECTION: DOCKER LOGS
+{% if alloy_collect_docker | default(false) %}
 
 discovery.docker "dockerlogs" {
   host = "unix:///var/run/docker.sock"
@@ -89,4 +90,5 @@ loki.source.docker "default" {
   forward_to = [loki.write.grafanacloud.receiver]
 }
 
+{% endif%}
 // !SECTION

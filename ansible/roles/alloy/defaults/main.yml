@@ -1,2 +1,4 @@
 ---
 alloy_my_config: ""
+
+alloy_collect_docker: true
