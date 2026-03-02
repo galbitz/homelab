@@ -1,6 +1,6 @@
 ---
 - name: Configure kiosk
-  hosts: kiosk
+  hosts: kiosk,kiosk2
   roles:
     - role: linux-auth
     - role: autoupdate
