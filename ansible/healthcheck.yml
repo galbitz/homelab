@@ -25,9 +25,9 @@
           - name: Beszel Hub
             url: http://beszel.home.04a.ca:38090/
           - name: Netboot
-            url: http://192.168.1.17:3500/
+            url: http://netboot.home.04a.ca:3500/
           - name: Qbittorrent
-            url: http://192.168.1.17:8085/
+            url: http://qbit.home.04a.ca:8085/
           - name: SLZB
             url: http://192.168.1.38/
           - name: Home Assistant

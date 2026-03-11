@@ -23,9 +23,6 @@
     - Home Assistant:
         href: https://ha.04a.ca/
         icon: home-assistant-alt.png
-    - Guacamole (local):
-        href: https://guacamole.home.04a.ca/
-        icon: guacamole.png
     - Unifi:
         href: https://unifi.ui.com/
         icon: unifi.png
@@ -48,7 +45,7 @@
         href: https://nut.home.04a.ca/ups/default/CP
         icon: ups.png
     - Netboot:
-        href: http://192.168.1.17:3500/
+        href: http://netboot.home.04a.ca:3500/
         icon: netboot.png
     - Syncthing (local):
         href: http://localhost:8384/
@@ -60,7 +57,7 @@
         href: https://truenas.04a.ca/
         icon: truenas.png
     - Qbittorrent:
-        href: http://192.168.1.17:8085/
+        href: http://qbit.home.04a.ca:8085/
         icon: qbittorrent.png
     - SilverBullet:
         href: https://silverbullet.home.04a.ca/
