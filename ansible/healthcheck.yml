@@ -1,0 +1,72 @@
+---
+- name: Post-deployment URL healthchecks
+  hosts: localhost
+  gather_facts: false
+  vars:
+    checks:
+      - group: Hypervisors
+        urls:
+          - name: Bone (Proxmox)
+            url: https://bone.04a.ca:8006/
+          - name: Master (Proxmox)
+            url: https://master.04a.ca:8006/
+          - name: OVHBeast (Proxmox)
+            url: https://ovhbeast.tn.04a.ca:8006/
+      - group: Services
+        urls:
+          - name: Traefik dashboard
+            url: https://traefik.home.04a.ca/
+          - name: Portainer
+            url: https://portainer.home.04a.ca/
+          - name: Uptime Kuma
+            url: https://uptime.home.04a.ca/
+          - name: NUT
+            url: https://nut.home.04a.ca/ups/default/CP
+          - name: Beszel Hub
+            url: http://192.168.1.17:38090/
+          - name: Netboot
+            url: http://192.168.1.17:3500/
+          - name: Qbittorrent
+            url: http://192.168.1.17:8085/
+          - name: SLZB
+            url: http://192.168.1.38/
+          - name: Home Assistant
+            url: https://ha.04a.ca/
+          - name: TrueNAS
+            url: https://truenas.04a.ca/
+          - name: Pangolin
+            url: https://pangolin.pa.04a.ca/
+          - name: Syncthing (hosted)
+            url: https://syncthing.pa.04a.ca/
+
+  tasks:
+    - name: Check URLs
+      ansible.builtin.uri:
+        url: "{{ item.1.url }}"
+        method: GET
+        validate_certs: false
+        follow_redirects: safe
+        timeout: 10
+        status_code: [200, 301, 302, 401, 403]
+      loop: "{{ checks | subelements('urls') }}"
+      loop_control:
+        label: "{{ item.1.name }}"
+      register: results
+      ignore_errors: true
+
+    - name: Summary
+      ansible.builtin.debug:
+        msg: >-
+          {{ item.item.1.name }}:
+          {% if item.failed %}FAILED ({{ item.msg | default('unknown error') }})
+          {% else %}OK ({{ item.status }}){% endif %}
+      loop: "{{ results.results }}"
+      loop_control:
+        label: "{{ item.item.1.name }}"
+
+    - name: Fail if any checks failed
+      ansible.builtin.fail:
+        msg: "{{ failed_checks | length }} URL(s) failed: {{ failed_checks | join(', ') }}"
+      vars:
+        failed_checks: "{{ results.results | selectattr('failed', 'true') | map(attribute='item.1.name') | list }}"
+      when: failed_checks | length > 0
