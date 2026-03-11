@@ -23,7 +23,7 @@
           - name: NUT
             url: https://nut.home.04a.ca/ups/default/CP
           - name: Beszel Hub
-            url: http://192.168.1.17:38090/
+            url: http://beszel.home.04a.ca:38090/
           - name: Netboot
             url: http://192.168.1.17:3500/
           - name: Qbittorrent
