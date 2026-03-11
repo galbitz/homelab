@@ -17,6 +17,8 @@ api:
   dashboard: "{{ containers_traefik_api | default(true) }}"
   insecure: "{{ containers_traefik_dashboard | default(true) }}"
 
+ping: {}
+
 entryPoints:
   web:
     address: :80

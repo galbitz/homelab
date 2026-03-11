@@ -22,6 +22,12 @@ services:
       - CLOUDFLARE_TTL=Auto
     networks:
       - proxy
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck", "--ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     restart: always
     labels:
       - "traefik.enable=true"
