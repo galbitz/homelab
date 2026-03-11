@@ -1,0 +1,16 @@
+---
+# Required
+keepalived_vip: ""
+
+# The network interface the VIP will be bound to
+keepalived_interface: eth0
+
+# MASTER or BACKUP - higher priority wins
+keepalived_state: MASTER
+keepalived_priority: 100
+
+# Must be unique per VRRP group, shared between MASTER and BACKUP
+keepalived_router_id: 51
+
+# Shared between all nodes in the VRRP group
+keepalived_auth_pass: "changeme"

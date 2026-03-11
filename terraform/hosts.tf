@@ -37,16 +37,16 @@ variable "hosts" {
       ip   = "192.168.1.17"
       mac  = ""
     }
-    "docker-test" = {
-      name              = "docker-test"
+    "services-vip" = {
+      name              = "services-vip"
       ip                = "192.168.1.18"
       mac               = ""
       create_dns_record = false
     }
-    "pikvm" = {
-      name = "pikvm"
+    "services2" = {
+      name = "services2"
       ip   = "192.168.1.19"
-      mac  = "DC:A6:32:28:0C:23"
+      mac  = ""
     }
     "damage" = {
       name = "damage"

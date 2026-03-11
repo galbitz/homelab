@@ -62,3 +62,8 @@
       vars:
         containers_beszel_agent_ssh_public_key: "{{ lookup('ansible.builtin.env', 'BESZEL_AGENT_DOCKER_SERVER') }}" # noqa: var-naming[no-role-prefix]
       tags: ["beszel-agent"]
+    - role: keepalived
+      tags: ["keepalived"]
+      vars:
+        keepalived_vip: 192.168.1.18/24
+        keepalived_interface: ens18

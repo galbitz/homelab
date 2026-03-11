@@ -1,0 +1,29 @@
+---
+- name: Assert required variables are set
+  ansible.builtin.assert:
+    that:
+      - keepalived_vip | length > 0
+    fail_msg: "keepalived_vip must be set"
+
+- name: Install keepalived
+  ansible.builtin.package:
+    name: keepalived
+    state: present
+  become: true
+
+- name: Deploy keepalived configuration
+  ansible.builtin.template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  notify: Restart keepalived
+
+- name: Enable and start keepalived
+  ansible.builtin.service:
+    name: keepalived
+    state: started
+    enabled: true
+  become: true
