@@ -17,19 +17,19 @@ containers_authelia_access_rules:
       policy: bypass
     - domain: guacamole.{{ containers_traefik_main_domain }}
       policy: bypass
-    - domain: access.{{ containers_traefik_tunnel_domain }}
+    - domain: access.{{ containers_traefik_secondary_domain }}
       policy: two_factor
     - domain: silverbullet.{{ containers_traefik_main_domain }}
       policy: bypass
     - domain: notes.{{ containers_traefik_main_domain }}
       policy: bypass
-    - domain: notes.{{ containers_traefik_tunnel_domain }}
+    - domain: notes.{{ containers_traefik_secondary_domain }}
       resources:
         - "/.client/manifest.json$"
         - "/.client/[a-zA-Z0-9_-]+.png$"
         - "/service_worker.js$"
       policy: bypass
-    - domain: silverbullet.{{ containers_traefik_tunnel_domain }}
+    - domain: silverbullet.{{ containers_traefik_secondary_domain }}
       resources:
         - "/.client/manifest.json$"
         - "/.client/[a-zA-Z0-9_-]+.png$"
@@ -37,7 +37,7 @@ containers_authelia_access_rules:
       policy: bypass
 
 containers_authelia_session_cookie_domain: "04a.ca"
-containers_authelia_authelia_url: "https://auth.{{ containers_traefik_tunnel_domain }}"
+containers_authelia_authelia_url: "https://auth.{{ containers_traefik_secondary_domain }}"
 
 containers_authelia_clients:
   - client_id: "guacamole"
@@ -46,7 +46,7 @@ containers_authelia_clients:
     public: true
     authorization_policy: "two_factor"
     redirect_uris:
-      - "https://access.{{ containers_traefik_tunnel_domain }}"
+      - "https://access.{{ containers_traefik_secondary_domain }}"
     scopes:
       - "openid"
       - "profile"

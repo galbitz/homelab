@@ -31,7 +31,7 @@
   loop:
     - src: compose.yaml.j2
       dest: "{{ containers_qbittorrent_dir }}/compose.yaml"
-
 - name: Docker-compose up
   community.docker.docker_compose_v2:
     project_src: "{{ containers_qbittorrent_dir }}"
+  become: true

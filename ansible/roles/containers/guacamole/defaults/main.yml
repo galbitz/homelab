@@ -4,7 +4,7 @@ containers_guacamole_dir: "{{ containers_guacamole_docker_root_dir }}/guacamole"
 
 # OIDC auth
 
-# containers_guacamole_main_domain: "{{ containers_traefik_tunnel_domain }}"
+# containers_guacamole_main_domain: "{{ containers_traefik_secondary_domain }}"
 containers_guacamole_auth_host: auth
 containers_guacamole_guacamole_host: access
 

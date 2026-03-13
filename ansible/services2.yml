@@ -1,39 +1,38 @@
 ---
-# Main docker node v2024-05-21-02
-- name: Configure docker-server
-  hosts: docker-server
+- name: Configure services2 (new docker node)
+  hosts: services2
   vars:
-    docker_dir: /opt/docker/data
+    docker_dir: /opt/docker
     containers_traefik_main_domain: "home.04a.ca"
     containers_traefik_secondary_domain: "tunnel.04a.ca"
     file_backup_list_of_folders_to_backup:
-      - "/opt/docker/data/insight/grafana"
-      - "/opt/docker/data/insight/influx/data"
-      - "/opt/docker/data/insight/prometheus-data"
       - "/opt/docker/data/jellyfin"
       - "/opt/docker/data/portainer/data"
-      - "/opt/docker/data/quacamole"
       - "/opt/docker/data/uptime-kuma"
       - "/opt/docker/data/beszel/beszel-hub"
     file_backup_destination: "/mnt/backup"
     file_backup_schedule_hour: "1"
     file_backup_schedule_minute: "0"
   roles:
-    - role: star4.essentials.timezone
-    - role: star4.essentials.autoupdate
-    - role: star4.essentials.hardening
-    - role: star4.essentials.forwardmta
+    - role: linux-auth
+    - role: autoupdate
+      vars:
+        autoupdate_notification_email: "{{ homelab_email }}"
+    - role: mta
     - role: containers/docker-base
+    - role: keepalived
+      tags: ["keepalived"]
+      vars:
+        keepalived_vip: 192.168.1.18/24
+        keepalived_interface: eth0
+        keepalived_state: MASTER
     - role: containers/traefik
       vars:
         containers_traefik_dynamic_conf: templates/config/dynamic_conf.yaml.j2 # noqa: var-naming[no-role-prefix]
-    # - role: containers/authelia
     - role: containers/portainer
     - role: containers/cloudflare-dns
     - role: containers/grafana-stack
       vars:
-        #        alloy_internal_loki_endpoint_url: "http://loki:3100/loki/api/v1/push"
-        #        alloy_internal_prometheus_endpoint_url: "http://prometheus:9090/api/v1/write"
         containers_grafana_stack_alloy_config: "{{ lookup('template', 'alloy/docker-server.config.alloy.j2') }}"
       tags: ["grafana-stack"]
     - role: network-mounts
@@ -41,10 +40,6 @@
     - role: file_backup
     - role: containers/uptime-kuma
       tags: ["uptime-kuma"]
-    #- role: containers/guacamole
-    #  vars:
-    #    containers_guacamole_main_domain: "{{ containers_traefik_secondary_domain }}" # noqa: var-naming[no-role-prefix]
-    #    containers_guacamole_extensions: "" # noqa: var-naming[no-role-prefix]
     - role: containers/netboot
     - role: containers/beszel_hub
     - role: containers/nut-server
@@ -60,10 +55,5 @@
       tags: ["newt"]
     - role: containers/beszel-agent
       vars:
-        containers_beszel_agent_ssh_public_key: "{{ lookup('ansible.builtin.env', 'BESZEL_AGENT_DOCKER_SERVER') }}" # noqa: var-naming[no-role-prefix]
+        containers_beszel_agent_ssh_public_key: "{{ lookup('ansible.builtin.env', 'BESZEL_AGENT_SERVICES2') }}" # noqa: var-naming[no-role-prefix]
       tags: ["beszel-agent"]
-    - role: keepalived
-      tags: ["keepalived"]
-      vars:
-        keepalived_vip: 192.168.1.18/24
-        keepalived_interface: ens18

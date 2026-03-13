@@ -8,14 +8,15 @@ http:
   middlewares:
     authelia:
       forwardAuth:
-        address: "http://authelia:9091/api/verify?rd=https://auth.{{ containers_traefik_tunnel_domain }}"
+        address: "http://authelia:9091/api/verify?rd=https://auth.{{ containers_traefik_secondary_domain }}"
   routers:
     uptime:
-      rule: HostRegexp(`uptime\..+`)
+      rule: Host(`uptime.{{ containers_traefik_main_domain }}`) || Host(`uptime.{{ containers_traefik_secondary_domain }}`)
       service: uptime
       entrypoints: web
     uptime-ssl:
-      rule: HostRegexp(`uptime\..+`)
+      rule: Host(`uptime.{{ containers_traefik_main_domain }}`) || Host(`uptime.{{ containers_traefik_secondary_domain }}`)
       service: uptime
       entrypoints: websecure
-      tls: {}
+      tls:
+        certResolver: production

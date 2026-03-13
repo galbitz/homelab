@@ -7,7 +7,7 @@ backend = "aqua:FiloSottile/age"
 "platforms.windows-x64" = { checksum = "sha256:c56e8ce22f7e80cb85ad946cc82d198767b056366201d3e1a2b93d865be38154", url = "https://github.com/FiloSottile/age/releases/download/v1.3.1/age-v1.3.1-windows-amd64.zip"}
 
 [[tools.ansible-core]]
-version = "2.20.2"
+version = "2.20.3"
 backend = "pipx:ansible-core"
 
 [[tools.pipx]]
@@ -19,7 +19,7 @@ backend = "aqua:pypa/pipx"
 "platforms.macos-x64" = { checksum = "sha256:b9eabd835dffe0677e36bd99416fc9837c592bd8c079235379bed3dfe043c601", url = "https://github.com/pypa/pipx/releases/download/1.8.0/pipx.pyz"}
 
 [[tools."pipx:ansible-lint"]]
-version = "26.1.1"
+version = "26.3.0"
 backend = "pipx:ansible-lint"
 
 [[tools.python]]
@@ -27,13 +27,9 @@ version = "3.14.3"
 backend = "core:python"
 
 [[tools.sops]]
-version = "3.11.0"
+version = "3.12.1"
 backend = "aqua:getsops/sops"
-"platforms.linux-arm64" = { checksum = "sha256:c71d32f74b3a73ce283affe6ed36e221a8f1476c3d37963f60bd962fb1676681", url = "https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.linux.arm64"}
-"platforms.linux-x64" = { checksum = "sha256:775f1384d55decfad228e7196a3f683791914f92a473f78fc47700531c29dfef", url = "https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.linux.amd64"}
-"platforms.macos-arm64" = { checksum = "sha256:45e7562b1f5d022c4d7a4e4c3d1b7b1a7ee6c328356629286cfd18a394b00e7c", url = "https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.darwin.arm64"}
-"platforms.macos-x64" = { checksum = "sha256:c36583e178f7e83b947044b292e106e79615f7725f75cb147045fb0c81953e2b", url = "https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.darwin.amd64"}
-"platforms.windows-x64" = { checksum = "sha256:f3d74d83006954f0d8cf770ad7e5380504270ded5a62f33eb2548ce5461af3b3", url = "https://github.com/getsops/sops/releases/download/v3.11.0/sops-v3.11.0.amd64.exe"}
+"platforms.linux-x64" = { checksum = "sha256:cf3136d20a6004405c986a48e179c3c7a731f777fbf105a37bd5dac5c9047100", url = "https://github.com/getsops/sops/releases/download/v3.12.1/sops-v3.12.1.linux.amd64"}
 
 [[tools.yamllint]]
 version = "1.38.0"

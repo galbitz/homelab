@@ -20,3 +20,8 @@ services:
       - "traefik.http.routers.portainer-http.entrypoints=web"
       - "traefik.http.routers.portainer-https.entrypoints=websecure"
       - "traefik.http.routers.portainer-https.tls=true"
+      - "traefik.http.routers.portainer-http.rule=Host(`portainer.{{ containers_traefik_main_domain }}`) || Host(`portainer.{{ containers_traefik_secondary_domain }}`)"
+      - "traefik.http.routers.portainer-https.rule=Host(`portainer.{{ containers_traefik_main_domain }}`) || Host(`portainer.{{ containers_traefik_secondary_domain }}`)"
+      - "traefik.http.routers.portainer-https.tls.certresolver=production"
+      - "traefik.http.routers.portainer-https.tls.domains[0].main=*.{{ containers_traefik_main_domain }}"
+      - "traefik.http.routers.portainer-https.tls.domains[0].sans=*.{{ containers_traefik_secondary_domain }}" 

@@ -27,7 +27,7 @@
     mode: u+rw,g+rw,o+rw
     force: true
   loop:
-    - src: "compose.yaml"
+    - src: "compose.yaml.j2"
       dest: "{{ containers_homepage_dir }}/compose.yaml"
     - src: "config/bookmarks.yaml"
       dest: "{{ containers_homepage_dir }}/config/bookmarks.yaml"

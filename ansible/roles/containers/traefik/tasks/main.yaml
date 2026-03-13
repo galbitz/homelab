@@ -5,7 +5,7 @@
     that:
       - containers_traefik_docker_root_dir | length > 0
       - containers_traefik_main_domain is defined
-      - containers_traefik_tunnel_domain is defined
+      - containers_traefik_secondary_domain is defined
     fail_msg: "variable is missing. Define it in global vars"
 
 - name: Traefik - Make sure that folders exist
@@ -43,7 +43,7 @@
     mode: u+rwx,g+rwx,o+rxw
     force: true
   when: containers_traefik_dynamic_conf is defined and containers_traefik_dynamic_conf | default('') | trim != ""
-
 - name: Traefik - deploy docker compose stack
   community.docker.docker_compose_v2:
     project_src: "{{ containers_traefik_dir }}"
+  become: true

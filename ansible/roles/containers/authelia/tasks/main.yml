@@ -6,7 +6,7 @@
     that:
       - containers_authelia_docker_root_dir | length > 0
       - containers_traefik_main_domain is defined
-      - containers_traefik_tunnel_domain is defined
+      - containers_traefik_secondary_domain is defined
       - homelab_email is defined
     fail_msg: "variable is missing. Define it in global vars"
 

@@ -6,12 +6,6 @@ global:
 
 log:
   level: INFO
-#  format: common
-#  filePath: /var/log/traefik/traefik.log
-
-# accesslog:
-#   format: common
-#   filePath: /var/log/traefik/access.log
 
 api:
   dashboard: "{{ containers_traefik_api | default(true) }}"
@@ -79,19 +73,7 @@ providers:
   docker:
     # -- (Optional) Enable this, if you want to expose all containers automatically
     exposedByDefault: false
-    defaultRule: 'HostRegexp(`^{{ "{{" }} .ContainerName {{ "}}" }}\..+`)'
+#    defaultRule: 'Host(`{{ "{{" }} .ContainerName {{ "}}" }}.{{ containers_traefik_main_domain }}`) || Host(`{{ "{{" }} .ContainerName {{ "}}" }}.{{ containers_traefik_secondary_domain }}`)'
   file:
     directory: /etc/traefik/extra
     watch: true
-
-tls:
-  stores:
-    default:
-      defaultGeneratedCert:
-        resolver: "production"
-        domain:
-          main: "*.{{ containers_traefik_main_domain }}"
-          {% if containers_traefik_tunnel_domain | length > 0 %}
-sans:
-            - "*.{{ containers_traefik_tunnel_domain }}"
-          {% endif %}
