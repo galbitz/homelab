@@ -1,9 +1,0 @@
----
-- name: Configure github runner
-  hosts: githubrunner
-  roles:
-    - star4.essentials.timezone
-    - star4.essentials.autoupdate
-    - star4.essentials.hardening
-    - star4.essentials.forwardmta
-    - containers/docker-base

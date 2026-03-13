@@ -1,3 +1,0 @@
----
-- name: Watchtower
-  ansible.builtin.include_tasks: watchtower.yml

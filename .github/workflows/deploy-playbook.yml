@@ -24,9 +24,6 @@ jobs:
         with:
           cache: true
 
-      #      - run: task tf:init
-      #      - run: task tf:generate-inventory
-
       - name: Connect Tailscale
         uses: tailscale/github-action@v4
         with:

@@ -1,0 +1,78 @@
+networks:
+  - subnet: 192.168.1.0/24
+    hosts:
+      - name: u16
+        ip: 192.168.1.2
+        mac: 6c:63:f8:98:ee:74
+
+      - name: thin
+        ip: 192.168.1.4
+        mac: c4:65:16:30:f6:4a
+
+      - name: hero
+        ip: 192.168.1.5
+        mac: 64:c9:01:dd:7f:62
+
+      - name: king
+        ip: 192.168.1.9
+        mac: d0:11:e5:36:4a:22
+
+      - name: truenas
+        ip: 192.168.1.16
+        mac: bc:24:11:0d:fe:0f
+
+      - name: docker-server
+        ip: 192.168.1.17
+
+      - name: services-vip
+        ip: 192.168.1.18
+
+      - name: services2
+        ip: 192.168.1.19
+
+      - name: damage
+        ip: 192.168.1.20
+        mac: 60:cf:84:64:8a:34
+
+      - name: bee
+        ip: 192.168.1.22
+        mac: 7c:83:34:b9:2a:a0
+
+      - name: master
+        ip: 192.168.1.27
+
+      - name: slzb
+        ip: 192.168.1.38
+        mac: 78:1c:3c:a7:14:0f
+
+      - name: bone
+        ip: 192.168.1.39
+        mac: 84:3a:5b:11:9c:46
+
+      - name: ha
+        ip: 192.168.1.40
+        mac: 3a:39:e4:df:ef:7e
+
+      - name: switchA
+        ip: 192.168.1.41
+        mac: a0:76:4e:32:73:7c
+
+      - name: switchB
+        ip: 192.168.1.42
+        mac: 60:55:f9:33:59:f8
+
+      - name: switchC
+        ip: 192.168.1.43
+        mac: 60:55:f9:33:d1:28
+
+      - name: switchD
+        ip: 192.168.1.44
+        mac: 60:55:f9:33:19:34
+
+      - name: kiosk
+        ip: 192.168.1.45
+        mac: d8:3a:dd:4d:14:7c
+
+      - name: tplinksmartswitch
+        ip: 192.168.1.47
+        mac: dc:62:79:88:4f:68

@@ -1,35 +1,17 @@
-## Requirements
+# Homelab
 
-### Mise
+A collection of ansible playbooks to configure my homelab.
 
-https://mise.jdx.dev/
+## Roles
 
-## Ansible execution requirements
+- wormhole - Tunnel endpoint an host of some externally accessible services: syncthing, silverbullet.md, pangolin
+- thin - Internal jumpbox and tunnel client
+- bone - Proxmox for home assistant
+- master - Proxmox for services2 and truenas
+- services2 - docker to run internal services: jellyfin, beszel, nut, etc.
 
-- User to connect with (rsa key)
-- Sudo right
-- No password requirement for sudo
+## Usage
 
-Note: currently connection uses root user but this will change
+In order to use the playbooks it's required to have a sysadmin user created with sudo privileges
 
-## Create servers on PVE
-
-```
-./tfrun.sh init
-./tfrun.sh login # optional
-./tfrun.sh apply
-```
-
-## Log and metric collection communication
-
-![](doc/comm.png)
-
-## Design decisions
-
-- Secrets are stored (vault like) in encrypted_secrets.sh
-- Home network has two entry points: cloudflare tunnel and frp tunnel
-- Most internal services use traefik reverse proxy
-- Internal domain: 04a.ca
-- Internal domain used by services (traefik): home.04a.ca
-- External and internal domain used by frp tunnel: tunnel.04a.ca
-- External domain used by cloudflare tunnel: star4.dev
+**mise ansible:run** to execute playbook
