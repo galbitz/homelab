@@ -32,6 +32,9 @@
     - Portainer:
         href: https://portainer.home.04a.ca/
         icon: portainer.png
+    - Dozzle:
+        href: https://dozzle.home.04a.ca/
+        icon: dozzle.png
     - Traefik (local):
         href: https://traefik.home.04a.ca/
         icon: traefik.png
@@ -60,7 +63,7 @@
         href: http://qbit.home.04a.ca:8085/
         icon: qbittorrent.png
     - SilverBullet:
-        href: https://silverbullet.home.04a.ca/
+        href: https://notes.pa.04a.ca/
         icon: silverbullet.png
     - Pangolin:
         href: https://pangolin.pa.04a.ca/

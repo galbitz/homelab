@@ -57,3 +57,5 @@
       vars:
         containers_beszel_agent_ssh_public_key: "{{ lookup('ansible.builtin.env', 'BESZEL_AGENT_SERVICES2') }}" # noqa: var-naming[no-role-prefix]
       tags: ["beszel-agent"]
+    - role: containers/dozzle
+      tags: ["dozzle"]

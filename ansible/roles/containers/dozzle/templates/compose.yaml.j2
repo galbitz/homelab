@@ -1,0 +1,31 @@
+---
+networks:
+  proxy:
+    external: true
+services:
+  app:
+    container_name: dozzle
+    image: amir20/dozzle:v10.2.0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - "{{ containers_dozzle_dir }}/data:/data"
+    restart: always
+    networks:
+      - proxy
+    environment:
+      - DOZZLE_ENABLE_ACTIONS=true
+      - DOZZLE_ENABLE_SHELL=true
+      - DOZZLE_NO_ANALYTICS=true
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
+      - "traefik.http.services.dozzle.loadbalancer.server.scheme=http"
+      - "traefik.http.routers.dozzle-http.entrypoints=web"
+      - "traefik.http.routers.dozzle-https.entrypoints=websecure"
+      - "traefik.http.routers.dozzle-https.tls=true"
+      - "traefik.http.routers.dozzle-http.rule=Host(`dozzle.{{ containers_traefik_main_domain }}`) || Host(`dozzle.{{ containers_traefik_secondary_domain }}`)"
+      - "traefik.http.routers.dozzle-https.rule=Host(`dozzle.{{ containers_traefik_main_domain }}`) || Host(`dozzle.{{ containers_traefik_secondary_domain }}`)"
+      - "traefik.http.routers.dozzle-https.tls.certresolver=production"
+      - "traefik.http.routers.dozzle-https.tls.domains[0].main=*.{{ containers_traefik_main_domain }}"
+      - "traefik.http.routers.dozzle-https.tls.domains[0].sans=*.{{ containers_traefik_secondary_domain }}"

@@ -1,7 +1,5 @@
 ---
 providers:
-  openweathermap: openweathermapapikey
-  weatherapi: weatherapiapikey
 
 title: Star 4 - Dashboard
 
