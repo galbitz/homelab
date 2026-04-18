@@ -12,8 +12,8 @@ network_mounts_mounts:
     local_path: /mnt/movies
     username: "{{ lookup('ansible.builtin.env', 'TRUENAS_MOVIES_USERNAME') }}"
     password: "{{ lookup('ansible.builtin.env', 'TRUENAS_MOVIES_PASSWORD') }}"
-    file_mode: "0755"
-    dir_mode: "0755"
+    file_mode: "0777"
+    dir_mode: "0777"
   - name: backup
     network_path: "//truenas.04a.ca/filebackup"
     local_path: /mnt/backup
