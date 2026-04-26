@@ -44,7 +44,7 @@ services:
     command:
       - --configFile=/etc/traefik/traefik_config.yml
     environment:
-      CLOUDFLARE_DNS_API_TOKEN: "{{ pangolin_cloudflare_token }}"
+      CLOUDFLARE_DNS_API_TOKEN: "{{ containers_pangolin_cloudflare_token }}"
     volumes:
       - ./config/traefik:/etc/traefik:ro # Volume to store the Traefik configuration
       - ./config/letsencrypt:/letsencrypt # Volume to store the Let's Encrypt certificates

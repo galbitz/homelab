@@ -1,3 +1,6 @@
 ---
 containers_pangolin_server_docker_root_dir: "{{ docker_dir }}"
 containers_pangolin_server_dir: "{{ containers_pangolin_server_docker_root_dir }}/pangolin"
+
+containers_pangolin_secret: ""
+containers_pangolin_cloudflare_token: ""

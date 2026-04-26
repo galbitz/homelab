@@ -39,6 +39,9 @@
       vars:
         mta_remotes: "{{ lookup('ansible.builtin.env', 'MTA_REMOTES') }}" # noqa: var-naming[no-role-prefix]
     - role: containers/pangolin_server
+      vars:
+        containers_pangolin_secret: "{{ lookup('ansible.builtin.env', 'PANGOLIN_SECRET') }}" # noqa: var-naming[no-role-prefix]
+        containers_pangolin_cloudflare_token: "{{ lookup('ansible.builtin.env', 'PANGOLIN_CLOUDFLARE_TOKEN') }}" # noqa: var-naming[no-role-prefix]
     - role: containers/notes_storage
     - role: containers/syncthing
       vars:
