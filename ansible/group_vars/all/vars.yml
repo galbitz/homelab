@@ -5,4 +5,3 @@ ansible_user: sysadmin
 homelab_email: "{{ lookup('ansible.builtin.env', 'HOMELAB_EMAIL') }}"
 
 security_notification_email: "{{ homelab_email }}"
-mta_remotes: "{{ lookup('ansible.builtin.env', 'MTA_REMOTES') }}"

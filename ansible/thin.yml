@@ -15,6 +15,8 @@
     #        frp_type: "client"
     #        frp_version: "0.62.1"
     - role: mta
+      vars:
+        mta_remotes: "{{ lookup('ansible.builtin.env', 'MTA_REMOTES') }}" # noqa: var-naming[no-role-prefix]
     # - role: nut_server
     - role: containers/nut-master
     - role: alloy

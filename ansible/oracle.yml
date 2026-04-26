@@ -35,7 +35,9 @@
     - star4.essentials.timezone
     - star4.essentials.autoupdate
     - star4.essentials.hardening
-    - star4.essentials.forwardmta
+    - role: mta
+      vars:
+        mta_remotes: "{{ lookup('ansible.builtin.env', 'MTA_REMOTES') }}" # noqa: var-naming[no-role-prefix]
     - role: containers/pangolin_server
     - role: containers/notes_storage
     - role: containers/syncthing

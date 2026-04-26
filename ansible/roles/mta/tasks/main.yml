@@ -1,4 +1,11 @@
 ---
+- name: Assert mta_remotes is defined and non-empty
+  ansible.builtin.assert:
+    that:
+      - mta_remotes is defined
+      - mta_remotes | length > 0
+    fail_msg: "mta_remotes must be defined and non-empty"
+
 - name: Install nullmailer and req
   ansible.builtin.package:
     name:

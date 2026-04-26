@@ -19,6 +19,8 @@
       vars:
         autoupdate_notification_email: "{{ homelab_email }}"
     - role: mta
+      vars:
+        mta_remotes: "{{ lookup('ansible.builtin.env', 'MTA_REMOTES') }}" # noqa: var-naming[no-role-prefix]
     - role: containers/docker-base
     - role: keepalived
       tags: ["keepalived"]
