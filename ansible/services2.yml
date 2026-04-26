@@ -29,6 +29,7 @@
     - role: containers/traefik
       vars:
         containers_traefik_dynamic_conf: templates/config/dynamic_conf.yaml.j2 # noqa: var-naming[no-role-prefix]
+        containers_traefik_cloudflare_dns_token: "{{ lookup('ansible.builtin.env', 'CLOUDFLARE_TRAEFIK_DNS_TOKEN') }}" # noqa: var-naming[no-role-prefix]
     - role: containers/portainer
     - role: containers/grafana-stack
       vars:
