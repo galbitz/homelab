@@ -41,6 +41,8 @@
       tags: ["uptime-kuma"]
     - role: containers/netboot
     - role: containers/beszel_hub
+      vars:
+        containers_beszel_hub_tailscale_oauth_token: "{{ lookup('ansible.builtin.env', 'TAILSCALE_BESZEL_TOKEN') }}"
     - role: containers/nut-server
     - role: containers/qbittorrent
     - role: containers/jellyfin

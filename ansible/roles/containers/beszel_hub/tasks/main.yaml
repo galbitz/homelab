@@ -4,6 +4,7 @@
   ansible.builtin.assert:
     that:
       - containers_beszel_hub_docker_root_dir | length > 0
+      - containers_beszel_hub_tailscale_oauth_token | length > 0
     fail_msg: "variable is missing. Define it in global vars"
 
 - name: Make sure that the docker folders exist
