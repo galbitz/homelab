@@ -4,10 +4,10 @@
   hosts: wormhole
   vars:
     ansible_user: gabor
-    zone_id: "{{ cloudflare_wormhole_zone_id }}"
-    record_id: "{{ cloudflare_wormhole_record_id }}"
-    api_token: "{{ cloudflare_wormhole_api_token }}"
-    hostname: "{{ cloudflare_wormhole_hostname }}"
+    zone_id: "{{ lookup('ansible.builtin.env', 'CLOUDFLARE_WORMHOLE_ZONE_ID') }}"
+    record_id: "{{ lookup('ansible.builtin.env', 'CLOUDFLARE_WORMHOLE_RECORD_ID') }}"
+    api_token: "{{ lookup('ansible.builtin.env', 'CLOUDFLARE_WORMHOLE_API_TOKEN') }}"
+    hostname: "{{ lookup('ansible.builtin.env', 'CLOUDFLARE_WORMHOLE_HOSTNAME') }}"
     docker_dir: /opt/docker
   tasks:
     - name: Ensure cron dir for cloudflare exists

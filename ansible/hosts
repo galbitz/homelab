@@ -1,6 +1,6 @@
 docker-server
 rd
-wormhole
+wormhole ansible_host=100.117.156.115
 damage
 bone
 hero
