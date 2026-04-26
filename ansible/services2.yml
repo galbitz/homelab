@@ -30,7 +30,6 @@
       vars:
         containers_traefik_dynamic_conf: templates/config/dynamic_conf.yaml.j2 # noqa: var-naming[no-role-prefix]
     - role: containers/portainer
-    - role: containers/cloudflare-dns
     - role: containers/grafana-stack
       vars:
         containers_grafana_stack_alloy_config: "{{ lookup('template', 'alloy/docker-server.config.alloy.j2') }}"
