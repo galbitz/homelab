@@ -6,6 +6,7 @@ containers_traefik_secondary_domain: ""
 
 containers_traefik_dynamic_conf: ""
 
+containers_traefik_cloudflare_dns_token: ""
 
 containers_traefik_api: true
 containers_traefik_dashboard: true
