@@ -30,7 +30,6 @@
         containers_traefik_cloudflare_dns_token: "{{ lookup('ansible.builtin.env', 'CLOUDFLARE_TRAEFIK_DNS_TOKEN') }}" # noqa: var-naming[no-role-prefix]
     # - role: containers/authelia
     - role: containers/portainer
-    - role: containers/cloudflare-dns
     - role: containers/grafana-stack
       vars:
         #        alloy_internal_loki_endpoint_url: "http://loki:3100/loki/api/v1/push"

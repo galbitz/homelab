@@ -33,7 +33,7 @@
     - role: containers/portainer
     - role: containers/grafana-stack
       vars:
-        containers_grafana_stack_alloy_config: "{{ lookup('template', 'alloy/docker-server.config.alloy.j2') }}"
+        containers_grafana_stack_alloy_config: "{{ lookup('template', 'alloy/docker-server.config.alloy.j2') }}" # noqa: var-naming[no-role-prefix]
       tags: ["grafana-stack"]
     - role: network-mounts
       tags: ["network-mounts"]
@@ -73,7 +73,7 @@
     - role: containers/netboot
     - role: containers/beszel_hub
       vars:
-        containers_beszel_hub_tailscale_oauth_token: "{{ lookup('ansible.builtin.env', 'TAILSCALE_BESZEL_TOKEN') }}"
+        containers_beszel_hub_tailscale_oauth_token: "{{ lookup('ansible.builtin.env', 'TAILSCALE_BESZEL_TOKEN') }}" # noqa: var-naming[no-role-prefix]
     - role: containers/nut-server
     - role: containers/qbittorrent
     - role: containers/jellyfin
