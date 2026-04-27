@@ -9,6 +9,9 @@
     "**/.archive/**",
     "**/resources/**"
   ],
+  "mise": {
+    "enabled": true
+  },
   "docker-compose": {
     "managerFilePatterns": [
       "/(^|/)ansible/.+compose\\.ya?ml(?:\\.j2)?$/"
