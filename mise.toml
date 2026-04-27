@@ -4,7 +4,7 @@ ansible-core = "2.20.3"
 pipx = "1.8.0"
 "pipx:ansible-lint" = "26.3.0"
 python = "3.14.3"
-sops = "3.12.1"
+sops = "3.12.2"
 yamllint = "1.38.0"
 
 [env]
