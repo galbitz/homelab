@@ -16,5 +16,19 @@
     "managerFilePatterns": [
       "/(^|/)ansible/.+compose\\.ya?ml(?:\\.j2)?$/"
     ]
-  }
+  },
+  "packageRules": [
+    {
+      "matchPackageNames": ["louislam/uptime-kuma"],
+      "sourceUrl": "https://github.com/louislam/uptime-kuma"
+    },
+    {
+      "matchPackageNames": ["portainer/portainer-ce"],
+      "sourceUrl": "https://github.com/portainer/portainer"
+    },
+    {
+      "matchPackageNames": ["docker.io/traefik", "traefik"],
+      "sourceUrl": "https://github.com/traefik/traefik"
+    }
+  ]
 }
