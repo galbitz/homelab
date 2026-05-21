@@ -32,4 +32,8 @@ jobs:
           tags: tag:github-ci
 
       - run: mise run ansible:install-requirements
-      - run: mise run ansible:run -- ${{ inputs.playbook }}
+      - name: Deploy playbook
+        run: mise run ansible:run -- ${{ inputs.playbook }}
+
+      - name: Verify deployment health
+        run: mise run ansible:run -- healthcheck.yml
