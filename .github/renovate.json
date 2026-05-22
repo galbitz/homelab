@@ -29,6 +29,10 @@
     {
       "matchPackageNames": ["docker.io/traefik", "traefik"],
       "sourceUrl": "https://github.com/traefik/traefik"
+    },
+    {
+      "matchPackageNames": ["jellyfin/jellyfin"],
+      "sourceUrl": "https://github.com/jellyfin/jellyfin"
     }
   ]
 }
