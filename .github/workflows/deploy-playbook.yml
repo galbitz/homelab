@@ -30,7 +30,7 @@ jobs:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:github-ci
-          args: --accept-dns=true --accept-routes=true
+          args: --accept-dns --accept-routes
 
       - run: mise run ansible:install-requirements
       - name: Deploy playbook
