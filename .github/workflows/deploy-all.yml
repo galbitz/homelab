@@ -1,0 +1,41 @@
+---
+name: Deploy all
+"on":
+  workflow_dispatch:
+
+jobs:
+  build-infrastructure:
+    runs-on: ubuntu-latest
+    env:
+      SOPS_AGE_KEY: ${{ secrets.SOPS_AGE_KEY }}
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v6
+
+      - name: Install mise
+        uses: jdx/mise-action@v4
+        with:
+          cache: true
+
+      - name: Connect Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:github-ci
+          args: --accept-dns=true
+
+      - run: mise run ansible:install-requirements
+
+      - name: Deploy thin
+        run: mise run ansible:run -- thin.yml
+
+      - name: Deploy services2
+        run: mise run ansible:run -- services2.yml
+
+      - name: Deploy oracle
+        run: mise run ansible:run -- oracle.yml
+
+      - name: Verify deployment health
+        run: mise run ansible:run -- healthcheck.yml
