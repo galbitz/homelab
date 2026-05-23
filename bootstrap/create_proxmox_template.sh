@@ -64,7 +64,7 @@ qm create "$vm_id" \
 qm importdisk "$vm_id" $TEMP_IMAGE $STORAGE
 qm set "$vm_id" \
     --scsihw virtio-scsi-single \
-    --scsi0 $STORAGE:vm-"$vm_id"-disk-1,discard=on,ssd=on,iothread=on \
+    --scsi0 $STORAGE:$vm_id/vm-"$vm_id"-disk-1.raw,discard=on,ssd=on,iothread=on \
     --boot c --bootdisk scsi0 \
     --ide2 $STORAGE:cloudinit \
     --ciuser sysadmin \
