@@ -14,7 +14,7 @@
     file_backup_schedule_hour: "1"
     file_backup_schedule_minute: "0"
   roles:
-    - role: linux-auth
+    - role: linux-base
     - role: autoupdate
       vars:
         autoupdate_notification_email: "{{ homelab_email }}"

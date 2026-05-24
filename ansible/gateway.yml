@@ -1,6 +1,6 @@
 ---
-- name: Configure kiosk
-  hosts: kiosk,kiosk2
+- name: Configure gateway
+  hosts: gateway
   roles:
     - role: linux-base
     - role: autoupdate

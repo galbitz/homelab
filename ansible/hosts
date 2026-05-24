@@ -8,6 +8,7 @@ kiosk
 master
 kiosk2
 services2
+gateway ansible_host=100.78.93.7
 
 
 [linux_generic]

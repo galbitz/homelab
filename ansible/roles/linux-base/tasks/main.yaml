@@ -1,0 +1,9 @@
+---
+- name: Set timezone
+  ansible.builtin.import_tasks: timezone.yaml
+
+- name: Install packages
+  ansible.builtin.import_tasks: packages.yaml
+
+- name: Configure sshd
+  ansible.builtin.import_tasks: sshd.yaml
