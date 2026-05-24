@@ -32,9 +32,10 @@
         user: root
       become: true
   roles:
-    - star4.essentials.timezone
-    - star4.essentials.autoupdate
-    - star4.essentials.hardening
+    - role: linux-base
+    - role: autoupdate
+      vars:
+        autoupdate_notification_email: "{{ homelab_email }}"
     - role: mta
       vars:
         mta_remotes: "{{ lookup('ansible.builtin.env', 'MTA_REMOTES') }}" # noqa: var-naming[no-role-prefix]

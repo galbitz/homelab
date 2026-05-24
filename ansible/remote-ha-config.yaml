@@ -1,6 +1,0 @@
----
-- name: Configure PVE node
-  hosts: ha-remote
-
-  roles:
-    - role: ha_remote
