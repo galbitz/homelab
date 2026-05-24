@@ -11,14 +11,24 @@ if [ -z "$1" ]; then
 fi
 
 username="$1"
+ssh_dir="/home/$username/.ssh"
+authorized_keys="$ssh_dir/authorized_keys"
+sudoers_file="/etc/sudoers.d/$username"
 
-useradd -m "$username"
+if ! id "$username" &>/dev/null; then
+    useradd -m "$username"
+fi
+
 chsh -s /bin/bash "$username"
 usermod -aG adm,sudo,audio,video "$username"
 
-echo "$username ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/"$username"
-sudo chmod 440 /etc/sudoers.d/"$username"
+echo "$username ALL=(ALL) NOPASSWD:ALL" > "$sudoers_file"
+chmod 440 "$sudoers_file"
 
-sudo -u "$username" mkdir -p /home/"$username"/.ssh
-sudo -u "$username" chmod 700 /home/"$username"/.ssh
-curl -sSL "https://github.com/galbitz.keys" | sudo -u "$username" tee -a /home/"$username"/.ssh/authorized_keys > /dev/null
+sudo -u "$username" mkdir -p "$ssh_dir"
+sudo -u "$username" chmod 700 "$ssh_dir"
+
+curl -sSL "https://github.com/galbitz.keys" | while IFS= read -r key; do
+    [ -n "$key" ] || continue
+    grep -qF "$key" "$authorized_keys" 2>/dev/null || echo "$key" | sudo -u "$username" tee -a "$authorized_keys" > /dev/null
+done
