@@ -42,6 +42,9 @@ networks:
       - name: master
         ip: 192.168.1.27
 
+      - name: load
+        ip: 192.168.1.30
+
       - name: slzb
         ip: 192.168.1.38
         mac: 78:1c:3c:a7:14:0f
