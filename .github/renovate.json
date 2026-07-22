@@ -33,6 +33,17 @@
     {
       "matchPackageNames": ["jellyfin/jellyfin"],
       "sourceUrl": "https://github.com/jellyfin/jellyfin"
+    },
+    {
+      "matchPackageNames": ["docker.io/fosrl/gerbil", "fosrl/gerbil"],
+      "sourceUrl": "https://github.com/fosrl/gerbil"
+    },
+    {
+      "matchPackageNames": [
+        "lscr.io/linuxserver/syncthing",
+        "linuxserver/syncthing"
+      ],
+      "sourceUrl": "https://github.com/syncthing/syncthing"
     }
   ]
 }
