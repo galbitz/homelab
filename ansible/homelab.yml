@@ -3,3 +3,7 @@
   hosts: all
   roles:
     - role: linux-base
+    - role: autoupdate
+      vars:
+        autoupdate_notification_email: "{{ homelab_email }}"
+      when: autoupdate_enabled | default(true) | bool
