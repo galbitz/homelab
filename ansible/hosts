@@ -1,10 +1,10 @@
 wormhole ansible_host=100.117.156.115
-bone autoupdate_enabled=false
+bone autoupdate_enabled=false nullmailer_enabled=false
 kiosk
 kiosk2
-master autoupdate_enabled=false
+master autoupdate_enabled=false nullmailer_enabled=false
 services2
 gateway ansible_host=100.78.93.7
 thin
-load autoupdate_enabled=false
-ovhbeast ansible_host=100.100.114.77 autoupdate_enabled=false
+load autoupdate_enabled=false nullmailer_enabled=false
+ovhbeast ansible_host=100.100.114.77 autoupdate_enabled=false nullmailer_enabled=false

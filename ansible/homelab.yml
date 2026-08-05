@@ -7,3 +7,7 @@
       vars:
         autoupdate_notification_email: "{{ homelab_email }}"
       when: autoupdate_enabled | default(true) | bool
+    - role: mta
+      vars:
+        mta_remotes: "{{ lookup('ansible.builtin.env', 'MTA_REMOTES') }}" # noqa: var-naming[no-role-prefix]
+      when: nullmailer_enabled | default(true) | bool
