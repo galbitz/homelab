@@ -1,11 +1,20 @@
 ---
 - name: Configure gateway
   hosts: gateway
+  vars:
+    docker_dir: /opt/docker
   roles:
-    - role: linux-base
-    - role: autoupdate
+    - role: containers/docker-base
+    - role: containers/pangolin_server
       vars:
-        autoupdate_notification_email: "{{ homelab_email }}"
-    - role: mta
+        containers_pangolin_secret: "{{ lookup('ansible.builtin.env', 'PANGOLIN_SECRET') }}" # noqa: var-naming[no-role-prefix]
+        containers_pangolin_cloudflare_token: "{{ lookup('ansible.builtin.env', 'PANGOLIN_CLOUDFLARE_TOKEN') }}" # noqa: var-naming[no-role-prefix]
+    - role: containers/notes_storage
+    - role: containers/syncthing
       vars:
-        mta_remotes: "{{ lookup('ansible.builtin.env', 'MTA_REMOTES') }}" # noqa: var-naming[no-role-prefix]
+        containers_syncthing_enable_traefik: false # noqa: var-naming[no-role-prefix]
+        containers_syncthing_docker_network: "pangolin" # noqa: var-naming[no-role-prefix]
+    - role: containers/silverbullet
+      vars:
+        containers_silverbullet_enable_traefik: false # noqa: var-naming[no-role-prefix]
+        containers_silverbullet_docker_network: "pangolin" # noqa: var-naming[no-role-prefix]
