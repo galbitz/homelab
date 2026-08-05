@@ -1,23 +1,10 @@
-docker-server
-rd
 wormhole ansible_host=100.117.156.115
-damage
 bone
-hero
 kiosk
-master
 kiosk2
+master
 services2
 gateway ansible_host=100.78.93.7
-
-
-[linux_generic]
-debian-test
 thin
-
-[ha-remote]
-port
-githubrunner
-docker-server
-damage
-shadow
+load
+ovhbeast ansible_host=100.100.114.77
