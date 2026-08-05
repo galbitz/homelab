@@ -34,8 +34,8 @@ jobs:
       - name: Deploy services2
         run: mise run ansible:run -- services2.yml
 
-      - name: Deploy oracle
-        run: mise run ansible:run -- oracle.yml
+      - name: Deploy gateway
+        run: mise run ansible:run -- gateway.yml
 
       - name: Verify deployment health
         run: mise run ansible:run -- healthcheck.yml
