@@ -2,6 +2,6 @@
 
 skip_list:
 
-- "role-name[path]"
+- "role-name"
 
-# - "var-naming[no-role-prefix]"
+- "var-naming[no-role-prefix]"

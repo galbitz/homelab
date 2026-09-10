@@ -2,4 +2,4 @@
 #MISE description="Lint ansible playbooks"
 
 yamllint .
-ansible-lint ansible/
+ANSIBLE_ROLES_PATH="$PWD/ansible/roles:$HOME/.ansible/roles" ansible-lint ansible/
