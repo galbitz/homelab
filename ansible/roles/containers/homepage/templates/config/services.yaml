@@ -16,6 +16,9 @@
     - OVHBeast:
         href: https://ovhbeast.tn.04a.ca:8006/
         icon: proxmox.png
+    - Load:
+        href: https://load.04a.ca:8006/
+        icon: proxmox.png
 - Services:
     - Beszel Hub:
         href: http://beszel.home.04a.ca:38090/
