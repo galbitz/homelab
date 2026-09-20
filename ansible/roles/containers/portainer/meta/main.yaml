@@ -1,3 +1,0 @@
----
-dependencies:
-  - role: containers/docker-base
