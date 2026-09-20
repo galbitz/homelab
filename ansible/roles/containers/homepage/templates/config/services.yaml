@@ -29,9 +29,6 @@
     - Uptime Kuma:
         href: https://uptime.home.04a.ca/
         icon: uptime-kuma.png
-    - Portainer:
-        href: https://portainer.home.04a.ca/
-        icon: portainer.png
     - Dozzle:
         href: https://dozzle.home.04a.ca/
         icon: dozzle.png
