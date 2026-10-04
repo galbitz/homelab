@@ -41,12 +41,17 @@ networks:
 
       - name: master
         ip: 192.168.1.27
+        mac: 6c:bf:b5:04:b5:9f
 
       - name: load
         ip: 192.168.1.30
+        mac: 90:2e:16:ed:9a:a0
 
       - name: jetkvm
         ip: 192.168.1.35
+
+      - name: glinet
+        ip: 192.168.1.36
 
       - name: slzb
         ip: 192.168.1.38
@@ -59,22 +64,6 @@ networks:
       - name: ha
         ip: 192.168.1.40
         mac: 3a:39:e4:df:ef:7e
-
-      - name: switchA
-        ip: 192.168.1.41
-        mac: a0:76:4e:32:73:7c
-
-      - name: switchB
-        ip: 192.168.1.42
-        mac: 60:55:f9:33:59:f8
-
-      - name: switchC
-        ip: 192.168.1.43
-        mac: 60:55:f9:33:d1:28
-
-      - name: switchD
-        ip: 192.168.1.44
-        mac: 60:55:f9:33:19:34
 
       - name: kiosk
         ip: 192.168.1.45
