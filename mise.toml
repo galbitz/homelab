@@ -3,7 +3,7 @@ age = "latest"
 ansible-core = "latest"
 pipx = "latest"
 "pipx:ansible-lint" = "latest"
-python = "latest"
+python = "3.14"
 sops = "latest"
 yamllint = "latest"
 
