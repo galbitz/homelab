@@ -47,7 +47,7 @@ url_api = "https://api.github.com/repos/FiloSottile/age/releases/assets/53554193
 provenance = "github-attestations"
 
 [[tools.ansible-core]]
-version = "2.21.5"
+version = "2.22.0"
 backend = "pipx:ansible-core"
 
 [[tools.pipx]]
